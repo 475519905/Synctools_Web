@@ -199,6 +199,277 @@
             overflow: hidden;
         }
 
+        /* Navigation & Banner Responsive Styles */
+        
+        /* Large Tablets */
+        @media (max-width: 1024px) {
+            .nav-right {
+                gap: 30px;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            .top-nav {
+                padding: 0 15px;
+                height: 55px;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .nav-right {
+                display: none;
+                position: fixed;
+                top: 55px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                max-height: calc(100vh - 55px);
+                overflow-y: auto;
+            }
+
+            .nav-right.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+
+            .nav-link {
+                padding: 18px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1rem;
+                color: #cccccc;
+            }
+
+            .nav-link:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .nav-login {
+                margin: 20px;
+                border-radius: 25px;
+                padding: 12px 30px;
+                text-align: center;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                padding: 5px;
+                z-index: 10;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            /* Discount Banner - Tablet */
+            .top-discount-banner {
+                top: 55px;
+                padding: 10px 15px;
+            }
+
+            .discount-content {
+                font-size: 0.9rem;
+            }
+
+            .discount-content code {
+                padding: 3px 8px;
+                font-size: 0.85rem;
+                margin: 0 3px;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+        }
+
+        /* Mobile Large */
+        @media (max-width: 480px) {
+            .top-nav {
+                height: 50px;
+                padding: 0 12px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-right {
+                top: 50px;
+            }
+
+            .nav-link {
+                padding: 16px 15px;
+                font-size: 0.95rem;
+            }
+
+            .mobile-menu-toggle span {
+                width: 22px;
+                height: 2px;
+            }
+
+            /* Discount Banner - Mobile */
+            .top-discount-banner {
+                top: 50px;
+                padding: 8px 10px;
+            }
+
+            .discount-content {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .discount-content code {
+                padding: 2px 6px;
+                font-size: 0.8rem;
+                display: inline-block;
+                margin: 2px;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+        }
+
+        /* Mobile Small */
+        @media (max-width: 360px) {
+            .top-nav {
+                height: 48px;
+                padding: 0 10px;
+            }
+
+            .nav-left {
+                gap: 8px;
+            }
+
+            .logo-icon {
+                width: 26px;
+                height: 26px;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
+
+            .nav-right {
+                top: 48px;
+            }
+
+            .nav-link {
+                padding: 14px 10px;
+                font-size: 0.9rem;
+            }
+
+            .nav-login {
+                margin: 15px;
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+
+            .mobile-menu-toggle {
+                padding: 4px;
+            }
+
+            .mobile-menu-toggle span {
+                width: 20px;
+            }
+
+            /* Discount Banner - Small Mobile */
+            .top-discount-banner {
+                top: 48px;
+                padding: 6px 8px;
+            }
+
+            .discount-content {
+                font-size: 0.75rem;
+                font-weight: 500;
+            }
+
+            .discount-content code {
+                padding: 2px 5px;
+                font-size: 0.75rem;
+                border-radius: 3px;
+            }
+
+            .hero {
+                padding-top: 95px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .top-nav {
+                height: 45px;
+            }
+
+            .logo-icon {
+                width: 25px;
+                height: 25px;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
+
+            .nav-right {
+                top: 45px;
+            }
+
+            .top-discount-banner {
+                top: 45px;
+                padding: 5px 10px;
+            }
+
+            .discount-content {
+                font-size: 0.8rem;
+            }
+
+            .discount-content code {
+                padding: 2px 5px;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding-top: 85px;
+                min-height: calc(100vh - 85px);
+            }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
