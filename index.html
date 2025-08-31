@@ -57,6 +57,114 @@
             gap: 12px;
         }
 
+        /* Products Dropdown Styles */
+        .products-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-left: 0;
+        }
+
+        .products-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: #999999;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.3s ease;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .products-toggle:hover {
+            color: #ffffff;
+        }
+
+        .products-toggle::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .products-toggle:hover::after {
+            width: 100%;
+        }
+
+        .products-toggle::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .products-toggle:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .products-dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .products-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 280px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            margin-top: 8px;
+        }
+
+        .products-dropdown.active .products-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .product-item {
+            display: block;
+            padding: 12px 16px;
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            margin: 2px 8px;
+        }
+
+        .product-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
         .logo-icon {
             width: 35px;
             height: 35px;
@@ -228,6 +336,59 @@
                 font-size: 1.3rem;
             }
 
+            /* Products Dropdown - Mobile */
+            .products-dropdown {
+                display: block;
+                margin-left: 0;
+            }
+
+            .products-toggle {
+                padding: 18px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                font-size: 1rem;
+                font-weight: 500;
+                color: #cccccc;
+                justify-content: center;
+            }
+
+            .products-toggle:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .products-toggle::after {
+                display: none;
+            }
+
+            .products-menu {
+                position: fixed;
+                top: 55px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                border-radius: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                max-height: calc(100vh - 55px);
+                overflow-y: auto;
+                z-index: 999;
+            }
+
+            .product-item {
+                padding: 16px 20px;
+                margin: 0;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                text-align: center;
+            }
+
+            .product-item:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: none;
+            }
+
             .nav-right {
                 display: none;
                 position: fixed;
@@ -364,6 +525,21 @@
             .hero {
                 padding-top: 100px;
             }
+
+            /* Products Dropdown - Mobile Large */
+            .products-dropdown {
+                margin-left: 0;
+            }
+
+            .products-toggle {
+                padding: 16px 15px;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+
+            .products-menu {
+                top: 50px;
+            }
         }
 
         /* Mobile Small */
@@ -428,6 +604,21 @@
 
             .hero {
                 padding-top: 95px;
+            }
+
+            /* Products Dropdown - Mobile Small */
+            .products-dropdown {
+                margin-left: 0;
+            }
+
+            .products-toggle {
+                padding: 14px 10px;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .products-menu {
+                top: 48px;
             }
         }
 
@@ -1075,45 +1266,301 @@
             border-color: #07C160;
         }
 
+        /* Version Selection Section */
+        .version-selection {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            position: relative;
+        }
+
+        .version-selection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .version-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .version-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .version-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #64b5f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .version-subtitle {
+            font-size: 1.3rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .version-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .version-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .version-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .version-header-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .version-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .version-description {
+            color: #b0b0b0;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .version-features {
+            list-style: none;
+            margin-bottom: 35px;
+        }
+
+        .version-features li {
+            color: #e0e0e0;
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .version-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: rgba(74, 222, 128, 0.1);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .version-price-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px 20px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888888;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .current-price {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .price-period {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .version-buy-button {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .version-buy-button:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .version-cta {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .version-cta-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .version-cta-description {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .version-cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .version-btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .version-btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .version-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .version-btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .version-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .footer-content {
-                gap: 30px;
+            .version-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
             }
 
-            .social-links {
-                gap: 15px;
+            .version-card {
+                padding: 30px 20px;
             }
 
-            .social-link {
-                width: 45px;
-                height: 45px;
+            .version-title {
+                font-size: 2.8rem;
             }
 
-            .social-link svg {
-                width: 20px;
-                height: 20px;
+            .current-price {
+                font-size: 2.4rem;
+            }
+
+            .version-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .version-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
+        @media (max-width: 480px) {
+            .version-selection {
+                padding: 60px 15px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
+            .version-title {
+                font-size: 2.2rem;
             }
 
-            .btn {
-                width: 100%;
+            .version-card {
+                padding: 25px 15px;
             }
 
-            .features-grid,
-            .testimonial-grid {
-                grid-template-columns: 1fr;
+            .current-price {
+                font-size: 2rem;
             }
         }
 
@@ -1200,6 +1647,466 @@
         .subtle-animate {
             animation: subtle-pulse 4s ease-in-out infinite;
         }
+
+        /* Login Modal Styles */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .login-container {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 450px;
+            width: 90%;
+            margin: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-modal.active .login-container {
+            transform: scale(1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            color: #888888;
+            font-size: 1rem;
+        }
+
+        .login-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #888888;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .social-login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .social-btn.google {
+            border-color: #4285f4;
+            background: rgba(66, 133, 244, 0.1);
+        }
+
+        .social-btn.google:hover {
+            background: rgba(66, 133, 244, 0.2);
+            border-color: #4285f4;
+        }
+
+        .social-btn.apple {
+            border-color: #000000;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn.apple:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #cccccc;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #666666;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #cccccc;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .forgot-password {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #ffffff;
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 16px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .login-submit:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .signup-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: #cccccc;
+        }
+
+        /* Responsive Login Modal */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 25px;
+                margin: 20px;
+                width: calc(100% - 40px);
+            }
+
+            .login-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .social-login-buttons {
+                gap: 12px;
+            }
+
+            .social-btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px 20px;
+                margin: 15px;
+                width: calc(100% - 30px);
+            }
+
+            .login-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .social-btn {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .form-group input {
+                padding: 12px 14px;
+            }
+        }
+
+        /* Language Switcher Styles */
+        .language-switcher {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            margin: 20px auto 0;
+            width: fit-content;
+        }
+
+        .language-switcher:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .current-lang {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .lang-arrow {
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .language-switcher.active .lang-arrow {
+            transform: rotate(180deg);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1002;
+            margin-bottom: 8px;
+        }
+
+        .language-switcher.active .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            color: #cccccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lang-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .lang-option.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .lang-option .lang-flag {
+            width: 18px;
+            height: 14px;
+            font-size: 0.65rem;
+        }
+
+        /* Responsive Language Switcher */
+        @media (max-width: 768px) {
+            .language-switcher {
+                margin: 20px auto 0;
+                padding: 6px 10px;
+                justify-content: center;
+                border-radius: 25px;
+                padding: 12px 20px;
+                position: relative;
+            }
+
+            .current-lang {
+                font-size: 0.85rem;
+            }
+
+            .lang-flag {
+                width: 18px;
+                height: 14px;
+                font-size: 0.65rem;
+            }
+
+            /* Mobile Language Switcher */
+            .language-dropdown {
+                position: absolute;
+                bottom: 100%;
+                left: 0;
+                right: 0;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(10px);
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 8px 0;
+                margin-bottom: 5px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                transition: all 0.3s ease;
+            }
+
+            .language-switcher.active .language-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .lang-option {
+                justify-content: center;
+                padding: 12px 20px;
+                border-radius: 15px;
+                margin: 5px 20px;
+                transition: all 0.3s ease;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-switcher {
+                margin: 15px auto 0;
+                padding: 5px 8px;
+            }
+
+            .current-lang {
+                font-size: 0.8rem;
+            }
+
+            .language-dropdown {
+                min-width: 100px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1217,6 +2124,30 @@
                 <a href="#features" class="nav-link">FEATURES</a>
                 <a href="#docs" class="nav-link">DOCS</a>
                 <a href="#contact" class="nav-link">CONTACT</a>
+                
+                <!-- Products Dropdown -->
+                <div class="products-dropdown" id="productsDropdown">
+                    <button class="products-toggle" id="productsToggle">
+                        <span>PRODUCTS</span>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="products-menu">
+                        <a href="#" class="product-item">SyncTools for Blender</a>
+                        <a href="#" class="product-item">SyncTools for Maya</a>
+                        <a href="#" class="product-item">SyncTools for 3ds Max</a>
+                        <a href="#" class="product-item">SyncTools for Cinema 4D</a>
+                        <a href="#" class="product-item">SyncTools for Houdini</a>
+                        <a href="#" class="product-item">SyncTools for Zbrush</a>
+                        <a href="#" class="product-item">SyncTools for Rhino</a>
+                        <a href="#" class="product-item">SyncTools for Marvelous Designer</a>
+                        <a href="#" class="product-item">SyncTools for Substance Painter</a>
+                        <a href="#" class="product-item">SyncTools for Unreal Engine</a>
+                        <a href="#" class="product-item">SyncTools for Unity</a>
+                    </div>
+                </div>
+                
                 <a href="#login" class="nav-link nav-login">Login</a>
             </div>
             <button class="mobile-menu-toggle">
@@ -1244,10 +2175,10 @@
         <h1>SyncTools Pro</h1>
         <p>转换一切，从未如此简单</p>
         
-        <div class="cta-buttons">
-            <button class="btn btn-primary">立即购买</button>
-            <button class="btn btn-secondary">了解更多</button>
-        </div>
+                  <div class="cta-buttons">
+              <a href="https://b23.tv/wvfdZHh" target="_blank" class="btn btn-primary">立即购买</a>
+              <button class="btn btn-secondary">了解更多</button>
+          </div>
     </section>
 
     <!-- Features Section -->
@@ -1371,7 +2302,7 @@
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">用户评价</h2>
+            <h2 class="section-title">听听他们怎么说</h2>
             <p class="section-subtitle">来自全球创作者的真实反馈</p>
             
             <div class="testimonial-grid">
@@ -1399,6 +2330,63 @@
                     <div class="testimonial-role">高级场景设计师</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Version Selection Section -->
+    <section class="version-selection">
+        <div class="version-container">
+            <div class="version-header">
+                <h2 class="version-title">选择适合您的SyncTools 版本</h2>
+                <p class="version-subtitle">从此刻，开启您的全新创意之旅。</p>
+            </div>
+            
+            <div class="version-grid">
+                <!-- 专业版 -->
+                <div class="version-card">
+                    <div class="version-header-card">
+                        <h3 class="version-name">专业版</h3>
+                    </div>
+                    <div class="version-price-section">
+                        <span class="original-price">原价¥298</span>
+                        <div class="current-price">¥98<span class="price-period">/永久</span></div>
+                    </div>
+                    <ul class="version-features">
+                        <li>完美兼容Cinema 4D和Blender两大主流软件，满足大部分设计师的核心需求</li>
+                        <li>完美双向互导：完美兼容Cinema 4D和Blender两大主流软件，满足大部分设计师的核心需求</li>
+                        <li>支持2台设备：同时在多台设备上使用，满足您在家庭和工作环境中的不同需求</li>
+                        <li>永久免费更新：一次购买，终身使用，持续获得软件更新和新功能，无需担心订阅费用</li>
+                        <li>专业客服解答技术：由经验丰富的技术专家提供支持，确保您的问题能得到快速有效的解决</li>
+                        <li>千人专属社区：加入我们的专业设计师社区，与来自世界各地的顶尖设计师交流创意、分享经验、探讨最新设计趋势</li>
+                        <li>免费远程技术支持：购买后，可通过私信免费远程安装插件，快速帮您的插件进入工作状态</li>
+                    </ul>
+                    <button class="version-buy-button" onclick="buyVersion('professional')">Get Pro</button>
+                </div>
+
+                <!-- 全DCC探索版 -->
+                <div class="version-card">
+                    <div class="version-header-card">
+                        <h3 class="version-name">全DCC探索版</h3>
+                        <span class="new-badge">新</span>
+                    </div>
+                    <div class="version-price-section">
+                        <span class="original-price">原价¥998</span>
+                        <div class="current-price">¥298<span class="price-period">/永久</span></div>
+                    </div>
+                    <ul class="version-features">
+                        <li>支持主流3D软件：全面兼容市面上所有主流3D设计软件，包括Maya、3ds Max、ZBrush、UE等，满足您的全部创作需求</li>
+                        <li>支持6台设备：在多达6台设备上同时使用，适合团队协作和多场景工作环境</li>
+                        <li>永久免费更新：享受终身软件更新权益，持续获得最新功能和性能优化，确保工具始终保持先进</li>
+                        <li>24小时技术专家服务：全天候技术支持，随时为您解决问题，确保工作流程不受任何阻碍</li>
+                        <li>内测功能抢先使用：抢先体验最新开发的插件和功能，参与产品改进，影响未来发展方向</li>
+                        <li>Synctools Group资格：来自世界各地的顶尖设计师交流创意、分享经验获取独家学习资源，获得项目机会和专业培训</li>
+                        <li>免费远程技术支持：专业技术团队提供一对一远程支持，高效解决复杂技术问题，最大限度减少您的停机时间</li>
+                    </ul>
+                    <button class="version-buy-button" onclick="buyVersion('explorer')">Get Ultra</button>
+                </div>
+            </div>
+
+
         </div>
     </section>
 
@@ -1449,7 +2437,84 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher" id="languageSwitcher">
+            <div class="current-lang">
+                <span id="currentLang">简体中文</span>
+                <div class="lang-arrow"></div>
+            </div>
+            <div class="language-dropdown">
+                <div class="lang-option active" data-lang="zh" data-text="简体中文">
+                    <span>简体中文</span>
+                </div>
+                <div class="lang-option" data-lang="en" data-text="English">
+                    <span>English</span>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <button class="login-close" id="loginClose">&times;</button>
+            
+            <div class="login-header">
+                <h2>欢迎回来</h2>
+                <p>登录您的 SyncTools Pro 账户</p>
+            </div>
+            
+            <div class="social-login-buttons">
+                <button class="social-btn google" id="googleLogin">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    使用 Google 登录
+                </button>
+                
+                <button class="social-btn apple" id="appleLogin">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    使用 Apple 登录
+                </button>
+            </div>
+            
+            <div class="divider">
+                <span>或使用邮箱登录</span>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">邮箱地址</label>
+                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入您的密码" required>
+                </div>
+                
+                <div class="form-options">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">记住我</label>
+                    </div>
+                    <a href="#" class="forgot-password">忘记密码？</a>
+                </div>
+                
+                <button type="submit" class="login-submit">登录</button>
+            </form>
+            
+            <div class="signup-link">
+                还没有账户？ <a href="#" id="signupLink">立即注册</a>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Mobile menu toggle
@@ -1640,6 +2705,587 @@
         
         // Animate noise
         setInterval(noise, 50);
+
+        // Login Modal Functionality
+        const loginModal = document.getElementById('loginModal');
+        const loginClose = document.getElementById('loginClose');
+        const navLoginBtn = document.querySelector('.nav-login');
+        const googleLoginBtn = document.getElementById('googleLogin');
+        const appleLoginBtn = document.getElementById('appleLogin');
+        const loginForm = document.getElementById('loginForm');
+        const signupLink = document.getElementById('signupLink');
+
+        // Open login modal
+        function openLoginModal() {
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close login modal
+        function closeLoginModal() {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Event listeners for opening modal
+        navLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLoginModal();
+        });
+
+        // Event listeners for closing modal
+        loginClose.addEventListener('click', closeLoginModal);
+        
+        // Close modal when clicking outside
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && loginModal.classList.contains('active')) {
+                closeLoginModal();
+            }
+        });
+
+        // Google login
+        googleLoginBtn.addEventListener('click', () => {
+            // 这里可以集成 Google OAuth
+            console.log('Google login clicked');
+            // 示例：模拟登录过程
+            googleLoginBtn.innerHTML = '<span>登录中...</span>';
+            setTimeout(() => {
+                googleLoginBtn.innerHTML = `
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    使用 Google 登录
+                `;
+            }, 2000);
+        });
+
+        // Apple login
+        appleLoginBtn.addEventListener('click', () => {
+            // 这里可以集成 Apple Sign In
+            console.log('Apple login clicked');
+            // 示例：模拟登录过程
+            appleLoginBtn.innerHTML = '<span>登录中...</span>';
+            setTimeout(() => {
+                appleLoginBtn.innerHTML = `
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    使用 Apple 登录
+                `;
+            }, 2000);
+        });
+
+        // Form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+
+            // 这里可以添加实际的登录逻辑
+            console.log('Login attempt:', { email, password, remember });
+            
+            // 示例：模拟登录过程
+            const submitBtn = loginForm.querySelector('.login-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '登录中...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.textContent = '登录成功！';
+                submitBtn.style.background = '#4CAF50';
+                
+                // 重置按钮状态
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    closeLoginModal();
+                }, 1500);
+            }, 2000);
+        });
+
+        // Signup link
+        signupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Signup link clicked');
+            // 这里可以添加注册功能或跳转到注册页面
+            alert('注册功能即将推出！');
+        });
+
+        // Add smooth animation for modal opening
+        function animateModalOpen() {
+            const container = loginModal.querySelector('.login-container');
+            container.style.transform = 'scale(0.9)';
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                container.style.transform = 'scale(1)';
+                container.style.opacity = '1';
+            }, 10);
+        }
+
+        // Enhanced modal open function
+        const originalOpenLoginModal = openLoginModal;
+        const enhancedOpenLoginModal = function() {
+            originalOpenLoginModal();
+            animateModalOpen();
+        };
+        
+        // Replace the original function
+        window.openLoginModal = enhancedOpenLoginModal;
+
+        // Language Management System
+        const languages = {
+            zh: {
+                // Navigation
+                nav: {
+                    features: '功能特性',
+                    docs: '文档',
+                    contact: '联系我们',
+                    login: '登录'
+                },
+                // Hero Section
+                hero: {
+                    title: 'SyncTools Pro',
+                    subtitle: '转换一切，从未如此简单',
+                    buyNow: '立即购买',
+                    learnMore: '了解更多'
+                },
+                // Discount Banner
+                discount: {
+                    text: '🎉 限时优惠！使用优惠码',
+                    code: '#Synctools',
+                    discount: '立享80%折扣！'
+                },
+                // Features Section
+                features: {
+                    title: '核心功能',
+                    subtitle: '革新您的3D工作流程',
+                    feature1: {
+                        title: '超级轻松，转换只需',
+                        description: '通过一键同步核心参数，您可以轻松保持项目设置一致性。无论是画幅、焦距、分辨率、宽高比还是帧率，所有参数都能轻松对齐。让您的工作流程更加流畅、效率更高。'
+                    },
+                    feature2: {
+                        title: '无界衔接，核心参数',
+                        description: '通过一键同步核心参数，您可以轻松保持项目设置一致性。无论是画幅、焦距、分辨率、宽高比还是帧率，所有参数都能轻松对齐。让您的工作流程更加流畅、效率更高。'
+                    },
+                    feature3: {
+                        title: '材质，全面互通',
+                        description: '自研先进的材质转换引擎，精准还原着色器结构层级与逻辑，无论是基础材质还是复杂的多层材质，都能确保视觉一致。'
+                    },
+                    feature4: {
+                        title: '导出速度，再升级',
+                        description: '在速度与稳定之间寻求理想平衡。新一代互导引擎，互导效率大幅提升，复杂动画、庞大场景将一键完成。更快响应更少等待，只为纤毫无间。'
+                    },
+                    feature5: {
+                        title: '光影流转，臻美再现',
+                        description: '忠实传承每一寸微妙光影，深度还原灯光信息，包括灯光尺寸、类型及形状。无损还原强度、色彩、图像纹理。'
+                    },
+                    feature6: {
+                        title: '云端更新，无限进步',
+                        description: '每月自动推送插件更新，在每一处细节精微入妙，始终保持永久更新，让我们一起为未来的无限可能蓄势待发。'
+                    }
+                },
+                // Stats Section
+                stats: {
+                    countries: '覆盖国家',
+                    users: '设计师用户',
+                    clients: '企业客户',
+                    version: '最新版本'
+                },
+                // Product Display
+                product: {
+                    title: '产品展示',
+                    subtitle: '直观体验强大功能',
+                    preview: '产品界面预览',
+                    animation: '动画转换演示',
+                    material: '材质同步展示',
+                    parameter: '参数对齐功能'
+                },
+                // Testimonials
+                testimonials: {
+                    title: '用户评价',
+                    subtitle: '来自全球创作者的真实反馈',
+                    testimonial1: {
+                        content: '"这是我遇到过最热衷于收集用户反馈以及建议的开发团队了。从插件发布到功能逐步完善，可以看到用户的反馈在新版的发布得到了体现。这可能和开发者们本身也是使用者有关吧。"',
+                        author: 'Paul Nicklen',
+                        role: '资深动态设计师'
+                    },
+                    testimonial2: {
+                        content: '"非常优秀，但我更期待能达到颠覆般的优秀。插件我用的最多的就是灯光插件。那真是用过的人都说好，优化了我很多调整灯光时浪费的时间。"',
+                        author: '弈星',
+                        role: '网易美术总监'
+                    },
+                    testimonial3: {
+                        content: '"简直是黑科技插件！功能很强大！当你对接不同工作流的团队而手足无措时，每次总能用这个顺利解决，是个好东西！"',
+                        author: 'BeSseL',
+                        role: '高级场景设计师'
+                    }
+                },
+                // Footer
+                footer: {
+                    copyright: '© 2024 SyncTools Pro. All rights reserved.',
+                    description: '前往官方商城购买，享受专业客服一对一支持<br>技术专家帮您选购，同时提供技术指导和安装帮助',
+                    followUs: '关注我们'
+                },
+                // Login Modal
+                login: {
+                    title: '欢迎回来',
+                    subtitle: '登录您的 SyncTools Pro 账户',
+                    googleLogin: '使用 Google 登录',
+                    appleLogin: '使用 Apple 登录',
+                    orEmail: '或使用邮箱登录',
+                    email: '邮箱地址',
+                    emailPlaceholder: '请输入您的邮箱地址',
+                    password: '密码',
+                    passwordPlaceholder: '请输入您的密码',
+                    rememberMe: '记住我',
+                    forgotPassword: '忘记密码？',
+                    loginButton: '登录',
+                    noAccount: '还没有账户？',
+                    signup: '立即注册'
+                }
+            },
+            en: {
+                // Navigation
+                nav: {
+                    features: 'FEATURES',
+                    docs: 'DOCS',
+                    contact: 'CONTACT',
+                    login: 'Login'
+                },
+                // Hero Section
+                hero: {
+                    title: 'SyncTools Pro',
+                    subtitle: 'Transform Everything, Never Been So Simple',
+                    buyNow: 'Buy Now',
+                    learnMore: 'Learn More'
+                },
+                // Discount Banner
+                discount: {
+                    text: '🎉 Limited Time Offer! Use Code',
+                    code: '#Synctools',
+                    discount: 'for 80% Off!'
+                },
+                // Features Section
+                features: {
+                    title: 'Core Features',
+                    subtitle: 'Revolutionize Your 3D Workflow',
+                    feature1: {
+                        title: 'Super Easy, Conversion in One Click',
+                        description: 'With one-click core parameter synchronization, you can easily maintain project setting consistency. Whether it\'s frame size, focal length, resolution, aspect ratio, or frame rate, all parameters can be easily aligned. Make your workflow smoother and more efficient.'
+                    },
+                    feature2: {
+                        title: 'Seamless Integration, Core Parameters',
+                        description: 'With one-click core parameter synchronization, you can easily maintain project setting consistency. Whether it\'s frame size, focal length, resolution, aspect ratio, or frame rate, all parameters can be easily aligned. Make your workflow smoother and more efficient.'
+                    },
+                    feature3: {
+                        title: 'Materials, Fully Interoperable',
+                        description: 'Self-developed advanced material conversion engine that accurately restores shader structure hierarchy and logic. Whether it\'s basic materials or complex multi-layer materials, visual consistency is ensured.'
+                    },
+                    feature4: {
+                        title: 'Export Speed, Upgraded Again',
+                        description: 'Seeking the ideal balance between speed and stability. The new generation import/export engine significantly improves efficiency. Complex animations and massive scenes will be completed with one click. Faster response, less waiting, for seamless perfection.'
+                    },
+                    feature5: {
+                        title: 'Light and Shadow Flow, Perfect Reproduction',
+                        description: 'Faithfully preserve every subtle light and shadow, deeply restore lighting information including light size, type, and shape. Lossless restoration of intensity, color, and image texture.'
+                    },
+                    feature6: {
+                        title: 'Cloud Updates, Infinite Progress',
+                        description: 'Automatically push plugin updates monthly, with meticulous attention to every detail, always maintaining permanent updates. Let\'s build momentum for unlimited future possibilities together.'
+                    }
+                },
+                // Stats Section
+                stats: {
+                    countries: 'Countries',
+                    users: 'Designer Users',
+                    clients: 'Enterprise Clients',
+                    version: 'Latest Version'
+                },
+                // Product Display
+                product: {
+                    title: 'Product Showcase',
+                    subtitle: 'Experience Powerful Features Intuitively',
+                    preview: 'Product Interface Preview',
+                    animation: 'Animation Conversion Demo',
+                    material: 'Material Sync Showcase',
+                    parameter: 'Parameter Alignment Feature'
+                },
+                // Testimonials
+                testimonials: {
+                    title: 'User Reviews',
+                    subtitle: 'Real Feedback from Global Creators',
+                    testimonial1: {
+                        content: '"This is the most enthusiastic development team I\'ve ever encountered when it comes to collecting user feedback and suggestions. From plugin release to gradual feature improvement, you can see that user feedback is reflected in new version releases. This might be because the developers themselves are also users."',
+                        author: 'Paul Nicklen',
+                        role: 'Senior Motion Designer'
+                    },
+                    testimonial2: {
+                        content: '"Very excellent, but I\'m looking forward to achieving revolutionary excellence. The plugin I use most is the lighting plugin. It\'s really something that everyone who uses it says is good, optimizing a lot of time I waste adjusting lights."',
+                        author: 'Yixing',
+                        role: 'NetEase Art Director'
+                    },
+                    testimonial3: {
+                        content: '"This is absolutely a black tech plugin! The features are very powerful! When you\'re at a loss dealing with teams with different workflows, you can always use this to solve problems smoothly. It\'s a great tool!"',
+                        author: 'BeSseL',
+                        role: 'Senior Scene Designer'
+                    }
+                },
+                // Footer
+                footer: {
+                    copyright: '© 2024 SyncTools Pro. All rights reserved.',
+                    description: 'Visit the official store to purchase and enjoy one-on-one professional customer service support<br>Technical experts help you choose while providing technical guidance and installation assistance',
+                    followUs: 'Follow Us'
+                },
+                // Login Modal
+                login: {
+                    title: 'Welcome Back',
+                    subtitle: 'Sign in to your SyncTools Pro account',
+                    googleLogin: 'Sign in with Google',
+                    appleLogin: 'Sign in with Apple',
+                    orEmail: 'or sign in with email',
+                    email: 'Email Address',
+                    emailPlaceholder: 'Enter your email address',
+                    password: 'Password',
+                    passwordPlaceholder: 'Enter your password',
+                    rememberMe: 'Remember me',
+                    forgotPassword: 'Forgot password?',
+                    loginButton: 'Sign In',
+                    noAccount: 'Don\'t have an account?',
+                    signup: 'Sign up now'
+                }
+            }
+        };
+
+        // Current language state
+        let currentLanguage = 'zh';
+
+        // Language switcher functionality
+        const languageSwitcher = document.getElementById('languageSwitcher');
+        const currentLang = document.getElementById('currentLang');
+        const langOptions = document.querySelectorAll('.lang-option');
+
+        // Toggle language dropdown
+        languageSwitcher.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageSwitcher.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            languageSwitcher.classList.remove('active');
+        });
+
+        // Language selection
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.dataset.lang;
+                const text = option.dataset.text;
+                
+                if (lang !== currentLanguage) {
+                    currentLanguage = lang;
+                    updateLanguage(lang, text);
+                    updateActiveOption();
+                }
+                
+                languageSwitcher.classList.remove('active');
+            });
+        });
+
+        // Update active option styling
+        function updateActiveOption() {
+            langOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === currentLanguage) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // Update language display
+        function updateLanguage(lang, text) {
+            currentLang.textContent = text;
+            
+            // Update page content
+            updatePageContent(lang);
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Update page content based on language
+        function updatePageContent(lang) {
+            const langData = languages[lang];
+            
+            // Update navigation
+            document.querySelector('a[href="#features"]').textContent = langData.nav.features;
+            document.querySelector('a[href="#docs"]').textContent = langData.nav.docs;
+            document.querySelector('a[href="#contact"]').textContent = langData.nav.contact;
+            document.querySelector('.nav-login').textContent = langData.nav.login;
+            
+            // Update hero section
+            document.querySelector('.hero h1').textContent = langData.hero.title;
+            document.querySelector('.hero p').textContent = langData.hero.subtitle;
+            document.querySelector('.btn-primary').textContent = langData.hero.buyNow;
+            document.querySelector('.btn-secondary').textContent = langData.hero.learnMore;
+            
+            // Update discount banner
+            const discountContent = document.querySelector('.discount-content');
+            discountContent.innerHTML = `${langData.discount.text} <code>${langData.discount.code}</code> ${langData.discount.discount}`;
+            
+            // Update features section
+            document.querySelector('.features .section-title').textContent = langData.features.title;
+            document.querySelector('.features .section-subtitle').textContent = langData.features.subtitle;
+            
+            // Update feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards[0].querySelector('h3').textContent = langData.features.feature1.title;
+            featureCards[0].querySelector('p').textContent = langData.features.feature1.description;
+            featureCards[1].querySelector('h3').textContent = langData.features.feature2.title;
+            featureCards[1].querySelector('p').textContent = langData.features.feature2.description;
+            featureCards[2].querySelector('h3').textContent = langData.features.feature3.title;
+            featureCards[2].querySelector('p').textContent = langData.features.feature3.description;
+            featureCards[3].querySelector('h3').textContent = langData.features.feature4.title;
+            featureCards[3].querySelector('p').textContent = langData.features.feature4.description;
+            featureCards[4].querySelector('h3').textContent = langData.features.feature5.title;
+            featureCards[4].querySelector('p').textContent = langData.features.feature5.description;
+            featureCards[5].querySelector('h3').textContent = langData.features.feature6.title;
+            featureCards[5].querySelector('p').textContent = langData.features.feature6.description;
+            
+            // Update stats section
+            const statItems = document.querySelectorAll('.stat-item p');
+            statItems[0].textContent = langData.stats.countries;
+            statItems[1].textContent = langData.stats.users;
+            statItems[2].textContent = langData.stats.clients;
+            statItems[3].textContent = langData.stats.version;
+            
+            // Update product display section
+            document.querySelector('.features:nth-of-type(2) .section-title').textContent = langData.product.title;
+            document.querySelector('.features:nth-of-type(2) .section-subtitle').textContent = langData.product.subtitle;
+            
+            // Update testimonials section
+            document.querySelector('.testimonials .section-title').textContent = langData.testimonials.title;
+            document.querySelector('.testimonials .section-subtitle').textContent = langData.testimonials.subtitle;
+            
+            // Update testimonial cards
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            testimonialCards[0].querySelector('.testimonial-content').textContent = langData.testimonials.testimonial1.content;
+            testimonialCards[0].querySelector('.testimonial-author').textContent = langData.testimonials.testimonial1.author;
+            testimonialCards[0].querySelector('.testimonial-role').textContent = langData.testimonials.testimonial1.role;
+            testimonialCards[1].querySelector('.testimonial-content').textContent = langData.testimonials.testimonial2.content;
+            testimonialCards[1].querySelector('.testimonial-author').textContent = langData.testimonials.testimonial2.author;
+            testimonialCards[1].querySelector('.testimonial-role').textContent = langData.testimonials.testimonial2.role;
+            testimonialCards[2].querySelector('.testimonial-content').textContent = langData.testimonials.testimonial3.content;
+            testimonialCards[2].querySelector('.testimonial-author').textContent = langData.testimonials.testimonial3.author;
+            testimonialCards[2].querySelector('.testimonial-role').textContent = langData.testimonials.testimonial3.role;
+            
+            // Update footer
+            document.querySelector('.footer-main p:first-child').textContent = langData.footer.copyright;
+            document.querySelector('.footer-main p:last-child').innerHTML = langData.footer.description;
+            document.querySelector('.social-media h4').textContent = langData.footer.followUs;
+            
+            // Update login modal
+            document.querySelector('.login-header h2').textContent = langData.login.title;
+            document.querySelector('.login-header p').textContent = langData.login.subtitle;
+            document.getElementById('googleLogin').innerHTML = `
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                ${langData.login.googleLogin}
+            `;
+            document.getElementById('appleLogin').innerHTML = `
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                ${langData.login.appleLogin}
+            `;
+            document.querySelector('.divider span').textContent = langData.login.orEmail;
+            document.querySelector('label[for="email"]').textContent = langData.login.email;
+            document.getElementById('email').placeholder = langData.login.emailPlaceholder;
+            document.querySelector('label[for="password"]').textContent = langData.login.password;
+            document.getElementById('password').placeholder = langData.login.passwordPlaceholder;
+            document.querySelector('label[for="remember"]').textContent = langData.login.rememberMe;
+            document.querySelector('.forgot-password').textContent = langData.login.forgotPassword;
+            document.querySelector('.login-submit').textContent = langData.login.loginButton;
+            document.querySelector('.signup-link').innerHTML = `${langData.login.noAccount} <a href="#" id="signupLink">${langData.login.signup}</a>`;
+        }
+
+        // Initialize language on page load
+        function initializeLanguage() {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage && languages[savedLanguage] && savedLanguage !== 'zh') {
+                // Only update if user has explicitly chosen a different language
+                currentLanguage = savedLanguage;
+                const text = savedLanguage === 'zh' ? '简体中文' : 'English';
+                updateLanguage(savedLanguage, text);
+            } else {
+                // Default to Chinese, ensure language switcher shows correct state
+                currentLanguage = 'zh';
+                updateActiveOption();
+            }
+        }
+
+        // Initialize language when page loads
+        document.addEventListener('DOMContentLoaded', initializeLanguage);
+
+        // Products Dropdown Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsDropdown = document.getElementById('productsDropdown');
+            const productsToggle = document.getElementById('productsToggle');
+            
+            if (!productsDropdown || !productsToggle) return;
+            
+            // Toggle dropdown on button click
+            productsToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                productsDropdown.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!productsDropdown.contains(e.target)) {
+                    productsDropdown.classList.remove('active');
+                }
+            });
+            
+            // Close dropdown on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && productsDropdown.classList.contains('active')) {
+                    productsDropdown.classList.remove('active');
+                }
+            });
+            
+            // Handle product item clicks
+            const productItems = document.querySelectorAll('.product-item');
+            productItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Here you can add navigation logic for each product
+                    console.log('Selected product:', item.textContent);
+                    productsDropdown.classList.remove('active');
+                });
+            });
+        });
+
+        // Buy Version Function
+        function buyVersion(type) {
+            window.open('https://b23.tv/wvfdZHh', '_blank');
+        }
     </script>
 </body>
 </html>
