@@ -344,6 +344,15 @@
             .hero h1 {
                 font-size: 8rem;
             }
+            
+            /* 修复平板端背景图片显示异常 */
+            .hero {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+            
             .top-nav {
                 padding: 0 15px;
                 height: 55px;
@@ -769,6 +778,14 @@
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 4.5rem;
+            }
+            
+            /* 修复移动端背景图片显示异常 */
+            .hero {
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
         }
 
