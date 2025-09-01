@@ -344,15 +344,6 @@
             .hero h1 {
                 font-size: 8rem;
             }
-            
-            /* 修复平板端背景图片显示异常 */
-            .hero {
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-            }
-            
             .top-nav {
                 padding: 0 15px;
                 height: 55px;
@@ -510,6 +501,16 @@
             .hero h1 {
                 font-size: 4.5rem;
             }
+            
+            /* 修复移动端背景图片显示异常 */
+            .hero {
+                background-image: url('https://mdioss.oss-rg-china-mainland.aliyuncs.com/0a625d111338893.6000552a9cff4.webp');
+                background-attachment: scroll;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+            
             .top-nav {
                 height: 50px;
                 padding: 0 12px;
@@ -778,14 +779,6 @@
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 4.5rem;
-            }
-            
-            /* 修复移动端背景图片显示异常 */
-            .hero {
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
             }
         }
 
