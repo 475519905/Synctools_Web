@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文档 - SyncTools Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background:
+                linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.01) 100px, rgba(255,255,255,0.01) 200px);
+            color: #ffffff; overflow-x: hidden;
+        }
+
+        .top-nav { position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; position: relative; transition: color .3s ease; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+
+        .hero { padding: 80px 20px 20px; text-align: center; }
+        .hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -1px; }
+        .hero p { margin-top: 10px; color: #bfbfbf; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
+
+        /* Docs two-column layout */
+        .layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; align-items: start; }
+        .sidebar { position: sticky; top: 80px; align-self: start; }
+        .toc { list-style: none; padding: 12px; border-radius: 14px; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.08); }
+        .toc li { margin: 6px 0; }
+        .toc a { display: block; color: #cfcfcf; text-decoration: none; padding: 8px 10px; border-radius: 10px; transition: background .2s ease, color .2s ease; }
+        .toc a:hover { background: rgba(255,255,255,0.06); color: #fff; }
+        .toc a.active { background: rgba(255,255,255,0.12); color: #fff; }
+        .toc .toc-sub { list-style: none; padding-left: 10px; margin-top: 4px; }
+        .doc { display: grid; gap: 16px; }
+
+        .panel { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,.3); backdrop-filter: blur(10px); }
+        .panel h2 { font-size: 1.3rem; font-weight: 900; margin-bottom: 12px; }
+        .section + .section { margin-top: 20px; }
+        .muted { color: #b0b0b0; }
+        .link { color: #9aa0a6; text-decoration: underline; }
+        .list { margin-top: 10px; padding-left: 20px; }
+        .list li { margin: 6px 0; }
+        .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 6px; }
+
+        @media (max-width: 480px) { .hero h1 { font-size: 2.1rem; } }
+    </style>
+    <link rel="icon" href="favicon.ico" />
+    <meta name="description" content="SyncTools Pro 文档 - 多DCC支持与使用指南" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="index,follow" />
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="store.html" class="nav-link">产品</a>
+                <a href="store.html" class="nav-link">商店</a>
+                <a href="docs.html" class="nav-link">文档</a>
+                <a href="download.html" class="nav-link">下载</a>
+                <a href="index.html#login" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Synctools文档中心</h1>
+        <p>欢迎来到 Synctools 文档中心！这里是所有用户的首选知识库，帮助你快速上手、深入理解并高效使用 Synctools</p>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <aside class="sidebar">
+                <ul class="toc" id="toc">
+                    <li><a href="#guide">入门指南</a></li>
+                    <li><a href="#features">功能文档</a></li>
+                    <li><a href="#tips">使用技巧</a></li>
+                    <li><a href="#faq">常见问题（FAQ）</a></li>
+                    <li><a href="#troubleshooting">故障排查</a></li>
+                    <li><a href="#resources">资源与支持</a></li>
+                    <li><a href="#changelog">更新日志</a></li>
+                </ul>
+            </aside>
+            <div class="doc">
+        <section class="panel section" id="guide">
+            <h2>入门指南</h2>
+            <div class="section">
+                <h3>概述</h3>
+                <p class="muted">SyncTools 采用统一数据交换协议，支持多 DCC 间的双向互导与跨平台协作。</p>
+            </div>
+            <div class="section">
+                <h3>安装</h3>
+                <ul class="list">
+                    <li>Cinema 4D：R21+；插件目录示例 <span class="code">C:\\Program Files\\Maxon Cinema 4D 2024\\plugins</span>（无目录则新建，建议系统盘）</li>
+                    <li>Blender：3.3+；偏好设置 → 从磁盘安装，直接选择压缩包（无需解压）</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>激活</h3>
+                <ul class="list">
+                    <li>人工激活：提供订单号，人工下发许可证</li>
+                    <li>邮箱激活（推荐）：发送激活码到 <span class="code">qq475519905@gmail.com</span>（标题为订单号，仅数字），收到许可证后重启软件</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>首次上手</h3>
+                <ul class="list">
+                    <li>C4D：首次前在 FBX 导出设置勾选“仅选集”</li>
+                    <li>在 C4D 与 Blender 中使用 Copy/Paste 在两端互导对象</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="panel section" id="features">
+            <h2>功能文档</h2>
+            <div class="section">
+                <h3>支持范围</h3>
+                <p class="muted">角色、动画、样条、材质、模型、摄像机、灯光、工程设置等资产的双向互导。</p>
+            </div>
+            <div class="section">
+                <h3>核心能力</h3>
+                <ul class="list">
+                    <li>快速复制与粘贴：自动处理比例、轴向与层级</li>
+                    <li>项目参数同步：焦距、分辨率、宽高比、帧率等</li>
+                    <li>材质互导：支持 Octane、Redshift、V-Ray、Cycles、Arnold 等</li>
+                    <li>灯光互导：强度、颜色、贴图与节点/标签</li>
+                    <li>动画互导：关键帧与曲线手柄保持精度</li>
+                    <li>离线继续导入：跨软件延续导入/导出流程</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>工程设置同步</h3>
+                <p class="muted">Blender：Edit → Preferences → Add-ons → SyncTools → Project Info Sync Settings 选择要导入/导出的分辨率、帧率、帧范围、输出路径、文件格式等字段。</p>
+            </div>
+            <div class="section">
+                <h3>轴向与比例预设</h3>
+                <p class="muted">按目标 DCC 自动适配或自定义坐标映射；提供 All / Fast / Medium 等预设以适配不同场景。</p>
+            </div>
+        </section>
+
+        <section class="panel section" id="tips">
+            <h2>使用技巧</h2>
+            <ul class="list">
+                <li>Blender 行为设置：替换选中、多次导入可提升迭代效率</li>
+                <li>模式选择：标准（均衡）/ Beta（精度优先）/ 快速（性能优先）</li>
+                <li>新版模式（实验性）：为 UE、MAX、MAYA、ZB、BL、4D 建立共同剪贴板</li>
+                <li>识别渲染器：自动创建对应着色器缓存；或切换 RS/标准/物理</li>
+                <li>快捷键可自定义：粘贴(Shift+Ctrl+C)、复制(Shift+Ctrl+V)、导入材质(Shift+Ctrl+M) 等</li>
+            </ul>
+        </section>
+
+        <section class="panel section" id="faq">
+            <h2>常见问题（FAQ）</h2>
+            <ul class="list">
+                <li>Q：材质不匹配怎么办？ A：确认渲染器一致并开启材质识别；必要时使用标准节点过渡。</li>
+                <li>Q：动画不对齐？ A：检查两端帧率与帧范围设置是否一致。</li>
+                <li>Q：粘贴后比例异常？ A：调整轴向与比例预设，或在导出设置中统一全局缩放。</li>
+            </ul>
+        </section>
+
+        <section class="panel section" id="troubleshooting">
+            <h2>故障排查</h2>
+            <ul class="list">
+                <li>权限问题：尽量安装在系统盘，避免因权限导致自动更新失败。</li>
+                <li>导出异常：C4D 勾选“仅选集”；检查是否存在只读路径或非法字符。</li>
+                <li>卡顿/崩溃：逐步排查第三方脚本与大型贴图；缩小导入范围测试。</li>
+            </ul>
+        </section>
+
+        <section class="panel section" id="resources">
+            <h2>资源与支持</h2>
+            <ul class="list">
+                <li>下载页：<a class="link" href="download.html">download.html</a></li>
+                <li>联系支持：网站底部联系方式或用户中心“客服支持”入口</li>
+                <li>社区与示例：即将上线，敬请期待</li>
+            </ul>
+        </section>
+
+        <section class="panel section" id="changelog">
+            <h2>更新日志</h2>
+            <p><a href="https://www.yuque.com/shouwangxingkong-0p4w3/ldvruc/gmd4pud4fu2vz30z" target="_blank" rel="noopener" class="link">查看最新更新日志</a></p>
+        </section>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function(){
+            // smooth scroll for in-page anchors
+            document.querySelectorAll('a[href^="#"]').forEach(function(a){
+                a.addEventListener('click', function(e){
+                    var id = this.getAttribute('href');
+                    if (!id || id === '#') return;
+                    var el = document.querySelector(id);
+                    if (!el) return;
+                    e.preventDefault();
+                    var y = el.getBoundingClientRect().top + window.scrollY - 70; // offset for sticky nav
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                    history.replaceState(null, '', id);
+                });
+            });
+
+            // scroll spy: highlight current section in TOC
+            var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+            var sections = links
+                .map(function(l){ return document.querySelector(l.getAttribute('href')); })
+                .filter(Boolean);
+
+            var activeLink = null;
+            function setActive(id){
+                var target = links.find(function(l){ return l.getAttribute('href') === '#' + id; });
+                if (target && target !== activeLink) {
+                    links.forEach(function(l){ l.classList.remove('active'); });
+                    target.classList.add('active');
+                    activeLink = target;
+                }
+            }
+
+            var observer = new IntersectionObserver(function(entries){
+                entries.forEach(function(entry){
+                    if (entry.isIntersecting) setActive(entry.target.id);
+                });
+            }, { rootMargin: '-40% 0px -50% 0px', threshold: [0, 1] });
+
+            sections.forEach(function(s){ observer.observe(s); });
+        })();
+    </script>
+
+    <footer>
+        <div class="footer-content" style="max-width:1200px;margin:0 auto; padding: 40px 20px;">
+            <div class="legal" style="color:#777; line-height:1.7; font-size:0.95rem; text-align:center;">
+                <p>版权所有 © 2025 SyncTools Suite 202, 2nd Floor, Eden Plaza, Eden Island, Victoria, Mahe, Republic of Seychelles</p>
+                <p>Registered Bad Homburg v.d.H. | Local court Bad Homburg v.d.H. | HRB Nr. 6049</p>
+                <p>CEO: David McGavran | <a href="#" class="link">Data Protection Information</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

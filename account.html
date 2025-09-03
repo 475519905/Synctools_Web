@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户中心 - SyncTools Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background:
+                linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.01) 100px, rgba(255,255,255,0.01) 200px);
+            color: #ffffff; overflow-x: hidden;
+        }
+
+        .top-nav { position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; position: relative; transition: color .3s ease; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+
+        .hero { padding: 80px 20px 8px; position: relative; }
+        .hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hero h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
+        .hero p { margin-top: 10px; color: #bfbfbf; font-size: 1.05rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
+
+        /* Quick section grid (Apple-like) */
+        .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 18px 0 24px; }
+        .quick-card { display: flex; align-items: flex-start; gap: 12px; padding: 16px; border-radius: 16px; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.08); transition: transform .25s ease, border-color .25s ease; text-decoration: none; color: #fff; }
+        .quick-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+        .quick-icon { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,0.06); }
+        .quick-card h3 { font-size: 1.05rem; margin: 0 0 4px; }
+        .quick-card p { color: #bcbcbc; font-size: .92rem; }
+
+        .panel { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; box-shadow: 0 8px 32px rgba(0,0,0,.3); backdrop-filter: blur(10px); }
+        .panel h2 { font-size: 1.3rem; font-weight: 900; margin-bottom: 12px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .field { display: grid; gap: 8px; }
+        .label { font-size: .95rem; color: #dcdcdc; }
+        .input, .select, .textarea { width: 100%; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #fff; outline: none; transition: border .2s ease; }
+        .input:focus, .select:focus, .textarea:focus { border-color: rgba(255,255,255,0.3); }
+        .textarea { min-height: 90px; resize: vertical; }
+
+        /* avatar */
+        .avatar-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+        .avatar-upload { display: inline-flex; align-items: center; gap: 8px; }
+        .avatar-upload input { display: none; }
+        .avatar-upload .btn { padding: 10px 14px; }
+
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; font-size: .95rem; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: .75rem; border: 1px solid rgba(255,255,255,0.15); }
+
+        .btn { padding: 10px 16px; border: none; border-radius: 9999px; font-size: 0.95rem; cursor: pointer; transition: all .3s ease; text-decoration: none; display: inline-block; font-weight: 700; position: relative; overflow: hidden; text-align: center; }
+        .btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.08); transform: translate(-50%, -50%); transition: width .6s, height .6s; }
+        .btn:hover::before { width: 260px; height: 260px; }
+        .btn-primary { background: #ffffff; color: #000000; }
+        .btn-primary:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
+        .btn-secondary { background: transparent; color: #ffffff; border: 2px solid #ffffff; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
+        .btn-danger { background: #ef4444; color: #fff; }
+
+        footer { padding: 50px 20px; background: #000000; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .legal { margin: 24px auto 0; color: #777; line-height: 1.7; font-size: 0.95rem; text-align: center; }
+        .legal a { color: #555; text-decoration: underline; }
+        /* toast & confirm */
+        .toast { position: fixed; left: 50%; top: 20px; transform: translateX(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color:#fff; padding: 10px 16px; border-radius: 10px; backdrop-filter: blur(8px); opacity: 0; transition: opacity .25s ease, transform .25s ease; z-index: 2000; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(6px); }
+        .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .modal { width: 92%; max-width: 420px; background: linear-gradient(135deg, #1a1a1a, #111); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+        .modal h4 { margin-bottom: 8px; font-size: 1.05rem; }
+        .modal .actions { display:flex; justify-content:flex-end; gap:10px; margin-top: 12px; }
+
+        @media (max-width: 980px) { }
+        @media (max-width: 480px) { .hero h1 { font-size: 2rem; } }
+    </style>
+    <link rel="icon" href="favicon.ico" />
+    <meta name="description" content="SyncTools Pro 用户中心 - 管理资料、授权、订单与安全设置" />
+    <meta name="theme-color" content="#000000" />
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="store.html" class="nav-link">产品</a>
+                <a href="store.html" class="nav-link">商店</a>
+                <a href="index.html#docs" class="nav-link">文档</a>
+                <a href="download.html" class="nav-link">下载</a>
+                <a href="index.html#login" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <h1>用户中心</h1>
+            <p>管理您的账户信息、授权与订单</p>
+            <div class="quick-grid">
+                <a class="quick-card" href="#profile">
+                    <div class="quick-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="white"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white"/></svg>
+                    </div>
+                    <div>
+                        <h3>资料</h3>
+                        <p>昵称与公司信息</p>
+                    </div>
+                </a>
+                <a class="quick-card" href="#security">
+                    <div class="quick-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7l8-4z" stroke="white"/><path d="M9 13l2 2 4-4" stroke="white"/></svg>
+                    </div>
+                    <div>
+                        <h3>安全</h3>
+                        <p>密码与两步验证</p>
+                    </div>
+                </a>
+                <a class="quick-card" href="#license">
+                    <div class="quick-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="12" rx="2" stroke="white"/><path d="M4 9h16" stroke="white"/></svg>
+                    </div>
+                    <div>
+                        <h3>授权</h3>
+                        <p>授权码与设备管理</p>
+                    </div>
+                </a>
+                <a class="quick-card" href="#orders">
+                    <div class="quick-icon">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4z" stroke="white"/><path d="M4 10h16" stroke="white"/></svg>
+                    </div>
+                    <div>
+                        <h3>订单</h3>
+                        <p>支付记录与状态</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <aside class="sidebar">
+            </aside>
+
+            <section id="content">
+                <div id="profile" class="panel">
+                    <h2>账户资料</h2>
+                    <div class="avatar-wrap">
+                        <img id="avatar" class="avatar" alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Crect width='100%25' height='100%25' fill='%231a1a1a'/%3E%3Ccircle cx='36' cy='28' r='14' fill='%23ffffff'/%3E%3Crect x='16' y='44' width='40' height='12' rx='6' fill='%23ffffff'/%3E%3C/svg%3E" />
+                        <div class="avatar-upload">
+                            <input type="file" id="avatarInput" accept="image/*" />
+                            <label for="avatarInput" class="btn btn-secondary">上传头像</label>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="field">
+                            <label class="label">昵称</label>
+                            <input id="nickname" class="input" placeholder="输入昵称" />
+                        </div>
+                        <div class="field">
+                            <label class="label">邮箱（不可更改）</label>
+                            <input id="email" class="input" disabled />
+                        </div>
+                        <div class="field">
+                            <label class="label">公司/团队（可选）</label>
+                            <input id="company" class="input" placeholder="输入公司/团队" />
+                        </div>
+                    </div>
+                    <div style="margin-top:14px; display:flex; gap:10px; justify-content:center;">
+                        <button id="saveProfile" class="btn btn-primary">保存资料</button>
+                        <button id="revertProfile" class="btn btn-secondary">撤销更改</button>
+                    </div>
+                </div>
+
+                <div id="license" class="panel" style="margin-top:20px;">
+                    <h2>我的授权</h2>
+                    <table class="table" id="licenseTable">
+                        <thead>
+                            <tr>
+                                <th>授权类型</th>
+                                <th>授权码</th>
+                                <th>设备</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div id="orders" class="panel" style="margin-top:20px;">
+                    <h2>订单记录</h2>
+                    <table class="table" id="orderTable">
+                        <thead>
+                            <tr>
+                                <th>订单号</th>
+                                <th>套餐</th>
+                                <th>金额</th>
+                                <th>时间</th>
+                                <th>支付方式</th>
+                                <th>状态</th>
+                                <th>发票</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div id="security" class="panel" style="margin-top:20px;">
+                    <h2>安全设置</h2>
+                    <div class="grid">
+                        <div class="field">
+                            <label class="label">修改密码</label>
+                            <input id="newPwd" class="input" type="password" placeholder="输入新密码" />
+                        </div>
+                        <div class="field">
+                            <label class="label">两步验证</label>
+                            <select id="mfa" class="select">
+                                <option value="off">关闭</option>
+                                <option value="on">开启</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="margin-top:14px; display:flex; justify-content:center; gap:10px;">
+                        <button id="saveSecurity" class="btn btn-primary">保存设置</button>
+                        <button id="resetToken" class="btn btn-danger">重置登录令牌</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="legal">
+                <p>版权所有 © 2025 SyncTools Suite 202, 2nd Floor, Eden Plaza, Eden Island, Victoria, Mahe, Republic of Seychelles</p>
+                <p>Registered Bad Homburg v.d.H. | Local court Bad Homburg v.d.H. | HRB Nr. 6049</p>
+                <p>CEO: David McGavran | <a href="#">Data Protection Information</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            function $(id) { return document.getElementById(id); }
+            function toast(msg){
+                var t = document.createElement('div');
+                t.className = 'toast';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                requestAnimationFrame(function(){ t.classList.add('show'); });
+                setTimeout(function(){ t.classList.remove('show'); setTimeout(function(){ t.remove(); }, 250); }, 1800);
+            }
+            function confirmModal(message, onConfirm){
+                var mask = document.createElement('div');
+                mask.className = 'modal-mask';
+                mask.style.display = 'flex';
+                mask.innerHTML = '<div class="modal">'+
+                    '<h4>请确认</h4><p style="color:#cfcfcf;">'+ message +'</p>'+ 
+                    '<div class="actions">'+
+                        '<button class="btn btn-secondary" data-cancel>取消</button>'+ 
+                        '<button class="btn btn-primary" data-ok>确定</button>'+ 
+                    '</div></div>';
+                document.body.appendChild(mask);
+                mask.addEventListener('click', function(e){ if(e.target === mask || e.target.hasAttribute('data-cancel')) mask.remove(); });
+                var ok = mask.querySelector('[data-ok]');
+                ok.addEventListener('click', function(){ mask.remove(); onConfirm && onConfirm(); });
+            }
+            var profileDefaults = {
+                nickname: 'Sync 用户',
+                email: 'user@example.com',
+                company: ''
+            };
+
+            function loadProfile() {
+                var data = JSON.parse(localStorage.getItem('st_profile') || 'null') || profileDefaults;
+                $('nickname').value = data.nickname || '';
+                $('email').value = data.email || '';
+                $('company').value = data.company || '';
+                if (data.avatar) {
+                    $('avatar').src = data.avatar;
+                }
+            }
+
+            function saveProfile() {
+                var data = {
+                    nickname: $('nickname').value.trim(),
+                    email: $('email').value.trim() || profileDefaults.email,
+                    company: $('company').value.trim(),
+                    avatar: $('avatar').src
+                };
+                localStorage.setItem('st_profile', JSON.stringify(data));
+                toast('资料已保存');
+            }
+
+            function revertProfile() { loadProfile(); }
+
+            function randomKey(len) {
+                var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                var out = [];
+                for (var i = 0; i < len; i++) out.push(chars[Math.floor(Math.random() * chars.length)]);
+                return out.join('');
+            }
+
+            function loadLicenses() {
+                var seed = JSON.parse(localStorage.getItem('st_licenses') || 'null');
+                if (!seed) {
+                    seed = [
+                        { type: '专业版', key: 'ST-' + randomKey(16), devices: 2, status: '已激活' },
+                        { type: '全DCC探索版', key: 'ST-' + randomKey(16), devices: 6, status: '可用' }
+                    ];
+                    localStorage.setItem('st_licenses', JSON.stringify(seed));
+                }
+                var tbody = document.querySelector('#licenseTable tbody');
+                tbody.innerHTML = '';
+                seed.forEach(function(item, idx) {
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + item.type + '</td>' +
+                                   '<td><code>' + item.key + '</code></td>' +
+                                   '<td>' + item.devices + ' 台</td>' +
+                                   '<td><span class="tag">' + item.status + '</span></td>' +
+                                   '<td><button class="btn btn-secondary" data-unbind="' + idx + '">解除绑定</button></td>';
+                    tbody.appendChild(tr);
+                });
+            }
+
+            function bindUnbind() {
+                document.addEventListener('click', function(e) {
+                    var btn = e.target.closest('[data-unbind]');
+                    if (!btn) return;
+                    var idx = parseInt(btn.getAttribute('data-unbind'), 10);
+                    var list = JSON.parse(localStorage.getItem('st_licenses') || '[]');
+                    if (!list[idx]) return;
+                    confirmModal('确认解除该授权的设备绑定？', function(){
+                        list[idx].status = '可用';
+                        localStorage.setItem('st_licenses', JSON.stringify(list));
+                        loadLicenses();
+                        toast('已解除绑定');
+                    });
+                });
+            }
+
+            function loadOrders() {
+                var seed = JSON.parse(localStorage.getItem('st_orders') || 'null');
+                if (!seed) {
+                    seed = [
+                        { id: 'ST' + Date.now(), plan: '专业版', amount: 98, time: new Date().toLocaleString(), method: '支付宝', status: '已完成' }
+                    ];
+                    localStorage.setItem('st_orders', JSON.stringify(seed));
+                }
+                var tbody = document.querySelector('#orderTable tbody');
+                tbody.innerHTML = '';
+                seed.forEach(function(o) {
+                    var tr = document.createElement('tr');
+                    var invoiceCell = '';
+                    if (o.invoice && o.invoice.status) {
+                        invoiceCell = '<span class="tag">' + (o.invoice.status || '已申请') + '</span>\n' +
+                                      ' <button class="btn btn-secondary" data-view-invoice="' + o.id + '">查看</button>';
+                    } else {
+                        invoiceCell = '<button class="btn btn-primary" data-invoice="' + o.id + '">开具发票</button>';
+                    }
+                    tr.innerHTML = '<td>' + o.id + '</td>' +
+                                   '<td>' + o.plan + '</td>' +
+                                   '<td>¥ ' + o.amount + '</td>' +
+                                   '<td>' + o.time + '</td>' +
+                                   '<td>' + o.method + '</td>' +
+                                   '<td><span class="tag">' + o.status + '</span></td>' +
+                                   '<td>' + invoiceCell + '</td>';
+                    tbody.appendChild(tr);
+                });
+            }
+
+            function showInvoiceModal(orderId, existing) {
+                var mask = document.createElement('div');
+                mask.className = 'modal-mask';
+                mask.style.display = 'flex';
+                var type = (existing && existing.type) || '电子普通发票';
+                var title = (existing && existing.title) || '';
+                var taxno = (existing && existing.taxno) || '';
+                var email = (existing && existing.email) || '';
+                var statusText = existing && existing.status ? ('<p class="muted" style="margin:6px 0 10px;">当前状态：' + existing.status + '</p>') : '';
+                mask.innerHTML = '<div class="modal">' +
+                  '<h4>开具发票</h4>' + statusText +
+                  '<div class="field"><label class="label">发票类型</label>' +
+                  '<select id="invType" class="select">' +
+                  '<option value="电子普通发票"' + (type === '电子普通发票' ? ' selected' : '') + '>电子普通发票</option>' +
+                  '<option value="增值税专用发票"' + (type === '增值税专用发票' ? ' selected' : '') + '>增值税专用发票</option>' +
+                  '</select></div>' +
+                  '<div class="field"><label class="label">发票抬头</label><input id="invTitle" class="input" placeholder="个人或单位名称" value="' + title.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '" /></div>' +
+                  '<div class="field"><label class="label">税号（单位必填）</label><input id="invTaxno" class="input" placeholder="纳税人识别号" value="' + taxno.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '" /></div>' +
+                  '<div class="field"><label class="label">接收邮箱</label><input id="invEmail" class="input" placeholder="用于接收电子发票" value="' + email.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '" /></div>' +
+                  '<div class="actions">' +
+                  '<button class="btn btn-secondary" data-cancel>取消</button>' +
+                  '<button class="btn btn-primary" data-ok>提交</button>' +
+                  '</div></div>';
+                document.body.appendChild(mask);
+                mask.addEventListener('click', function(e){ if(e.target === mask || e.target.hasAttribute('data-cancel')) mask.remove(); });
+                var ok = mask.querySelector('[data-ok]');
+                ok.addEventListener('click', function(){
+                    var invType = document.getElementById('invType').value;
+                    var invTitle = document.getElementById('invTitle').value.trim();
+                    var invTaxno = document.getElementById('invTaxno').value.trim();
+                    var invEmail = document.getElementById('invEmail').value.trim();
+                    if (!invTitle) { toast('请填写发票抬头'); return; }
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(invEmail)) { toast('请输入有效邮箱'); return; }
+                    if (/^(增值税专用发票)$/.test(invType) && !invTaxno) { toast('专用发票需填写税号'); return; }
+                    try {
+                        var orders = JSON.parse(localStorage.getItem('st_orders') || '[]');
+                        for (var i = 0; i < orders.length; i++) {
+                            if (orders[i].id === orderId) {
+                                orders[i].invoice = { type: invType, title: invTitle, taxno: invTaxno, email: invEmail, status: '已申请' };
+                                break;
+                            }
+                        }
+                        localStorage.setItem('st_orders', JSON.stringify(orders));
+                        mask.remove();
+                        loadOrders();
+                        toast('发票申请已提交');
+                    } catch (e) { mask.remove(); toast('提交失败'); }
+                });
+            }
+
+            function bindInvoiceActions() {
+                document.addEventListener('click', function(e) {
+                    var btnApply = e.target.closest('[data-invoice]');
+                    if (btnApply) {
+                        var oid = btnApply.getAttribute('data-invoice');
+                        showInvoiceModal(oid);
+                        return;
+                    }
+                    var btnView = e.target.closest('[data-view-invoice]');
+                    if (btnView) {
+                        var oid2 = btnView.getAttribute('data-view-invoice');
+                        var orders = JSON.parse(localStorage.getItem('st_orders') || '[]');
+                        var found = orders.find(function(x){ return x.id === oid2; });
+                        showInvoiceModal(oid2, found && found.invoice);
+                    }
+                });
+            }
+
+            function saveSecurity() {
+                var mfa = $('mfa').value;
+                var pwd = $('newPwd').value;
+                if (pwd && pwd.length < 6) { toast('密码长度至少 6 位'); return; }
+                localStorage.setItem('st_security', JSON.stringify({ mfa: mfa }));
+                if (pwd) toast('密码已更新（示例）');
+                else toast('设置已保存');
+            }
+
+            function resetToken() {
+                toast('登录令牌已重置（示例）');
+            }
+
+            function logout() { toast('已退出（示例）。可跳转到登录页。'); }
+
+            function initMenu() {
+                document.querySelectorAll('.menu a').forEach(function(a) {
+                    a.addEventListener('click', function(e) {
+                        document.querySelectorAll('.menu a').forEach(function(x){ x.classList.remove('active'); });
+                        e.target.classList.add('active');
+                    });
+                });
+            }
+
+            // Avatar upload handlers
+            (function initAvatar(){
+                var input = $('avatarInput');
+                var img = $('avatar');
+                var removeBtn = $('avatarRemove');
+                if (input) {
+                    input.addEventListener('change', function() {
+                        var file = input.files && input.files[0];
+                        if (!file) return;
+                        if (!/^image\//.test(file.type)) { toast('请选择图片文件'); return; }
+                        var reader = new FileReader();
+                        reader.onload = function(e){ img.src = e.target.result; };
+                        reader.readAsDataURL(file);
+                    });
+                }
+                if (removeBtn) {
+                    removeBtn.addEventListener('click', function(){
+                        img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Crect width='100%25' height='100%25' fill='%231a1a1a'/%3E%3Ccircle cx='36' cy='28' r='14' fill='%23ffffff'/%3E%3Crect x='16' y='44' width='40' height='12' rx='6' fill='%23ffffff'/%3E%3C/svg%3E";
+                    });
+                }
+            })();
+
+            // Init
+            loadProfile();
+            loadLicenses();
+            loadOrders();
+            bindUnbind();
+            initMenu();
+            bindInvoiceActions();
+
+            $('saveProfile').addEventListener('click', saveProfile);
+            $('revertProfile').addEventListener('click', revertProfile);
+            $('saveSecurity').addEventListener('click', saveSecurity);
+            $('resetToken').addEventListener('click', resetToken);
+            $('logoutBtn').addEventListener('click', function(e){ e.preventDefault(); logout(); });
+        })();
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,185 @@
+html = r"""<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>整页合并 · 超级轻松 + 动静/材质 + 光影流转</title>
+<style>
+  :root{
+    --container: 1160px;
+    --pad-x: 28px;
+    --muted:#e9e9e9;
+    --text:#0f0f0f;
+    --weak:#686868;
+    --radius:18px;
+    /* Spacing */
+    --gap-xxl: 92px;
+    --gap-xl: 56px;
+    --gap-lg: 40px;
+    --gap-md: 22px;
+    --gap-sm: 14px;
+    --section-gap: 86px;
+    --section-gap-sm: 56px;
+    /* Type scale */
+    --fs-body: clamp(15px, 1.4vw, 16px);
+    --fs-caption: clamp(14px, 1.2vw, 15px);
+    --fs-h1: 34px;
+    --fs-h2: 34px;
+    --fs-mega: 34px;
+    --lh-tight: 1.24;
+    --lh-normal: 1.6;
+    --lh-loose: 1.68;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, "Hiragino Sans GB",
+                 "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
+    color:var(--text);
+    font-size: var(--fs-body);
+    line-height: var(--lh-loose);
+    background:#fff;
+  }
+  .container{max-width:var(--container);margin:0 auto;padding:36px var(--pad-x) 120px}
+  h1{
+    font-size: var(--fs-h1);
+    text-align:center;
+    line-height: var(--lh-tight);
+    margin: var(--section-gap) 0 var(--section-gap);
+    letter-spacing:.02em;
+  }
+  h2{ font-size: var(--fs-h2); line-height: var(--lh-tight); margin:0 0 10px; letter-spacing:.01em }
+  .mega{ font-size: var(--fs-mega); line-height: var(--lh-tight) }
+  p{ margin:0; color:var(--weak); line-height: var(--lh-normal) }
+  .em{ font-weight:700; color:#333 }
+  /* Gray placeholders */
+  .ph{ width:100%; height:0; background:var(--muted); border-radius:var(--radius) }
+  .ratio-66{ padding-bottom:66% }
+  .ratio-56{ padding-bottom:56% }
+  .ratio-52{ padding-bottom:52% }
+  .ratio-46{ padding-bottom:46% }
+  .ratio-44{ padding-bottom:44% }
+  .ratio-tall{ padding-bottom:120% }
+  /* Shared grids */
+  .two-col{
+    display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap-xl); align-items:start;
+  }
+  /* 1) Super easy */
+  .feature-copy{ margin-top: var(--section-gap) }
+  /* 2) Motion + Material (new block) */
+  .motion-header{ margin-top: var(--section-gap) }
+  .motion-hero{ margin-top: var(--section-gap) }
+  .material-split{ margin-top: var(--section-gap); align-items:center }
+  /* 3) 光影流转页 */
+  .twins{ margin-top: var(--section-gap); display:grid; grid-template-columns: 1fr 1fr; gap: 34px }
+  .twins .ph{ padding-bottom:56% }
+  .caption{ margin-top: 10px; font-size: var(--fs-caption) }
+  .imgLeftTextRight{ margin-top: var(--section-gap); display:grid; grid-template-columns: 1.2fr .9fr; gap: 48px; align-items:center }
+  .textLeftImgRight{ margin-top: var(--section-gap); display:grid; grid-template-columns: .95fr 1.15fr; gap: 48px; align-items:center }
+  .imgLeftTextRightB{ margin-top: var(--section-gap); display:grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items:center }
+  /* New: Intro section */
+  .intro-header{ margin-top: var(--section-gap) }
+  .intro-hero{ margin-top: var(--section-gap) }
+  /* Responsive */
+  @media (max-width: 980px){
+    .container{ padding:26px 20px 72px }
+    :root{ --section-gap: var(--section-gap-sm) }
+    .two-col,
+    .imgLeftTextRight,
+    .textLeftImgRight,
+    .imgLeftTextRightB{ grid-template-columns:1fr; gap: 24px }
+    .twins{ grid-template-columns:1fr; gap: 24px; margin-top: var(--section-gap) }
+    .motion-header{ margin-top: var(--section-gap) }
+    .motion-hero .ph{ padding-bottom:56% }
+  }
+</style>
+</head>
+<body>
+<main class="container">
+
+  <!-- 1) 顶部：超级轻松 -->
+  <section class="two-col feature-copy" aria-label="超级轻松首屏">
+    <div><div class="ph ratio-66" aria-label="超级轻松占位图"></div></div>
+    <div>
+      <h2>超级轻松，转换只需 <strong>单击 Copy</strong></h2>
+      <p>此刻开始无需再手动设置繁琐的比例、轴向与层级结构等，智能跨软件记录关系并自动配对。
+      你可以专注于真正重要的事情——你的创作愿景。</p>
+    </div>
+  </section>
+
+  <!-- 2) 新增：动静/横幅/材质 -->
+  <section class="two-col motion-header" aria-label="动静皆为自然">
+    <div><h2>动静，皆为自然</h2></div>
+    <div>
+      <p>体验流畅且加此精准的动画数据传输。无论是模型变形、骨骼动画、运动控制还是几何节点，
+        <span class="em">多条管线都能实现精准且高保真的双向数据互导</span>。提升你的工作流程效率与审片力一步到位，让你轻松应对复杂项目。</p>
+    </div>
+  </section>
+  <section class="motion-hero" aria-label="动静横幅图">
+    <div class="ph ratio-56"></div>
+  </section>
+  <section class="two-col material-split" aria-label="材质全面互通">
+    <div>
+      <h2>材质，全面互通<br>精准衔接。</h2>
+      <p>自研先进的材质转换引擎，精准还原着色器图谱结构与逻辑，无论是基础材质还是复杂多层材质，
+        <span class="em">都能确保视觉一致</span>。</p>
+    </div>
+    <div><div class="ph ratio-tall" aria-label="材质纵向图"></div></div>
+  </section>
+
+  <!-- 3) 光影流转整页 -->
+  <h1>光影流转，臻美再现</h1>
+
+  <section class="twins" aria-label="双卡片">
+    <div>
+      <div class="ph" aria-label="占位图 1"></div>
+      <p class="caption">一键获取选中对象的所有信息，在处理包含大量程序化以及数学运算节点时， <span class="em">仍可以游刃有余</span> 地应对，畅享丝滑。</p>
+    </div>
+    <div>
+      <div class="ph" aria-label="占位图 2"></div>
+      <p class="caption">忠实传承每一寸微妙光影，深度还原灯光信息，包括 <span class="em">灯光尺寸、类型及形状</span> 。无损还原亮度、色彩、图像纹理。</p>
+    </div>
+  </section>
+
+  <section class="imgLeftTextRight" aria-label="无界衔接 核心参数">
+    <div><div class="ph ratio-52" aria-label="大图 左侧"></div></div>
+    <div>
+      <h2 class="mega">无界衔接，核心参数</h2>
+      <p>通过一键同步核心参数，您可以轻松保持项目记录设置一致性。无论是画幅、焦距、分辨率、曝光比还是帧率，所有参数都能轻松对齐。让您的工作流程更加清晰，效率更高。</p>
+    </div>
+  </section>
+
+  <section class="textLeftImgRight" aria-label="云端更新 无限进步">
+    <div>
+      <h2 class="mega">云端更新，无限进步</h2>
+      <p>每月自动推送增量更新，在每一处细节静默入驻，始终保持持久更新，让我们一起为未来的无限可能蓄势待发。</p>
+    </div>
+    <div><div class="ph ratio-56" aria-label="右侧配图"></div></div>
+  </section>
+
+  <section class="imgLeftTextRightB" aria-label="导出速度 再升级">
+    <div><div class="ph ratio-56" aria-label="左侧配图"></div></div>
+    <div>
+      <h2 class="mega">导出速度，再升级</h2>
+      <p>在速度与稳定之间寻求理想平衡。新一代互导引擎，互导效率大幅提升，实时动画、庞大场景一键完成。更快响应、更少等待，只为作品无限。</p>
+    </div>
+  </section>
+
+  <!-- New Module: 此刻，连接世界 未来已来 -->
+  <section class="two-col intro-header" aria-label="此刻 连接世界 未来已来">
+    <div>
+      <h2 class="mega">此刻，连接世界<br>未来已来</h2>
+    </div>
+    <div>
+      <p>放眼全球，来自 <span class="em">162 个国家的超过 2 万名设计师</span>，超过
+        <span class="em">200 家企业</span>已将 Synctools 纳入核心工作流程。既覆盖初创团队，也包括国内外大型互联网公司、知名
+        动态设计工作室与企业部门。</p>
+    </div>
+  </section>
+  <section class="intro-hero" aria-label="此刻连接世界 横幅图">
+    <div class="ph ratio-56"></div>
+  </section>
+
+</main>
+</body>
+</html>

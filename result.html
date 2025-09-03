@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>支付结果 - SyncTools Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background:
+                linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.01) 100px, rgba(255,255,255,0.01) 200px);
+            color: #ffffff; overflow-x: hidden;
+        }
+
+        .top-nav { position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; position: relative; transition: color .3s ease; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+
+        .hero { min-height: calc(100vh - 60px); display: grid; place-items: center; padding: 20px; }
+        .card { width: 100%; max-width: 720px; background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 26px; box-shadow: 0 12px 48px rgba(0,0,0,.4); }
+        .result-header { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+        .badge { padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); font-size: .8rem; }
+        .title { font-size: 1.8rem; font-weight: 900; }
+        .muted { color: #b0b0b0; }
+        .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+        .row:last-child { border-bottom: none; }
+
+        .actions { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+        /* toast */
+        .toast { position: fixed; left: 50%; top: 20px; transform: translateX(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color:#fff; padding: 10px 16px; border-radius: 10px; backdrop-filter: blur(8px); opacity: 0; transition: opacity .25s ease, transform .25s ease; z-index: 2000; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(6px); }
+        .btn { padding: 10px 16px; border: none; border-radius: 9999px; font-size: 0.95rem; cursor: pointer; transition: all .3s ease; text-decoration: none; display: inline-block; font-weight: 700; position: relative; overflow: hidden; text-align: center; }
+        .btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.08); transform: translate(-50%, -50%); transition: width .6s, height .6s; }
+        .btn:hover::before { width: 260px; height: 260px; }
+        .btn-primary { background: #ffffff; color: #000000; }
+        .btn-primary:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
+        .btn-secondary { background: transparent; color: #ffffff; border: 2px solid #ffffff; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.1); }
+
+        .icon-ok { width: 40px; height: 40px; border-radius: 50%; background: #22c55e; display: grid; place-items: center; }
+        .icon-ok svg { width: 24px; height: 24px; }
+        .icon-fail { width: 40px; height: 40px; border-radius: 50%; background: #ef4444; display: grid; place-items: center; }
+        .icon-fail svg { width: 24px; height: 24px; }
+    </style>
+    <link rel="icon" href="favicon.ico" />
+    <meta name="description" content="SyncTools Pro 支付结果" />
+    <meta name="theme-color" content="#000000" />
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                    <circle cx="20" cy="20" r="3" fill="white"/>
+                </svg>
+                <span class="logo-text">SyncTools</span>
+            </div>
+            <div class="nav-right">
+                <a href="store.html" class="nav-link">产品</a>
+                <a href="store.html" class="nav-link">商店</a>
+                <a href="index.html#docs" class="nav-link">文档</a>
+                <a href="download.html" class="nav-link">下载</a>
+                <a href="index.html#login" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="card">
+            <div class="result-header">
+                <div id="statusIcon" class="icon-ok">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 12l4 4 8-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                    <div id="resultTitle" class="title">支付成功</div>
+                    <div id="resultDesc" class="muted">感谢您的购买，授权信息将通过邮箱发送。</div>
+                </div>
+                <span id="resultBadge" class="badge">已完成</span>
+            </div>
+
+            <div class="row"><span class="muted">订单号</span><span id="orderId">-</span></div>
+            <div class="row"><span class="muted">套餐</span><span id="planName">-</span></div>
+            <div class="row"><span class="muted">金额</span><span id="amount">-</span></div>
+            <div class="row"><span class="muted">支付方式</span><span id="method">-</span></div>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="download.html">前往下载</a>
+                <a class="btn btn-secondary" href="account.html">查看用户中心</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            function $(id) { return document.getElementById(id); }
+            function toast(msg){
+                var t = document.createElement('div');
+                t.className = 'toast';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                requestAnimationFrame(function(){ t.classList.add('show'); });
+                setTimeout(function(){ t.classList.remove('show'); setTimeout(function(){ t.remove(); }, 250); }, 1800);
+            }
+            var params = new URLSearchParams(window.location.search);
+            var status = params.get('status') || 'success';
+            var order = params.get('order') || ('ST' + Date.now());
+            var amount = params.get('amount') || '0';
+            var plan = params.get('plan') || '专业版';
+            var method = params.get('method') || '支付宝';
+
+            $('orderId').textContent = order;
+            $('amount').textContent = '¥ ' + amount;
+            $('planName').textContent = plan;
+            $('method').textContent = method;
+
+            if (status !== 'success') {
+                $('resultTitle').textContent = '支付未完成';
+                $('resultDesc').textContent = '订单未完成或已取消，如需帮助请联系支持。';
+                $('resultBadge').textContent = '未完成';
+                var icon = document.getElementById('statusIcon');
+                icon.className = 'icon-fail';
+                icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>';
+                toast('支付未完成');
+            } else {
+                // 写入本地订单，供 account.html 展示
+                try {
+                    var orders = JSON.parse(localStorage.getItem('st_orders') || '[]');
+                    orders.unshift({ id: order, plan: plan, amount: parseFloat(amount) || 0, time: new Date().toLocaleString(), method: method, status: '已完成' });
+                    localStorage.setItem('st_orders', JSON.stringify(orders.slice(0, 50)));
+                    toast('支付成功');
+                } catch (e) {}
+            }
+        })();
+    </script>
+</body>
+</html>
+
+

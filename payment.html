@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>支付 - SyncTools Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background:
+                linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255,255,255,0.01) 100px, rgba(255,255,255,0.01) 200px);
+            color: #ffffff; overflow-x: hidden;
+        }
+
+        .top-nav { position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; position: relative; transition: color .3s ease; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+
+        .hero { padding: 80px 20px 24px; text-align: center; position: relative; }
+        .hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -1px; }
+        .hero p { margin-top: 10px; color: #bfbfbf; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; margin: 26px 0 40px; }
+        .panel { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 22px; box-shadow: 0 8px 32px rgba(0,0,0,.3); backdrop-filter: blur(10px); }
+        .panel h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 14px; }
+
+        .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+        .summary-row:last-child { border-bottom: none; }
+        .muted { color: #b0b0b0; font-size: 0.95rem; }
+        .price { font-weight: 900; font-size: 1.4rem; }
+        .badge { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: #fff; padding: 3px 8px; border-radius: 999px; font-size: .72rem; font-weight: 800; margin-left: 8px; }
+
+        .form { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .field { display: grid; gap: 8px; }
+        .label { font-size: .95rem; color: #dcdcdc; }
+        .input, .select { width: 100%; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #fff; outline: none; transition: border .2s ease; }
+        .input:focus, .select:focus { border-color: rgba(255,255,255,0.3); }
+        .subgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+        .hint { color: #9aa0a6; font-size: .85rem; }
+
+        .pay-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+        .method { padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); cursor: pointer; text-align: center; user-select: none; }
+        .method.active { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.08); }
+        .method .method-content { display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .method svg { width: 26px; height: 26px; }
+
+        .btn { padding: 14px 28px; border: none; border-radius: 9999px; font-size: 1.05rem; cursor: pointer; transition: all .3s ease; text-decoration: none; display: inline-block; font-weight: 700; position: relative; overflow: hidden; text-align: center; width: 100%; }
+        .btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255,255,255,0.08); transform: translate(-50%, -50%); transition: width .6s, height .6s; }
+        .btn:hover::before { width: 300px; height: 300px; }
+        .btn-primary { background: #ffffff; color: #000000; }
+        .btn-primary:hover { background: #f0f0f0; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+
+        .note { color: #9aa0a6; font-size: .9rem; margin-top: 8px; }
+
+        /* toast */
+        .toast { position: fixed; left: 50%; top: 20px; transform: translateX(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color:#fff; padding: 10px 16px; border-radius: 10px; backdrop-filter: blur(8px); opacity: 0; transition: opacity .25s ease, transform .25s ease; z-index: 2000; }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(6px); }
+
+        footer { padding: 50px 20px; background: #000000; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .legal { margin: 24px auto 0; color: #777; line-height: 1.7; font-size: 0.95rem; text-align: center; }
+        .legal a { color: #555; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.1rem; }
+        }
+    </style>
+    <link rel="icon" href="favicon.ico" />
+    <meta name="description" content="SyncTools Pro 在线支付 - 选择套餐并完成购买" />
+    <meta name="theme-color" content="#000000" />
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="store.html" class="nav-link">产品</a>
+                <a href="store.html" class="nav-link">商店</a>
+                <a href="docs.html" class="nav-link">文档</a>
+                <a href="download.html" class="nav-link">下载</a>
+                <a href="index.html#login" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>安全支付</h1>
+        <p>使用加密通道完成支付，您的信息将被严格保护</p>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <section class="panel" id="orderPanel">
+                <h3>订单信息</h3>
+                <div class="summary-row">
+                    <span class="muted">套餐</span>
+                    <span id="summaryPlan">专业版</span>
+                </div>
+                <div class="summary-row">
+                    <span class="muted">数量</span>
+                    <span><span id="summaryQty">1</span> 个授权</span>
+                </div>
+                <div class="summary-row">
+                    <span class="muted">小计</span>
+                    <span id="summarySubtotal">¥ 499</span>
+                </div>
+                <div class="summary-row">
+                    <span class="muted">优惠码</span>
+                    <span id="summaryCoupon">未使用</span>
+                </div>
+                <div class="summary-row" style="font-size:1.1rem;">
+                    <span>应付金额</span>
+                    <span class="price" id="summaryTotal">¥ 499</span>
+                </div>
+                <p class="note">下单即表示同意服务条款与隐私政策。授权通过邮箱发放。</p>
+            </section>
+
+            <section class="panel">
+                <h3>支付信息</h3>
+                <div class="form">
+                    <div class="field">
+                        <label class="label" for="plan">选择套餐</label>
+                        <select id="plan" class="select">
+                            <option value="pro" data-price="98" selected>专业版 — ¥98/永久</option>
+                            <option value="dcc" data-price="298">全DCC探索版 — ¥298/永久</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="qty">购买数量</label>
+                        <input id="qty" class="input" type="number" min="1" max="100" value="1" />
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="email">收件邮箱</label>
+                        <input id="email" class="input" type="email" placeholder="name@example.com" />
+                    </div>
+
+                    <div class="field">
+                        <label class="label">支付方式</label>
+                        <div class="pay-methods" id="payMethods">
+                            <div class="method active" data-method="card" aria-label="信用卡/借记卡">
+                                <div class="method-content">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2" stroke="white" stroke-opacity="0.8"/>
+                                        <rect x="2" y="8" width="20" height="3" fill="white" fill-opacity="0.8"/>
+                                        <rect x="5" y="14" width="6" height="2" fill="white" fill-opacity="0.6"/>
+                                        <rect x="13" y="14" width="6" height="2" fill="white" fill-opacity="0.6"/>
+                                    </svg>
+                                    <span>信用卡</span>
+                                </div>
+                            </div>
+                            <div class="method" data-method="paypal" aria-label="PayPal">
+                                <div class="method-content">
+                                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M33.6 9.6C31.8 7.8 28.9 7 25.1 7H14.5c-.6 0-1.1.4-1.2 1l-4 25.3c-.1.7.4 1.3 1.1 1.3h6.8l1.1-7h4.3c8.6 0 14.3-4.5 15.6-12 .5-3-1-5.3-4.6-6z" fill="#fff" fill-opacity="0.9"/>
+                                    </svg>
+                                    <span>PayPal</span>
+                                </div>
+                            </div>
+                            <div class="method" data-method="alipay" aria-label="支付宝">
+                                <div class="method-content">
+                                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect x="6" y="8" width="36" height="32" rx="6" fill="#00A3EE" fill-opacity="0.9"/>
+                                        <path d="M14 24h20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                        <path d="M20 18s2 3 4 3 4-3 4-3" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>支付宝</span>
+                                </div>
+                            </div>
+                            <div class="method" data-method="wechat" aria-label="微信支付">
+                                <div class="method-content">
+                                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <circle cx="24" cy="24" r="18" fill="#2BB045" fill-opacity="0.9"/>
+                                        <path d="M18 24l4 3 8-7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span>微信支付</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cardFields" style="display:block;">
+                        <div class="field">
+                            <label class="label" for="cardNumber">卡号</label>
+                            <input id="cardNumber" class="input" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242" />
+                        </div>
+                        <div class="subgrid">
+                            <div class="field">
+                                <label class="label" for="cardName">持卡人姓名</label>
+                                <input id="cardName" class="input" type="text" placeholder="姓名（与卡片一致）" />
+                            </div>
+                            <div class="field">
+                                <label class="label" for="cardExpiry">有效期</label>
+                                <input id="cardExpiry" class="input" type="text" placeholder="MM/YY" />
+                            </div>
+                            <div class="field">
+                                <label class="label" for="cardCvv">安全码</label>
+                                <input id="cardCvv" class="input" type="password" placeholder="CVV" />
+                            </div>
+                        </div>
+                        <p class="hint">我们不会存储您的卡片信息，此为示例输入。</p>
+                    </div>
+
+                    <div id="paypalFields" style="display:none;">
+                        <div class="field">
+                            <label class="label" for="paypalEmail">PayPal 邮箱</label>
+                            <input id="paypalEmail" class="input" type="email" placeholder="your-email@paypal.com" />
+                        </div>
+                        <p class="hint">点击支付后将跳转 PayPal 收银台（示例）。</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label" for="coupon">优惠码（可选）</label>
+                        <input id="coupon" class="input" type="text" placeholder="输入优惠码" />
+                    </div>
+
+                    <button class="btn btn-primary" id="payBtn">立即支付</button>
+                    <p class="note">若支付遇到问题，请联系 <a href="index.html#contact" style="color:#9aa0a6; text-decoration: underline;">客服支持</a>。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="legal">
+                <p>版权所有 © 2025 SyncTools Suite 202, 2nd Floor, Eden Plaza, Eden Island, Victoria, Mahe, Republic of Seychelles</p>
+                <p>Registered Bad Homburg v.d.H. | Local court Bad Homburg v.d.H. | HRB Nr. 6049</p>
+                <p>CEO: David McGavran | <a href="#">Data Protection Information</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            function $(id) { return document.getElementById(id); }
+            function toast(msg){
+                var t = document.createElement('div');
+                t.className = 'toast';
+                t.textContent = msg;
+                document.body.appendChild(t);
+                requestAnimationFrame(function(){ t.classList.add('show'); });
+                setTimeout(function(){ t.classList.remove('show'); setTimeout(function(){ t.remove(); }, 250); }, 1800);
+            }
+            var plan = $('plan');
+            var qty = $('qty');
+            var email = $('email');
+            var coupon = $('coupon');
+            var payBtn = $('payBtn');
+            var summaryPlan = $('summaryPlan');
+            var summaryQty = $('summaryQty');
+            var summarySubtotal = $('summarySubtotal');
+            var summaryCoupon = $('summaryCoupon');
+            var summaryTotal = $('summaryTotal');
+            var payMethods = document.getElementById('payMethods');
+            var currentMethod = 'card';
+            var cardNumber = $('cardNumber');
+            var cardName = $('cardName');
+            var cardExpiry = $('cardExpiry');
+            var cardCvv = $('cardCvv');
+            var paypalEmail = $('paypalEmail');
+
+            var couponRules = {
+                "SYNC10": { type: 'percent', value: 10 },
+                "SYNC50": { type: 'flat', value: 50 }
+            };
+
+            function priceOfSelected() {
+                var option = plan.options[plan.selectedIndex];
+                return parseFloat(option.getAttribute('data-price')) || 0;
+            }
+
+            function planName(value) {
+                if (value === 'dcc') return '全DCC探索版';
+                return '专业版';
+            }
+
+            function computeTotal() {
+                var unit = priceOfSelected();
+                var count = Math.max(1, Math.min(100, parseInt(qty.value || '1', 10)));
+                var subtotal = unit * count;
+                var code = (coupon.value || '').trim().toUpperCase();
+                var discount = 0;
+                if (code && couponRules[code]) {
+                    var rule = couponRules[code];
+                    if (rule.type === 'percent') discount = Math.round(subtotal * rule.value) / 100;
+                    if (rule.type === 'flat') discount = rule.value;
+                }
+                var total = Math.max(0, subtotal - discount);
+                summarySubtotal.textContent = '¥ ' + subtotal;
+                summaryCoupon.textContent = code ? ('已使用 ' + code) : '未使用';
+                summaryTotal.textContent = '¥ ' + total;
+                return { subtotal: subtotal, discount: discount, total: total };
+            }
+
+            function syncSummary() {
+                summaryPlan.textContent = planName(plan.value);
+                var count = Math.max(1, Math.min(100, parseInt(qty.value || '1', 10)));
+                summaryQty.textContent = String(count);
+                computeTotal();
+            }
+
+            function parseQuery() {
+                var params = new URLSearchParams(window.location.search);
+                var p = params.get('plan');
+                var n = params.get('qty');
+                var c = params.get('coupon');
+                if (p) plan.value = p;
+                if (n && !isNaN(parseInt(n, 10))) qty.value = parseInt(n, 10);
+                if (c) coupon.value = c;
+            }
+
+            function validate() {
+                var errs = [];
+                var mail = (email.value || '').trim();
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) errs.push('请输入有效邮箱');
+                var count = parseInt(qty.value || '1', 10);
+                if (isNaN(count) || count < 1 || count > 100) errs.push('数量需为 1-100 的整数');
+                if (currentMethod === 'card') {
+                    var num = (cardNumber.value || '').replace(/\s+/g, '');
+                    if (!/^\d{13,19}$/.test(num)) errs.push('请输入有效卡号');
+                    if (!(cardName.value || '').trim()) errs.push('请输入持卡人姓名');
+                    if (!/^(0[1-9]|1[0-2])\/(\d{2})$/.test(cardExpiry.value || '')) errs.push('请输入有效期 MM/YY');
+                    if (!/^\d{3,4}$/.test(cardCvv.value || '')) errs.push('请输入正确的 CVV');
+                } else if (currentMethod === 'paypal') {
+                    var pm = (paypalEmail.value || '').trim();
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pm)) errs.push('请输入有效的 PayPal 邮箱');
+                }
+                return errs;
+            }
+
+            function mockPay() {
+                var errs = validate();
+                if (errs.length) {
+                    toast(errs.join(' / '));
+                    return;
+                }
+                var totals = computeTotal();
+                payBtn.disabled = true;
+                payBtn.textContent = '正在创建订单...';
+                toast('正在创建订单...');
+                setTimeout(function() {
+                    payBtn.textContent = '跳转支付中...';
+                    toast('跳转支付中...');
+                    setTimeout(function() {
+                        var orderId = 'ST' + Date.now();
+                        var methodParam = currentMethod === 'paypal' ? 'PayPal' : (currentMethod === 'card' ? '信用卡' : currentMethod);
+                        window.location.href = 'result.html?status=success&order=' + encodeURIComponent(orderId) + '&amount=' + encodeURIComponent(totals.total) + '&plan=' + encodeURIComponent(planName(plan.value)) + '&method=' + encodeURIComponent(methodParam);
+                    }, 700);
+                }, 700);
+            }
+
+            plan.addEventListener('change', syncSummary);
+            qty.addEventListener('input', syncSummary);
+            coupon.addEventListener('input', computeTotal);
+            payBtn.addEventListener('click', mockPay);
+
+            function updateMethodUI(method) {
+                currentMethod = method;
+                $('cardFields').style.display = method === 'card' ? 'block' : 'none';
+                $('paypalFields').style.display = method === 'paypal' ? 'block' : 'none';
+            }
+
+            payMethods.addEventListener('click', function(e) {
+                var node = e.target.closest('.method');
+                if (!node) return;
+                var items = payMethods.querySelectorAll('.method');
+                for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
+                node.classList.add('active');
+                updateMethodUI(node.getAttribute('data-method'));
+            });
+
+            parseQuery();
+            syncSummary();
+            updateMethodUI('card');
+        })();
+    </script>
+</body>
+</html>
+
+
