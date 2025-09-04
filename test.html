@@ -92,6 +92,31 @@ html = r"""<!doctype html>
     .motion-header{ margin-top: var(--section-gap) }
     .motion-hero .ph{ padding-bottom:56% }
   }
+  @media (max-width: 768px) {
+    .container{ padding:20px 16px 60px }
+    h1{ font-size: 28px; margin: 60px 0 60px }
+    h2{ font-size: 28px }
+    .mega{ font-size: 28px }
+    .two-col,
+    .imgLeftTextRight,
+    .textLeftImgRight,
+    .imgLeftTextRightB{ gap: 20px }
+    .twins{ gap: 20px }
+    .caption{ font-size: 13px }
+  }
+  @media (max-width: 480px) {
+    .container{ padding:16px 12px 50px }
+    h1{ font-size: 24px; margin: 50px 0 50px }
+    h2{ font-size: 24px }
+    .mega{ font-size: 24px }
+    .two-col,
+    .imgLeftTextRight,
+    .textLeftImgRight,
+    .imgLeftTextRightB{ gap: 16px }
+    .twins{ gap: 16px }
+    .caption{ font-size: 12px; margin-top: 8px }
+    .em{ font-weight: 600 }
+  }
 </style>
 </head>
 <body>

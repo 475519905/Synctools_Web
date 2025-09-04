@@ -24,6 +24,41 @@
         .nav-link:hover { color: #fff; }
         .nav-login { background: #fff; color: #000; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 24px;
+            height: 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
         .hero { padding: 80px 20px 20px; text-align: center; }
         .hero h1 { font-size: 2.6rem; font-weight: 900; letter-spacing: -1px; }
         .hero p { margin-top: 10px; color: #bfbfbf; }
@@ -50,7 +85,79 @@
         .list li { margin: 6px 0; }
         .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 6px; }
 
-        @media (max-width: 480px) { .hero h1 { font-size: 2.1rem; } }
+        @media (max-width: 980px) {
+            .nav-right { gap: 20px; }
+            .nav-link { font-size: 0.85rem; }
+            .layout { grid-template-columns: 1fr; gap: 16px; }
+            .sidebar { position: static; }
+            .toc { position: sticky; top: 80px; }
+        }
+        @media (max-width: 768px) {
+            .top-nav { padding: 0 16px; }
+            .nav-right { 
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                gap: 0;
+            }
+            .nav-right.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            .nav-link { 
+                font-size: 0.9rem;
+                padding: 15px 20px;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .nav-link:hover { 
+                background: rgba(255, 255, 255, 0.05);
+            }
+            .nav-login { 
+                padding: 12px 20px; 
+                font-size: 0.9rem;
+                margin: 10px 20px 0;
+                border-radius: 25px;
+            }
+            .hero { padding: 60px 16px 20px; }
+            .container { padding: 0 16px 40px; }
+            .layout { gap: 12px; }
+            .toc { padding: 10px; }
+            .toc a { padding: 6px 8px; font-size: 0.9rem; }
+            .panel { padding: 16px; }
+            .panel h2 { font-size: 1.2rem; }
+            .section + .section { margin-top: 16px; }
+            .mobile-menu-toggle { display: flex; }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 480px) { 
+            .hero h1 { font-size: 2.1rem; }
+            .nav-right { gap: 12px; }
+            .nav-link { display: none; }
+            .nav-login { display: block; }
+            .toc { position: static; margin-bottom: 20px; }
+            .toc a { padding: 8px 10px; }
+            .list { padding-left: 16px; }
+            .code { font-size: 0.85rem; padding: 1px 4px; }
+        }
     </style>
     <link rel="icon" href="favicon.ico" />
     <meta name="description" content="SyncTools Pro 文档 - 多DCC支持与使用指南" />
@@ -76,6 +183,11 @@
                 <a href="download.html" class="nav-link">下载</a>
                 <a href="index.html#login" class="nav-link nav-login">登录</a>
             </div>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -239,6 +351,25 @@
             }, { rootMargin: '-40% 0px -50% 0px', threshold: [0, 1] });
 
             sections.forEach(function(s){ observer.observe(s); });
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navRight = document.querySelector('.nav-right');
+
+            if (mobileMenuToggle && navRight) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenuToggle.classList.toggle('active');
+                    navRight.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenuToggle.classList.remove('active');
+                        navRight.classList.remove('active');
+                    });
+                });
+            }
         })();
     </script>
 
