@@ -1,28 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0065)file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SyncTools Pro - 全平台3D工作流转换工具</title>
-    <script>
-        (function () {
-            try {
-                var params = new URLSearchParams(window.location.search);
-                if (params.get('no-redirect') === '1') return;
-
-                var ua = navigator.userAgent || '';
-                var isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-                var isTabletUA = /iPad|Tablet|PlayBook|Silk/i.test(ua);
-                var isSmallScreen = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-
-                if ((isMobileUA || (isSmallScreen && !isTabletUA)) && !/index-mobile\.html(?:$|\?|#)/.test(location.pathname)) {
-                    window.location.href = 'index-mobile.html';
-                }
-            } catch (e) {
-                // no-op: 安静失败，避免影响桌面端加载
-            }
-        })();
-    </script>
     <style>
         * {
             margin: 0;
@@ -1973,7 +1954,7 @@
             50% { opacity: 1; }
         }
 
-        /* .subtle-animate rule removed */
+        /* .subtle-animate rule removed (no styles needed) */
 
         /* Login Modal Styles */
         .login-modal {
@@ -2751,7 +2732,7 @@
 
         .core-features h1 {
             font-size: 3rem;
-            text-align: center;
+            text-align: left;
             line-height: var(--lh-tight);
             margin: var(--section-gap) 0 var(--section-gap);
             letter-spacing: .02em;
@@ -2813,6 +2794,27 @@
             align-items: start;
         }
 
+        /* 统一间距：标题、占位图、文字之间的间距 */
+        .core-features .two-col > div,
+        .core-features .imgLeftTextRight > div,
+        .core-features .textLeftImgRight > div,
+        .core-features .imgLeftTextRightB > div,
+        .core-features .twins > div {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .core-features h2 + p,
+        .core-features .mega + p {
+            margin-top: 0;
+        }
+
+        .core-features .ph + p,
+        .core-features .caption {
+            margin-top: 0;
+        }
+
         /* 1) Super easy */
         .core-features .feature-copy { margin-top: var(--section-gap); }
 
@@ -2830,7 +2832,10 @@
         }
 
         .core-features .twins .ph { padding-bottom: 56%; }
-        .core-features .caption { margin-top: 10px; font-size: var(--fs-caption); }
+        .core-features .caption { 
+            margin-top: 0; 
+            font-size: var(--fs-caption); 
+        }
 
         .core-features .imgLeftTextRight {
             margin-top: var(--section-gap);
@@ -3026,14 +3031,14 @@
         /* Pulse effect for important elements */
         /* .core-features .em animation placeholder removed */
 
-        /* Gradient text effect */
+        /* Heading style unified with other titles */
         .core-features h1 {
-            background: linear-gradient(45deg, #ffffff, #cccccc, #ffffff);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 3s ease-in-out infinite;
+            background: none;
+            -webkit-background-clip: initial;
+            -webkit-text-fill-color: inherit;
+            background-clip: initial;
+            animation: none;
+            color: #ffffff;
         }
 
         @keyframes gradient-shift {
@@ -3103,6 +3108,14 @@
                 --gap-xl: 40px;
             }
             
+            .core-features .two-col > div,
+            .core-features .imgLeftTextRight > div,
+            .core-features .textLeftImgRight > div,
+            .core-features .imgLeftTextRightB > div,
+            .core-features .twins > div {
+                gap: 16px;
+            }
+            
             .core-features h1 {
                 font-size: 28px;
                 margin: 60px 0 60px;
@@ -3160,6 +3173,14 @@
                 --section-gap: 40px;
                 --gap-xl: 24px;
                 --gap-lg: 24px;
+            }
+            
+            .core-features .two-col > div,
+            .core-features .imgLeftTextRight > div,
+            .core-features .textLeftImgRight > div,
+            .core-features .imgLeftTextRightB > div,
+            .core-features .twins > div {
+                gap: 14px;
             }
             
             .core-features h1 {
@@ -3225,6 +3246,14 @@
                 --section-gap: 32px;
                 --gap-xl: 20px;
                 --gap-lg: 20px;
+            }
+            
+            .core-features .two-col > div,
+            .core-features .imgLeftTextRight > div,
+            .core-features .textLeftImgRight > div,
+            .core-features .imgLeftTextRightB > div,
+            .core-features .twins > div {
+                gap: 12px;
             }
             
             .core-features h1 {
@@ -3429,31 +3458,31 @@
         <div class="nav-container">
             <div class="nav-left">
                 <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
-                    <circle cx="20" cy="20" r="3" fill="white"/>
+                    <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"></path>
+                    <circle cx="20" cy="20" r="3" fill="white"></circle>
                 </svg>
                 <span class="logo-text">SyncTools</span>
             </div>
             <div class="nav-right">
-                <a href="store.html" class="nav-link">商店</a>
-                <a href="docs.html" class="nav-link">文档</a>
-                <a href="download.html" class="nav-link" target="_blank" rel="noopener">下载</a>
+                <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/store.html" class="nav-link">商店</a>
+                <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/docs.html" class="nav-link">文档</a>
+                <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/download.html" class="nav-link" target="_blank" rel="noopener">下载</a>
                 
                 <!-- Products Dropdown -->
                 <div class="products-dropdown" id="productsDropdown">
                     <button class="products-toggle" id="productsToggle">
                         <span>产品</span>
                         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
                     <div class="products-menu">
-                        <a href="#" class="product-item">Synctools专业版</a>
-                        <a href="#" class="product-item">Synctools全DCC探索版</a>
+                        <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="product-item">Synctools专业版</a>
+                        <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="product-item">Synctools全DCC探索版</a>
                     </div>
                 </div>
                 
-                <a href="#login" class="nav-link nav-login">登录</a>
+                <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#login" class="nav-link nav-login">登录</a>
             </div>
             <button class="mobile-menu-toggle">
                 <span></span>
@@ -3471,11 +3500,11 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="opacity: 1; --gradient-opacity: 1;">
         <div class="grid-bg"></div>
-        <div class="particle particle1"></div>
-        <div class="particle particle2"></div>
-        <div class="particle particle3"></div>
+        <div class="particle particle1" style="transform: translateY(3300px);"></div>
+        <div class="particle particle2" style="transform: translateY(4620px);"></div>
+        <div class="particle particle3" style="transform: translateY(5940px);"></div>
         
         <h1>SyncTools Pro</h1>
         <p>转换一切，从未如此简单</p>
@@ -3490,39 +3519,39 @@
     <section class="feature-cards-section">
         <div class="container">
             <div class="product-intro">
-                <h1 class="main-title">全面高效的全平台转换工具SyncTools,现已全新升级到V3.0。</h1>
-                <p class="subtitle">新增骨骼,VFX,运动图形几何节点等多种资产,快速导入复杂动画材质,帮助3D艺术家和设计师提升工作流效率轻松应对多软件项目协作。</p>
+                <h1 class="main-title" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">全面高效的全平台转换工具SyncTools,现已全新升级到V3.0。</h1>
+                <p class="subtitle" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">新增骨骼,VFX,运动图形几何节点等多种资产,快速导入复杂动画材质,帮助3D艺术家和设计师提升工作流效率轻松应对多软件项目协作。</p>
             </div>
             
             <div class="grid">
-                <div class="card card-1">
+                <div class="card card-1" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">跨平台互导</div>
                 </div>
                 
-                <div class="card card-2">
+                <div class="card card-2" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">主流渲染器支持</div>
                 </div>
                 
-                <div class="card card-3">
+                <div class="card card-3" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">速度更快更丝滑</div>
                 </div>
                 
-                <div class="card card-4">
+                <div class="card card-4" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">新一代数据协议</div>
                 </div>
                 
-                <div class="card card-5">
+                <div class="card card-5" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">全DCC流式协作</div>
                 </div>
                 
-                <div class="card card-6">
+                <div class="card card-6" style="opacity: 1; transform: translateY(0px); transition: transform 0.3s, box-shadow 0.3s;">
                     <div class="card-title">云端智能更新</div>
                 </div>
             </div>
             
             <div class="purchase-info">
-                <p class="purchase-text subtitle">前往官方商城购买,将享受专业客服一对一支持,由技术专家帮您选购,同时提供技术指导和安装帮助。</p>
-                <p class="benefits-text subtitle">购买即获得订单金额5% 积分返还等多项专属权益。</p>
+                <p class="purchase-text subtitle" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">前往官方商城购买,将享受专业客服一对一支持,由技术专家帮您选购,同时提供技术指导和安装帮助。</p>
+                <p class="benefits-text subtitle" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">购买即获得订单金额5% 积分返还等多项专属权益。</p>
             </div>
         </div>
     </section>
@@ -3531,27 +3560,27 @@
     <section class="core-features">
         <div class="container">
             <!-- 1) 顶部：超级轻松 -->
-            <div class="two-col feature-copy" aria-label="超级轻松首屏">
-                <div><div class="ph ratio-66" aria-label="超级轻松占位图"></div></div>
+            <div class="two-col feature-copy animate" aria-label="超级轻松首屏">
                 <div>
                     <h2>超级轻松，转换只需<br><strong>单击 Copy</strong></h2>
                     <p>此刻开始无需再手动设置繁琐的比例、轴向与层级结构等，智能跨软件记录关系并自动配对。
                     你可以专注于真正重要的事情——你的创作愿景。</p>
-                </div>
+                </div><div><div class="ph ratio-66" aria-label="超级轻松占位图"></div></div>
+                
             </div>
 
             <!-- 2) 新增：动静/横幅/材质 -->
-            <div class="two-col motion-header" aria-label="动静皆为自然">
+            <div class="two-col motion-header animate" aria-label="动静皆为自然">
                 <div><h2>动静，皆为自然</h2></div>
                 <div>
                     <p>体验流畅且加此精准的动画数据传输。无论是模型变形、骨骼动画、运动控制还是几何节点，
                         <span class="em">多条管线都能实现精准且高保真的双向数据互导</span>。提升你的工作流程效率与审片力一步到位，让你轻松应对复杂项目。</p>
                 </div>
             </div>
-            <div class="motion-hero" aria-label="动静横幅图">
+            <div class="motion-hero animate" aria-label="动静横幅图">
                 <div class="ph ratio-56"></div>
             </div>
-            <div class="two-col material-split" aria-label="材质全面互通">
+            <div class="two-col material-split animate" aria-label="材质全面互通">
                 <div>
                     <h2>材质，全面互通<br>精准衔接。</h2>
                     <p>自研先进的材质转换引擎，精准还原着色器图谱结构与逻辑，无论是基础材质还是复杂多层材质，
@@ -3561,9 +3590,9 @@
             </div>
 
             <!-- 3) 光影流转整页 -->
-            <h1>光影流转，臻美再现</h1>
+            <h1 class="animate">光影流转，臻美再现</h1>
 
-            <div class="twins" aria-label="双卡片">
+            <div class="twins animate" aria-label="双卡片">
                 <div>
                     <div class="ph" aria-label="占位图 1"></div>
                     <p class="caption">一键获取选中对象的所有信息，在处理包含大量程序化以及数学运算节点时， <span class="em">仍可以游刃有余</span> 地应对，畅享丝滑。</p>
@@ -3574,15 +3603,15 @@
                 </div>
             </div>
 
-            <div class="imgLeftTextRight" aria-label="无界衔接 核心参数">
-                <div><div class="ph ratio-52" aria-label="大图 左侧"></div></div>
-                <div>
+            <div class="imgLeftTextRight animate" aria-label="无界衔接 核心参数">
+                <div><div>
                     <h2 class="mega">无界衔接，核心参数</h2>
                     <p>通过一键同步核心参数，您可以轻松保持项目记录设置一致性。无论是画幅、焦距、分辨率、曝光比还是帧率，所有参数都能轻松对齐。让您的工作流程更加清晰，效率更高。</p>
-                </div>
+                </div><div class="ph ratio-52" aria-label="大图 左侧"></div></div>
+                
             </div>
 
-            <div class="textLeftImgRight" aria-label="云端更新 无限进步">
+            <div class="textLeftImgRight animate" aria-label="云端更新 无限进步">
                 <div>
                     <h2 class="mega">云端更新，无限进步</h2>
                     <p>每月自动推送增量更新，在每一处细节静默入驻，始终保持持久更新，让我们一起为未来的无限可能蓄势待发。</p>
@@ -3590,16 +3619,16 @@
                 <div><div class="ph ratio-56" aria-label="右侧配图"></div></div>
             </div>
 
-            <div class="imgLeftTextRightB" aria-label="导出速度 再升级">
-                <div><div class="ph ratio-56" aria-label="左侧配图"></div></div>
-                <div>
+            <div class="imgLeftTextRightB animate" aria-label="导出速度 再升级">
+                <div><div>
                     <h2 class="mega">导出速度，再升级</h2>
                     <p>在速度与稳定之间寻求理想平衡。新一代互导引擎，互导效率大幅提升，实时动画、庞大场景一键完成。更快响应、更少等待，只为作品无限。</p>
-                </div>
+                </div><div class="ph ratio-56" aria-label="左侧配图"></div></div>
+                
             </div>
 
             <!-- New Module: 此刻，连接世界 未来已来 -->
-            <div class="two-col intro-header" aria-label="此刻 连接世界 未来已来">
+            <div class="two-col intro-header animate" aria-label="此刻 连接世界 未来已来">
                 <div>
                     <h2 class="mega">此刻，连接世界<br>未来已来</h2>
                 </div>
@@ -3609,14 +3638,14 @@
                         动态设计工作室与企业部门。</p>
                 </div>
             </div>
-            <div class="intro-hero" aria-label="此刻连接世界 横幅图">
+            <div class="intro-hero animate" aria-label="此刻连接世界 横幅图">
                 <div class="ph ratio-56"></div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
+    <section class="stats" data-animated="true">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
@@ -3670,7 +3699,7 @@
             <p class="section-subtitle">来自全球创作者的真实反馈</p>
             
             <div class="testimonial-grid">
-                <div class="testimonial-card">
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: 0.6s;">
                     <p class="testimonial-content">
                         "这是我遇到过最热衷于收集用户反馈以及建议的开发团队了。从插件发布到功能逐步完善，可以看到用户的反馈在新版的发布得到了体现。这可能和开发者们本身也是使用者有关吧。"
                     </p>
@@ -3678,7 +3707,7 @@
                     <div class="testimonial-role">资深动态设计师</div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: 0.6s;">
                     <p class="testimonial-content">
                         "非常优秀，但我更期待能达到颠覆般的优秀。插件我用的最多的就是灯光插件。那真是用过的人都说好，优化了我很多调整灯光时浪费的时间。"
                     </p>
@@ -3686,7 +3715,7 @@
                     <div class="testimonial-role">网易美术总监</div>
                 </div>
                 
-                <div class="testimonial-card">
+                <div class="testimonial-card" style="opacity: 0; transform: translateY(30px); transition: 0.6s;">
                     <p class="testimonial-content">
                         "简直是黑科技插件！功能很强大！当你对接不同工作流的团队而手足无措时，每次总能用这个顺利解决，是个好东西！"
                     </p>
@@ -3763,34 +3792,34 @@
             <div class="social-media">
                 <h4>关注我们</h4>
                 <div class="social-links">
-                    <a href="#" class="social-link" aria-label="Twitter">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="Twitter">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                         </svg>
                     </a>
-                    <a href="#" class="social-link" aria-label="GitHub">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="GitHub">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
                         </svg>
                     </a>
-                    <a href="#" class="social-link" aria-label="Discord">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="Discord">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"></path>
                         </svg>
                     </a>
-                    <a href="#" class="social-link" aria-label="YouTube">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="YouTube">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path>
                         </svg>
                     </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="LinkedIn">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
                         </svg>
                     </a>
-                    <a href="#" class="social-link" aria-label="WeChat">
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="social-link" aria-label="WeChat">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.823c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.823c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"></path>
                         </svg>
                     </a>
                 </div>
@@ -3803,7 +3832,7 @@
         <div style="margin: 24px auto 0; color: #777; line-height: 1.7; font-size: 0.95rem; max-width: 1200px; text-align: center;">
             <p>版权所有 © 2025 SyncTools Suite 202, 2nd Floor, Eden Plaza, Eden Island, Victoria, Mahe, Republic of Seychelles</p>
             <p>Registered Bad Homburg v.d.H. | Local court Bad Homburg v.d.H. | HRB Nr. 6049</p>
-            <p>CEO: David McGavran | <a href="#" style="color: #555; text-decoration: underline;">Data Protection Information</a></p>
+            <p>CEO: David McGavran | <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" style="color: #555; text-decoration: underline;">Data Protection Information</a></p>
         </div>
     </footer>
 
@@ -3811,7 +3840,7 @@
     <div class="service-widget" onmouseenter="openChat()" onmouseleave="closeChat()">
         <button class="service-button">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path>
             </svg>
         </button>
         
@@ -3819,7 +3848,7 @@
             <div class="chat-header">
                 <div class="chat-title">
                     <div class="avatar">
-                        <img src="https://www-cdn.djiits.com/dps/56a1503d0db0f218a2118330a8449b40@origin.jpg" alt="客服头像" />
+                        <img src="./index-mobile_files/56a1503d0db0f218a2118330a8449b40@origin.jpg" alt="客服头像">
                     </div>
                     <div class="title-text">
                         <h3>在线客服</h3>
@@ -3842,7 +3871,7 @@
                     <div class="service-option" onclick="showQQPopup()">
                         <div class="option-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                                <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path>
                             </svg>
                         </div>
                         <div class="option-text">
@@ -3855,7 +3884,7 @@
                     <div class="service-option" onclick="joinGroup()">
                         <div class="option-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M16 4c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01.99L14 10l-1-2H9l-1 2-1-2H4c-.8 0-1.54.37-2.01.99L0 10.5V22h2v-6h2.5l2.54 7.63A1.5 1.5 0 0 0 7.46 24H9c.8 0 1.54-.37 2.01-.99L12 21l1 2h4l1-2 1 2h1.54c.8 0 1.54-.37 2.01-.99L22 21.5V22h2z"/>
+                                <path d="M16 4c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01.99L14 10l-1-2H9l-1 2-1-2H4c-.8 0-1.54.37-2.01.99L0 10.5V22h2v-6h2.5l2.54 7.63A1.5 1.5 0 0 0 7.46 24H9c.8 0 1.54-.37 2.01-.99L12 21l1 2h4l1-2 1 2h1.54c.8 0 1.54-.37 2.01-.99L22 21.5V22h2z"></path>
                             </svg>
                         </div>
                         <div class="option-text">
@@ -3868,7 +3897,7 @@
                     <div class="service-option" onclick="sendEmail()">
                         <div class="option-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
                             </svg>
                         </div>
                         <div class="option-text">
@@ -3899,7 +3928,7 @@
     <!-- Login Modal -->
     <div class="login-modal" id="loginModal">
         <div class="login-container">
-            <button class="login-close" id="loginClose">&times;</button>
+            <button class="login-close" id="loginClose">×</button>
             
             <div class="login-header">
                 <h2>欢迎回来</h2>
@@ -3909,17 +3938,17 @@
             <div class="social-login-buttons">
                 <button class="social-btn google" id="googleLogin">
                     <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"></path>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"></path>
                     </svg>
                     使用 Google 登录
                 </button>
                 
                 <button class="social-btn apple" id="appleLogin">
                     <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
                     </svg>
                     使用 Apple 登录
                 </button>
@@ -3932,12 +3961,12 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label for="email">邮箱地址</label>
-                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址" required>
+                    <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址" required="">
                 </div>
                 
                 <div class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" id="password" name="password" placeholder="请输入您的密码" required>
+                    <input type="password" id="password" name="password" placeholder="请输入您的密码" required="">
                 </div>
                 
                 <div class="form-options">
@@ -3945,14 +3974,14 @@
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">记住我</label>
                     </div>
-                    <a href="#" class="forgot-password">忘记密码？</a>
+                    <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" class="forgot-password">忘记密码？</a>
                 </div>
                 
                 <button type="submit" class="login-submit">登录</button>
             </form>
             
             <div class="signup-link">
-                还没有账户？ <a href="#" id="signupLink">立即注册</a>
+                还没有账户？ <a href="file:///c%3A/Users/475519905/Desktop/HTML_INDEX/index%20copy.html#" id="signupLink">立即注册</a>
             </div>
         </div>
     </div>
@@ -4973,6 +5002,6 @@
                 this.style.textShadow = '';
             });
         });
-    </script>
-</body>
-</html>
+    </script><canvas width="390" height="844" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none; opacity: 0.02; z-index: 1;"></canvas>
+
+</body></html>
