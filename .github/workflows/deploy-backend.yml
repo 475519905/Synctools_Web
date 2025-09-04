@@ -1,1 +1,150 @@
 
+name: Deploy Backend to ECS (SSH + PM2)
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-backend.yml"
+  workflow_dispatch:
+
+env:
+  APP_NAME: synctools-api                # PM2 进程名
+  REMOTE_DIR: /opt/synctools/backend     # 服务器部署目录
+  NODE_VERSION: "18"                     # Node 版本，可改 20/22
+  APP_PORT: "3000"                       # 应用监听端口，需与代码一致
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 打包 backend 目录（跳过 node_modules/.git）
+      - name: Pack backend
+        run: |
+          cd backend
+          tar --exclude='.git' --exclude='node_modules' -czf ../backend.tgz .
+
+      # 上传压缩包到 ECS
+      - name: Upload package to ECS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}       # e.g. 47.110.75.212
+          username: ${{ secrets.SSH_USER }}   # e.g. root
+          key: ${{ secrets.SSH_KEY }}         # 私钥全文
+          port: ${{ secrets.SSH_PORT || 22 }}
+          source: "backend.tgz"
+          target: "/tmp"
+
+      # 远程部署：解压 -> 写 .env -> 安装依赖 -> 构建 -> PM2 滚动重启
+      - name: Deploy on ECS
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          APP_NAME: ${{ env.APP_NAME }}
+          REMOTE_DIR: ${{ env.REMOTE_DIR }}
+          NODE_VERSION: ${{ env.NODE_VERSION }}
+          APP_PORT: ${{ env.APP_PORT }}
+          # 从 GitHub Secrets 注入
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+
+            echo "==> Prepare directories"
+            mkdir -p "$REMOTE_DIR/releases" "$REMOTE_DIR/shared"
+            cd "$REMOTE_DIR"
+
+            echo "==> Unpack new release"
+            REL_TAG=$(date +%Y%m%d%H%M%S)
+            REL_DIR="$REMOTE_DIR/releases/$REL_TAG"
+            mkdir -p "$REL_DIR"
+            tar -xzf /tmp/backend.tgz -C "$REL_DIR"
+
+            # 使用 nvm 安装 Node
+            echo "==> Setup Node via nvm"
+            export NVM_DIR="$HOME/.nvm"
+            if [ ! -d "$NVM_DIR" ]; then
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+            fi
+            . "$NVM_DIR/nvm.sh"
+            nvm install ${NODE_VERSION}
+            nvm use ${NODE_VERSION}
+            node -v
+            npm -v
+
+            echo "==> Write .env (from GitHub Secrets)"
+            cat > "$REL_DIR/.env" <<EOF
+            NODE_ENV=production
+            PORT=${APP_PORT}
+            MONGODB_URI=${MONGODB_URI}
+            JWT_SECRET=${JWT_SECRET}
+            EOF
+
+            echo "==> Install dependencies"
+            cd "$REL_DIR"
+            if [ -f package-lock.json ]; then
+              npm ci --omit=dev
+            else
+              npm i --omit=dev
+            fi
+
+            echo "==> Build (if build script exists)"
+            if [ -f package.json ] && grep -q '"build"' package.json; then
+              npm run build
+            fi
+
+            echo "==> Ensure PM2 installed & startup"
+            npm i -g pm2@latest || true
+            export PM2_HOME="$HOME/.pm2"
+            pm2 ping || true
+            # systemd 开机自启（幂等）
+            pm2 startup systemd -u "$USER" --hp "$HOME" >/dev/null 2>&1 || true
+
+            echo "==> Symlink current -> new release"
+            ln -sfn "$REL_DIR" "$REMOTE_DIR/current"
+
+            echo "==> Start/Reload with PM2 (zero-downtime)"
+            cd "$REMOTE_DIR/current"
+            APP_NAME_SAFE="${APP_NAME}"
+            if [ -f ecosystem.config.js ]; then
+              # 若已有 PM2 配置，按配置名滚动
+              pm2 startOrReload ecosystem.config.js --only "$APP_NAME_SAFE" || pm2 start ecosystem.config.js --only "$APP_NAME_SAFE"
+            else
+              # 无 PM2 配置：优先 npm start，其次 server.js/app.js
+              if [ -f package.json ] && grep -q '"start"' package.json; then
+                pm2 describe "$APP_NAME_SAFE" >/dev/null 2>&1 \
+                  && pm2 restart "$APP_NAME_SAFE" \
+                  || pm2 start npm --name "$APP_NAME_SAFE" -- start
+              elif [ -f server.js ]; then
+                pm2 describe "$APP_NAME_SAFE" >/dev/null 2>&1 \
+                  && pm2 restart "$APP_NAME_SAFE" \
+                  || pm2 start server.js --name "$APP_NAME_SAFE"
+              elif [ -f app.js ]; then
+                pm2 describe "$APP_NAME_SAFE" >/dev/null 2>&1 \
+                  && pm2 restart "$APP_NAME_SAFE" \
+                  || pm2 start app.js --name "$APP_NAME_SAFE"
+              else
+                echo "❌ 未找到启动入口（npm start / server.js / app.js）。"
+                exit 1
+              fi
+            fi
+
+            pm2 save
+
+            echo "==> Health check"
+            sleep 2
+            if command -v curl >/dev/null 2>&1; then
+              curl -fsS "http://127.0.0.1:${APP_PORT}/health" || echo "Health endpoint not available, skip."
+            fi
+
+            echo "✅ Deploy done: $REL_DIR"
