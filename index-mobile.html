@@ -4,6 +4,28 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SyncTools Pro - 全平台3D工作流转换工具</title>
+    <script>
+        (function () {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                if (params.get('no-redirect') === '1') return;
+
+                var ua = navigator.userAgent || '';
+                var isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+                var isTabletUA = /iPad|Tablet|PlayBook|Silk/i.test(ua);
+                var isLargeScreen = window.matchMedia && window.matchMedia('(min-width: 1025px)').matches;
+
+                // 若为桌面端或大屏（且非平板），从移动页跳回桌面页
+                if ((!isMobileUA && !isTabletUA) || isLargeScreen) {
+                    if (!/index\.html(?:$|\?|#)/.test(document.referrer) && !/index\.html(?:$|\?|#)/.test(location.pathname)) {
+                        window.location.href = 'index.html';
+                    }
+                }
+            } catch (e) {
+                // no-op
+            }
+        })();
+    </script>
     <style>
         * {
             margin: 0;
