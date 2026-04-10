@@ -1,0 +1,17 @@
+Product: Blender Batch Execution Tools
+Slug: batch-script-execution
+Price: $5.00
+Cover: Yes
+Gallery images: 5
+Description images: 3
+Product files: 1
+  - Batch Script Execution.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Asset Management
+Tags: batch-processing, batch-script-execution, blender-add-on, data-cleanup, efficiency-booster, file-management, mass-editing, pipeline-tools, python-automation, resource-packing, workflow-enhancement
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

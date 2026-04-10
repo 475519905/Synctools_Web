@@ -1,0 +1,18 @@
+Product: CrossFire UCC File Export-Import (.ucc)
+Slug: crossfire-ucc-file-export-import-
+Price: $20.00
+Cover: Yes
+Gallery images: 6
+Description images: 0
+Product files: 2
+  - crossfire_ucc_export_import.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: 3d-modeling, blender-add-on, coordinate-conversion, crossfire, file-format, game-development, game-engine, import-export, level-design, map-workshop, ucc-export, workshop-tools
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

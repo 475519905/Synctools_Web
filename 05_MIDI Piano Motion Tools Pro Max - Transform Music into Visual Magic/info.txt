@@ -1,0 +1,19 @@
+Product: MIDI Piano Motion Tools Pro Max - Transform Music into Visual Magic
+Slug: midi-piano-motion-tools-pro-max---transform-music-into-visual-magic
+Price: $36.00
+Cover: Yes
+Gallery images: 6
+Description images: 3
+Product files: 3
+  - MIDI Piano Motion Tools Pro Max_CN.zip
+  - MIDI Piano Motion Tools Pro Max.zip
+  - file_2.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Modeling
+Tags: animation, controller, import, keyboard, music, music-video, piano, procedural, soundfont, visualization
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

@@ -1,0 +1,19 @@
+Product: MIDI Piano Motion Tools Pro
+Slug: midi-piano-motion-tools-pro
+Price: $30.00
+Cover: Yes
+Gallery images: 6
+Description images: 3
+Product files: 3
+  - MIDI Piano Motion Tools Pro.zip
+  - piano4.blend
+  - file_2.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Rigging
+Tags: 3d-animation, 3d-piano, animation-control, animation-presets, animation-templates, animation-tools, blender-42, blender-addon, blender-animation, blender-plugin, color-gradients, content-creation, custom-colors, dynamic-lighting, educational-tools, emission-animation, emission-effects, falling-ball-effects, gradient-effects, material-animation, material-control, midi-animation-tools, midi-import, midi-playback, midi-tools, midi-visualization, modulation-effects, music-animation, music-animation-software, music-animation-system, music-education, music-education-tools, music-learning-tools, music-motion, music-motion-tools, music-movement, music-performance, music-production, music-teaching-tools, music-video, music-visualization, music-visualization-software, music-visualization-tools, particle-animation, particle-effects, performance-visualization, physics-animation, physics-simulation, piano-animation, piano-animation-software, piano-animation-system, piano-dynamics, piano-education, piano-effects, piano-hammer-animation, piano-hammers, piano-key-animation, piano-keys, piano-learning, piano-lighting, piano-materials, piano-mechanics, piano-modeling, piano-motion, piano-motion-capture, piano-motion-tools, piano-movement, piano-pedal-animation, piano-pedals, piano-performance, piano-performance-capture, piano-rendering, piano-rendering-system, piano-shaders, piano-simulation, piano-teaching, piano-tutorial, piano-visualization, piano-visualization-system, piano-visualization-tools, pitch-bend, real-time-animation, velocity-sensitive, visual-effects, visual-music
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

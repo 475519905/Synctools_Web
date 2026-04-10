@@ -1,0 +1,18 @@
+Product: SuperBake Pro – The Ultimate Animation Baking Solution for Blender
+Slug: super-bake-pro--the-ultimate-animation-baking-solution-for-blender
+Price: $20.00
+Cover: Yes
+Gallery images: 4
+Description images: 3
+Product files: 2
+  - super_bake_pro.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Modeling, Rigging
+Tags: animation-baking, animation-tools, baked, blender, blender-addon, constraint-baking, driver-baking, game-development, keyframes, parenting, shape-keys, superbakepro
+Blender Version Min: 2.83
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

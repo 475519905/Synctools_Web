@@ -1,0 +1,17 @@
+Product:  Origin Adjustment Control
+Slug: -origin-adjustment-control
+Price: $5.00
+Cover: Yes
+Gallery images: 5
+Description images: 3
+Product files: 1
+  - Custom_Origin.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Modeling
+Tags: 3d-editing, 3d-manipulation, 3d-modeling, 3d-workflow, 3d-workspace, animation-tools, asset-management, batch-operations, batch-processing, blender-addon, blender-plugin, blender-tools, blender-utilities, coordinate-conversion, coordinate-system, custom-origin, geometry-center, mesh-editing, modeling-assistance, modeling-automation, modeling-tools, object-alignment, object-control, object-manipulation, object-origin, object-positioning, object-transformation, origin-animation, origin-control, origin-management, origin-presets, physics-snapping, precise-control, precise-positioning, precision-modeling, surface-snapping, technical-animation, transform-management, transform-presets, transform-tools, workflow-optimization
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

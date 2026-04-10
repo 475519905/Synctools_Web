@@ -1,0 +1,17 @@
+Product: SyncTools Pro For Zbrush
+Slug: synctools-for-zbrush
+Price: $12.00
+Cover: Yes
+Gallery images: 6
+Description images: 5
+Product files: 1
+  - SyncTools_Zbrush.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Materials and Shading, Modeling
+Tags: 3d-art, 3d-artists, 3d-design, 3d-geometry, 3d-modeling, 3d-model-transfer, 3d-resources, 3d-software, 3d-workflow, blender-market, copy-paste-plugin, cross-project-workflow, digital-art, macos, obj-file, productivity-tools, subtools, synctools, time-saving, windows, workflow-optimization, zbrush, zbrush-2022, zbrush-2023, zbrush-add-on, zbrush-integration, zbrush-plugin, zbrush-tools, zbrush-users
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

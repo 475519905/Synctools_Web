@@ -1,0 +1,17 @@
+Product: SyncTools for Unity
+Slug: synctools-for-unity
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 5
+Product files: 1
+  - Synctools_unity.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: animation-pipeline, asset-transfer, copy-paste, fbx-export, fbx-import, maya-integration, multi-software, productivity, scene-management, scene-sync, unity-integration, workflow
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

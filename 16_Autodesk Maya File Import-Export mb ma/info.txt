@@ -1,0 +1,19 @@
+Product: Autodesk Maya File Import-Export (.mb .ma) 
+Slug: autodesk-maya-file-import-export-mb-
+Price: $12.00
+Cover: No
+Gallery images: 6
+Description images: 4
+Product files: 3
+  - Autodesk Maya File Import-Export_2.15.zip
+  - Autodesk Maya File Import-Export.zip
+  - file_2.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: animation-transfer, blender, blender-addon, blender-tools, fbx-bridge, fps-camera-import, geometry-transfer, import-export, ma-file, maya, maya-integration, maya-to-blender
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

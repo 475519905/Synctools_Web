@@ -1,0 +1,16 @@
+Product: SyncTools Pro for Cinema 4D
+Slug: synctools-pro-v2
+Price: $20.00
+Cover: Yes
+Gallery images: 4
+Description images: 3
+Product files: 0
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: 3d-workflow-automation, animation-transfer, bidirectional-sync, blender, c4d-blender-integration, camera-settings-sync, cinema-4d, cross-platform-pipeline, cross-software-compatibility, efficiency-enhancement, importexport-tools, lighting-sync, material-conversion, maya, model-import-export, multi-software-workflow, one-click-transfer, productivity-tool, project-parameter-sync, sync-tools, workflow-optimization
+Blender Version Min: 2.93
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

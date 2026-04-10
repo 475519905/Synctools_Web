@@ -1,0 +1,18 @@
+Product: SyncTools for Marvelous Designer
+Slug: synctools-for-marvelous-designer
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 2
+  - SyncTools_v2.1.3_3418.zip
+  - SyncTools_MD.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3d-animation, 3d-art, 3d-modeling, 3ds-max, animation-tools, asset-management, blender, character-artist, character-design, cloth-simulation, costume-design, cross-platform, design-workflow, digital-assets, digital-clothing, digital-content-creation, digital-fashion, fashion-design, fbx-export, game-artist, game-development, garment-design, marvelous-designer, maya, pipeline-automation, plugin-development, production-tools, technical-artist, virtual-clothing, workflow-tools
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

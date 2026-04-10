@@ -1,0 +1,18 @@
+Product: SyncTools Pro for Maya
+Slug: synctools-for-maya
+Price: $15.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 2
+  - SyncTools_v2.1.2_2519.zip
+  - SyncTools_Maya.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3dsmaxsupport, 3dworkflowoptimization, animationpipeline, assetsynchronization, blenderplugin, cinema4dplugin, crossdccworkflow, digitalcontentcreation, fbxexporter, losslessconversion, mayaintegration, multisoftwaresync, oneclickmigration, realtimecollaboration, scenedatatransfer, studioproductiontool, synctoolspro, teamworkflowenhancer, unifieddataprotocol, vfxtoolkit
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

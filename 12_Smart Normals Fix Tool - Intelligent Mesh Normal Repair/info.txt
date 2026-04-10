@@ -1,0 +1,18 @@
+Product: Smart Normals Fix Tool - Intelligent Mesh Normal Repair
+Slug: smart-normals-fix-tool---intelligent-mesh-normal-repair
+Price: $12.00
+Cover: Yes
+Gallery images: 6
+Description images: 3
+Product files: 2
+  - fix normals.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Materials and Shading, Modeling
+Tags: 3d-printing, auto-smooth, batch-processing, cad-import, face-selection, game-asset, geometry-repair, mesh-cleanup, normal-fix, smart-analysis, vertex-merge, workflow-optimization
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

@@ -1,0 +1,78 @@
+{
+  "title": "SyncTools for Unreal Engine 5",
+  "coverImage": "https://assets.superhivemarket.com/store/product/231269/image/medium-12fe32bf558db9372a16456f7e7d5946.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/933531/image/medium-ef1a12bc223a16ed8e091ca7ea05059e.jpg",
+    "https://assets.superhivemarket.com/store/productimage/933532/image/medium-651a9fdd6903c232f5eabc40eba5343a.jpg",
+    "https://assets.superhivemarket.com/store/productimage/933533/image/medium-95e99ceafed1cb02db764c7614920424.jpg",
+    "https://assets.superhivemarket.com/store/productimage/933535/image/medium-8295f003014246b22944b32dfb032a14.jpg",
+    "https://assets.superhivemarket.com/store/productimage/933530/image/medium-c799b4c45cf5e14a76ef5de355c81e66.png"
+  ],
+  "description": "<div style=\"\"><div class=\" hide-if-empty\" style=\"padding:1px 18px 0.4rem;position:relative;\"><div style=\"\"><span class=\"anysphere-markdown-container-root\" style=\"background-color:rgb(255, 255, 255);\"><h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\"></h1>\n<p><strong style=\"font-size:2.5rem;\">SyncTools for Unreal Engine</strong><span style=\"font-size:2.5rem;font-weight:500;\"> 🚀</span></p>\n<h2><strong>Overview</strong></h2>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n\n</h1>\n<p>SyncTools for Unreal Engine is a specialized plugin designed to <strong>streamline</strong> the process of <strong>copying and pasting detailed scene data</strong> within Unreal Engine environments. With just one click, you can export <strong>static mesh actors</strong>—including their <strong>complete transform data, materials, and properties</strong>—from one scene and import them into another. This significantly enhances <strong>efficiency</strong> in <strong>level design and scene composition workflows</strong>.</p>\n<h2><strong>🌍 Multi-DCC Platform Support</strong></h2>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>The SyncTools series extends support to major <strong>digital content creation software</strong>, including:</p>\n<p>✅ <strong>SyncTools for Maya</strong> (Released)<br>\n✅ <strong>SyncTools for 3ds Max</strong> (Released)<br>\n✅ <strong>SyncTools for Houdini</strong> (Released)<br>\n✅ <strong>SyncTools for Cinema 4D</strong> (Released)<br>\n✅ <strong>SyncTools for Rhino</strong> (Released)<br>\n✅ <strong>SyncTools for Marvelous Designer</strong> (Released)</p>\n<p>✅<span style=\"font-weight:bolder;\">SyncTools for Unreal Engine</span> (Released)<br>\n🛠 <strong>SyncTools for Substance Painter</strong> (In Development)<br>\n🛠 <strong>SyncTools for Unity</strong> (In Development)<br>\n🛠 <strong>SyncTools for Zbrush</strong> (In Development)</p>\n<p>All plugins utilize a <strong>unified data exchange protocol</strong>, enabling <strong>lossless asset conversion across platforms</strong> and <strong>true multi-software collaborative workflows</strong>.</p>\n<p><br><img src=\"https://assets.superhivemarket.com/cache/cd2d10a398435ffa3ba85ba906bed5cc.jpg\" style=\"max-width:100%;\"></p>\n<p><img src=\"https://assets.superhivemarket.com/cache/7870de4138a096278bf0cc00fbe045b4.jpg\" style=\"max-width:100%;\"><br></p>\n<p><br></p>\n<h2><strong>🛠 Unreal Engine Installation & Usage</strong></h2>\n<h3><strong>1️⃣ Plugin Installation</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n\n</h1>\n<p>🔹 Download the plugin file Synctools_UE<strong>.py</strong><br>\n🔹 Copy the file to your <strong>Unreal Engine Python scripts directory</strong><br>\n🔹 Restart <strong>Unreal Engine</strong><br>\n🔹 Upon successful installation, you'll find <strong>\"SyncTools\"</strong> in the main menu bar</p>\n<h3><strong>2️⃣ Workflow</strong></h3>\n<h4><strong>📋 Copy Operation</strong></h4>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n\n</h1>\n<p>✅ <strong>Select</strong> the static mesh actors you want to copy in the scene<br>\n✅ Click <strong>\"Copy\"</strong> from the <strong>SyncTools menu</strong><br></p>\n<h4><strong>📂 Paste Operation</strong></h4>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>✅ <strong>Switch</strong> to your target scene<br>\n✅ Click <strong>\"Paste\"</strong> from the <strong>SyncTools menu</strong><br>\n✅ The plugin <strong>automatically imports</strong> the most recent cache files and <strong>cleans up</strong> after a successful import</p>\n<h2><strong>📝 Version Compatibility</strong></h2>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>✅ <strong>Official Support:</strong> Unreal Engine <strong>4.26 and newer</strong></p>\n<p>✅ <span style=\"font-weight:bolder;\">Official Support:</span> Unreal Engine <span style=\"font-weight:bolder;\">5.04 and newer</span><strong></strong></p>\n<h2><strong>📊 Data Compatibility</strong></h2>\n<h3><strong>✔ Full Support:</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n\n</h1>\n<p>🔹 <strong>Static mesh actors</strong><br>\n🔹 <strong>Transform data</strong> (location, rotation, scale)<br>\n🔹 <strong>Actor labels and names</strong><br>\n🔹 <strong>Vertex colors</strong><br>\n🔹 <strong>LOD settings</strong></p>\n<h3><strong>⚠ Partial Support:</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>🔸 <strong>Materials</strong> (basic properties)<br>\n🔸 <strong>Textures</strong> (requires matching paths)<br>\n🔸 <strong>Collision meshes</strong> (filtered during export)</p>\n<p>🔸 Animation and keyframes (basic properties)</p>\n<h3><strong>❌ Unsupported:</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>❌ <strong>Skeletal meshes</strong><br>\n❌ <strong>Blueprint actors</strong><br>\n❌ <strong>Particle systems</strong><br>\n❌ <strong>Landscape data</strong><br>\n❌ <strong>Dynamic objects</strong><br>\n❌ <strong>Light actors</strong></p>\n<h2><strong>⚡ Important Notes</strong></h2>\n<h3><strong>1️⃣ Cache Management</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n\n</h1>\n<p>🗑 <strong>Automatic cleanup</strong> after successful operations<br>\n📁 <strong>Cache location:</strong> <code>Documents/cache/</code></p>\n<h3><strong>2️⃣ Asset Handling</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>🎯 <strong>Automatic collision mesh filtering</strong><br>\n🏷 <strong>Preserves original actor names and labels</strong><br>\n📍 <strong>Maintains precise transform data</strong></p>\n<h3><strong>3️⃣ Best Practices</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>✔ Use for <strong>static mesh actors only</strong><br>\n✔ Ensure <strong>sufficient disk space</strong> for cache files<br>\n✔ Keep <strong>source and target Unreal Engine versions compatible</strong></p>\n<h3><strong>4️⃣ Performance</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>⚡ <strong>Optimized for quick copy-paste operations</strong><br>\n📉 <strong>Minimal temporary storage usage</strong><br>\n🧹 <strong>Efficient cleanup processes</strong></p>\n<h3><strong>5️⃣ Data Exchange</strong></h3>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>🔄 <strong>FBX format</strong> for <strong>mesh data</strong><br>\n📜 <strong>JSON format</strong> for <strong>transform data</strong><br>\n🔧 <strong>Automatic file management</strong></p>\n<h2><strong>🎯 Conclusion</strong></h2>\n<h1 style=\"font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;\">\n</h1>\n<p>SyncTools for Unreal Engine is engineered to provide a <strong>seamless and efficient method</strong> for <strong>transferring static mesh actors</strong> within Unreal Engine environments. By leveraging <strong>simple copy and paste controls</strong>, you can effortlessly <strong>exchange detailed scene information</strong>, thereby <strong>streamlining your level design workflow</strong>.</p>\n<p>✨ <strong>Enjoy a more efficient scene composition process with SyncTools!</strong></p>\n<p>📩 <strong>Need support?</strong> Let us know if you need any further assistance!</p>\n<hr>\n<p>Would you like any further refinements? 😊</p>\n<p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-weight:700;font-size:2rem;\">Support Blender Foundation</span></p>\n<p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p></span></div></div></div>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/304927/file/e8444e38c15628e420d3e7c2e037666c.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064126Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=a82e321ae153f0f9ab7ece306313d6aeb549a43e93a1bde4d815e39247035302",
+      "name": "SyncTools_v2.1.3_3418.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/290848/file/d1b7dcb38838156ac1c393e77be6fcc7.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064126Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=fbf7e0c19074e4444dc7a79a536980266a53b42661aeed00b518d761f5824641",
+      "name": "SyncTools_UE.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/cd2d10a398435ffa3ba85ba906bed5cc.jpg",
+    "https://assets.superhivemarket.com/cache/7870de4138a096278bf0cc00fbe045b4.jpg"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Animation",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "3dartist",
+    "3dmodeling",
+    "assetmanagement",
+    "copypaste",
+    "developertools",
+    "digitalart",
+    "environmentartist",
+    "epic",
+    "gameart",
+    "gameassets",
+    "gamedesign",
+    "gamedev",
+    "gamedevelopment",
+    "gametech",
+    "gameworkflow",
+    "indiegame",
+    "leveldesign",
+    "leveleditor",
+    "pipelinetool",
+    "plugindevelopment",
+    "productivitytools",
+    "scenedesign",
+    "scenelayout",
+    "staticmesh",
+    "ue4",
+    "ue426",
+    "ue427",
+    "ue5",
+    "ue54",
+    "unity",
+    "unity3d",
+    "unrealcommunity",
+    "unrealengine",
+    "unrealengine5",
+    "unrealengineplugin",
+    "unrealenginetool",
+    "workflowtools"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

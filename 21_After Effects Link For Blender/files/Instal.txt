@@ -1,0 +1,43 @@
+### Manual Installation of `win32com` Library for Blender
+
+Due to certain limitations, the Blender add-on is unable to automatically preload the `win32com` library. To ensure the add-on functions correctly, you will need to manually install the `win32com` library into Blender's Python environment. Follow the steps below:
+
+#### 1. Locate Blender's Python Path
+Blender's built-in Python environment is typically located at:
+```
+C:\Program Files\Blender Foundation\Blender 4.2\4.2\python\lib\site-packages
+```
+Make sure you have identified the correct path.
+
+#### 2. Obtain the `win32com` Library Files
+The `win32com` library files are already provided in the add-on package, usually located in the `libs` folder. Look for the following files or folders:
+- `win32com` folder
+- `pywin32` related files (e.g., `pywin32-xxx`)
+
+#### 3. Copy Files to Blender's Python Environment
+1. Open the `libs` folder and locate the `win32com` folder and related files.
+2. Copy these files or folders into Blender's Python `site-packages` directory:
+   ```
+   C:\Program Files\Blender Foundation\Blender 4.2\4.2\python\lib\site-packages
+   ```
+3. If prompted to overwrite files, select "Yes" or "Replace."
+
+#### 4. Verify the Installation
+1. Launch Blender.
+2. In Blender's Scripting Editor or console, run the following code to check if `win32com` has been successfully installed:
+   ```python
+   import win32com.client
+   print("win32com library loaded successfully!")
+   ```
+   If no errors occur and the message "win32com library loaded successfully!" is printed, the installation is successful.
+
+#### 5. Restart Blender
+After completing the steps above, restart Blender to ensure the add-on can properly load the `win32com` library.
+
+---
+
+### Notes
+- If you encounter permission issues while copying files, run your file manager or command-line tool as an administrator.
+- If the add-on still does not work, double-check if any files were missed or contact the add-on developer for further assistance.
+
+By following these steps, you should be able to manually install the `win32com` library and resolve the issue with the add-on's preloading. If you have any further questions, feel free to reach out to technical support.

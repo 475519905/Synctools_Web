@@ -1,0 +1,47 @@
+{
+  "title": "Outliner: Follow Active Object",
+  "coverImage": "https://assets.superhivemarket.com/store/product/249168/image/medium-f6ee70a73a3dafd4e8d94a9243330fa7.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/1163248/image/medium-c4c1ffee5f315ae4495861194ed24b81.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1163247/image/medium-1e3633be115d3819c7f0dcf4859d14e1.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1163249/image/medium-bf7163b4910f9b5f1af48cd7c583d222.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1163250/image/medium-6756cf6902f6e37a998a7739646ac255.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1163251/image/medium-ba70d2d0a3e21ba72c4f106fbd322b86.png"
+  ],
+  "description": "<h1>Outliner: Follow Active Object (Smart)</h1><p><br></p><h3>A Smarter Way to Navigate Your Scene</h3><p>Tired of constantly scrolling through the Outliner to find your active object?<br>\nThis add-on automatically scrolls the Outliner to follow your active object — <strong>with intelligent behavior</strong> that prevents unnecessary scrolling when you're working with nearby objects.</p><hr><h2>✅ Key Features</h2><p><img src=\"https://assets.superhivemarket.com/cache/c213973094e10116aada38c63b557c12.gif\"></p><h3>🧠 Smart Auto-Scrolling</h3><p>Automatically scrolls the Outliner to the active object, but <strong>intelligently avoids scrolling</strong> when objects are close together in the same collection branch.</p><h3>🎛 Configurable Threshold</h3><p>Adjust the <strong>Near Threshold</strong> setting to control how close objects need to be before the add-on skips scrolling.<br>\nPerfect for fine-tuning based on your workflow.</p><h3>🎯 Manual Jump</h3><p>Includes a <strong>Jump to Active</strong> button for instant navigation when you need it.</p><h3>⚡ Lightweight & Non-Intrusive</h3><p>Runs efficiently in the background without impacting Blender’s performance.</p><h3>🧩 Easy to Use</h3><p>Simple toggle in the <strong>3D Viewport sidebar</strong> — just enable and forget!</p><hr><h2>⭐ Perfect For</h2><p><img src=\"https://assets.superhivemarket.com/cache/762a706421cd3237413389820c25dd5a.jpg\" style=\"max-width:100%;\"><br></p><p>Animators, modelers, and anyone working with complex scenes where finding objects in the Outliner can be time-consuming.</p><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><p>The smart scrolling algorithm ensures a smooth workflow without the jarring experience of constant scrolling when selecting nearby objects.</p><h2>❤️ Supporting the Blender Foundation</h2><p>\n</p><p>We love Blender and the community behind it.<br>\nThat’s why <strong>a portion of the revenue from this add-on will be donated to the Blender Foundation</strong>, helping support Blender’s ongoing development and future growth.</p>",
+  "documentation": "<h1>Outliner: Follow Active Object (Smart)</h1><h3>A Smarter Way to Navigate Your Scene</h3><p>Tired of constantly scrolling through the Outliner to find your active object?<br>\nThis add-on automatically scrolls the Outliner to follow your active object — with intelligent behavior that prevents unnecessary scrolling when you're working with nearby objects.</p><hr><h2>KEY FEATURES</h2><h3>Smart Auto-Scrolling</h3><p>Automatically scrolls the Outliner to the active object, but intelligently avoids scrolling when objects are close together in the same collection branch.</p><h3>Configurable Threshold</h3><p>Adjust the <strong>\"Near Threshold\"</strong> setting to control how close objects need to be before the add-on skips scrolling. Perfect for fine-tuning based on your workflow.</p><h3>Manual Jump</h3><p>Includes a <strong>\"Jump to Active\"</strong> button for instant navigation when you need it.</p><h3>Lightweight & Non-Intrusive</h3><p>Runs efficiently in the background without impacting Blender's performance.</p><h3>Easy to Use</h3><p>Simple toggle in the <strong>3D Viewport sidebar</strong> — just enable and forget!</p><hr><p>Perfect for animators, modelers, and anyone working with complex scenes where finding objects in the Outliner can be time-consuming. The smart scrolling algorithm ensures a smooth workflow without the jarring experience of constant scrolling when selecting nearby objects.</p><hr><h2>Supporting the Blender Foundation</h2><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><p>We love Blender and the community behind it.<br>\nThat’s why <strong>a portion of the revenue from this add-on will be donated to the Blender Foundation</strong>, helping support Blender’s ongoing development and future growth.</p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/378785/file/751ff6500319e264ddc733ddd3609cd4.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063120Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=84a3e5051f9870f5a78677efd2fbe247dfd5004a9ec53b5f16aa3c926d03ec98",
+      "name": "outliner_follow_active_smart_addon.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/c213973094e10116aada38c63b557c12.gif",
+    "https://assets.superhivemarket.com/cache/762a706421cd3237413389820c25dd5a.jpg"
+  ],
+  "price": "$5.00",
+  "categories": [
+    "Addons",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "automation",
+    "blender",
+    "blender-outliner-addon",
+    "efficiency",
+    "interface",
+    "navigation",
+    "outliner",
+    "productivity",
+    "scene-management",
+    "smart-scrolling",
+    "workflow"
+  ],
+  "blenderVersionMin": "3.6",
+  "blenderVersionMax": "5.0",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

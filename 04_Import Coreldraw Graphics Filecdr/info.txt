@@ -1,0 +1,18 @@
+Product: Import Coreldraw Graphics File(.cdr)
+Slug: import-coreldraw-graphics-file
+Price: $8.00
+Cover: Yes
+Gallery images: 5
+Description images: 4
+Product files: 2
+  - Import CorelDRAW_EN (.cdr)_V1.21.zip
+  - ReadMe.txt
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Materials and Shading, Modeling
+Tags: 3d-modeling, b3d, blender3d, blender-addon, cdr, cdr-file, cgi, coreldraw, design-tools, graphic-design, motion-graphics, vector-to-3d
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

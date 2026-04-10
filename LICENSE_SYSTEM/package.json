@@ -1,0 +1,18 @@
+{
+  "name": "license-system",
+  "version": "1.0.0",
+  "description": "自主许可证获取系统",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0",
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {}
+}

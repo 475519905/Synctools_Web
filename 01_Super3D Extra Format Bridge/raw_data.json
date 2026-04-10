@@ -1,0 +1,59 @@
+{
+  "title": "Super3D Extra Format Bridge",
+  "coverImage": "https://assets.superhivemarket.com/store/product/251523/image/medium-e9a232b2f43ff24470a961ae1df2ff02.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/1206596/image/medium-7222549fa391e8698cac9c3471c4dbda.png",
+    "https://assets.superhivemarket.com/store/productimage/1206595/image/medium-aab8e9b8c66a9a194a6410245c6b94a2.png",
+    "https://assets.superhivemarket.com/store/productimage/1206597/image/medium-e22a1494f464b7377ff7054fcfb90423.png",
+    "https://assets.superhivemarket.com/store/productimage/1206598/image/medium-e1ab7fc13d011c0d1bfada2a41c1d991.png",
+    "https://assets.superhivemarket.com/store/productimage/1206599/image/medium-0157fa90c4af158612d81cb738411298.png"
+  ],
+  "description": "<h2>Super3D Extra Format Bridge</h2><img src=\"https://public-files.gumroad.com/37v6qv3opsl7yy6t92y3hb3s8hit\"><p class=\"figcaption\"></p><p>Import and export more than 20 3D file formats that are not natively supported by Blender.</p><p>This add-on adds additional items to Blender’s <strong>File → Import</strong> and <strong>File → Export</strong> menus, allowing users to open and save a wider range of common 3D formats.</p><hr><h2>Supported Formats</h2><p><img src=\"https://assets.superhivemarket.com/cache/896da74d2dc4b3b8cc6dcea172c95a2c.png\" style=\"max-width:100%;\"><br></p><p></p><h3>\n<img src=\"https://assets.superhivemarket.com/cache/d8a5e53c05240c6bff2e568a52deecb7.png\" style=\"max-width:100%;\"><br>\n</h3><h3>\n<img src=\"https://assets.superhivemarket.com/cache/95f50683abac952fff8539ea8125329c.png\" style=\"max-width:100%;\"><br>\n</h3><h3>DCC / Animation</h3><ul>\n<li><p>Cinema 4D (.c4d)</p></li>\n<li><p>3ds Max (.max)</p></li>\n<li><p>Maya ASCII (.ma)</p></li>\n<li><p>Maya Binary (.mb)</p></li>\n<li><p>Houdini (.hip / .hiplc / .hipnc)</p></li>\n<li><p>Fusion 360 (.f3d)</p></li>\n</ul><h3>CAD / Engineering</h3><ul>\n<li><p>AutoCAD DWG (.dwg)</p></li>\n<li><p>STEP (.step / .stp)</p></li>\n<li><p>IGES (.iges / .igs)</p></li>\n<li><p>IFC (.ifc)</p></li>\n<li><p>Parasolid X_T (.x_t)</p></li>\n<li><p>JT (.jt)</p></li>\n</ul><h3>Other 3D Formats</h3><ul>\n<li><p>SketchUp (.skp)</p></li>\n<li><p>3D Studio (.3ds)</p></li>\n<li><p>3MF (.3mf)</p></li>\n<li><p>APX (.apx)</p></li>\n<li><p>3DXML (.3dxml)</p></li>\n</ul><hr><h2>How It Works</h2><p><br></p><p></p><h3>Import</h3><img src=\"https://public-files.gumroad.com/jc24mag66yj72d3kcj5i4zx9od4j\"><p class=\"figcaption\"></p><ol>\n<li><p>Select a supported file format from <strong>File → Import</strong>.</p></li>\n<li><p>The add-on uploads the file to the Super3D conversion service.</p></li>\n<li><p>The file is converted to OBJ format and imported into the current Blender scene.</p></li>\n</ol><h3>Export</h3><img src=\"https://public-files.gumroad.com/z66i5jfq0qqbkyv5xbc64158g8xw\"><p class=\"figcaption\"></p><p><img src=\"https://assets.superhivemarket.com/cache/707ba9853e828f353c26f6abd3a982c8.png\" style=\"max-width:100%;\"><br></p><ol>\n<li><p>Select a supported format from <strong>File → Export</strong>.</p></li>\n<li><p>The scene is exported as OBJ.</p></li>\n<li><p>The OBJ file is converted to the selected format through the Super3D service and saved locally.</p></li>\n</ol><hr><h2>Key Features</h2><ul>\n<li><p>Support for more than 20 common 3D file formats</p></li>\n<li><p>Integration with Blender’s native Import / Export menus</p></li>\n<li><p>Single lightweight add-on file (.py)</p></li>\n<li><p>Compatible with Blender 4.0 and newer</p></li>\n<li><p>Configurable API timeout (30 seconds to 2 hours)</p></li>\n<li><p>Option to keep or automatically remove temporary files</p></li>\n<li><p>No external dependencies other than Blender’s built-in Python</p></li>\n</ul><hr><h2>Installation</h2><ol>\n<li><p>Download the add-on .zip file.</p></li>\n<li><p>Open Blender and go to <strong>Edit → Preferences → Add-ons</strong>.</p></li>\n<li><p>Click <strong>Install…</strong> and select the downloaded .zip file.</p></li>\n<li><p>Enable the add-on in the add-ons list.</p></li>\n</ol><hr><h2>Requirements</h2><ul>\n<li><p>Blender 4.0 or later</p></li>\n<li><p>Internet connection</p></li>\n</ul><hr><p>Built by <strong>475519905</strong></p>",
+  "documentation": "<p>Installation</p><p>1. Download the product zip file.</p><p>2. In Blender, go to Edit > Preferences > Add-ons.</p><p>3. Click Install, choose super3d_io_addon.zip, then enable the addon.</p><p><br></p><p>Usage</p><p>- Import: File > Import > Super3D</p><p>- Export: File > Export > Super3D</p><p><br></p><p>Best Practices</p><p>- Use supported Blender versions listed on the product page.</p><p>- For production pipelines, validate exported files before batch deployment.</p><p>- Keep naming conventions consistent for predictable results.</p><p><br></p><p>Troubleshooting</p><p>- If import/export fails, test with a minimal sample file first.</p><p>- Disable conflicting addons and retry.</p><p>- Include Blender version + OS + sample file when reporting issues.</p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/400002/file/774d9ab22ccdde6071a3991e76917d31.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063035Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=01823129c6f8ee89a57ed0bc34bd6a3c35ca9b3ecd548222a9cc043ea6e858a0",
+      "name": "add-on-super3d-io-addon-v0.3.3.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/399991/file/3be26ea7814316a50a390165f5cb5931.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063035Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=afeddce725e16dae3d1361a8e3fcdd2dcc049ee7ee8888b4ca9448fc3fce971b",
+      "name": "add-on-super3d-io-addon-v0.3.1.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/394516/file/54b581e247677e0c8542cd6614d7fc60.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063035Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=914c4e66e20a31d864a252292c924da24dc1e86fabef49aebb127ad1e110a8ed",
+      "name": "super3d_io_addon.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://public-files.gumroad.com/37v6qv3opsl7yy6t92y3hb3s8hit",
+    "https://assets.superhivemarket.com/cache/896da74d2dc4b3b8cc6dcea172c95a2c.png",
+    "https://assets.superhivemarket.com/cache/d8a5e53c05240c6bff2e568a52deecb7.png",
+    "https://assets.superhivemarket.com/cache/95f50683abac952fff8539ea8125329c.png",
+    "https://public-files.gumroad.com/jc24mag66yj72d3kcj5i4zx9od4j",
+    "https://public-files.gumroad.com/z66i5jfq0qqbkyv5xbc64158g8xw",
+    "https://assets.superhivemarket.com/cache/707ba9853e828f353c26f6abd3a982c8.png"
+  ],
+  "price": "$20.00",
+  "categories": [
+    "Addons"
+  ],
+  "tags": [
+    "3dmax",
+    "c4d",
+    "cinema4d",
+    "conversion-tool",
+    "export",
+    "format-conversion",
+    "houdini",
+    "import",
+    "maya",
+    "sketchup",
+    "super3d",
+    "transformation"
+  ],
+  "blenderVersionMin": "4.0",
+  "blenderVersionMax": "5.0",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

@@ -1,0 +1,18 @@
+Product: After Effects Link For Blender
+Slug: after-effects-link-for-blender
+Price: $12.00
+Cover: No
+Gallery images: 0
+Description images: 2
+Product files: 2
+  - Instal.txt
+  - After Effects Link.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Asset Management, Import & Export, Materials and Shading
+Tags: 3d-animation, adobe, adobe-integration, after-effects, animation, animation-export, asset-management, automation, blender, cache-management, compositing, creative-tools, file-management, frame-sequence, media-export, motion-graphics, pipeline, post-production, production-tools, productivity, professional-tools, project-management, render-cache, render-export, rendering, render-management, sequence-export, time-saving, vfx, video-editing, workflow
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

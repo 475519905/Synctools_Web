@@ -1,0 +1,51 @@
+{
+  "title": "Alt Surface Navigation",
+  "coverImage": "https://assets.superhivemarket.com/store/product/243385/image/medium-50a48e6b6b4fd8d063731207af4f5e21.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/1093399/image/medium-e749a2f75b95764e61d7623d61322a93.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1093400/image/medium-108c2cfabd12680bc46d13ff4fc4414d.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1093401/image/medium-db411bc91687ef93975d3746171d6c1d.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1093402/image/medium-b0c31dbc13aaab28d3816d8fd33d0d6e.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1093403/image/medium-f15a357058e76ce8b54141831b9c3222.png"
+  ],
+  "description": "<h1>Alt Surface Navigation</h1><h3>Advanced 3D Viewport Navigation for Blender</h3><p>Transform your Blender 3D navigation experience with <strong>Alt Surface Navigation</strong>, a powerful addon that provides intuitive <strong>surface-based viewport controls</strong>.</p><p>This complete navigation solution allows you to <strong>orbit, zoom, and pan around any surface point</strong> in your 3D scene with precision and ease.</p><p><img src=\"https://assets.superhivemarket.com/cache/951b325eff6238b9dcec5b03b5d75a95.png\" style=\"max-width:100%;\"><br></p><hr><h2>✨ Key Features</h2><ul>\n<li>\n<p><strong>Surface-Based Navigation</strong> – Navigate around actual surface hit points rather than arbitrary viewport centers</p>\n</li>\n<li>\n<p><strong>Intuitive Controls</strong> – Simple Alt + Mouse combinations for all navigation operations</p>\n</li>\n<li>\n<p><strong>Smart Hit Detection</strong> – Configurable detection modes for all objects, selected objects, or visible objects</p>\n</li>\n<li>\n<p><strong>Precision Zoom</strong> – Adjustable sensitivity and distance limits for perfect control</p>\n</li>\n<li>\n<p><strong>Cursor Integration</strong> – Optional 3D cursor positioning during operations</p>\n</li>\n<li>\n<p><strong>Threshold Control</strong> – Prevents jittery navigation with hit point update thresholds</p>\n</li>\n</ul><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/d5e9b3f7f6dbcfb80cdf907d3b012ed5.jpg\" style=\"max-width:100%;\"><br>\n</h2><h2>\n<img src=\"https://assets.superhivemarket.com/cache/2604b6706eced28f1aa33e5b6f699fd4.jpg\" style=\"max-width:100%;\"><br>\n</h2><h2>🎮 Navigation Controls</h2><ul>\n<li>\n<p><strong>Alt + Left Click</strong> → Orbit around surface hit points</p>\n</li>\n<li>\n<p><strong>Alt + Right Click</strong> → Zoom centered on surface locations</p>\n</li>\n<li>\n<p><strong>Alt + Middle Click</strong> → Pan based on surface reference points</p>\n</li>\n</ul><hr><h2>⚙️ Customizable Settings</h2><ul>\n<li>\n<p>Zoom sensitivity adjustment <em>(0.001 – 0.1 range)</em></p>\n</li>\n<li>\n<p>Minimum and maximum zoom distance limits</p>\n</li>\n<li>\n<p>Hit point detection modes and update thresholds</p>\n</li>\n<li>\n<p>Cursor display options during operations</p>\n</li>\n<li>\n<p>Restore behavior on Alt key release</p>\n</li>\n</ul><hr><h2>📌 Perfect For</h2><ul>\n<li>\n<p>Detailed <strong>modeling and sculpting</strong> work</p>\n</li>\n<li>\n<p><strong>Architectural visualization</strong></p>\n</li>\n<li>\n<p><strong>Character modeling</strong> and animation</p>\n</li>\n<li>\n<p>Any workflow requiring <strong>precise 3D navigation</strong></p>\n</li>\n</ul><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/a4425dd7549cb3dbf25dda2ffd37afe6.jpg\" style=\"max-width:100%;\"><br>\n</h2><h2>🔧 Integration & Compatibility</h2><ul>\n<li>\n<p>Seamlessly integrates into Blender’s 3D viewport</p>\n</li>\n<li>\n<p>Dedicated <strong>settings panel</strong> in the <em>Tool</em> category</p>\n</li>\n<li>\n<p>All settings accessible with a <strong>reset-to-defaults</strong> option</p>\n</li>\n<li>\n<p>Compatible with <strong>Blender 3.0+</strong></p>\n</li>\n<li>\n<p>Designed for <strong>professional workflows</strong></p>\n</li>\n</ul><hr><h2>🚀 Installation</h2><ol>\n<li>\n<p>Install the addon file in Blender</p>\n</li>\n<li>\n<p>Navigation controls are immediately available – <strong>no complex setup required</strong></p>\n</li>\n<li>\n<p>Start navigating with <strong>surface precision right away</strong></p>\n</li>\n</ol>",
+  "documentation": "<p>Alt Surface Navigation (Complete) - Advanced 3D Viewport Navigation for Blender<br>Transform your Blender 3D navigation experience with Alt Surface Navigation, a powerful addon that provides intuitive surface-based viewport controls. This complete navigation solution allows you to orbit, zoom, and pan around any surface point in your 3D scene with precision and ease.<br>KEY FEATURES:</p><ul>\n<li>Surface-Based Navigation: Navigate around actual surface hit points rather than arbitrary viewport centers</li>\n<li>Intuitive Controls: Simple Alt+Mouse combinations for all navigation operations</li>\n<li>Smart Hit Detection: Configurable detection modes for all objects, selected objects, or visible objects</li>\n<li>Precision Zoom: Adjustable sensitivity and distance limits for perfect control</li>\n<li>Cursor Integration: Optional 3D cursor positioning during operations</li>\n<li>Threshold Control: Prevents jittery navigation with hit point update thresholds</li>\n</ul><p>NAVIGATION CONTROLS:<br>- Alt+Left Click: Orbit around surface hit points<br>- Alt+Right Click: Zoom centered on surface locations<br>- Alt+Middle Click: Pan based on surface reference points<br>CUSTOMIZABLE SETTINGS:</p><ul>\n<li>Zoom sensitivity adjustment (0.001 - 0.1 range)</li>\n<li>Minimum and maximum zoom distance limits</li>\n<li>Hit point detection modes and update thresholds</li>\n<li>Cursor display options during operations</li>\n<li>Restore behavior on Alt key release</li>\n</ul><p>PERFECT FOR:<br>- Detailed modeling and sculpting work<br>- Architectural visualization<br>- Character modeling and animation<br>- Any workflow requiring precise 3D navigation<br>The addon integrates seamlessly into Blender's 3D viewport with a dedicated settings panel in the Tool category. All settings are easily accessible and can be reset to defaults with one click.<br>Compatible with Blender 3.0+ and designed for professional workflows. Whether you're a beginner learning 3D navigation or a professional seeking more precise viewport control, Alt Surface Navigation provides the tools you need for efficient 3D work.<br>Installation is simple - just install the addon file and the navigation controls are immediately available. No complex setup required - start navigating with surface precision right away.<br>Take your Blender navigation to the next level with Alt Surface Navigation - where every click counts and every surface matters.</p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/369194/file/e85cdfaf5fc65fe51aa0f1cbd31451eb.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063338Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=a26945f76f71f320663907b9cba0771532eb74306f00ea7c9d380255256e4c81",
+      "name": "surface_navigation_addon.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/345817/file/d7aebd32de34fccae1de2fbfd0be1b3e.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063338Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=d4ff18f36170814dc00343cb8be38d39d15a88d360e7d251fcf962c80e21ac86",
+      "name": "file_1.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/951b325eff6238b9dcec5b03b5d75a95.png",
+    "https://assets.superhivemarket.com/cache/d5e9b3f7f6dbcfb80cdf907d3b012ed5.jpg",
+    "https://assets.superhivemarket.com/cache/2604b6706eced28f1aa33e5b6f699fd4.jpg",
+    "https://assets.superhivemarket.com/cache/a4425dd7549cb3dbf25dda2ffd37afe6.jpg"
+  ],
+  "price": "$5.00",
+  "categories": [
+    "Addons",
+    "Modeling"
+  ],
+  "tags": [
+    "3d-viewport",
+    "camera-control",
+    "modeling-tools",
+    "navigation-enhancement",
+    "precision-tools",
+    "sculpting-addon",
+    "surface-navigation",
+    "user-interface",
+    "viewport-control",
+    "workflow-improvement"
+  ],
+  "blenderVersionMin": "3.6",
+  "blenderVersionMax": "5.0",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

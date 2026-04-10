@@ -1,0 +1,18 @@
+Product: Alt Surface Navigation
+Slug: alt-surface-navigation
+Price: $5.00
+Cover: Yes
+Gallery images: 5
+Description images: 4
+Product files: 2
+  - surface_navigation_addon.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Modeling
+Tags: 3d-viewport, camera-control, modeling-tools, navigation-enhancement, precision-tools, sculpting-addon, surface-navigation, user-interface, viewport-control, workflow-improvement
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

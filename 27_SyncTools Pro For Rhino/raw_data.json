@@ -1,0 +1,75 @@
+{
+  "title": "SyncTools Pro For Rhino",
+  "coverImage": "https://assets.superhivemarket.com/store/product/230680/image/medium-1c54d25870dca88755b764680836561c.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/925924/image/medium-c826ce86379c1b061c6ae1e5821a6551.png",
+    "https://assets.superhivemarket.com/store/productimage/925927/image/medium-051644fd5e5513e9aae012b792bb25e4.png",
+    "https://assets.superhivemarket.com/store/productimage/925928/image/medium-807706cf2b36ab145a1c2e82ef1bbbc1.png",
+    "https://assets.superhivemarket.com/store/productimage/925926/image/medium-0c4483cadbd7bd10bca3db3b78fef219.png",
+    "https://assets.superhivemarket.com/store/productimage/925925/image/medium-7e389c1ee4b972b3427a0812e6a5cb18.png"
+  ],
+  "description": "<p>Here’s your formatted version:</p><hr><h1><strong>SyncTools Pro for Rhino - Seamless Asset Transfer</strong></h1><h2><strong>Overview</strong></h2><p>SyncTools for Rhino is a professional-grade tool that streamlines the process of copying and pasting 3D objects between different Rhino documents. With just one click, you can transfer selected objects from one scene to another, maintaining all geometric properties and hierarchies. This tool significantly enhances productivity in your Rhino workflow.</p><h3 style=\"color:rgb(33, 37, 41);overflow:hidden !important;\"><span style=\"font-weight:bolder;\">Multi-DCC Platform Support</span></h3><h2></h2><p style=\"font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;\">The SyncTools series now extends support to major digital content creation software, including:</p><ul style=\"font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;\">\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\">SyncTools for Maya</a></span><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\">SyncTools for 3ds Max</a></span><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\">SyncTools for Houdini</a></span><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\">SyncTools for Cinema 4D</a></span><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\">SyncTools for Rhino</a></span><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\">SyncTools for Marvelous Designer</a></span><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Substance Painter</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unreal Engine</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unity</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Zbrush</span> (In Development)</li>\n</ul><p style=\"font-family:sans-serif;font-size:16px;\"><span style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;\">All plugins utilize a unified data exchange protocol, enabling lossless asset conversion across platforms and true multi-software collaborative workflows.</span></p><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/1e55eb367cbd479ffb18508997ffd272.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h2><h2>\n<img src=\"https://assets.superhivemarket.com/cache/3144be61846c68e67e26972c4e809b79.jpg\" style=\"max-width:100%;\"><strong><br></strong>\n</h2><h2><strong>Rhino Installation & Usage</strong></h2><h3><strong>1. Plugin Installation</strong></h3><ol>\n<li>Download the plugin file <strong>SyncTools_Rhino.py</strong>\n</li>\n<li>Copy the file to your Rhino Python scripts directory</li>\n<li>Run the script in Rhino</li>\n<li>The tool automatically registers itself and creates a floating window</li>\n</ol><h3><strong>2. Workflow</strong></h3><h4><strong>Copy Operation</strong></h4><ol>\n<li>Select the objects you want to copy in the scene</li>\n<li>Click <strong>\"Copy\"</strong> in the SyncTools window</li>\n<li>The plugin exports your selection to a designated cache folder</li>\n</ol><h4><strong>Paste Operation</strong></h4><ol>\n<li>Switch to your target Rhino document</li>\n<li>Click <strong>\"Paste\"</strong> in the SyncTools window</li>\n<li>The plugin automatically imports the most recent cache file</li>\n</ol><hr><h2><strong>Version Compatibility</strong></h2><h3><strong>Official Support:</strong></h3><ul>\n<li>Rhino 6 and newer</li>\n<li>blender 3.43 and newer</li>\n<li>MacOS 11 and newer</li>\n<li>Windows 7 and newer</li>\n</ul><hr><h2><strong>Data Compatibility</strong></h2><h3><strong>Full Support:</strong></h3><p>✔ <strong>NURBS geometry</strong><br>\n✔ <strong>Mesh objects</strong><br>\n✔ <strong>Transform hierarchies</strong><br>\n✔ <strong>Object properties</strong><br>\n✔ <strong>Layer structure</strong></p><h3><strong>Partial Support:</strong></h3><p>⚠ <strong>Materials and textures</strong><br>\n⚠ <strong>Custom attributes</strong><br>\n⚠ <strong>Block definitions</strong></p><h3><strong>Unsupported:</strong></h3><p>✖ <strong>Viewport display modes</strong><br>\n✖ <strong>Analysis objects</strong><br>\n✖ <strong>Dynamic blocks</strong><br>\n✖ <strong>Custom plugins data</strong></p><hr><h2><strong>Important Notes</strong></h2><p>1️⃣ <strong>Unit System</strong>: Works with all Rhino unit systems<br>\n2️⃣ <strong>Selection</strong>: Only transfers selected objects<br>\n3️⃣ <strong>Cache Management</strong>: Automatic cleanup of temporary files<br>\n4️⃣ <strong>Undo Support</strong>: Full integration with Rhino's undo system<br>\n5️⃣ <strong>Cross-Version</strong>: Compatible between different Rhino versions</p><hr><h2><strong>Conclusion</strong></h2><p>SyncTools for Rhino offers a professional solution for efficient object transfer between Rhino documents. Its intuitive interface and robust functionality make it an essential tool for architects, designers, and 3D artists working with multiple Rhino files.</p><p>For technical support or questions, please contact us through <strong>Blender Market’s support system</strong>.</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-weight:700;font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/286641/file/45410d489a822ad570e585125895d651.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064221Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=e5b3ada359e3164c4fb741a55da4d0ef56258ed217fdf9715f24014e40d44edd",
+      "name": "SyncTools.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/1e55eb367cbd479ffb18508997ffd272.png",
+    "https://assets.superhivemarket.com/cache/3144be61846c68e67e26972c4e809b79.jpg"
+  ],
+  "price": "$15.00",
+  "categories": [
+    "Addons",
+    "Asset Management",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "3d-design",
+    "3d-modeling",
+    "3d-visualization",
+    "3d-workflow",
+    "architectural-design",
+    "architectural-tools",
+    "architectural-workflow",
+    "architecture",
+    "architecture-software",
+    "bim",
+    "cad",
+    "copy-paste",
+    "cross-document",
+    "data-transfer",
+    "design-automation",
+    "design-efficiency",
+    "design-productivity",
+    "design-software",
+    "design-tools",
+    "digital-fabrication",
+    "file-management",
+    "grasshopper",
+    "industrial-design",
+    "interior-design",
+    "mcneel",
+    "mesh-modeling",
+    "modeling-tools",
+    "nurbs-modeling",
+    "parametric-design",
+    "plugin",
+    "productivity",
+    "professional-tools",
+    "rhino3d",
+    "rhinoceros",
+    "rhino-plugin",
+    "synctools",
+    "time-saving-tools",
+    "workflow-optimization"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

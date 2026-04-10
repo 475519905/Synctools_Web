@@ -1,0 +1,71 @@
+{
+  "title": "SyncTools for Marvelous Designer",
+  "coverImage": "https://assets.superhivemarket.com/store/product/230813/image/medium-5bf4223a2a264d05c12c33e894eb0616.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/927817/image/medium-eeb1c305f587f7547cafc4a234527f26.jpg",
+    "https://assets.superhivemarket.com/store/productimage/927820/image/medium-7b2639ca73b293b371d5909c0a85d0b3.jpg",
+    "https://assets.superhivemarket.com/store/productimage/927815/image/medium-ea84c8c34f4222d1f8d63f8e52d3dfac.jpg",
+    "https://assets.superhivemarket.com/store/productimage/927816/image/medium-d96939be868d48f41518e7a282948a44.jpg",
+    "https://assets.superhivemarket.com/store/productimage/927819/image/medium-c59f15c3d8eb746dbe2db2b74981c966.png"
+  ],
+  "description": "<p><span style=\"font-family:Degular , sans-serif;font-size:2rem;\"><b>SyncTools for Marvelous Designer</b></span></p>\n<h3>Overview</h3>\n<p><strong>SyncTools Pro</strong> is a cross-software tool designed to simplify the process of copying and pasting detailed scene data between <strong>Marvelous Designer</strong> and other applications. With just one click, you can export objects—including meshes, materials, animations, and more—from one scene and import them into another, saving you considerable time and effort in your production workflow.</p>\n<h3>Multi-DCC Platform Support</h3>\n<p>The <strong>SyncTools</strong> series now supports major digital content creation software, including:</p>\n<ul>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\">SyncTools for Maya</a></span><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\">SyncTools for 3ds Max</a></span><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\">SyncTools for Houdini</a></span><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\">SyncTools for Cinema 4D</a></span><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\">SyncTools for Rhino</a></span><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\">SyncTools for Marvelous Designer</a></span><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Substance Painter</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unreal Engine</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unity</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Zbrush</span> (In Development)</li>\n</ul>\n<p>All plugins utilize a unified data exchange protocol, enabling lossless asset conversion across platforms and true multi-software collaborative workflows.</p>\n<hr>\n<h3>\n<img src=\"https://assets.superhivemarket.com/cache/3f586876b92cb8e767dff53dd0f6cafc.jpg\" style=\"max-width:100%;\"><br>\n</h3><h3>\n<img src=\"https://assets.superhivemarket.com/cache/14c1a0db56aea0d95e6bca395bb88e92.jpg\" style=\"max-width:100%;\"><br>\n</h3><h3>Installation Guide</h3>\n<h4>1. System Requirements</h4>\n<ul>\n<li>\n<strong>Operating System</strong>: Windows 10/11</li>\n<li>\n<strong>Marvelous Designer Version</strong>: 10 or newer</li>\n<li>\n<strong>Blender Version</strong>: 3.4 or newer</li>\n</ul>\n<h4>2. Plugin Installation Steps</h4>\n<p><strong>Download and Extract:</strong></p>\n<ul>\n<li>Download the <code>SyncTools_MD.zip</code> file</li>\n<li>Extract the contents to a temporary location</li>\n</ul>\n<p><strong>Install in Marvelous Designer:</strong></p>\n<ol>\n<li>Launch <strong>Marvelous Designer</strong>\n</li>\n<li>Click on <strong>\"Script\"</strong> in the top menu bar</li>\n<li>Select <strong>\"Python\"</strong> > <strong>\"Open File\"</strong>\n</li>\n<li>Navigate to and select the extracted <strong>SyncTools_MD.py</strong> file</li>\n<li>The <strong>\"Sync Tools\"</strong> menu will appear in the top menu bar</li>\n</ol>\n<p><strong>Verify Installation:</strong></p>\n<ul>\n<li>Click on the <strong>\"Sync Tools\"</strong> menu</li>\n<li>You should see <strong>\"Copy\"</strong> and <strong>\"Paste\"</strong> options</li>\n<li>If these options are visible, the installation is successful</li>\n</ul>\n<p><strong>Alternative Installation (Optional):</strong></p>\n<ul>\n<li>You can also manually copy <strong>SyncTools_MD.py</strong> to your Marvelous Designer scripts directory:<br>\n<code>C:\\Users\\[YourUsername]\\Documents\\Marvelous Designer [Version]\\Scripts</code>\n</li>\n<li>Restart <strong>Marvelous Designer</strong> after manual installation</li>\n</ul>\n<hr>\n<h3>Usage Guide</h3>\n<h4>1. Basic Workflow</h4>\n<ul>\n<li>\n<p><strong>Copy Operation</strong>:</p>\n<ul>\n<li>Select the objects you want to copy in the scene</li>\n<li>Click <strong>\"Copy\"</strong> from the <strong>Sync Tools</strong> menu (or use <code>Ctrl+Shift+C</code>)</li>\n<li>The plugin exports your selection as an FBX file to a designated cache folder</li>\n</ul>\n</li>\n<li>\n<p><strong>Paste Operation</strong>:</p>\n<ul>\n<li>Switch to your target scene</li>\n<li>Click <strong>\"Paste\"</strong> from the <strong>Sync Tools</strong> menu (or use <code>Ctrl+Shift+V</code>)</li>\n<li>The plugin automatically imports the most recent cache file</li>\n</ul>\n</li>\n</ul>\n<h4>2. Advanced Features</h4>\n<ul>\n<li>Support for multiple object selection</li>\n<li>Automatic material conversion</li>\n<li>Transform hierarchy preservation</li>\n<li>Animation data transfer</li>\n</ul>\n<hr>\n<h3>Data Compatibility</h3>\n<h4>Full Support:</h4>\n<ul>\n<li>✔ Basic geometry (Mesh/Garment)</li>\n<li>✔ Transform hierarchies</li>\n<li>✔ Core material attributes</li>\n<li>✔ Garment physics properties</li>\n<li>✔ Basic animation keyframes</li>\n<li>✔ Sewing line information</li>\n</ul>\n<h4>Partial Support:</h4>\n<ul>\n<li>⚠ Complex shader nodes (auto-converted to approximations)</li>\n<li>⚠ Garment weights (requires matching vertex order)</li>\n<li>⚠ UV maps (supports up to 4 channels)</li>\n<li>⚠ Garment fold data</li>\n</ul>\n<h4>Unsupported:</h4>\n<ul>\n<li>✖ Particle systems</li>\n<li>✖ Fluid simulation data</li>\n<li>✖ Procedural textures (requires pre-baking)</li>\n<li>✖ Custom shader networks</li>\n<li>✖ Dynamic constraints (rigid bodies/cloth)</li>\n</ul>\n<hr>\n<h3>Important Notes</h3>\n<p>1️⃣ <strong>Unit System</strong>: Recommend using metric (Meters)<br>\n2️⃣ <strong>Axis Conversion</strong>: Automatic Y-Up ↔ Z-Up handling<br>\n3️⃣ <strong>Material Mapping</strong>: Automatic standard material conversion<br>\n4️⃣ <strong>Naming</strong>: Special characters (@#%) may cause import issues<br>\n5️⃣ <strong>Plugin Dependency</strong>: Requires matching SyncTools versions</p>\n<ul>\n<li>(Data conversion via FBX middleware – check release notes for the latest compatibility updates)</li>\n</ul>\n<hr>\n<h3>Troubleshooting</h3>\n<ul>\n<li>If the menu doesn't appear, check if the script is in the correct directory</li>\n<li>Ensure you have the correct version of Marvelous Designer</li>\n<li>Check the console for any error messages</li>\n<li>Make sure you have write permissions in the Documents folder</li>\n</ul>\n<hr>\n<h3>Support</h3>\n<ul>\n<li>\n<strong>Documentation</strong>: Online Manual</li>\n<li>\n<strong>Community</strong>: Join QQ Group</li>\n<li>\n<strong>Updates</strong>: Check our Release Page regularly</li>\n</ul>\n<hr>\n<h3>Conclusion</h3>\n<p><strong>SyncTools Pro</strong> is engineered to provide a seamless and efficient method for transferring scene data in <strong>Marvelous Designer</strong>. By leveraging simple copy and paste controls, you can effortlessly exchange detailed scene information, streamlining your creative process. Enjoy a more efficient workflow with SyncTools Pro!</p>\n<hr>\n<p>Let us know if you need any further assistance!</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/304925/file/4605fa28f6e64705216cf51c4d237b7e.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064206Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=2e7e0adeb36b5454dcacc6bed67a06eb3b9122572cfd1e8923c43b7aada95e63",
+      "name": "SyncTools_v2.1.3_3418.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/287205/file/16224f86de52c34999f5e02e78f0b561.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064206Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=0c2de1a0d325f079d525a4a7daa659f5a2970fd69cf81cc12a5e9fceda8913fb",
+      "name": "SyncTools_MD.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/3f586876b92cb8e767dff53dd0f6cafc.jpg",
+    "https://assets.superhivemarket.com/cache/14c1a0db56aea0d95e6bca395bb88e92.jpg"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Animation",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "3d-animation",
+    "3d-art",
+    "3d-modeling",
+    "3ds-max",
+    "animation-tools",
+    "asset-management",
+    "blender",
+    "character-artist",
+    "character-design",
+    "cloth-simulation",
+    "costume-design",
+    "cross-platform",
+    "design-workflow",
+    "digital-assets",
+    "digital-clothing",
+    "digital-content-creation",
+    "digital-fashion",
+    "fashion-design",
+    "fbx-export",
+    "game-artist",
+    "game-development",
+    "garment-design",
+    "marvelous-designer",
+    "maya",
+    "pipeline-automation",
+    "plugin-development",
+    "production-tools",
+    "technical-artist",
+    "virtual-clothing",
+    "workflow-tools"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

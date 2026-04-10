@@ -1,0 +1,18 @@
+Product: ADVANCED MAZE GENERATOR PRO - Professional Maze Creation for Blender
+Slug: advanced-maze-generator-pro---professional-maze-creation-for-blender
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 5
+Product files: 2
+  - advanced_maze_generator_pro.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Presets
+Tags: 3d-modeling, algorithmic-art, architecture, blender-addon, game-development, level-design, maze-generator, mesh-generation, navigation-design, pathfinding, procedural-modeling, puzzle-creation
+Blender Version Min: 2.93
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

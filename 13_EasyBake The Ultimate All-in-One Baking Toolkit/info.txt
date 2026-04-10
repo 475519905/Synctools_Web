@@ -1,0 +1,20 @@
+Product: EasyBake: The Ultimate All-in-One Baking Toolkit
+Slug: easybake-the-ultimate-all-in-one-baking-toolkit
+Price: $20.00
+Cover: No
+Gallery images: 0
+Description images: 6
+Product files: 4
+  - userlist.txt
+  - EasyBake-CN.zip
+  - EasyBake.zip
+  - file_3.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Materials and Shading, Modeling
+Tags: 3d-workflow,add-on,all-in-one-tool,ambient-occlusion,blender-baking,game-asset-prep,lightmap-baking,normal-maps,pbr-workflow,render-optimization,texture-baking,uv-baking
+Blender Version Min: 2.93
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

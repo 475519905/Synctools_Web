@@ -1,0 +1,18 @@
+Product: SyncTools DCC Integration Suite
+Slug: synctools-dcc-integration-suite
+Price: $99.99
+Cover: No
+Gallery images: 0
+Description images: 10
+Product files: 2
+  - SyncTools_DCC_new2.zip
+  - SyncTools_DCC_new.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Asset Management, Import & Export, Modeling
+Tags: 3dart, 3dartist, 3dmodeler, 3dmodeling, 3dpipeline, 3dsmax, 3dsoftware, animation, animationtransfer, animator, architecturalvisualizer, archviz, assetcreation, assetmanagement, assetpipeline, automation, blender, characterart, cinema4d, copypaste, creativetechnology, crossplatform, customizable, dataconversion, datatransfer, designer, digitalart, digitalcreation, efficient, environmentart, gameart, gameartist, gamedev, gamedeveloper, houdini, integration, marvelousdesigner, materialtransfer, maya, pbrmaterials, pipeline, pipelineautomation, pipelinetools, productdesign, productionpipeline, productionready, professional, reliable, rendering, rhino, rigging, scenemanagement, studiopipeline, studioready, substancepainter, technicalartist, texturing, timeoptimization, timesaving, unity, unrealengine, userfriendly, uvmapping, vfx, workflow, workflowoptimization, workflowtools, zbrush
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

@@ -1,0 +1,77 @@
+{
+  "title": " Origin Adjustment Control",
+  "coverImage": "https://assets.superhivemarket.com/store/product/226555/image/medium-4ded026b3bacc926be1c635e06d470f1.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/886211/image/medium-a7309cbccf2b753a609aebc7e61d304d.png",
+    "https://assets.superhivemarket.com/store/productimage/886208/image/medium-6fcfb453da3301e2ff087add34c9e852.png",
+    "https://assets.superhivemarket.com/store/productimage/886210/image/medium-237b4c5f9c7633d016a0f4ddac14f70e.png",
+    "https://assets.superhivemarket.com/store/productimage/886207/image/medium-62c36fcf583ede6dd746f3ee499d53fd.png",
+    "https://assets.superhivemarket.com/store/productimage/886209/image/medium-e8a0d6aebf9a7f525c2fae0b01e77144.png"
+  ],
+  "description": "<h3><strong>Origin Adjustment Control</strong></h3><h3><strong><br></strong></h3><h4>Overview</h4><p>This add-on enhances the ability to precisely manipulate the object origin in Blender. It supports operations such as aligning origins, snapping origins to surfaces, applying transformations, managing presets, and more. The interface includes modal interaction, panel controls, and tool enhancements like Gizmo display and coordinate conversion.</p><hr><h3>\n<img src=\"https://assets.superhivemarket.com/cache/cc60ce45e267396a7908ae6f8fcc6d68.png\" style=\"max-width:100%;\"><br>\n</h3><h3>Features and Functions</h3><h4><strong>1. Global Functions</strong></h4><ul>\n<li>\n<p><strong><code>get_valid_objects(context)</code></strong><br>\nRetrieves all selected objects of types <code>MESH</code>, <code>CURVE</code>, <code>SURFACE</code>, or <code>FONT</code> for origin adjustment.</p>\n</li>\n<li>\n<p><strong><code>apply_origin_transform(obj, new_origin)</code></strong><br>\nTransforms the object’s origin to a specified position in the world space while keeping its geometry intact.</p>\n</li>\n</ul><hr><h4><strong>2. Modal Operators</strong></h4><ul>\n<li>\n<strong><code>ADJUST_ORIGIN_OT_modal</code></strong>: Adjusts the object origin interactively by mouse movement.<br>\n<strong>Steps to Use:</strong>\n<ol>\n<li>Enable the custom origin feature.</li>\n<li>Invoke the operation via the \"Adjust Origin Modal\" button.</li>\n<li>Use the mouse to reposition the origin; left-click to confirm or right-click to cancel.</li>\n</ol>\n</li>\n</ul><hr><h4><strong>3. Actions and Operators</strong></h4><ul>\n<li>\n<p><strong><code>APPLY_ORIGIN_OT_apply</code></strong>: Moves the origin to the object’s geometric center.<br>\n<strong>Usage:</strong> Click \"Origin to Center\" from the add-on panel.</p>\n</li>\n<li>\n<p><strong><code>ORIGIN_OT_ModeSwitch</code></strong>: Switches between origin control modes: <strong>World</strong>, <strong>Local</strong>, or <strong>Custom Reference</strong>.</p>\n</li>\n<li>\n<p><strong><code>OBJECT_OT_precise_rotation</code></strong>: Applies precise rotation values to objects based on input degrees for each axis.</p>\n</li>\n</ul><hr><h4><strong>4. Custom Origin Panel (UI)</strong></h4><ul>\n<li>Found in the <code>VIEW_3D > Sidebar > Origin Adjustment</code>.<br>\n<strong>Panel Functions:</strong>\n<ul>\n<li>Enable custom origin positioning with a toggle.</li>\n<li>Manually input precise origin positions.</li>\n<li>Buttons to invoke key origin-related operators.</li>\n</ul>\n</li>\n</ul><hr><h4><strong>5. Key Features</strong></h4><h5>5.1. <strong>Precise Transformations</strong>\n</h5><ul>\n<li>Update the origin’s position or rotation directly using property inputs (<code>custom_origin</code> or <code>precise_rotation</code>).</li>\n</ul><h5>5.2. <strong>Origin Gizmo</strong>\n</h5><ul>\n<li>Enables an intuitive and interactive way to manipulate object origins using a visible 3D widget.</li>\n</ul><h5>5.3. <strong>Keyframe Support</strong>\n</h5><ul>\n<li>Add keyframes to record and animate origin transformations using the <code>ORIGIN_OT_AddKeyframe</code> operator.</li>\n</ul><h5>5.4. <strong>Snapping System</strong>\n</h5><ul>\n<li>Snap the origin to the nearest surface point using the <code>ORIGIN_OT_SnapToSurface</code>.</li>\n</ul><hr><h4><strong>6. Coordinate Conversion</strong></h4><ul>\n<li>The <code>ORIGIN_OT_CoordinateConverter</code> operator supports transforming coordinates between <strong>World</strong>, <strong>Local</strong>, and <strong>Custom</strong> spaces for flexible origin control.</li>\n</ul><hr><h4><strong>7. Preset Management</strong></h4><ul>\n<li>\n<strong>Origin Preset System</strong>:\n<ul>\n<li>Save current origin position and rotation with custom names (<code>ORIGIN_OT_PresetManager</code>).</li>\n<li>Load saved presets to apply consistent transformations.</li>\n<li>Manage presets with <code>Save</code>, <code>Load</code>, or <code>Delete</code> actions.</li>\n</ul>\n</li>\n</ul><hr><h4><strong>8. Batch Operations</strong></h4><p>Perform mass transformations on selected objects:</p><ul>\n<li>\n<strong>Align</strong>: Align origins of all selected objects to the active object.</li>\n<li>\n<strong>Distribute</strong>: Uniformly distribute origins among objects (work in progress).</li>\n<li>\n<strong>Reset</strong>: Reset origins to <code>(0, 0, 0)</code> in the world coordinate.</li>\n</ul><hr><h3>Setup Instructions</h3><h4><strong>Installation:</strong></h4><ol>\n<li>Save the Python script (<code>*.py</code>) to your computer.</li>\n<li>Open Blender and go to <code>Edit > Preferences > Add-ons > Install</code>.</li>\n<li>Select the script file and enable the add-on by ticking the checkbox.</li>\n</ol><h4><strong>Registration and Unregistration:</strong></h4><ul>\n<li>\n<strong>Register:</strong> The add-on is automatically initialized upon enabling.</li>\n<li>\n<strong>Unregister:</strong> Use the disable option in Preferences or manually call the <code>unregister()</code> function.</li>\n</ul><p><img src=\"https://assets.superhivemarket.com/cache/431db310c0ec43cc84929855a316289e.png\" style=\"max-width:100%;\"><br></p><ul>\n</ul><hr><h3>Controls Overview</h3><table>\n<thead>\n<tr>\n<th><strong>Tool/Feature</strong></th>\n<th><strong>Usage</strong></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Adjust Origin Modal</td>\n<td>Interactive adjustment using the mouse.</td>\n</tr>\n<tr>\n<td>Apply Origin</td>\n<td>Move the origin to the object's geometric center.</td>\n</tr>\n<tr>\n<td>Coordinate Converter</td>\n<td>Switch the coordinate space of a given point or object.</td>\n</tr>\n<tr>\n<td>Preset Management</td>\n<td>Save and load custom positions and rotations for reuse.</td>\n</tr>\n<tr>\n<td>Origin Gizmo</td>\n<td>Visual aid for real-time transformations in the 3D Viewport.</td>\n</tr>\n<tr>\n<td>Keyframe Animation</td>\n<td>Record animated origin transformations for time-based effects.</td>\n</tr>\n<tr>\n<td>Batch Operations</td>\n<td>Efficiently process multiple objects for origin transformations.</td>\n</tr>\n</tbody>\n</table><hr><h3>Custom Properties</h3><p>The following properties are added to the <code>Scene</code> object:</p><ul>\n<li>\n<strong><code>enable_custom_origin</code></strong>: Toggles the custom origin mode.</li>\n<li>\n<strong><code>custom_origin</code></strong>: Stores the current origin position as a 3D vector.</li>\n<li>\n<strong><code>last_origin_location</code></strong>: Tracks the last-used origin position for quick reversion.</li>\n</ul><p>Additional properties are linked to object instances, such as <code>origin_keyframes</code> for animation and <code>origin_presets</code> for preset management.</p><hr><h3>Development Notes</h3><ul>\n<li>This tool is modular, making it extensible for future updates.</li>\n<li>Use the template structure of <code>REGISTER/UNREGISTER</code> blocks for safe property management.</li>\n</ul><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><p>Enjoy seamless control of origins to elevate your modeling, animation, and workflow precision!</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p><p><img src=\"https://assets.superhivemarket.com/cache/11e11607f01854fea2a5658900c87e39.png\" style=\"max-width:100%;\"><br></p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/282931/file/276a1ac6368a02c020e2f80256189fc4.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064341Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=459ae32ce292de66ffe3ec2bee7f45e54cefc043439f64d0fcb68da1e9ff884c",
+      "name": "Custom_Origin.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/cc60ce45e267396a7908ae6f8fcc6d68.png",
+    "https://assets.superhivemarket.com/cache/431db310c0ec43cc84929855a316289e.png",
+    "https://assets.superhivemarket.com/cache/11e11607f01854fea2a5658900c87e39.png"
+  ],
+  "price": "$5.00",
+  "categories": [
+    "Addons",
+    "Modeling"
+  ],
+  "tags": [
+    "3d-editing",
+    "3d-manipulation",
+    "3d-modeling",
+    "3d-workflow",
+    "3d-workspace",
+    "animation-tools",
+    "asset-management",
+    "batch-operations",
+    "batch-processing",
+    "blender-addon",
+    "blender-plugin",
+    "blender-tools",
+    "blender-utilities",
+    "coordinate-conversion",
+    "coordinate-system",
+    "custom-origin",
+    "geometry-center",
+    "mesh-editing",
+    "modeling-assistance",
+    "modeling-automation",
+    "modeling-tools",
+    "object-alignment",
+    "object-control",
+    "object-manipulation",
+    "object-origin",
+    "object-positioning",
+    "object-transformation",
+    "origin-animation",
+    "origin-control",
+    "origin-management",
+    "origin-presets",
+    "physics-snapping",
+    "precise-control",
+    "precise-positioning",
+    "precision-modeling",
+    "surface-snapping",
+    "technical-animation",
+    "transform-management",
+    "transform-presets",
+    "transform-tools",
+    "workflow-optimization"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

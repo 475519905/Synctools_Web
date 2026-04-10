@@ -1,0 +1,17 @@
+Product: Material Batch Management Tool
+Slug: material-manager-user-manual
+Price: $5.00
+Cover: Yes
+Gallery images: 0
+Description images: 2
+Product files: 1
+  - Material Manager.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Asset Management, Materials and Shading
+Tags: assign, batch, bsdf, children, cleanup, duplicate, manager, material, materials, merge, mesh, node, object, organize, override, parent, pbr, plugin, principled, quick-edit, shader, texture, tool, utility, workflow
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

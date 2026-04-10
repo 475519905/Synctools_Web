@@ -1,0 +1,18 @@
+Product: Voxelizer Pro - Advanced Model Voxelization Tool for Blender
+Slug: voxelizer-pro---advanced-model-voxelization-tool-for-blender
+Price: $8.00
+Cover: Yes
+Gallery images: 5
+Description images: 3
+Product files: 2
+  - voxelizer_pro_v1.0.0.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Modeling
+Tags: game-asset, low-poly, mesh, minecraft, modeling, pixel, pixel-art, pixelate, retro, stylized, voxelization, voxelizer
+Blender Version Min: 3.6
+Blender Version Max: 4.5
+Render Engines: None
+Misc Data: None
+License: gpl

@@ -1,0 +1,52 @@
+{
+  "title": "Voxelizer Pro - Advanced Model Voxelization Tool for Blender",
+  "coverImage": "https://assets.superhivemarket.com/store/product/245755/image/medium-6eeeed452f33ec7e365ebb8e213bb59b.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/1117809/image/medium-f660fd55f64024e4499ec90946851e4e.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1117808/image/medium-46b825ccef80edf15a6b258a835827d1.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1117811/image/medium-cd25474d5fec80600fbdb667f6c8b9cc.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1117810/image/medium-6aa94b756ea6377783ee10d67cf8b321.jpg",
+    "https://assets.superhivemarket.com/store/productimage/1117812/image/medium-93f86e152f04c202fce1301cddd37139.png"
+  ],
+  "description": "<p><strong style=\"font-family:Degular , sans-serif;font-size:2.5rem;\">Voxelizer Pro – Advanced Model Voxelization Tool for Blender</strong></p><p>Transform your 3D models into stunning pixelated voxel art with unprecedented efficiency and control. <strong>Voxelizer Pro</strong> is a professional-grade Blender add-on that converts any mesh into optimized voxel blocks — perfect for game assets, stylized renders, and creative projects.</p><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/99575c62a2ce01b185af10408f6e2f65.jpg\" style=\"max-width:100%;\"><br>\n</h2><h2>✅ <strong>KEY FEATURES</strong>\n</h2><h3><strong>✓ Surface-Only Voxelization (Save 95%+ Memory)</strong></h3><p>Unlike traditional voxelizers that fill the entire volume, Voxelizer Pro intelligently generates only <strong>surface voxels</strong>, dramatically reducing polygon count and memory usage while maintaining visual fidelity.</p><h3><strong>✓ Smart Optimization Engine</strong></h3><p>Advanced merging algorithms automatically combine adjacent voxels into larger blocks, minimizing object count and improving render performance.<br>\n<strong>Up to 10× fewer objects</strong> compared to naive voxelization.</p><p><img src=\"https://assets.superhivemarket.com/cache/8a614ced436f118e745fdfafede6dbf3.jpg\" style=\"max-width:100%;\"><br></p><h3><strong>✓ Recursive Detail Fill System</strong></h3><p>A revolutionary multi-level detail fill system ensures <strong>no geometric details are lost</strong>.<br>\nSmaller voxels (½, ¼, ⅛ size) are added <strong>only where needed</strong>, capturing fine features without bloating the mesh.</p><h3><strong>✓ Flexible Resolution Control</strong></h3><p>Adjust voxel resolution from <strong>5 to 200 units</strong> along the longest axis.<br>\nReal-time feedback helps you balance quality and performance.</p><h3><strong>✓ One-Click Presets</strong></h3><p>Start instantly with optimized presets:</p><ul>\n<li>\n<p><strong>Low (16)</strong> – Fast preview mode</p>\n</li>\n<li>\n<p><strong>Medium (32)</strong> – Recommended for most projects</p>\n</li>\n<li>\n<p><strong>High (64)</strong> – Maximum detail with level-2 recursive filling</p>\n</li>\n</ul><h3><strong>✓ User-Friendly Interface</strong></h3><p>Clean, organized panel in the 3D View sidebar with:</p><ul>\n<li>\n<p>Intuitive sliders & buttons</p>\n</li>\n<li>\n<p>Tooltip explanations</p>\n</li>\n<li>\n<p>Performance warnings<br>\nNo complex setup required.</p>\n</li>\n</ul><h3><strong>✓ Professional-Grade Performance</strong></h3><p>Optimized algorithms with <strong>BVH acceleration</strong> guarantee fast processing even on complex models.<br>\nSmart sampling drastically reduces computation time at high detail levels.</p><p><img src=\"https://assets.superhivemarket.com/cache/7265377e0b5978be48553f45be5f4613.jpg\" style=\"max-width:100%;\"><br></p><hr><h2>🎨 <strong>PERFECT FOR</strong>\n</h2><ul>\n<li>\n<p>Game developers creating low-poly or voxel-style assets</p>\n</li>\n<li>\n<p>Artists producing stylized renders and animations</p>\n</li>\n<li>\n<p>Minecraft-style content creators</p>\n</li>\n<li>\n<p>Retro/pixel-art enthusiasts</p>\n</li>\n<li>\n<p>Anyone experimenting with voxel aesthetics</p>\n</li>\n</ul><hr><h2>🔧 <strong>TECHNICAL HIGHLIGHTS</strong>\n</h2><ul>\n<li>\n<p>Surface extraction algorithm <strong>eliminates internal voxels</strong></p>\n</li>\n<li>\n<p>Multi-axis greedy meshing for <strong>optimal block merging</strong></p>\n</li>\n<li>\n<p>BVH-accelerated distance queries for detail filling</p>\n</li>\n<li>\n<p>Configurable <strong>multi-level subdivision</strong> (up to 3 levels deep)</p>\n</li>\n<li>\n<p>Memory-efficient processing for <strong>large meshes</strong></p>\n</li>\n</ul><hr><h2>📌 <strong>REQUIREMENTS</strong>\n</h2><ul>\n<li>\n<p>Blender <strong>3.0 or higher</strong></p>\n</li>\n<li>\n<p>Works with <strong>any mesh object</strong></p>\n</li>\n<li>\n<p><strong>No external dependencies</strong></p>\n</li>\n</ul><hr><h2>🚀 <strong>EASY TO USE</strong>\n</h2><ol>\n<li>\n<p>Select your mesh object</p>\n</li>\n<li>\n<p>Adjust resolution and optimization settings</p>\n</li>\n<li>\n<p>Click <strong>“Execute Voxelization”</strong> or choose a preset</p>\n</li>\n<li>\n<p>Done — your voxelized model is ready!</p>\n</li>\n</ol><hr><h1>✅ <strong>Voxelizer Pro</strong>\n</h1><p>Bringing professional voxelization capabilities to Blender with an emphasis on <strong>efficiency, quality, and ease of use</strong>.<br>\nWhether you're creating game assets, stylized renders, or exploring voxel aesthetics, this tool delivers exceptional results with minimal effort.</p><p><strong>Get started today and transform your 3D workflow!</strong></p>",
+  "documentation": "<p>Voxelizer Pro - Advanced Model Voxelization Tool for Blender<br>Transform your 3D models into stunning pixelated voxel art with unprecedented efficiency and control. Voxelizer Pro is a professional-grade Blender add-on that converts any mesh into optimized voxel blocks, perfect for game assets, stylized renders, and creative projects.<br>KEY FEATURES:<br>✓ Surface-Only Voxelization (Save 95%+ Memory)<br>Unlike traditional voxelizers that fill the entire volume, Voxelizer Pro intelligently generates only surface voxels, dramatically reducing polygon count and memory usage while maintaining visual fidelity.<br>✓ Smart Optimization Engine<br>Advanced merging algorithms automatically combine adjacent voxels into larger blocks, minimizing object count and improving render performance. Experience up to 10x fewer objects compared to naive voxelization.<br>✓ Recursive Detail Fill System<br>Revolutionary multi-level detail filling ensures no geometric details are lost. The system recursively adds smaller voxels (1/2, 1/4, 1/8 size) only where needed, capturing fine features without bloating the mesh.<br>✓ Flexible Resolution Control<br>Adjust voxel resolution from 5 to 200 units along the longest axis. Real-time feedback helps you balance quality and performance.<br>✓ One-Click Presets<br>Get started instantly with three optimized presets:<br>- Low (16): Fast preview mode<br>- Medium (32): Recommended for most projects<br>- High (64): Maximum detail with level-2 recursive filling<br>✓ User-Friendly Interface<br>Clean, organized panel in the 3D View sidebar with intuitive controls, tooltips, and performance warnings. No complex setup required.<br>✓ Professional-Grade Performance<br>Optimized algorithms with BVH tree acceleration ensure fast processing even on complex models. Smart sampling reduces computation time for high detail levels.<br>PERFECT FOR:</p><ul>\n<li>Game developers creating low-poly or voxel-style assets</li>\n<li>Artists producing stylized renders and animations</li>\n<li>Minecraft-style content creators</li>\n<li>Retro/pixel art enthusiasts</li>\n<li>Anyone wanting to experiment with voxel aesthetics</li>\n</ul><p>TECHNICAL HIGHLIGHTS:<br>- Surface extraction algorithm eliminates internal voxels<br>- Multi-axis greedy meshing for optimal block merging<br>- BVH-accelerated distance queries for detail filling<br>- Configurable subdivision levels (up to 3 levels deep)<br>- Memory-efficient processing for large meshes<br>REQUIREMENTS:<br>- Blender 3.0 or higher<br>- Works with any mesh object<br>- No external dependencies<br>EASY TO USE:<br>1. Select your mesh object<br>2. Adjust resolution and optimization settings<br>3. Click \"Execute Voxelization\" or choose a quick preset<br>4. Done! Your voxelized model is ready<br>Voxelizer Pro brings professional voxelization capabilities to Blender with an emphasis on efficiency, quality, and ease of use. Whether you're creating game assets, artistic renders, or just exploring voxel aesthetics, this tool delivers exceptional results with minimal effort.<br>Get started today and transform your 3D workflow!</p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/369192/file/c33c258298e8caeddb07ac0ef9ae66d4.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063255Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=6a854627b7c97696cc621068bad37d8cee01d531915b653954b2562c37dd3ad4",
+      "name": "voxelizer_pro_v1.0.0.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/358210/file/500f6dd9fc34a0fcc42f3b71061248ce.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T063255Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=ac1cdd0f68c555b2fb7bed171cf3317a926097e38cf3ee70aba5aa22c56fe6ee",
+      "name": "file_1.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/99575c62a2ce01b185af10408f6e2f65.jpg",
+    "https://assets.superhivemarket.com/cache/8a614ced436f118e745fdfafede6dbf3.jpg",
+    "https://assets.superhivemarket.com/cache/7265377e0b5978be48553f45be5f4613.jpg"
+  ],
+  "price": "$8.00",
+  "categories": [
+    "Addons",
+    "Modeling"
+  ],
+  "tags": [
+    "game-asset",
+    "low-poly",
+    "mesh",
+    "minecraft",
+    "modeling",
+    "pixel",
+    "pixel-art",
+    "pixelate",
+    "retro",
+    "stylized",
+    "voxelization",
+    "voxelizer"
+  ],
+  "blenderVersionMin": "3.6",
+  "blenderVersionMax": "4.5",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

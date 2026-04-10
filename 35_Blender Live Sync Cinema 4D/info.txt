@@ -1,0 +1,18 @@
+Product: Blender Live Sync Cinema 4D
+Slug: import-keyframe-animation-for-blender
+Price: $20.00
+Cover: Yes
+Gallery images: 5
+Description images: 4
+Product files: 2
+  - Please contact me to obtain a license.txt
+  - LiveSync_n2.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: animation, cinema4d, game, keyframeanimation, live, real-time, sync, synctools
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

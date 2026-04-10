@@ -1,0 +1,19 @@
+Product: SyncTools Pro For 3ds Max
+Slug: synctools-for-3ds-max
+Price: $15.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 3
+  - SyncTools_v2.1.5_3875.zip
+  - Synctools_max_2022-2024.py
+  - SyncTools_Max.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3d, 3dart, 3dartist, 3dmodeling, 3drendering, 3dsmax, 3dvisualization, animation, archviz, assetmanagement, autodesk, blender, c4d, cgi, characteranimation, creative, crossplatform, design, development, digital, digitalart, export, fbx, gamedev, import, maxscript, maya, modeling, pipeline, plugin, production, productivity, python, rigging, studio, synctools, technical, tools, vfx, workflow
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

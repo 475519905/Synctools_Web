@@ -1,0 +1,26 @@
+Product: Maxon Cinema 4D Import-Export Pro
+Slug: maxon-cinema-4d-import-export-pro
+Price: $15.00
+Cover: No
+Gallery images: 0
+Description images: 1
+Product files: 10
+  - Maxon Cinema 4D Import-Export_MacOs(Blender5.0+).zip
+  - Maxon Cinema 4D Import-Export Pro_MacOs_v2.31.zip
+  - test File.zip
+  - Maxon Cinema 4D Import-Export Pro(Blender 5.0+).zip
+  - Maxon Cinema 4D Import-Export_V2.24.zip
+  - Maxon Cinema 4D Import-Export Pro_MacOs_v2.23.zip
+  - Maxon Cinema 4D Import-Export Pro_V2.23.zip
+  - Maxon Cinema 4D Import-Export Pro_MacOs.zip
+  - Maxon Cinema 4D Import-Export Pro v2.19.zip
+  - file_9.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: animation-transfer, blender-addon, c4d, c4d-export, c4d-file-support, c4d-import, cinema4d, convert, cross-platform, file-converter, material-preservation, roundtrip
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

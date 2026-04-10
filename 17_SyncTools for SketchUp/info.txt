@@ -1,0 +1,17 @@
+Product: SyncTools for SketchUp
+Slug: synctools-for-sketchup
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 1
+  - SyncTools_SU.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: 3d-asset-management, 3d-data-transfer, architectural-visualization, component-management, cross-platform-workflow, model-import-export, modeling-tools, sketchup, sketchup-2024, sketchup-extension, synctools
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

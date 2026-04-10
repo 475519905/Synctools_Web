@@ -1,0 +1,18 @@
+Product: Octane Material Transfer Master
+Slug: octane-material-transfer-master
+Price: $12.00
+Cover: Yes
+Gallery images: 6
+Description images: 4
+Product files: 2
+  - Octane Material Transfer Master.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Animation, Import & Export, Modeling, Models
+Tags: 3d-workflow, animation-transfer, asset-sync, auto-cache, blender-octane, blender-plugin, blender-tools, c4d-blender-bridge, cinema-4d-to-blender, copy-paste, material-sync, material-transfer, mesh-import, octane, octane-compatibility, octane-render, realtime-sync, render-pipeline, scene-integration, shader-transfer, visual-effects
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

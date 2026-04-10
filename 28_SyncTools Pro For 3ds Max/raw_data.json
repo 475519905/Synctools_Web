@@ -1,0 +1,85 @@
+{
+  "title": "SyncTools Pro For 3ds Max",
+  "coverImage": "https://assets.superhivemarket.com/store/product/230554/image/medium-1ed57d365a097985b3eb9ba6b9901ad4.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/924444/image/medium-4604caef8ab5a991677ee331df416a20.png",
+    "https://assets.superhivemarket.com/store/productimage/924449/image/medium-1c09b7f6a296a28412d57d55e9b47bdb.jpg",
+    "https://assets.superhivemarket.com/store/productimage/924448/image/medium-486e0a82c6d11ab79724fbbf894e2f7d.jpg",
+    "https://assets.superhivemarket.com/store/productimage/924447/image/medium-0bd3dc14925c3ebb78d44e42565c947c.jpg",
+    "https://assets.superhivemarket.com/store/productimage/924445/image/medium-9bfa83e059073dc436be925fe73ac527.jpg"
+  ],
+  "description": "<h1><b>SyncTools for 3ds Max</b></h1><h2>Overview</h2><p>SyncTools Pro is a cross-software tool designed to simplify the process of copying and pasting detailed scene data between different applications. With just one click, you can export objects—including meshes, lights, cameras, materials, animations, and more—from one scene and import them into another. This saves you considerable time and effort in your production workflow.</p><hr><h2><br></h2><h2 style=\"color:rgb(33, 37, 41);overflow:hidden !important;\" class=\"\"><span style=\"font-weight:bolder;\">Multi-DCC Platform Support</span></h2><h2></h2><p style=\"font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;\">The SyncTools series now extends support to major digital content creation software, including:</p><ul style=\"font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;\">\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\">SyncTools for Maya</a></span><a href=\"https://blendermarket.com/products/synctools-for-maya\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\">SyncTools for 3ds Max</a></span><a href=\"https://blendermarket.com/products/synctools-for-3ds-max\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\">SyncTools for Houdini</a></span><a href=\"https://blendermarket.com/products/synctools-for-houdini\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\">SyncTools for Cinema 4D</a></span><a href=\"https://blendermarket.com/products/synctools-pro-v2\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\">SyncTools for Rhino</a></span><a href=\"https://blendermarket.com/products/synctools-for-rhino\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\"><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\">SyncTools for Marvelous Designer</a></span><a href=\"https://blendermarket.com/products/synctools-for-marvelous-designer\" target=\"_blank\"> (Released)</a>\n</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Substance Painter</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unreal Engine</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Unity</span> (In Development)</li>\n<li>\n<span style=\"font-weight:bolder;\">SyncTools for Zbrush</span> (In Development)</li>\n</ul><p style=\"font-family:sans-serif;font-size:16px;\"><span style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;\">All plugins utilize a unified data exchange protocol, enabling lossless asset conversion across platforms and true multi-software collaborative workflows.</span></p><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/393a6b08e0913cb58f576ffbe0fd4cbe.png\" style=\"max-width:100%;\"><br>\n</h2><h2>\n<img src=\"https://assets.superhivemarket.com/cache/2a3a1d7b4d062f490b122399b73bd2f8.png\" style=\"max-width:100%;\"><br>\n</h2><h2>3ds Max Installation & Usage</h2><h3>1. Plugin Installation</h3><ul>\n<li>Download the plugin file <code>SyncTools_max.py</code>\n</li>\n<li>Copy the file to your <strong>3ds Max scripts directory</strong>.</li>\n<li>\n<strong>Restart 3ds Max</strong>.</li>\n</ul><p>Upon successful installation, you’ll find <strong>\"Sync Tools\"</strong> in the menu bar.</p><h3>2. Workflow</h3><h4><strong>Copy Operation</strong></h4><ul>\n<li>Select the objects you want to copy in the scene.</li>\n<li>Click <strong>\"Copy\"</strong> from the <strong>Sync Tools</strong> menu.</li>\n<li>The plugin exports your selection as an FBX file to a designated cache folder (located under your <strong>Documents</strong> folder).</li>\n</ul><h4><strong>Paste Operation</strong></h4><ul>\n<li>Switch to your target scene.</li>\n<li>Click <strong>\"Paste\"</strong> from the <strong>Sync Tools</strong> menu.</li>\n<li>The plugin automatically imports the most recent cache file and cleans up after the successful import.</li>\n</ul><hr><h2>Version Compatibility</h2><ul>\n<li>\n<strong>Official Support</strong>: </li>\n<li>3ds Max 2020 and newer</li>\n<li>blender 4.0    and newer</li>\n<li>\n<strong>Experimental</strong>: 2014-2019 (manual plugin loading required)</li>\n</ul><hr><h2>Data Compatibility</h2><h3>\n<strong>Full Support</strong>:</h3><ul>\n<li>✔ Basic geometry (Mesh/NURBS)</li>\n<li>✔ Transform hierarchies</li>\n<li>✔ Core material attributes (PBR workflow)</li>\n<li>✔ Point/Spot/Directional lights</li>\n<li>✔ Basic animation keyframes</li>\n<li>✔ Camera parameters (FOV/Focal Length)</li>\n</ul><h3>\n<strong>Partial Support</strong>:</h3><ul>\n<li>⚠ Complex shader nodes (auto-converted to approximations)</li>\n<li>⚠ Skin weights (requires matching vertex order)</li>\n<li>⚠ Driven animations (requires equivalent expressions)</li>\n<li>⚠ UV maps (supports up to 4 channels)</li>\n</ul><h3>\n<strong>Unsupported</strong>:</h3><ul>\n<li>✖ Particle systems</li>\n<li>✖ Fluid simulation data</li>\n<li>✖ Procedural textures (requires pre-baking)</li>\n<li>✖ Custom shader networks</li>\n<li>✖ Dynamic constraints (rigid bodies/cloth)</li>\n</ul><hr><h2>Important Notes</h2><p>1️⃣ <strong>Unit System</strong>: Recommend using metric (Meters).\n</p><p>2️⃣ <strong>Axis Conversion</strong>: Automatic Y-Up ↔ Z-Up handling.\n</p><p>3️⃣ <strong>Material Mapping</strong>: Automatic standard material conversion.\n</p><p>4️⃣ <strong>Naming</strong>: Special characters (@#%) may cause import issues.\n</p><p>5️⃣ <strong>Plugin Dependency</strong>: Requires matching SyncTools versions.<br><em>(Data conversion via FBX middleware – check release notes for the latest compatibility updates.)</em></p><hr><h2>Conclusion</h2><p>SyncTools Pro is engineered to provide a seamless and efficient method for transferring scene data in 3ds Max. By leveraging simple copy and paste controls, you can effortlessly exchange detailed scene information, thereby streamlining your creative process. Enjoy a more efficient workflow with SyncTools Pro!</p><p>Please let us know if you need any further assistance.</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p>",
+  "documentation": "<p><span style=\"font-family:Degular , sans-serif;font-size:1.75rem;\">1. Storing the Script in the Correct Location</span></p><ul>\n<li>\n<p>Locate the script file locally, e.g., named <code>SyncTools_max.py</code>.</p>\n</li>\n<li>\n<p>Copy or move the file to the 3ds Max script folder. Common practices are to place it in one of the following directories:</p>\n<ul>\n<li>\n<p>The <code>Scripts</code> folder under the installation directory, e.g.:</p>\n<pre><code>C:\\Program Files\\Autodesk\\3ds Max \\Scripts\n</code></pre>\n</li>\n<li>\n<p>The <code>scripts</code> folder in the user's documents, e.g.:</p>\n<pre><code>C:\\Users\\\\Documents\\3dsMax\\scripts\n</code></pre>\n</li>\n<li>\n<p>(Optional) If you want the script to load automatically every time 3ds Max starts, place the script directly in the <code>Startup</code> folder, e.g.:</p>\n<pre><code>C:\\Program Files\\Autodesk\\3ds Max \\Scripts\\Startup\n</code></pre>\n</li>\n</ul>\n<blockquote>\n<p><strong>Tip</strong>: If you don’t want the script to load automatically every time, you can simply store the script in a regular <code>Scripts</code> folder and run it manually when needed.</p>\n</blockquote>\n</li>\n</ul><hr><h3>2. Loading the Script in 3ds Max</h3><ul>\n<li>Open the 3ds Max main program.</li>\n<li>In the menu bar, find \"Scripting\" (or \"MaxScript\" in some versions), then click on \"Run Script...\".</li>\n<li>In the pop-up dialog, find and select the <code>SyncTools_max.py</code> file you previously placed, then click \"Open\".</li>\n<li>The script will execute and add a new \"Sync Tools\" menu item to the 3ds Max menu bar, which includes the \"Copy\" and \"Paste\" options.</li>\n<li>If you placed the script in the <code>Startup</code> folder, the script will automatically execute and create the menu when 3ds Max starts, without the need to run it manually.</li>\n</ul><hr><h3>3. Using the Script Features</h3><h4>Copy</h4><ul>\n<li>Select the objects you want to copy in the scene.</li>\n<li>Click on \"Sync Tools > Copy\" in the menu bar.</li>\n<li>The script will store the selected objects as files in a local cache directory (typically located in <code>Documents/cache</code>), ready for later pasting.</li>\n</ul><h4>Paste</h4><ul>\n<li>When you need to import the cached objects into the current scene:\n<ul>\n<li>Click on \"Sync Tools > Paste\" in the menu bar.</li>\n<li>The script will look for the latest exported file in the cache directory and automatically import it into the current scene.</li>\n</ul>\n</li>\n</ul>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/321605/file/d7d33dc12aad904bfbba787b9fe06219.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064236Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=4be458747fc855b34ce44eb12c65b6837557b1de7f7fad9f44f8abc5f0d2f888",
+      "name": "SyncTools_v2.1.5_3875.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/302488/file/88a43a1adf61271cf0c6714316d28a8d.py?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064236Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=d3c91b062a6d2d186fbdd3674d2e8b8455dbffcf57603cd84a8c92a76a880a9b",
+      "name": "Synctools_max_2022-2024.py"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/290847/file/99e8674d3e28f69ce4396a6cb1560550.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064236Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=3fd2f8a7b2e6ab500cec8dd34469ee60035a55a915b36ae2873059d88da4b38f",
+      "name": "SyncTools_Max.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/393a6b08e0913cb58f576ffbe0fd4cbe.png",
+    "https://assets.superhivemarket.com/cache/2a3a1d7b4d062f490b122399b73bd2f8.png"
+  ],
+  "price": "$15.00",
+  "categories": [
+    "Addons",
+    "Animation",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "3d",
+    "3dart",
+    "3dartist",
+    "3dmodeling",
+    "3drendering",
+    "3dsmax",
+    "3dvisualization",
+    "animation",
+    "archviz",
+    "assetmanagement",
+    "autodesk",
+    "blender",
+    "c4d",
+    "cgi",
+    "characteranimation",
+    "creative",
+    "crossplatform",
+    "design",
+    "development",
+    "digital",
+    "digitalart",
+    "export",
+    "fbx",
+    "gamedev",
+    "import",
+    "maxscript",
+    "maya",
+    "modeling",
+    "pipeline",
+    "plugin",
+    "production",
+    "productivity",
+    "python",
+    "rigging",
+    "studio",
+    "synctools",
+    "technical",
+    "tools",
+    "vfx",
+    "workflow"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

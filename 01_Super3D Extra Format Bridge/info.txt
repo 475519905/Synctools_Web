@@ -1,0 +1,19 @@
+Product: Super3D Extra Format Bridge
+Slug: super3d-io-addon
+Price: $20.00
+Cover: Yes
+Gallery images: 5
+Description images: 7
+Product files: 3
+  - add-on-super3d-io-addon-v0.3.3.zip
+  - add-on-super3d-io-addon-v0.3.1.zip
+  - super3d_io_addon.zip
+
+--- Categories, Software & License ---
+Categories: Addons
+Tags: 3dmax, c4d, cinema4d, conversion-tool, export, format-conversion, houdini, import, maya, sketchup, super3d, transformation
+Blender Version Min: 4.0
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

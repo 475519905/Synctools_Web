@@ -1,0 +1,16 @@
+Product: Blender X-Particles Importer
+Slug: x-particles-importer-for-blender
+Price: $12.00
+Cover: No
+Gallery images: 0
+Description images: 0
+Product files: 0
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Asset Management, Import & Export
+Tags: 3d-animation, alembic-io, batch-processing, blender, blender-particles, c4d, c4d-to-blender, cinema-4d, cinema4d-to-blender, cross-platform, data-pipeline, dynamic-effects, film-vfx, fire-animation, fluid-simulation, fx-tools, game-vfx, geometry-nodes, houdini-integration, motion-graphics, particle-effects, particles-import, particle-simulation, real-time-rendering, shader-control, simulation, smoke-effects, technical-art, unity, unity3d, unreal, unreal-engine, vfx, vfx-tools, workflow-integration, x-particles, xparticles-importer
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

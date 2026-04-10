@@ -1,0 +1,18 @@
+Product: SideFX Houdini Import-Export (.hip) File
+Slug: sidefx-houdini-import-export-
+Price: $12.00
+Cover: Yes
+Gallery images: 6
+Description images: 2
+Product files: 2
+  - SideFX Houdini Import-Export_1.1.zip
+  - SideFX Houdini Import-Export.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3d, 3d-animation, 3d-artists, 3d-modeling, 3d-pipeline, 3d-software, 3d-workflow, addon, asset-transfer, automation, blender, blender-addon, blender-integration, file-import, file-importer, geometry-transfer, houdini, houdini-files, houdini-to-blender, import-automation, import-tool, performance-optimization, scale-optimization, scene-integration, scene-management, sidefx, smart-processing, technical-support, workflow-optimization
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

@@ -1,0 +1,65 @@
+{
+  "title": "Octane Material Transfer Master",
+  "coverImage": "https://assets.superhivemarket.com/store/product/234650/image/medium-e88d42efb63f03f29fd0d41d2385d32b.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/972827/image/medium-6ef0cefaf682c3bbdf4814b0ebad8200.png",
+    "https://assets.superhivemarket.com/store/productimage/972836/image/medium-183936d9ca44ac39480b0cd4daa1d7a0.png",
+    "https://assets.superhivemarket.com/store/productimage/972835/image/medium-8e922524d7972ce9dc84f333bcdcfa62.png",
+    "https://assets.superhivemarket.com/store/productimage/972826/image/medium-e8cc98b78e8d901d037910db8006db62.png",
+    "https://assets.superhivemarket.com/store/productimage/972825/image/medium-8c03bed65d8ac43d28eea429f20bd7ee.png",
+    "https://assets.superhivemarket.com/store/productimage/972824/image/medium-07655bf722de6dd8f262739cd734fd4a.png"
+  ],
+  "description": "<p><span style=\"font-family:Degular , sans-serif;font-size:2rem;font-weight:600;\">🔁 Octane Material Transfer Master</span></p><p><strong>Effortless Material & Mesh Transfer from Cinema 4D to Blender Octane</strong></p><p><strong><br></strong></p><p></p><div class=\"ratio ratio-16x9\"><iframe frameborder=\"0\" src=\"//www.youtube.com/embed/P7rgm-1sVGo\" width=\"640\" height=\"360\" class=\"note-video-clip\"></iframe></div><br><p><strong><br></strong></p><hr><h3>🚀 What It Does</h3><p>Octane Material Transfer Master bridges the gap between Cinema 4D and Blender by offering a <strong>one-click Copy & Paste</strong> solution for <strong>Octane-compatible assets</strong>. Whether you're dealing with complex materials or animated geometry, this tool keeps everything clean, accurate, and ready to render in Blender.</p><hr><h3>\n<img src=\"https://assets.superhivemarket.com/cache/6b05f7c6e56bbc4b38cb2c4056c3fade.png\" style=\"max-width:100%;\"><br>\n</h3><h3>💡 Key Features</h3><ul>\n<li>\n<p>✅ <strong>One-Click Copy from Cinema 4D</strong><br>\nExport selected objects and all their Octane configurations with a single click — no manual cleanup required.</p>\n</li>\n<li>\n<p>✅ <strong>One-Click Paste in Blender</strong><br>\nInstantly recreate the original hierarchy, materials, and geometry in Blender with accurate Octane setup.</p>\n</li>\n<li>\n<p>✅ <strong>Preserves Animation</strong><br>\nTransfers animation data when enabled — no baking or re-rigging required.</p>\n</li>\n<li>\n<p>✅ <strong>Smart Scene Integration</strong><br>\nAutomatically names, groups, and transforms imported assets. You can even enable “Replace” mode to update previous imports without breaking scene layout.</p>\n</li>\n<li>\n<p>✅ <strong>Auto Preview & Optimization</strong><br>\nOptionally generates a native Octane preview, applies correct view transforms, and switches the render engine for you.</p>\n</li>\n<li>\n<p>✅ <strong>No File Browsing Needed</strong><br>\nBehind the scenes, a smart caching system keeps everything organized — just click Copy & Paste.</p>\n<p><img src=\"https://assets.superhivemarket.com/cache/87cc6d00c3656a5625dba1aad972a617.jpg\" style=\"max-width:100%;\"></p>\n<p><img src=\"https://assets.superhivemarket.com/cache/bc8d9e0d275310e603abf1077cd54646.jpg\" style=\"max-width:100%;\"></p>\n<p><img src=\"https://assets.superhivemarket.com/cache/40974f28b2f54cae2b6478822e5ee3e5.jpg\" style=\"max-width:100%;\"><br></p>\n</li>\n</ul><hr><h3>🧰 Use Cases</h3><ul>\n<li>\n<p>Migrate your <strong>Octane-rendered scenes</strong> from C4D to Blender without rebuilding materials</p>\n</li>\n<li>\n<p>Update character or prop assets in Blender with a single click</p>\n</li>\n<li>\n<p>Share assets across departments using different DCC tools</p>\n</li>\n<li>\n<p>Simplify collaboration between modelers and render artists</p>\n</li>\n</ul><hr><h3>📦 What's Included</h3><ul>\n<li>\n<p>Cinema 4D exporter script</p>\n</li>\n<li>\n<p>Blender plugin with integrated UI</p>\n</li>\n<li>\n<p>Auto-cache manager</p>\n</li>\n<li>\n<p>Clean install, no dependencies</p>\n</li>\n<li>\n<p>PDF quick-start guide</p>\n</li>\n</ul><hr><h3>🔧 Requirements</h3><ul>\n<li>\n<p>Blender 4.2+</p>\n</li>\n<li>\n<p>Cinema 4D R21 or later</p>\n</li>\n<li>\n<p>OctaneRender installed in both applications</p>\n</li>\n<li>\n<p>Windows or macOS</p>\n</li>\n</ul><hr><h3>🗣️ What Artists Say</h3><blockquote>\n<p>“It's basically like copy-pasting Octane assets across software. I used to spend hours fixing nodes – not anymore.”<br>\n— Freelance 3D Artist</p>\n</blockquote><hr><h3>🎁 Bonus</h3><p>Includes <strong>free lifetime updates</strong> and priority support for future versions.</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/369204/file/90f8f0eff90feda266c1b637085bc378.md?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064000Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=da574ffe43c7e90cbdd39fa6ccc941ed6f766781c8fcefa10deac596c4dd947e",
+      "name": "Octane Material Transfer Master.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/304446/file/a3c5fd6b778e8516400f6a7f44da36b7.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064000Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=204f2decbcacd4d287e44de0664191d69209c019b3cc0cfa047fa0fd5db6e9e5",
+      "name": "file_1.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/6b05f7c6e56bbc4b38cb2c4056c3fade.png",
+    "https://assets.superhivemarket.com/cache/87cc6d00c3656a5625dba1aad972a617.jpg",
+    "https://assets.superhivemarket.com/cache/bc8d9e0d275310e603abf1077cd54646.jpg",
+    "https://assets.superhivemarket.com/cache/40974f28b2f54cae2b6478822e5ee3e5.jpg"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Animation",
+    "Import & Export",
+    "Modeling",
+    "Models"
+  ],
+  "tags": [
+    "3d-workflow",
+    "animation-transfer",
+    "asset-sync",
+    "auto-cache",
+    "blender-octane",
+    "blender-plugin",
+    "blender-tools",
+    "c4d-blender-bridge",
+    "cinema-4d-to-blender",
+    "copy-paste",
+    "material-sync",
+    "material-transfer",
+    "mesh-import",
+    "octane",
+    "octane-compatibility",
+    "octane-render",
+    "realtime-sync",
+    "render-pipeline",
+    "scene-integration",
+    "shader-transfer",
+    "visual-effects"
+  ],
+  "blenderVersionMin": "3.6",
+  "blenderVersionMax": "5.0",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

@@ -1,0 +1,18 @@
+Product: Autodesk 3ds Max File Import-Export（.max）
+Slug: autodesk-3ds-max-file-import-export
+Price: $15.00
+Cover: Yes
+Gallery images: 12
+Description images: 0
+Product files: 2
+  - Autodesk Max File Import-Export Pro.zip
+  - file_1.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export
+Tags: 3d-modeling, 3ds-max, animation, autodesk, convert-format, cross-platform, file-conversion, import-export, interoperability, pipeline, professional-tools, workflow
+Blender Version Min: 4.2
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

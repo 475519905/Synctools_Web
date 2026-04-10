@@ -1,0 +1,64 @@
+{
+  "title": "Photoshop Link for Blender",
+  "coverImage": "https://assets.superhivemarket.com/store/product/226728/image/medium-bedf62c2e16caeab0fc8f9ea61cce753.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/888419/image/medium-718e3712cc08674b42bf66d29a255d03.png",
+    "https://assets.superhivemarket.com/store/productimage/888431/image/medium-3315017493a2bbcf106a1e7d76c00354.png",
+    "https://assets.superhivemarket.com/store/productimage/888430/image/medium-14f1b86ad24712a4feff62f94c3eaa97.png",
+    "https://assets.superhivemarket.com/store/productimage/888429/image/medium-cd1df24c39bfdd312fa57f4bcf0a7fa3.png",
+    "https://assets.superhivemarket.com/store/productimage/888428/image/medium-f4cd67db63d0111853fca88f151f515a.png"
+  ],
+  "description": "<h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\"></h1><p><strong style=\"font-family:Degular , sans-serif;font-size:1.75rem;\">Photoshop Link for Blender</strong></p><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n</h1><p><strong>Seamlessly Bridge Blender & Photoshop with One Click!</strong></p>\n<p>Transform your creative workflow with <strong>Photoshop Link</strong>, the ultimate tool for artists who work across Blender and Photoshop. This add-on lets you instantly send Blender renders to Photoshop for editing and import them back—no manual file handling required!</p>\n<hr>\n<h3><strong><br></strong></h3><p></p><div class=\"ratio ratio-16x9\"><iframe frameborder=\"0\" src=\"//www.youtube.com/embed/cSeHWtYUkw8\" width=\"640\" height=\"360\" class=\"note-video-clip\"></iframe></div><br><h3><strong><br></strong></h3><h3><strong>Key Features</strong></h3><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n</h1><p>🔗 <strong>Bidirectional Integration</strong></p>\n<ul>\n<li>\n<strong>Send to Photoshop</strong>: Export Blender’s <strong>Render Result</strong> or any selected image directly to Photoshop.</li>\n<li>\n<strong>Import from Photoshop</strong>: Pull edited images back into Blender with automatic version control (override or create new versions).</li>\n</ul>\n<p>🎨 <strong>Flexible Workflow</strong></p>\n<ul>\n<li>Choose whether to send the <strong>Render Result</strong> or a <strong>specific image</strong> from Blender’s Image Editor.</li>\n<li>Auto-detects active Photoshop installations (supports versions 24–26 on Windows and macOS).</li>\n</ul>\n<p>🖥️ <strong>Intuitive Interface</strong></p>\n<ul>\n<li>Dedicated <strong>Photoshop panel</strong> in Blender’s 3D View sidebar for quick access.</li>\n<li>Toggle settings like <strong>\"Override Existing Images\"</strong> and <strong>\"Allow Selected Image\"</strong> for personalized control.</li>\n</ul>\n<p>⏱️ <strong>Time-Saving Automation</strong></p>\n<ul>\n<li>No more manual saving, exporting, or navigating folders—images transfer instantly.</li>\n<li>Temporary files are auto-cleaned after use.</li>\n</ul>\n<hr>\n<h3>\n<img src=\"https://assets.superhivemarket.com/cache/eb71b39bc14082499a66553603423de5.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h3><h3>\n<img src=\"https://assets.superhivemarket.com/cache/537bbf589a8a96f5db90d251d1f9ccb9.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h3><h3><strong>How It Works</strong></h3><h4><strong>1. Install the Photoshop Companion Plugin</strong></h4><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n\n</h1><p>To enable seamless integration between Blender and Photoshop, install the <strong>Photoshop to Blender Companion Plugin</strong>:</p>\n<h5><strong>Automatic Installation (Recommended)</strong></h5><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ol>\n<li>Locate the file <strong><code>Photoshop to Blender.cxx</code></strong> in the installation folder.</li>\n<li>\n<strong>Double-click to launch</strong>—this will open <strong>Adobe Creative Cloud</strong>, which will guide you through the plugin installation process.</li>\n<li>Once installed, restart Photoshop to activate the plugin.</li>\n</ol>\n</h1><h5><strong>Manual Installation (Alternative Method)</strong></h5><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ol>\n<li>Open Photoshop.</li>\n<li>Navigate to <strong>Edit > Preferences > Plugins</strong>, and ensure <strong>\"Allow Extensions to Connect to the Internet\"</strong> is enabled.</li>\n<li>Copy the <strong>plugin folder</strong> to the <strong>Photoshop Plugins directory</strong> (typically found under <code>C:\\Program Files\\Adobe\\Adobe Photoshop\\Plug-ins\\</code> on Windows or <code>/Applications/Adobe Photoshop/Plug-ins/</code> on macOS).</li>\n<li>Restart Photoshop.</li>\n</ol>\n</h1><h4><strong>2. Set Up the Connection in Blender</strong></h4><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ol>\n<li>Open <strong>Blender</strong> and go to <strong>Edit > Preferences > Add-ons</strong>.</li>\n<li>Find <strong>Photoshop Link</strong> and enable it.</li>\n<li>If Photoshop is not auto-detected, manually set the <strong>Photoshop installation path</strong> in the add-on settings.</li>\n</ol>\n<hr>\n</h1><h3>\n<strong>Using Photoshop </strong><span style=\"\"><b> </b></span><strong style=\"font-size:1.75rem;\">Link</strong>\n</h3><h4><strong>1. Send to Photoshop</strong></h4><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n\n<ul>\n<li>\n<strong>Option 1</strong>: Render your scene in Blender and select the <strong>Render Result</strong>.</li>\n<li>\n<strong>Option 2</strong>: Open the <strong>Image Editor</strong> in Blender and choose a specific texture or image.</li>\n<li>Click <strong>\"Send to Photoshop\"</strong> in the <strong>Photoshop Link Panel</strong> (found in the <strong>3D View Sidebar</strong>).</li>\n<li>The image will automatically open in Photoshop.</li>\n</ul>\n</h1><h4><strong>2. Edit and Save in Photoshop</strong></h4><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ul>\n<li>Modify the image as needed in Photoshop.</li>\n<li>Click <strong>\"Save and Send to Blender\"</strong> in the <strong>Photoshop Companion Plugin Panel</strong> inside Photoshop.</li>\n<li>This saves the file and prepares it for transfer back to Blender.</li>\n</ul>\n</h1><h4><strong>3. Import Back into Blender</strong></h4><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ul>\n<li>Return to Blender and click <strong>\"Import from Photoshop\"</strong> in the <strong>Photoshop Link Panel</strong>.</li>\n<li>The updated image will load into Blender, either replacing the existing image or creating a new version, depending on your settings.</li>\n</ul>\n<hr>\n</h1><h3><strong>System Requirements</strong></h3><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ul>\n<li>\n<strong>Blender</strong>: 4.2 or later</li>\n<li>\n<strong>Photoshop</strong>: CC 2023 (v24) to 2025 (v26)</li>\n<li>\n<strong>OS</strong>: Windows 10/11 or macOS 12+</li>\n<li>\n<strong>Required</strong>: Photoshop must be installed with the companion plugin (installation guide included).</li>\n</ul>\n<hr>\n</h1><h3><strong>Why Choose Photoshop Link?</strong></h3><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ul>\n<li>\n<strong>Perfect for</strong>: Texture artists, concept designers, and 3D creators who refine renders in Photoshop.</li>\n<li>\n<strong>Eliminate tedious steps</strong>: Focus on creativity, not file management.</li>\n<li>\n<strong>Cross-platform support</strong>: Works smoothly on both Windows and macOS.</li>\n</ul>\n<hr>\n</h1><h3><strong>Installation & Support</strong></h3><h1 style=\"font-size:calc(var(--ds-md-zoom)*16px);line-height:1.5;font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;\" class=\"\">\n<ul>\n<li>Detailed setup guides included for Blender and Photoshop.</li>\n<li>Need help? Contact us via <strong>BlenderMarket messages</strong> or email <strong><a href=\"mailto:support@example.com\">support@example.com</a></strong>.</li>\n</ul>\n<hr>\n</h1><p><strong>Enhance Your Pipeline Today—Get Photoshop Link!</strong><br>\n<em>Unlock seamless Blender-Photoshop integration and supercharge your artistic workflow.</em></p>\n<hr>\n<p><strong>Tags</strong>: Blender Addons, Photoshop Integration, Texture Workflow, Render Editing, Productivity Tools</p>\n<h3></h3><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;font-size:16px;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-weight:700;font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;font-size:16px;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/311820/file/1d070c05b0ffc5266fa2f79cdb0ad0cd.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064325Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=038e2f42606a89b86489d04cf1ed1587ef35914ca548d512d4c974a25c1c4a15",
+      "name": "Instal.txt"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/276855/file/492e57af633b5a150a92930e1d7317a3.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064325Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=eb5b58734d098eb9fc475e0864667936f06ec9be385617c48799a6f547667ca4",
+      "name": "Photoshop Link.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/eb71b39bc14082499a66553603423de5.png",
+    "https://assets.superhivemarket.com/cache/537bbf589a8a96f5db90d251d1f9ccb9.png"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Asset Management",
+    "Import & Export",
+    "Materials and Shading"
+  ],
+  "tags": [
+    "3d-rendering",
+    "3d-texture-editing",
+    "automatic-image-transfer",
+    "blender-addon",
+    "blender-addons",
+    "blender-workflow",
+    "cg-art",
+    "concept-art",
+    "creative-workflow",
+    "digital-art",
+    "digital-painting",
+    "graphic-design",
+    "photoshop",
+    "photoshop-integration",
+    "photoshop-link",
+    "photoshop-plugin",
+    "productivity-tools",
+    "ps-to-blender",
+    "render-editing",
+    "seamless-integration",
+    "texture-painting",
+    "texture-workflow",
+    "vfx-tools"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

@@ -1,0 +1,66 @@
+{
+  "title": "After Effects Link For Blender",
+  "coverImage": "",
+  "galleryImages": [],
+  "description": "<p><strong style=\"font-family:Degular , sans-serif;font-size:2.5rem;\">After Effects Link for Blender</strong></p><p><strong>Seamlessly Bridge Blender & After Effects with One Click!</strong></p><p>Transform your animation workflow with <strong>After Effects Link</strong>, the ultimate tool for artists working between <strong>Blender</strong> and <strong>After Effects</strong>. This add-on enables instant transfer of renders and sequences from Blender to After Effects—<strong>no manual file management needed!</strong></p><hr><h2><strong>✨ Key Features</strong></h2><h3>🎬 <strong>Smart Sequence Handling</strong>\n</h3><p>✅ Export complete animation sequences or single frames<br>\n✅ Automatic sequence detection and proper import into After Effects<br>\n✅ Maintains frame order and timing</p><h3>🔄 <strong>Flexible Export Options</strong>\n</h3><p>✅ Send directly from render cache for instant preview<br>\n✅ Export from saved files with full quality<br>\n✅ Support for multiple image and video formats</p><h3>⚡ <strong>Automatic Composition Setup</strong>\n</h3><p>✅ Creates or updates After Effects compositions automatically<br>\n✅ Matches resolution and aspect ratio<br>\n✅ Centers and scales layers intelligently<br>\n✅ Preserves layer names and organization</p><h3>🎨 <strong>Render Channel Support</strong>\n</h3><p>✅ Handles all common render passes<br>\n✅ Supports <strong>Cryptomatte, Beauty, RGB,</strong> and other channels<br>\n✅ Maintains proper channel naming and organization</p><hr><h2>\n<img src=\"https://assets.superhivemarket.com/cache/ba6bc592e29db46f3c2f519b96e9e7a0.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h2><h2>\n<img src=\"https://assets.superhivemarket.com/cache/23fed612cd725316cd6af1e37bd49001.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h2><h2><strong>🚀 How It Works</strong></h2><p>1️⃣ <strong>Render in Blender</strong></p><ul>\n<li>Create your animation or single frame in Blender</li>\n<li>Use either <strong>viewport render</strong> or <strong>final render</strong>\n</li>\n</ul><p>2️⃣ <strong>Export to After Effects</strong></p><ul>\n<li>Choose between <strong>\"Cache to After Effects\"</strong> for quick preview</li>\n<li>Or <strong>\"Send to After Effects\"</strong> for final quality export</li>\n<li>Select sequence or single frame export</li>\n</ul><p>3️⃣ <strong>Continue in After Effects</strong></p><ul>\n<li>Files <strong>automatically import</strong> into a new or existing composition</li>\n<li>Layers are <strong>properly named and organized</strong>\n</li>\n<li><strong>Ready for compositing and effects</strong></li>\n</ul><hr><h2><strong>🖥 System Requirements</strong></h2><p>✅ Blender <strong>3.0 or later</strong><br>\n✅ After Effects <strong>CC 2023-2024</strong><br>\n✅ Windows <strong>10/11</strong><br>\n✅ <strong>After Effects must be installed</strong> on the system</p><hr><h2><strong>💡 Why Choose After Effects Link?</strong></h2><p>✔️ Perfect for <strong>motion designers, VFX artists, and animators</strong><br>\n✔️ Eliminates <strong>tedious file management and import steps</strong><br>\n✔️ Maintains <strong>creative flow</strong> between applications<br>\n✔️ Supports <strong>professional workflow requirements</strong></p><hr><h2><strong>🔧 Installation & Support</strong></h2><p>✅ Simple <strong>installation</strong> through Blender’s add-on system<br>\n✅ <strong>Automatic After Effects detection</strong><br>\n✅ <strong>Detailed documentation included</strong><br>\n✅ Support available through <strong>BlenderMarket messages</strong></p><hr><h2><strong>💰 Price: $12</strong></h2><p><strong>Transform Your Animation Pipeline Today—Get After Effects Link!</strong><br>\nStreamline your Blender to After Effects workflow and focus on creating amazing content.</p><p>🔗 <strong>Tags:</strong> Blender Addons, After Effects Integration, Animation Workflow, Compositing, Motion Graphics, VFX Tools</p><p>💬 <strong>Have questions about this product?</strong><br>\n📩 Contact the creator: <strong>[Han Yue</strong><strong style=\"\">]</strong></p><p>\n🌍 [qq475519905@gmail.com]</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-weight:700;font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p><p><br></p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/311819/file/adb6ce787bbe4a442ec5a78ea7237387.txt?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064058Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=d7857492c49e8148d08a69401d2f1b7de791b05a7099c5ace2cbb86ef6dc3c1a",
+      "name": "Instal.txt"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/292760/file/399d93b667b4a109915d278fe86451af.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064058Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=31f292067d98a0df6627cc76eb026e1ad77f3d18bb8a8a02a44c09c129652378",
+      "name": "After Effects Link.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/ba6bc592e29db46f3c2f519b96e9e7a0.png",
+    "https://assets.superhivemarket.com/cache/23fed612cd725316cd6af1e37bd49001.png"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Asset Management",
+    "Import & Export",
+    "Materials and Shading"
+  ],
+  "tags": [
+    "3d-animation",
+    "adobe",
+    "adobe-integration",
+    "after-effects",
+    "animation",
+    "animation-export",
+    "asset-management",
+    "automation",
+    "blender",
+    "cache-management",
+    "compositing",
+    "creative-tools",
+    "file-management",
+    "frame-sequence",
+    "media-export",
+    "motion-graphics",
+    "pipeline",
+    "post-production",
+    "production-tools",
+    "productivity",
+    "professional-tools",
+    "project-management",
+    "render-cache",
+    "render-export",
+    "rendering",
+    "render-management",
+    "sequence-export",
+    "time-saving",
+    "vfx",
+    "video-editing",
+    "workflow"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

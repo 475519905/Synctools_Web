@@ -1,0 +1,17 @@
+Product: Outliner: Follow Active Object
+Slug: outliner-follow-active-object-smart---a-smarter-way-to-navigate-your-scene
+Price: $5.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 1
+  - outliner_follow_active_smart_addon.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Modeling
+Tags: automation, blender, blender-outliner-addon, efficiency, interface, navigation, outliner, productivity, scene-management, smart-scrolling, workflow
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

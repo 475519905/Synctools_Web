@@ -1,0 +1,17 @@
+Product: Import-Export 3d Manufacturing File(.3mf)
+Slug: import-export-3d-manufacturing-file
+Price: $15.00
+Cover: Yes
+Gallery images: 0
+Description images: 2
+Product files: 1
+  - blender_3mf_import_export.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3d-manufacturing-format, 3d-model-exchange, 3d-printing, 3mf, additive-manufacturing, assembly-support, batch-export, cad, cam-compatible, component-management, design-collaboration, design-exchange, design-transfer, digital-factory, digital-manufacturing, engineering, factory-ready, file-format, geometry-import, import-export, industrial-40, industrial-automation, industrial-design, industry-standard, manufacturing, manufacturing-format, manufacturing-integration, manufacturing-pipeline, manufacturing-preparation, manufacturing-standards, mesh-export, mesh-import, mesh-processing, mesh-tools, model-conversion, model-preparation, multi-object, open-format, product-design, production-pipeline, production-ready, production-standards, production-workflow, professional-tools, prototype-development, quality-assurance, quality-control, rapid-prototyping, smart-manufacturing, stl-alternative, xml-based
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

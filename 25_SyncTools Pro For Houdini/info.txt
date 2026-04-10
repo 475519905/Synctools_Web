@@ -1,0 +1,18 @@
+Product: SyncTools Pro For Houdini
+Slug: synctools-for-houdini
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 2
+  - SyncTools_v2.1.2_2519.zip
+  - Synctools_houdini_new.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Modeling
+Tags: 3d-asset-for-vfx, 3d-workflow, asset-manager, automation, blender, copy-paste, cross-software, data-exchange, export, fbx, file-transfer, houdini, import, interoperability, mesh-transfer, pipeline, production-tool, scene-management, sync-tools, time-saving, vfx, workflow
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

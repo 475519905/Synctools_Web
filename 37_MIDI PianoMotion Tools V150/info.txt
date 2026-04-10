@@ -1,0 +1,18 @@
+Product: MIDI PianoMotion Tools V1.50
+Slug: midi-pianomotion-tools
+Price: $12.00
+Cover: Yes
+Gallery images: 0
+Description images: 3
+Product files: 2
+  - piano.zip
+  - PianoMotion.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Animation, Import & Export, Rigging
+Tags: 3dpiano, midi, piano, pianomotion
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

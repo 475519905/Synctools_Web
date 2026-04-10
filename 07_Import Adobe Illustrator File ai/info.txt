@@ -1,0 +1,17 @@
+Product: Import Adobe Illustrator File (.ai) 
+Slug: inport-adobe-illustrator-ai-file
+Price: $8.00
+Cover: Yes
+Gallery images: 5
+Description images: 5
+Product files: 1
+  - Import_Adobe_Illustrator_AI.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Import & Export, Modeling
+Tags: 2d, addon, ai, animationtoolsforblender, automation, blender, converter, design, developers, file-watcher, hot-reload, illustrator, inkscape, productivity, python, script, script-development, svg, text-editor, vector
+Blender Version Min: 3.6
+Blender Version Max: 5.0
+Render Engines: None
+Misc Data: None
+License: gpl

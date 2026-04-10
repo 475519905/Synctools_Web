@@ -1,0 +1,70 @@
+{
+  "title": "SyncTools Pro For Zbrush",
+  "coverImage": "https://assets.superhivemarket.com/store/product/234144/image/medium-3e39e5a2aa1326350ab488f99ef9282d.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/966941/image/medium-65d84be5ee66e6c86933d685be466fca.jpg",
+    "https://assets.superhivemarket.com/store/productimage/966944/image/medium-fdee52b5b8c33f25a202d4b7c7a43d48.jpg",
+    "https://assets.superhivemarket.com/store/productimage/966943/image/medium-efccd72ea45285a09a8c66ae8a3d3026.jpg",
+    "https://assets.superhivemarket.com/store/productimage/966947/image/medium-7937ad0fa9dced04314c3439cf4de45a.jpg",
+    "https://assets.superhivemarket.com/store/productimage/966946/image/medium-04f7dc109d244a249446ba570386d6e7.jpg",
+    "https://assets.superhivemarket.com/store/productimage/966945/image/medium-bd43ae124af477ac1a9383543a7b4101.png"
+  ],
+  "description": "<h1 class=\"\"><strong>SyncTools for ZBrush</strong></h1><h1 class=\"\"><strong><br></strong></h1><h2 style=\"color:rgb(0, 0, 0);\"><span style=\"font-weight:bolder;\">🌍 Multi-DCC Platform Support</span></h2><h1 style=\"margin-top:24px;margin-bottom:12px;line-height:1.25;color:rgb(0, 0, 0);font-size:2em;\"></h1><h1 class=\"\"></h1><p style=\"font-family:sans-serif;font-size:16px;font-weight:400;\">The SyncTools series extends support to major <span style=\"font-weight:bolder;\">digital content creation software</span>, including:</p><p style=\"font-family:sans-serif;font-size:16px;font-weight:400;\">✅ <span style=\"font-weight:bolder;\">SyncTools for Maya</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for 3ds Max</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Houdini</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Cinema 4D</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Rhino</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Marvelous Designer</span> (Released)</p><p style=\"font-family:sans-serif;font-size:16px;font-weight:400;\">✅<span style=\"font-weight:bolder;\">SyncTools for Unreal Engine</span> (Released)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Substance Painter</span> (Released)<br>🛠 <span style=\"font-weight:bolder;\">SyncTools for Unity</span> (In Development)<br>✅ <span style=\"font-weight:bolder;\">SyncTools for Zbrush</span> (Released)</p><p style=\"font-family:sans-serif;font-size:16px;font-weight:400;\">All plugins utilize a <span style=\"font-weight:bolder;\">unified data exchange protocol</span>, enabling <span style=\"font-weight:bolder;\">lossless asset conversion across platforms</span> and <span style=\"font-weight:bolder;\">true multi-software collaborative workflows</span>.</p><h1 class=\"\">\n<img src=\"https://assets.superhivemarket.com/cache/5bfbca1e0e8cba6ba8f552c13e044388.jpg\" style=\"max-width:100%;\"><strong><br></strong>\n</h1><h1 class=\"\">\n<img src=\"https://assets.superhivemarket.com/cache/0fa1c370ae192d49d8bc4f897b7cabf2.jpg\" style=\"max-width:100%;\"><strong><br></strong>\n</h1><h1 class=\"\">\n<img src=\"https://assets.superhivemarket.com/cache/e15ba862ed3c883dcfbb5e892ca6f2f2.png\" style=\"max-width:100%;\"><strong><br></strong>\n</h1><h3><br></h3><h3>ZBrush Support</h3><p><strong>Recommended Configuration:</strong></p><ul>\n<li>\n<p><strong>Recommended Version:</strong> ZBrush 2023 (or higher)</p>\n</li>\n<li>\n<p><strong>Minimum Compatible Version:</strong> ZBrush 2022</p>\n</li>\n<li>\n<p><strong>Supported Operating Systems:</strong> Windows (64-bit), macOS (64-bit)</p>\n</li>\n</ul><h3>Features</h3><p>SyncTools for ZBrush supports bi-directional import/export for the following 3D resource types:</p><ul>\n<li>\n<p><strong>3D Model Geometry</strong></p>\n</li>\n<li>\n<p><strong>Subtool Structure</strong></p>\n</li>\n<li>\n<p><strong>FBX Format Data Transfer</strong></p>\n</li>\n</ul><p>The plugin synchronizes resources using Copy and Paste operations, significantly simplifying workflows across multiple ZBrush windows or projects.</p><h3>Installation Guide</h3><p><img src=\"https://assets.superhivemarket.com/cache/610f0d971bea5cf89d93be870807e0dc.png\" style=\"max-width:100%;\"><br></p><ol>\n<li>\n<p>Copy the following files into the ZBrush installation directory under <code>ZStartup/ZPlugs64/SyncTools/</code> (create the folder if it does not exist):</p>\n</li>\n<li>\n<p>Restart ZBrush, and the plugin will automatically load.</p>\n</li>\n</ol><h3>How to Use</h3><p><img src=\"https://assets.superhivemarket.com/cache/347594fd01cdb13624dc96ccce49b751.png\" style=\"max-width:100%;\"><br></p><ul>\n<li>\n<p><strong>Open Plugin Panel:</strong> <code>Alt + Shift + P</code></p>\n</li>\n</ul><h4>Key Shortcuts:</h4><ul>\n<li>\n<p><strong>Copy (Copy):</strong> Copies the currently selected Subtool geometry<br>\n<strong>Shortcut:</strong> <code>Alt + Shift + C</code></p>\n</li>\n<li>\n<p><strong>Paste (Paste):</strong> Pastes the geometry into the current ZBrush scene<br>\n<strong>Shortcut:</strong> <code>Alt + Shift + V</code></p>\n</li>\n</ul><h3>Notes</h3><ul>\n<li>\n<p>The plugin automatically creates temporary files in the background for data exchange.</p>\n</li>\n<li>\n<p>Ensure sufficient disk space (recommended at least 500MB).</p>\n</li>\n<li>\n<p>Always save your work before using the plugin to avoid unexpected data loss.</p>\n</li>\n<li>\n<p>Copy must be performed before pasting.</p>\n</li>\n</ul><h3>Common Issues & Solutions</h3><h4>Plugin Panel Not Displaying</h4><p><br></p><ul>\n<li>\n<p>Ensure the plugin files are correctly placed in the <code>ZPlugs64/SyncTools</code> directory.</p>\n</li>\n<li>\n<p>Check your ZBrush version (minimum required: 2023).</p>\n</li>\n<li>\n<p>Restart ZBrush completely.</p>\n</li>\n</ul><h4>Copy Failures</h4><ul>\n<li>\n<p>Ensure a Subtool is selected for copying.</p>\n</li>\n<li>\n<p>Check that there is sufficient disk space.</p>\n</li>\n<li>\n<p>Ensure Subtool names do not contain special characters (* ? / \\ | \" < > :).</p>\n</li>\n</ul><h4>Paste Failures</h4><ul>\n<li>\n<p>Ensure a copy operation has been performed first.</p>\n</li>\n<li>\n<p>Check if the message \"Buffer is empty!\" appears on the interface.</p>\n</li>\n<li>\n<p>Verify that temporary files exist in the specified system path.</p>\n</li>\n</ul><h3>Data Compatibility</h3><h4>Supported Data Types:</h4><ul>\n<li>\n<p><strong>✔ Fully Supported:</strong></p>\n<ul>\n<li>\n<p>Basic geometry mesh</p>\n</li>\n<li>\n<p>Subtool structure</p>\n</li>\n<li>\n<p>FBX format data</p>\n</li>\n<li>\n<p>Vertex positions and topology</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>⚠ Partially Supported:</strong></p>\n<ul>\n<li>\n<p>UV mapping data</p>\n</li>\n<li>\n<p>Polygon group information (PolyGroups)</p>\n</li>\n<li>\n<p>Vertex color data (Polypaint)</p>\n</li>\n</ul>\n</li>\n<li>\n<p><strong>✖ Not Supported:</strong></p>\n<ul>\n<li>\n<p>ZBrush materials</p>\n</li>\n<li>\n<p>Polygon group shading</p>\n</li>\n<li>\n<p>Brush strokes</p>\n</li>\n<li>\n<p>Layer information</p>\n</li>\n<li>\n<p>Dynamic Subdivision settings</p>\n</li>\n</ul>\n</li>\n</ul><h3>Important Notes</h3><ul>\n<li>\n<p><strong>Data Format:</strong> Standard FBX format is used for data transfer, ensuring broad compatibility.</p>\n</li>\n<li>\n<p><strong>Temporary File Management:</strong> The plugin automatically creates and deletes temporary exchange files—no manual intervention required.</p>\n</li>\n<li>\n<p><strong>Naming Convention:</strong> Avoid using special characters in filenames to prevent copy/paste failures.</p>\n</li>\n<li>\n<p><strong>System Requirements:</strong> The plugin only supports 64-bit operating system environments.</p>\n</li>\n</ul><h3>Conclusion</h3><p>SyncTools for ZBrush provides a simple and efficient way to quickly transfer 3D model data between different ZBrush instances or projects. With a one-click copy-and-paste process, it significantly enhances the convenience and productivity of multi-window and cross-project workflows.</p><p>This plugin follows the GPL open-source license and will continue to be updated and optimized. If you encounter any issues or have feature suggestions, please feel free to contact us!</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/304430/file/2fc769c427a899e8f9496af309b51de5.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064020Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=975d820f3f5567a97e81168f94363d92912cbbf95fe7e5b460f1fa1a941328c5",
+      "name": "SyncTools_Zbrush.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/5bfbca1e0e8cba6ba8f552c13e044388.jpg",
+    "https://assets.superhivemarket.com/cache/0fa1c370ae192d49d8bc4f897b7cabf2.jpg",
+    "https://assets.superhivemarket.com/cache/e15ba862ed3c883dcfbb5e892ca6f2f2.png",
+    "https://assets.superhivemarket.com/cache/610f0d971bea5cf89d93be870807e0dc.png",
+    "https://assets.superhivemarket.com/cache/347594fd01cdb13624dc96ccce49b751.png"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Import & Export",
+    "Materials and Shading",
+    "Modeling"
+  ],
+  "tags": [
+    "3d-art",
+    "3d-artists",
+    "3d-design",
+    "3d-geometry",
+    "3d-modeling",
+    "3d-model-transfer",
+    "3d-resources",
+    "3d-software",
+    "3d-workflow",
+    "blender-market",
+    "copy-paste-plugin",
+    "cross-project-workflow",
+    "digital-art",
+    "macos",
+    "obj-file",
+    "productivity-tools",
+    "subtools",
+    "synctools",
+    "time-saving",
+    "windows",
+    "workflow-optimization",
+    "zbrush",
+    "zbrush-2022",
+    "zbrush-2023",
+    "zbrush-add-on",
+    "zbrush-integration",
+    "zbrush-plugin",
+    "zbrush-tools",
+    "zbrush-users"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

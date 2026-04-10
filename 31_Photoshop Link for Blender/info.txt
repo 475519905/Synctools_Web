@@ -1,0 +1,18 @@
+Product: Photoshop Link for Blender
+Slug: photoshop-link-for-blender
+Price: $12.00
+Cover: Yes
+Gallery images: 5
+Description images: 2
+Product files: 2
+  - Instal.txt
+  - Photoshop Link.zip
+
+--- Categories, Software & License ---
+Categories: Addons, Asset Management, Import & Export, Materials and Shading
+Tags: 3d-rendering, 3d-texture-editing, automatic-image-transfer, blender-addon, blender-addons, blender-workflow, cg-art, concept-art, creative-workflow, digital-art, digital-painting, graphic-design, photoshop, photoshop-integration, photoshop-link, photoshop-plugin, productivity-tools, ps-to-blender, render-editing, seamless-integration, texture-painting, texture-workflow, vfx-tools
+Blender Version Min: 
+Blender Version Max: 
+Render Engines: None
+Misc Data: None
+License: gpl

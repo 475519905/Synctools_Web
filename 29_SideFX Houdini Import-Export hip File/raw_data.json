@@ -1,0 +1,71 @@
+{
+  "title": "SideFX Houdini Import-Export (.hip) File",
+  "coverImage": "https://assets.superhivemarket.com/store/product/230093/image/medium-0d37d8477687b8c345b7b94ef59d1bf7.png",
+  "galleryImages": [
+    "https://assets.superhivemarket.com/store/productimage/920592/image/medium-ecc94f034e39e16a8a4a08a758944bdf.png",
+    "https://assets.superhivemarket.com/store/productimage/920593/image/medium-7041b1914d94ca4ac5c25bb096de2003.jpg",
+    "https://assets.superhivemarket.com/store/productimage/920595/image/medium-83ada91d718e3a7f053e76c5e1d1954e.jpg",
+    "https://assets.superhivemarket.com/store/productimage/920596/image/medium-f62935315511974b9d221929f61c6820.jpg",
+    "https://assets.superhivemarket.com/store/productimage/920605/image/medium-57826ba0e8e07a125811feaa3329524c.jpg",
+    "https://assets.superhivemarket.com/store/productimage/920606/image/medium-390c31bbd73373761cba6d8ddb5b5fcd.jpg"
+  ],
+  "description": "<p></p><h1></h1><h1 style=\"line-height:19px;\" class=\"\"><b>SideFX Houdini Import-Export (.hip) File</b></h1><h1 style=\"line-height:19px;\" class=\"\"><b><br></b></h1><h2>Overview</h2><p>Seamlessly import Houdini files directly into Blender. This powerful addon bridges the gap between Houdini and Blender, allowing artists to maintain their creative workflow without interruption.</p><hr><h2>Key Features</h2><h3>Direct Import</h3><ul>\n<li>Import <code>.hip</code>, <code>.hipnc</code>, and <code>.hiplc</code> files directly in Blender.</li>\n<li>Preserve geometry details from Houdini scenes.</li>\n<li>Automatic scale and transformation optimization.</li>\n</ul><p><br></p><p></p><div class=\"ratio ratio-16x9\"><iframe frameborder=\"0\" src=\"//www.youtube.com/embed/7xn_jhFQlEA\" width=\"640\" height=\"360\" class=\"note-video-clip\"></iframe></div><br><ul>\n</ul><h3>\n<img src=\"https://assets.superhivemarket.com/cache/738285d476185e8856571c60759f644f.jpg\" style=\"max-width:100%;\"><br>\n</h3><h3>\n<img src=\"https://assets.superhivemarket.com/cache/fdb36b2f438c0c7f450bec1f462a52b5.jpg\" style=\"max-width:100%;\"><br>\n</h3><h3>Seamless Integration</h3><ul>\n<li>Native Blender import menu integration.</li>\n<li>User-friendly interface.</li>\n<li>Comprehensive logging system.</li>\n</ul><h3>Smart Processing</h3><ul>\n<li>Intelligent geometry handling.</li>\n<li>Automatic transformation management.</li>\n<li>Precise model scaling.</li>\n</ul><hr><h2>Technical Requirements</h2><h3>Software</h3><ul>\n<li>Blender 4.0 or higher.</li>\n<li>Houdini (Commercial/Indie/Apprentice).</li>\n<li>Windows OS.</li>\n</ul><h3>Hardware</h3><ul>\n<li>Recommended: 16GB RAM.</li>\n<li>Graphics card with OpenGL 4.0 support.</li>\n<li>SSD storage recommended for large files.</li>\n</ul><hr><h2>Installation & Usage</h2><h3>Quick Start</h3><ol>\n<li>Install the addon through Blender's preferences.</li>\n<li>Set your Houdini installation path.</li>\n<li>Access via <code>File > Import > Import SideFX Houdini File</code>.</li>\n<li>Select your Houdini file and import.</li>\n</ol><h3>Best Practices</h3><ul>\n<li>Save your Blender project before importing large scenes.</li>\n<li>Review the documentation for optimal settings.</li>\n<li>Check the log file for detailed operation information.</li>\n</ul><hr><h2>Support & Documentation</h2><h3>Resources</h3><ul>\n<li>Comprehensive online documentation.</li>\n<li>Regular updates and maintenance.</li>\n<li>Active user community.</li>\n</ul><h3>Technical Support</h3><ul>\n<li>Dedicated discord group users.</li>\n<li>Email support.</li>\n<li>Bug reporting system.</li>\n</ul><hr><h2>Why Choose This Addon?</h2><h3>Workflow Enhancement</h3><ul>\n<li>Eliminate manual export-import processes.</li>\n<li>Maintain scene integrity.</li>\n<li>Focus on creativity, not technical procedures.</li>\n</ul><h3>Time Efficiency</h3><ul>\n<li>Rapid import process.</li>\n<li>Automated optimization.</li>\n<li>Reduced pipeline complexity.</li>\n</ul><h3>Reliability</h3><ul>\n<li>Robust error handling.</li>\n<li>Detailed logging system.</li>\n<li>Regular updates and improvements.</li>\n</ul><hr><h2>Professional Features</h2><h3>Scene Management</h3><ul>\n<li>Precise geometry transfer.</li>\n<li>Automatic scale optimization.</li>\n<li>Smart transformation handling.</li>\n</ul><h3>Quality Assurance</h3><ul>\n<li>Comprehensive error checking.</li>\n<li>Detailed progress feedback.</li>\n<li>Scene integrity verification.</li>\n</ul><hr><h2>Updates & Maintenance</h2><h3>Regular Updates</h3><ul>\n<li>Continuous performance optimization.</li>\n<li>New feature implementations.</li>\n<li>Compatibility updates.</li>\n</ul><h3>Version Control</h3><ul>\n<li>Clear changelog.</li>\n<li>Backward compatibility.</li>\n<li>Easy update process.</li>\n</ul><hr><p><em>Transform your Houdini-Blender workflow today with this essential bridge between two powerful 3D applications.</em></p><hr><p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</p><p>Let me know if you want any tweaks!</p><p style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\"><span style=\"font-weight:700;font-size:2rem;\">Support Blender Foundation</span></p><p class=\"\" style=\"color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;\">We believe in giving back to the community that makes our work possible. Every month, we dedicate a portion of our plugin's revenue to support the Blender Foundation. Thank you for helping us contribute to the future of open-source creativity.</p>",
+  "documentation": "<p><br></p>",
+  "files": [
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/286322/file/8646ac1a9196cc8507abeaa640cfef18.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064252Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=5a96bf3f614596513b387c686e74f57473456df8d31f2aaf1524c20f324fe006",
+      "name": "SideFX Houdini Import-Export_1.1.zip"
+    },
+    {
+      "url": "https://superhive.448fc3f012d5808ec29efa9517610d34.r2.cloudflarestorage.com/store/download/284323/file/6b0d3b08ca452c89604e8f8f3df9e6e6.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7b67f68c53e946d27ac08934af5bc546%2F20260406%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260406T064252Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=9cd108a03e003b5a953293c85ae9ece1bb9c2f2711a159c0b85e9a2045e47b4b",
+      "name": "SideFX Houdini Import-Export.zip"
+    }
+  ],
+  "descriptionImages": [
+    "https://assets.superhivemarket.com/cache/738285d476185e8856571c60759f644f.jpg",
+    "https://assets.superhivemarket.com/cache/fdb36b2f438c0c7f450bec1f462a52b5.jpg"
+  ],
+  "price": "$12.00",
+  "categories": [
+    "Addons",
+    "Animation",
+    "Import & Export",
+    "Modeling"
+  ],
+  "tags": [
+    "3d",
+    "3d-animation",
+    "3d-artists",
+    "3d-modeling",
+    "3d-pipeline",
+    "3d-software",
+    "3d-workflow",
+    "addon",
+    "asset-transfer",
+    "automation",
+    "blender",
+    "blender-addon",
+    "blender-integration",
+    "file-import",
+    "file-importer",
+    "geometry-transfer",
+    "houdini",
+    "houdini-files",
+    "houdini-to-blender",
+    "import-automation",
+    "import-tool",
+    "performance-optimization",
+    "scale-optimization",
+    "scene-integration",
+    "scene-management",
+    "sidefx",
+    "smart-processing",
+    "technical-support",
+    "workflow-optimization"
+  ],
+  "blenderVersionMin": "",
+  "blenderVersionMax": "",
+  "renderEngines": [],
+  "miscData": [],
+  "license": "gpl"
+}

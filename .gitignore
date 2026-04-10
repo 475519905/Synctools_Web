@@ -1,0 +1,15 @@
+.DS_Store
+*.pyc
+__pycache__/
+.env
+.venv
+node_modules/
+dist/
+build/
+*.log
+.cache/
+*.zip
+*.7z
+*.rar
+*.tar.gz
+*.bak
