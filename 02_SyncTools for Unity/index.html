@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools for Unity - SyncTools Pro</title>
+    <meta name="description" content="SyncTools for Unity - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools for Unity
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools for Unity"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools for Unity" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="SyncTools for Unity" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SyncTools for Unity" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SyncTools for Unity" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SyncTools for Unity" data-index="4">
+                <img src="images/05_gallery.jpg" alt="SyncTools for Unity" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools for Unity</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">动画</span>
+                    <span class="meta-tag">导入导出</span>
+                    <span class="meta-tag">建模</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/Synctools_unity.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件、动画、导入导出、建模</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">4.2 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">授权协议</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">animation-pipeline</span>
+                    <span class="compat-chip">asset-transfer</span>
+                    <span class="compat-chip">copy-paste</span>
+                    <span class="compat-chip">fbx-export</span>
+                    <span class="compat-chip">fbx-import</span>
+                    <span class="compat-chip">maya-integration</span>
+                    <span class="compat-chip">multi-software</span>
+                    <span class="compat-chip">productivity</span>
+                    <span class="compat-chip">scene-management</span>
+                    <span class="compat-chip">scene-sync</span>
+                    <span class="compat-chip">unity-integration</span>
+                    <span class="compat-chip">workflow</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <h1>SyncTools for Unity</h1><h2>概述</h2><p><strong>SyncTools Pro</strong> 是一款跨软件工具，旨在简化不同应用程序之间复制和粘贴场景数据的流程。只需一键即可将物体（包括网格、灯光、摄像机、材质、动画等）从一个场景导出并导入到另一个场景中，大幅节省生产流程中的时间和精力。</p><hr><h2>
+<img src="images/desc_00_6dad4b4ae76b157acd543528118ad2bb.png" style="max-width:100%;"><br>
+</h2><h2>多 DCC 平台支持</h2><p>SyncTools 系列现已扩展支持主流数字内容创作软件，包括：</p><ul>
+<li><p>✅ SyncTools for Maya（已发布）</p></li>
+<li><p>✅ SyncTools for 3ds Max（已发布）</p></li>
+<li><p>✅ SyncTools for Houdini（已发布）</p></li>
+<li><p>✅ SyncTools for Cinema 4D（已发布）</p></li>
+<li><p>✅ SyncTools for Rhino（已发布）</p></li>
+<li><p>✅ SyncTools for Marvelous Designer（已发布）</p></li>
+<li><p>✅ SyncTools for Unity（已发布）</p></li>
+<li><p>✅ SyncTools for Substance Painter（已发布）</p></li>
+<li><p>✅ SyncTools for Unreal Engine（已发布）</p></li>
+<li><p>✅ SyncTools for Zbrush（已发布）</p></li>
+</ul><p>所有插件采用统一的数据交换协议，实现<strong>跨平台无损资产转换</strong>以及真正的<strong>多软件协作工作流</strong>。</p><hr><h2>
+<img src="images/desc_01_68ea4385611cdc92d5d134cc4a5e8b9e.jpg" style="max-width:100%;"><br>
+</h2><h2>
+<img src="images/desc_02_24cc6c7bd50d0ba08f942fc618691ecf.jpg" style="max-width:100%;"><br>
+</h2><h2><img src="images/desc_03_51d874f53b04411317bd0d22b561af36.jpg" style="max-width:100%;"></h2><h2>SyncTools for Unity 的功能</h2><p>SyncTools for Unity 专注于<strong>在 Unity 与外部工具之间快速交换场景数据</strong>，适用于以下工作流：</p><ul>
+<li>
+<p>将 DCC 工具中的布局/灯光/摄像机设置导入 Unity</p>
+</li>
+<li>
+<p>将选定的 Unity 场景对象发送至其他 DCC 工具进行精细调整</p>
+</li>
+<li>
+<p>在 Unity 与外部工具之间快速迭代，无需手动重建场景</p>
+</li>
+</ul><p>
+
+
+</p><blockquote>
+<p>注意：SyncTools 传输受支持的场景数据。Unity 特有的组件和行为在导入后可能仍需手动设置。</p>
+</blockquote><h2>Unity 安装与使用</h2><p><img src="images/desc_04_d2d941a528e1643d286b82a7a612cfe3.jpg" style="max-width:100%;"><br></p><h3>1. 插件安装</h3><p><strong>前提条件</strong></p><ul>
+<li>
+<p><strong>Unity 版本</strong>：2020.3 LTS 及更高版本</p>
+<ul><li><p>推荐：<strong>2021.3+ / 2022.3+ / 2023.x</strong></p></li></ul>
+</li>
+<li><p><strong>必需包</strong>：<strong>FBX Exporter</strong>（<code>com.unity.formats.fbx</code>）</p></li>
+</ul><p><strong>安装 FBX Exporter 包</strong></p><ol>
+<li><p>打开 Unity 编辑器 → <strong>Window &gt; 包管理器</strong></p></li>
+<li><p>点击左上角 <strong>+</strong> → <strong>通过 git URL 添加包</strong></p></li>
+<li>
+<p>输入：<code>com.unity.formats.fbx</code></p>
+<ul><li><p>或在 <strong>Unity Registry</strong> 中搜索 <strong>FBX Exporter</strong> 并安装</p></li></ul>
+</li>
+<li><p>等待安装完成</p></li>
+</ol><p><strong>安装 SyncTools 插件</strong></p><ol>
+<li><p>将 <code>SyncTools</code> 文件夹复制到：<code>Assets/</code></p></li>
+<li><p>Unity 自动编译脚本，安装完成</p></li>
+<li><p>在 Unity 菜单栏中即可找到 <strong>SyncTools</strong></p></li>
+</ol><hr><h3>2. 插件设置</h3><p><strong>打开设置窗口</strong></p><ul><li><p>Unity 菜单栏 → <strong>SyncTools &gt; 设置</strong></p></li></ul><p><strong>配置选项</strong></p><ul>
+<li>
+<p><strong>缓存路径（缓存 路径）</strong><br>指定用于复制/粘贴交换的缓存目录。</p>
+<ul>
+<li><p>默认：<code>文档s/cache</code></p></li>
+<li><p>必须与 Blender/Maya 端使用的缓存路径一致</p></li>
+</ul>
+</li>
+<li>
+<p><strong>导入文件夹（导入 文件夹）</strong><br>指定导入的资产在 Unity 项目中的存储位置。</p>
+<ul>
+<li><p>必须以 <code>Assets/</code> 开头</p></li>
+<li><p>默认：<code>Assets/SyncTools缓存/Incoming</code></p></li>
+</ul>
+</li>
+<li>
+<p><strong>导入后删除缓存文件（删除 缓存 文件s after 导入）</strong><br>启用后，粘贴完成后自动删除临时缓存文件。</p>
+<ul><li><p>默认：<strong>启用</strong></p></li></ul>
+</li>
+<li><p><strong>设置导入摄像机近裁剪面（设置 导入 Camera Near Clip）</strong><br>启用后，导入的摄像机将自动应用近裁剪面数值。</p></li>
+<li>
+<p><strong>近裁剪面数值（Near Clip 值）</strong><br>摄像机设置启用时使用。</p>
+<ul><li><p>默认：<code>1.0</code></p></li></ul>
+</li>
+</ul><p>✅ 更改内容自动保存至 <strong>Unity 编辑orPrefs</strong>。</p><hr><h3>3. 工作流程</h3><h4>复制</h4><ol>
+<li><p>选择要复制的 Game对象（在层级面板或场景视图中）</p></li>
+<li>
+<p>使用 <strong>SyncTools &gt; 复制 (导出 Selected)</strong></p>
+<ul><li><p>快捷键：<strong>Ctrl+Shift+C</strong>（Windows）/ <strong>Cmd+Shift+C</strong>（Mac）</p></li></ul>
+</li>
+<li><p>SyncTools 将选中内容导出到共享缓存，供其他 DCC 软件使用。</p></li>
+</ol><h4>粘贴</h4><ol>
+<li><p>切换到目标场景</p></li>
+<li>
+<p>使用 <strong>SyncTools &gt; 粘贴 (导入 Latest)</strong></p>
+<ul><li><p>快捷键：<strong>Ctrl+Shift+V</strong>（Windows）/ <strong>Cmd+Shift+V</strong>（Mac）</p></li></ul>
+</li>
+<li><p>SyncTools 导入最新的缓存数据，应用设置（如已启用），并清理临时文件（如已启用）。</p></li>
+</ol><p>✅ 所有操作均支持 <strong>Unity 撤销</strong>。</p><hr><h2>版本兼容性</h2><p><strong>官方支持</strong></p><ul>
+<li><p>Unity <strong>2021.3 LTS / 2022.3 LTS / 2023.x</strong></p></li>
+<li><p>Blender <strong>4.0+</strong></p></li>
+</ul><p><strong>实验性支持</strong></p><ul><li><p>Unity <strong>2020.3 LTS</strong>（部分功能可能受限）</p></li></ul><p><strong>必需包</strong></p><ul><li>
+<p>FBX Exporter（<code>com.unity.formats.fbx</code>）</p>
+<ul>
+<li><p>最低版本：<strong>7.1.0</strong></p></li>
+<li><p>推荐：<strong>最新稳定版</strong></p></li>
+</ul>
+</li></ul><hr><h2>数据兼容性</h2><h3>完全支持</h3><ul>
+<li><p>✔ 基础几何体（网格）</p></li>
+<li><p>✔ 变换层级</p></li>
+<li><p>✔ 核心材质属性（PBR 工作流）</p></li>
+<li><p>✔ 点光源 / 聚光灯 / 平行光</p></li>
+<li><p>✔ 基础动画关键帧</p></li>
+<li><p>✔ 摄像机参数（FOV / 焦距）</p></li>
+</ul><h3>部分支持</h3><ul>
+<li><p>⚠ 复杂着色器节点（自动转换为 Unity 标准材质）</p></li>
+<li><p>⚠ 骨骼动画（需要匹配 Unity Avatar 系统）</p></li>
+<li><p>⚠ UV 贴图（支持标准 UV 通道）</p></li>
+<li><p>⚠ 法线贴图（可能需要在导入设置中启用）</p></li>
+</ul><h3>不支持</h3><ul>
+<li><p>✖ Unity 特有组件（碰撞体、刚体等——需手动添加）</p></li>
+<li><p>✖ 粒子系统</p></li>
+<li><p>✖ 物理约束</p></li>
+<li><p>✖ 自定义着色器</p></li>
+<li><p>✖ 程序化内容</p></li>
+</ul><hr><h2>重要说明</h2><p>1️⃣ <strong>缓存路径同步</strong><br>确保 Unity 端的缓存路径与 Blender/Maya 使用的缓存路径一致，否则交换将失败。</p><p>2️⃣ <strong>FBX Exporter 依赖</strong><br>插件依赖 Unity 的 FBX Exporter。若未安装，复制操作将失败并提示安装。</p><p>3️⃣ <strong>导入文件夹规则</strong><br>导入文件夹必须以 <code>Assets/</code> 开头，否则导入将失败。</p><p>4️⃣ <strong>命名规范</strong><br>特殊字符（如 <code>@ # %</code>）可能导致导入问题。重复名称会自动处理。</p><p>5️⃣ <strong>插件依赖</strong><br>为获得最佳效果，请在所有受支持的 DCC 应用中使用相同版本的 SyncTools。（请查阅版本说明了解兼容性更新。）</p><hr><h2>总结</h2><p>SyncTools Pro 为从其他 DCC 软件向 Unity 传输场景数据提供了流畅的复制/粘贴工作流。借助简单的操作和一致的设置，您可以高效交换详细的场景内容，保持生产进度。</p><p>如需进一步协助，欢迎随时联系我们。</p><hr><h2>支持 Blender 基金会</h2><p>我们相信回馈让我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分捐献给 Blender 基金会。感谢您帮助我们为开源创作的未来贡献力量。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <h1>SyncTools Pro 安装与使用指南</h1><h2>📦 安装</h2><h3>Unity 设置</h3><h4>第一步：安装 FBX Exporter 包</h4><ol>
+<li><p>打开 Unity 编辑器</p></li>
+<li><p>进入 <strong>Window &gt; 包管理器</strong></p></li>
+<li><p>点击左上角 <strong>+</strong> 按钮，选择<strong>通过 git URL 添加包</strong></p></li>
+<li>
+<p>输入：<code>com.unity.formats.fbx</code></p>
+<ul><li><p>或在 <strong>Unity Registry</strong> 中搜索 <strong>FBX Exporter</strong> 并安装</p></li></ul>
+</li>
+<li><p>等待安装完成</p></li>
+</ol><h4>第二步：安装 SyncTools 插件</h4><ol>
+<li><p>将 <code>SyncTools</code> 文件夹复制到 Unity 项目的 <code>资产s</code> 目录中</p></li>
+<li><p>Unity 将自动编译。完成后，顶部菜单栏中将出现 <strong>SyncTools</strong> 菜单</p></li>
+</ol><h4>第三步：配置设置</h4><ol>
+<li><p>打开 <strong>SyncTools &gt; 设置</strong></p></li>
+<li>
+<p>设置<strong>缓存路径（缓存 路径）</strong></p>
+<ul>
+<li><p>默认：<code>文档s/cache</code></p></li>
+<li><p>⚠️ <strong>重要：</strong>必须与 Blender/Maya 使用的缓存路径一致</p></li>
+</ul>
+</li>
+<li>
+<p>设置<strong>导入文件夹（导入 文件夹）</strong></p>
+<ul>
+<li><p>默认：<code>Assets/SyncTools缓存/Incoming</code></p></li>
+<li><p>必须以 <code>Assets/</code> 开头</p></li>
+</ul>
+</li>
+</ol><hr><h2>🚀 快速入门</h2><h3>从 Unity 复制到 Blender/Maya</h3><ol>
+<li>
+<p><strong>选择对象</strong></p>
+<ul><li><p>在 Unity 中，在<strong>层级面板</strong>中选择要导出的 Game对象</p></li></ul>
+</li>
+<li>
+<p><strong>复制（导出选中内容）</strong></p>
+<ul>
+<li><p>菜单：<strong>SyncTools &gt; 复制 (导出 Selected)</strong></p></li>
+<li><p>快捷键：<code>Ctrl+Shift+C</code>（Windows）或 <code>Cmd+Shift+C</code>（Mac）</p></li>
+</ul>
+</li>
+<li>
+<p><strong>完成</strong></p>
+<ul>
+<li><p>导出的数据已保存至缓存目录</p></li>
+<li><p>现在可以在 Blender/Maya 端进行粘贴/导入</p></li>
+</ul>
+</li>
+</ol><h3>从 Blender/Maya 粘贴到 Unity</h3><ol>
+<li>
+<p><strong>确认缓存路径一致</strong></p>
+<ul><li><p>确认 Unity 的<strong>缓存路径</strong>与 Blender/Maya 的相同</p></li></ul>
+</li>
+<li>
+<p><strong>粘贴（导入最新内容）</strong></p>
+<ul>
+<li><p>菜单：<strong>SyncTools &gt; 粘贴 (导入 Latest)</strong></p></li>
+<li><p>快捷键：<code>Ctrl+Shift+V</code>（Windows）或 <code>Cmd+Shift+V</code>（Mac）</p></li>
+</ul>
+</li>
+<li>
+<p><strong>完成</strong></p>
+<ul>
+<li><p>最新的缓存内容被导入并实例化到场景中</p></li>
+<li><p>对象名称和层级结构自动恢复</p></li>
+</ul>
+</li>
+</ol><hr><h2>⚙️ 设置参考</h2><h3>缓存路径（缓存 路径）</h3><ul>
+<li><p><strong>用途：</strong>存储用于复制/粘贴交换的缓存文件</p></li>
+<li><p><strong>默认：</strong><code>文档s/cache</code></p></li>
+<li><p><strong>要求：</strong>必须与 Blender/Maya 使用的路径相同</p></li>
+</ul><h3>导入文件夹（导入 文件夹）</h3><ul>
+<li><p><strong>用途：</strong>导入的资产在 Unity 项目中的存放位置</p></li>
+<li><p><strong>默认：</strong><code>Assets/SyncTools缓存/Incoming</code></p></li>
+<li><p><strong>要求：</strong>必须以 <code>Assets/</code> 开头</p></li>
+</ul><h3>导入后删除缓存文件（删除 缓存 文件s After 导入）</h3><ul>
+<li><p><strong>用途：</strong>粘贴成功后自动清理缓存文件</p></li>
+<li><p><strong>默认：</strong>启用</p></li>
+<li><p><strong>建议：</strong>保持启用，防止缓存文件夹不断增大</p></li>
+</ul><h3>设置导入摄像机近裁剪面（设置 导入ed Camera Near Clip）</h3><ul>
+<li><p><strong>用途：</strong>自动为导入的摄像机设置近裁剪面</p></li>
+<li><p><strong>默认：</strong>启用，数值为 <code>1.0</code></p></li>
+<li><p><strong>使用场景：</strong>避免 Unity 中过小的近裁剪面值导致的渲染问题</p></li>
+</ul><hr><h2>⌨️ 快捷键</h2><table>
+<thead><tr>
+<th>操作</th>
+<th>Windows</th>
+<th>Mac</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>复制</td>
+<td><code>Ctrl+Shift+C</code></td>
+<td><code>Cmd+Shift+C</code></td>
+</tr>
+<tr>
+<td>粘贴</td>
+<td><code>Ctrl+Shift+V</code></td>
+<td><code>Cmd+Shift+V</code></td>
+</tr>
+</tbody>
+</table><p><strong>自定义快捷键：</strong>Unity 菜单 <strong>编辑 &gt; Shortcuts</strong></p><hr><h2>📋 工作流示例</h2><h3>场景一：Unity → Blender</h3><pre><code>1. Unity：选择对象 → 复制（Ctrl+Shift+C）
+2. Blender：打开目标场景 → 粘贴操作
+3. 完成：对象已导入 Blender
+</code></pre><h3>场景二：Maya → Unity</h3><pre><code>1. Maya：选择对象 → 复制操作
+2. Unity：打开目标场景 → 粘贴（Ctrl+Shift+V）
+3. 完成：对象已导入 Unity 场景
+</code></pre><h3>场景三：迭代循环</h3><pre><code>1. Unity → Blender（编辑材质）
+2. Blender → Unity（预览效果）
+3. Unity → Blender（继续调整）
+...根据需要重复
+</code></pre><hr><h2>⚠️ 故障排除</h2><h3>问题一：复制失败，提示缺少 FBX Exporter</h3><p><strong>解决方案：</strong></p><ul>
+<li><p>确认 FBX Exporter 包已安装</p></li>
+<li><p>在 包管理器 中搜索并安装 <code>com.unity.formats.fbx</code></p></li>
+</ul><h3>问题二：粘贴失败，找不到缓存文件</h3><p><strong>解决方案：</strong></p><ul>
+<li><p>确认缓存路径与 Blender/Maya 一致</p></li>
+<li><p>确保已在 Blender/Maya 端执行了复制/导出操作</p></li>
+<li><p>检查缓存文件夹中是否存在 <code>export_*.fbx</code> 文件</p></li>
+</ul><h3>问题三：导入的对象名称不正确</h3><p><strong>解决方案：</strong></p><ul>
+<li><p>确认缓存目录中存在 <code>hierarchy.txt</code></p></li>
+<li><p>检查该文件是否被其他进程锁定或已损坏</p></li>
+</ul><h3>问题四：导入后材质丢失</h3><p><strong>解决方案：</strong></p><ul>
+<li><p>检查文件内的材质/贴图路径</p></li>
+<li><p>确保贴图文件位于预期目录中</p></li>
+<li><p>在 Unity Inspector 中检查 FBX 导入的<strong>材质</strong>设置</p></li>
+</ul><hr><h2>📌 重要说明</h2><ol>
+<li><p>✅ <strong>缓存路径必须一致</strong>（Unity、Blender、Maya 三端）</p></li>
+<li><p>✅ <strong>Unity 端必须安装 FBX Exporter</strong></p></li>
+<li><p>✅ <strong>命名规则：</strong>避免使用特殊字符（如 <code>@#%</code>）</p></li>
+<li><p>✅ <strong>版本一致性：</strong>在所有平台使用相同版本的 SyncTools</p></li>
+<li><p>✅ <strong>支持撤销：</strong>所有操作均支持 Unity 撤销（<code>Ctrl+Z</code>）</p></li>
+</ol><hr><h2>🔄 版本兼容性</h2><h3>Unity 支持</h3><ul>
+<li><p>✅ <strong>官方支持：</strong>2021.3 LTS / 2022.3 LTS / 2023.x</p></li>
+<li><p>⚠️ <strong>实验性：</strong>2020.3 LTS</p></li>
+</ul><h3>FBX Exporter</h3><ul>
+<li><p><strong>最低版本：</strong>7.1.0</p></li>
+<li><p><strong>推荐：</strong>最新稳定版</p></li>
+</ul><hr><h2>📞 获取帮助</h2><p>如遇到问题：</p><ul>
+<li><p>查看 Unity 的<strong>控制台</strong>以获取错误信息</p></li>
+<li><p>确认所有应用中的插件版本一致</p></li>
+<li><p>检查缓存路径设置是否正确</p></li>
+</ul><hr><p><strong>SyncTools Pro——让跨软件协作更轻松！</strong> 🎨🚀</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/Synctools_unity.zip">Synctools_unity.zip</a><span class="file-size">101.9 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

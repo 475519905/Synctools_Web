@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlenderMarket 产品备份</title>
+    <meta name="description" content="共归档 40 个产品">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .hero { padding: 80px 20px 20px; text-align: center; }
+        .hero h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1px; }
+        .hero p { margin-top: 12px; color: #888; font-size: 1.05rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .filter-bar { display: flex; align-items: center; gap: 12px; margin: 30px 0 24px; flex-wrap: wrap; }
+        .filter-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+        .filter-input::placeholder { color: #555; }
+        .filter-input:focus { border-color: rgba(255,255,255,0.3); }
+        .filter-count { color: #666; font-size: 0.85rem; white-space: nowrap; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all .3s ease;
+        }
+        .card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+        .card-img { height: 180px; overflow: hidden; background: #0a0a0a; display: flex; align-items: center; justify-content: center; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+        .card:hover .card-img img { transform: scale(1.05); }
+        .no-cover { color: #666; font-size: 0.9rem; }
+        .card-body { padding: 18px; }
+        .card-body h3 { font-size: 1rem; font-weight: 700; color: #f0f0f0; margin-bottom: 8px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-meta { font-size: 0.78rem; color: #666; margin-bottom: 10px; }
+        .card-bottom { display: flex; justify-content: space-between; align-items: center; }
+        .card-price { font-size: 1.1rem; font-weight: 800; color: #ffffff; }
+        footer { margin-top: 60px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        @media (max-width: 768px) {
+            .hero { padding: 60px 16px 16px; }
+            .hero h1 { font-size: 2rem; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>BlenderMarket 产品备份</h1>
+        <p>共归档 40 个产品</p>
+    </header>
+
+    <main class="container">
+        <div class="filter-bar">
+            <input class="filter-input" type="text" id="search" placeholder="搜索产品名称..." autocomplete="off">
+            <span class="filter-count" id="count">显示 40 / 40</span>
+        </div>
+        <div class="grid" id="grid">
+            <a class="card" href="01_Super3D Extra Format Bridge/index.html" data-name="Super3D Extra Format Bridge">
+                <div class="card-img"><img src="01_Super3D Extra Format Bridge/images/00_cover.png" alt="Super3D Extra Format Bridge" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Super3D Extra 格式 Bridge</h3>
+                    <p class="card-meta">插件</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="02_SyncTools for Unity/index.html" data-name="SyncTools for Unity">
+                <div class="card-img"><img src="02_SyncTools for Unity/images/00_cover.png" alt="SyncTools for Unity" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools for Unity</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="03_Outliner Follow Active Object/index.html" data-name="大纲编辑器：跟随激活物体">
+                <div class="card-img"><img src="03_Outliner Follow Active Object/images/00_cover.png" alt="大纲编辑器：跟随激活物体" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>大纲编辑器：跟随激活物体</h3>
+                    <p class="card-meta">插件、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$5.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="04_Import Coreldraw Graphics Filecdr/index.html" data-name="导入 核心lDRAW 图形文件（.cdr）">
+                <div class="card-img"><img src="04_Import Coreldraw Graphics Filecdr/images/00_cover.png" alt="导入 核心lDRAW 图形文件（.cdr）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>导入 核心lDRAW 图形文件（.cdr）</h3>
+                    <p class="card-meta">插件、导入导出、材质着色、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$8.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="05_MIDI Piano Motion Tools Pro Max - Transform Music into Visual Magic/index.html" data-name="MIDI Piano Motion Tools Pro Max — 将音乐转化为视觉魔法">
+                <div class="card-img"><img src="05_MIDI Piano Motion Tools Pro Max - Transform Music into Visual Magic/images/00_cover.png" alt="MIDI Piano Motion Tools Pro Max — 将音乐转化为视觉魔法" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>MIDI Piano Motion Tools Pro Max — 将音乐转化为视觉魔法</h3>
+                    <p class="card-meta">插件、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$36.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="06_Voxelizer Pro - Advanced Model Voxelization Tool for Blender/index.html" data-name="Voxelizer Pro — Blender 高级模型体素化工具">
+                <div class="card-img"><img src="06_Voxelizer Pro - Advanced Model Voxelization Tool for Blender/images/00_cover.png" alt="Voxelizer Pro — Blender 高级模型体素化工具" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Voxelizer Pro — Blender 高级模型体素化工具</h3>
+                    <p class="card-meta">插件、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$8.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="07_Import Adobe Illustrator File ai/index.html" data-name="导入 Adobe Illustrator 文件（.ai）">
+                <div class="card-img"><img src="07_Import Adobe Illustrator File ai/images/00_cover.png" alt="导入 Adobe Illustrator 文件（.ai）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>导入 Adobe Illustrator 文件（.ai）</h3>
+                    <p class="card-meta">插件、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$8.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="08_Alt Surface Navigation/index.html" data-name="Alt 曲面导航">
+                <div class="card-img"><img src="08_Alt Surface Navigation/images/00_cover.png" alt="Alt 曲面导航" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Alt 曲面导航</h3>
+                    <p class="card-meta">插件、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$5.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="09_CrossFire UCC File Export-Import ucc/index.html" data-name="Cross火焰 UCC 文件导入导出（.ucc）">
+                <div class="card-img"><img src="09_CrossFire UCC File Export-Import ucc/images/00_cover.png" alt="Cross火焰 UCC 文件导入导出（.ucc）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Cross火焰 UCC 文件导入导出（.ucc）</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="10_Autodesk 3ds Max File Import-Exportmax/index.html" data-name="Autodesk 3ds Max 文件导入导出（.max）">
+                <div class="card-img"><img src="10_Autodesk 3ds Max File Import-Exportmax/images/00_cover.png" alt="Autodesk 3ds Max 文件导入导出（.max）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Autodesk 3ds Max 文件导入导出（.max）</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="11_ADVANCED MAZE GENERATOR PRO - Professional Maze Creation for Blender/index.html" data-name="高级迷宫生成器 PRO — Blender 专业迷宫创建工具">
+                <div class="card-img"><img src="11_ADVANCED MAZE GENERATOR PRO - Professional Maze Creation for Blender/images/00_cover.png" alt="高级迷宫生成器 PRO — Blender 专业迷宫创建工具" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>高级迷宫生成器 PRO — Blender 专业迷宫创建工具</h3>
+                    <p class="card-meta">插件、预设</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="12_Smart Normals Fix Tool - Intelligent Mesh Normal Repair/index.html" data-name="智能法线修复工具 — 智能网格法线修复">
+                <div class="card-img"><img src="12_Smart Normals Fix Tool - Intelligent Mesh Normal Repair/images/00_cover.png" alt="智能法线修复工具 — 智能网格法线修复" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>智能法线修复工具 — 智能网格法线修复</h3>
+                    <p class="card-meta">插件、材质着色、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="13_EasyBake The Ultimate All-in-One Baking Toolkit/index.html" data-name="简单Bake：终极一体化烘焙工具包">
+                <div class="card-img"><img src="13_EasyBake The Ultimate All-in-One Baking Toolkit/images/00_cover.png" alt="简单Bake：终极一体化烘焙工具包" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>简单Bake：终极一体化烘焙工具包</h3>
+                    <p class="card-meta">插件、导入导出、材质着色、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="14_SuperBake Pro The Ultimate Animation Baking Solution for Blender/index.html" data-name="SuperBake Pro — Blender 终极动画烘焙解决方案">
+                <div class="card-img"><img src="14_SuperBake Pro The Ultimate Animation Baking Solution for Blender/images/00_cover.png" alt="SuperBake Pro — Blender 终极动画烘焙解决方案" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SuperBake Pro — Blender 终极动画烘焙解决方案</h3>
+                    <p class="card-meta">插件、导入导出、建模、绑定</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="15_Maxon Cinema 4D Import-Export Pro/index.html" data-name="Maxon Cinema 4D 导入导出 Pro">
+                <div class="card-img"><img src="15_Maxon Cinema 4D Import-Export Pro/images/00_cover.png" alt="Maxon Cinema 4D 导入导出 Pro" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Maxon Cinema 4D 导入导出 Pro</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="16_Autodesk Maya File Import-Export mb ma/index.html" data-name="Autodesk Maya 文件导入导出（.mb .ma）">
+                <div class="card-img"><img src="16_Autodesk Maya File Import-Export mb ma/images/00_cover.png" alt="Autodesk Maya 文件导入导出（.mb .ma）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Autodesk Maya 文件导入导出（.mb .ma）</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="17_SyncTools for SketchUp/index.html" data-name="SyncTools for Sketch上">
+                <div class="card-img"><img src="17_SyncTools for SketchUp/images/00_cover.png" alt="SyncTools for Sketch上" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools for Sketch上</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="18_Octane Material Transfer Master/index.html" data-name="Octane 材质传输大师">
+                <div class="card-img"><img src="18_Octane Material Transfer Master/images/00_cover.png" alt="Octane 材质传输大师" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Octane 材质传输大师</h3>
+                    <p class="card-meta">动画、导入导出、建模、模型</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="19_SyncTools Pro For Zbrush/index.html" data-name="SyncTools Pro For ZBrush">
+                <div class="card-img"><img src="19_SyncTools Pro For Zbrush/images/00_cover.png" alt="SyncTools Pro For ZBrush" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro For ZBrush</h3>
+                    <p class="card-meta">插件、导入导出、材质着色、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="20_MIDI Piano Motion Tools Pro/index.html" data-name="MIDI Piano Motion Tools Pro">
+                <div class="card-img"><img src="20_MIDI Piano Motion Tools Pro/images/00_cover.png" alt="MIDI Piano Motion Tools Pro" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>MIDI Piano Motion Tools Pro</h3>
+                    <p class="card-meta">插件、动画、导入导出、绑定</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$30.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="21_After Effects Link For Blender/index.html" data-name="After 效果s 链接 For Blender">
+                <div class="card-img"><img src="21_After Effects Link For Blender/images/00_cover.png" alt="After 效果s 链接 For Blender" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>After 效果s 链接 For Blender</h3>
+                    <p class="card-meta">插件、资产管理、导入导出、材质着色</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="22_SyncTools DCC Integration Suite/index.html" data-name="SyncTools DCC 集成套件">
+                <div class="card-img"><img src="22_SyncTools DCC Integration Suite/images/00_cover.png" alt="SyncTools DCC 集成套件" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools DCC 集成套件</h3>
+                    <p class="card-meta">插件、资产管理、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$99.99</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="23_SyncTools for Unreal Engine 5/index.html" data-name="SyncTools for 虚幻引擎 5">
+                <div class="card-img"><img src="23_SyncTools for Unreal Engine 5/images/00_cover.png" alt="SyncTools for 虚幻引擎 5" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools for 虚幻引擎 5</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="24_Import-Export 3d Manufacturing File3mf/index.html" data-name="导入导出 3D 制造文件（.3mf）">
+                <div class="card-img"><img src="24_Import-Export 3d Manufacturing File3mf/images/00_cover.png" alt="导入导出 3D 制造文件（.3mf）" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>导入导出 3D 制造文件（.3mf）</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="25_SyncTools Pro For Houdini/index.html" data-name="SyncTools Pro For Houdini">
+                <div class="card-img"><img src="25_SyncTools Pro For Houdini/images/00_cover.png" alt="SyncTools Pro For Houdini" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro For Houdini</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="26_SyncTools for Marvelous Designer/index.html" data-name="SyncTools for Marvelous Designer">
+                <div class="card-img"><img src="26_SyncTools for Marvelous Designer/images/00_cover.png" alt="SyncTools for Marvelous Designer" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools for Marvelous Designer</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="27_SyncTools Pro For Rhino/index.html" data-name="SyncTools Pro For Rhino">
+                <div class="card-img"><img src="27_SyncTools Pro For Rhino/images/00_cover.png" alt="SyncTools Pro For Rhino" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro For Rhino</h3>
+                    <p class="card-meta">插件、资产管理、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="28_SyncTools Pro For 3ds Max/index.html" data-name="SyncTools Pro For 3ds Max">
+                <div class="card-img"><img src="28_SyncTools Pro For 3ds Max/images/00_cover.png" alt="SyncTools Pro For 3ds Max" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro For 3ds Max</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="29_SideFX Houdini Import-Export hip File/index.html" data-name="SideFX Houdini 导入导出（.hip）文件">
+                <div class="card-img"><img src="29_SideFX Houdini Import-Export hip File/images/00_cover.png" alt="SideFX Houdini 导入导出（.hip）文件" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SideFX Houdini 导入导出（.hip）文件</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="30_SyncTools Pro for Maya/index.html" data-name="SyncTools Pro for Maya">
+                <div class="card-img"><img src="30_SyncTools Pro for Maya/images/00_cover.png" alt="SyncTools Pro for Maya" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro for Maya</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$15.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="31_Photoshop Link for Blender/index.html" data-name="Photoshop Link for Blender">
+                <div class="card-img"><img src="31_Photoshop Link for Blender/images/00_cover.png" alt="Photoshop Link for Blender" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Photoshop Link for Blender</h3>
+                    <p class="card-meta">插件、资产管理、导入导出、材质着色</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="32_Origin Adjustment Control/index.html" data-name="Origin Adjustment Control">
+                <div class="card-img"><img src="32_Origin Adjustment Control/images/00_cover.png" alt="Origin Adjustment Control" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Origin Adjustment Control</h3>
+                    <p class="card-meta">插件、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$5.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="33_Material Batch Management Tool/index.html" data-name="Material Batch Management Tool">
+                <div class="card-img"><img src="33_Material Batch Management Tool/images/00_cover.png" alt="Material Batch Management Tool" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Material Batch Management Tool</h3>
+                    <p class="card-meta">插件、资产管理、材质着色</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$5.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="34_Blender X-Particles Importer/index.html" data-name="Blender X-Particles Importer">
+                <div class="card-img"><img src="34_Blender X-Particles Importer/images/00_cover.png" alt="Blender X-Particles Importer" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Blender X-Particles Importer</h3>
+                    <p class="card-meta">插件、动画、资产管理、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="35_Blender Live Sync Cinema 4D/index.html" data-name="Blender 与 Cinema 4D 实时同步">
+                <div class="card-img"><img src="35_Blender Live Sync Cinema 4D/images/00_cover.png" alt="Blender 与 Cinema 4D 实时同步" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Blender 与 Cinema 4D 实时同步</h3>
+                    <p class="card-meta">插件、动画、导入导出、建模</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="36_Blender Batch Execution Tools/index.html" data-name="Blender Batch Execution Tools">
+                <div class="card-img"><img src="36_Blender Batch Execution Tools/images/00_cover.png" alt="Blender Batch Execution Tools" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Blender Batch Execution Tools</h3>
+                    <p class="card-meta">插件、资产管理</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$5.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="37_MIDI PianoMotion Tools V150/index.html" data-name="MIDI PianoMotion Tools V1.50">
+                <div class="card-img"><img src="37_MIDI PianoMotion Tools V150/images/00_cover.png" alt="MIDI PianoMotion Tools V1.50" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>MIDI PianoMotion Tools V1.50</h3>
+                    <p class="card-meta">插件、动画、导入导出、绑定</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="38_Maxon Cinema 4D File Import-Export c4d File/index.html" data-name="Maxon Cinema 4D File Import-Export c4d File">
+                <div class="card-img"><img src="38_Maxon Cinema 4D File Import-Export c4d File/images/00_cover.png" alt="Maxon Cinema 4D File Import-Export c4d File" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Maxon Cinema 4D File Import-Export c4d File</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="39_Import Cinema4D Octane Material Pro v210/index.html" data-name="Import Cinema4D Octane Material Pro v210">
+                <div class="card-img"><img src="39_Import Cinema4D Octane Material Pro v210/images/00_cover.png" alt="Import Cinema4D Octane Material Pro v210" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>Import Cinema4D Octane Material Pro v210</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$12.00</span>
+                    </div>
+                </div>
+            </a>
+            <a class="card" href="40_SyncTools Pro for Cinema 4D/index.html" data-name="SyncTools Pro for Cinema 4D">
+                <div class="card-img"><img src="40_SyncTools Pro for Cinema 4D/images/00_cover.png" alt="SyncTools Pro for Cinema 4D" loading="lazy"></div>
+                <div class="card-body">
+                    <h3>SyncTools Pro for Cinema 4D</h3>
+                    <p class="card-meta">插件、导入导出</p>
+                    <div class="card-bottom">
+                        <span class="card-price">$20.00</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('search');
+        const count = document.getElementById('count');
+        const cards = Array.from(document.querySelectorAll('.card'));
+        const total = cards.length;
+
+        searchInput.addEventListener('input', () => {
+            const keyword = searchInput.value.trim().toLowerCase();
+            let visible = 0;
+            cards.forEach((card) => {
+                const haystack = [
+                    card.dataset.name || '',
+                    card.querySelector('h3')?.textContent || '',
+                    card.querySelector('.card-meta')?.textContent || '',
+                ].join(' ').toLowerCase();
+                const matched = !keyword || haystack.includes(keyword);
+                card.style.display = matched ? '' : 'none';
+                if (matched) visible += 1;
+            });
+            count.textContent = `显示 ${visible} / ${total}`;
+        });
+    </script>
+</body>
+</html>

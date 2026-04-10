@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIDI Piano 运动工具 Pro Max - 音乐转化为视觉魔法</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>MIDI Piano 运动工具 Pro Max - 音乐转化为视觉魔法</h1>
+  <span class="price">$36.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="封面"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.jpg" alt="相册"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="相册"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="相册"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="相册"></div>
+  <div class="gallery-item"><img src="images/05_gallery.png" alt="相册"></div>
+  <div class="gallery-item"><img src="images/06_gallery.jpg" alt="相册"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">类别</span><span class="meta-value">插件、导入和导出、建模</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">3.6 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$36.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">动画</span>
+  <span class="tag">控制器</span>
+  <span class="tag">导入</span>
+  <span class="tag">键盘</span>
+  <span class="tag">音乐</span>
+  <span class="tag">音乐视频</span>
+  <span class="tag">钢琴</span>
+  <span class="tag">程序化</span>
+  <span class="tag">音色库</span>
+  <span class="tag">可视化</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><strong style="font-family:Degular , sans-serif;font-size:2.5rem;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">MIDI 钢琴动力工具 Pro Max – 将音乐转化为视觉魔法</font></font></font></font></strong></p><p><font style="vertical-align:inherit;"></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"></font></font></font></strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">用 </font></font></font><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"></font></font></font><font style="vertical-align:inherit;"><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">MIDI 钢琴动作工具 Pro Max</font></font></font></strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"> 让你的音乐活跃起来。这个终极 Blender 插件将 MIDI 文件转换为 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">令人惊艳的专业钢琴动画</font></font></font></font></strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"> 。</font></font></font></font><br><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">无论是用于音乐视频、教程、视觉艺术还是现场表演，这个工具都能让每个人都能轻松创建专业级动画。</font></font></font></font></p><hr><p class="">注意：视频演示使用了其他语言，<b>但实际插件语言为英文</b></p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/5sBPGXrE2XI" width="640" height="360" class="note-video-clip"></iframe></div><br><h2>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">✅主要 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">功能</font></font></font></font></strong>
+</h2><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">🎹 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">完整的钢琴动画系统</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">自动钢琴按键动画，具有逼真的节奏</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">与音乐音符同步的锤击动画</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">踏板动画（延音、柔和、保持）</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">支持全部 88 键范围（MIDI 21–108）。</font></font></font></font></p>
+<p><img src="images/desc_00_fe435d3ce35740b7f0b2ee66f86a7f92.jpg" style="max-width:100%;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><br></font></font></p>
+<p><img src="images/desc_01_5e5a07e52e631d2d5ef3b33b904e7310.jpg" style="max-width:100%;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><br></font></font></p>
+</li>
+</ul><hr><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">🎨 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">高级视觉效果</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">具有可自定义颜色的动态按键触发效果</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">基于速度和彩虹渐变的颜色模式</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">每个通道和每个按钮的可自定义颜色。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">球体下降可视化</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">完整的16 通道 MIDI 颜色管理</font></font></font></font></p>
+<p><br></p>
+</li>
+</ul><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/zFUDlEpcTUQ" width="640" height="360" class="note-video-clip"></iframe></div><hr><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">🎵 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">音频集成</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">内置 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">SF2 音色库</font></font></font></font></strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"> 用于音频生成</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">按 MIDI 通道导出音频</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">支持自定义音色库</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">高质量 流体Synth 渲染</font></font></font></font></p>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><br></font></font></p>
+</li>
+</ul><hr><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">⚡ </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">专业动画控制</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">多种插值模式（线性、常数、贝塞尔曲线、智能）。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">速度敏感型动画时长</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">支持 MIDI 控制器（音高弯曲、调制）。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">帧精度定时</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">批量动画清理和管理</font></font></font></font></p>
+<p><img src="images/desc_02_ca9dbaf8a96724b19a85af82bd18ed5d.jpg" style="max-width:100%;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><br></font></font></p>
+</li>
+</ul><hr><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">🎛️ </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">灵活的工作流</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">直观的边栏用户界面（View3D → 边栏 → 钢琴）</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">实时通道启用/禁用</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">每个通道的音频和动画静音</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">视觉序列编辑器集成</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">自动组织的动画数据</font></font></font></font></p>
+</li>
+</ul><hr><h3>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">🔧 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">高级自定义</font></font></font></font></strong>
+</h3><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">自定义按键命名规则</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">可编辑的时间、持续时间和发射强度</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">智能插值实现自然运动</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">完整的MIDI 信息显示和诊断</font></font></font></font></p>
+</li>
+</ul><hr><h2>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">✅完美 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">用于</font></font></font></font></strong>
+</h2><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">音乐视频创作者</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">音乐教育工作者和学生</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">视觉艺术家和设计师</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">动画工作室</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">表演音乐家</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">任何想要美丽的 MIDI 可视化的人</font></font></font></font></p>
+</li>
+</ul><hr><h2>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">✅工作 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">流程</font></font></font></font></strong>
+</h2><ol>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">导入内置钢琴模型（或使用你自己的钢琴模型）。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">通过钢琴面板加载你的 MIDI 文件</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">配置按钮、锤子、动画、效果和颜色。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">一键动画生成</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">根据需要调整通道和设置</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">使用 SF2 音色库导出音频</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">渲染你最后的钢琴表演动画</font></font></font></font></p>
+</li>
+</ol><hr><h2>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">✅技术 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">亮点</font></font></font></font></strong>
+</h2><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">兼容 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">Blender 4.2.0 及更高版本。</font></font></font></font></strong></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">包括捆绑的库：mido、numpy、scipy、fluidsynth</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">附带默认 SF2 音色库。</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">支持自定义音色库</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">高效的 F 曲线组织</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">基于节点的启动材质</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">完全 </font></font></font><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">支持 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">16 通道 MIDI</font></font></font></font></strong><font style="vertical-align:inherit;"></font></p>
+</li>
+</ul><hr><h2>
+<font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">✅包含 </font></font></font></font><strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">资产</font></font></font></font></strong>
+</h2><ul>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">高质量钢琴模型 </font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">默认 SF2 音色库</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">流体Synth 二进制文件</font></font></font></font></p>
+</li>
+<li>
+<p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">所需的 Python 库</font></font></font></font></p>
+</li>
+</ul><hr><p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">将你的 MIDI 文件转换为令人惊艳、富有表现力的钢琴表演，让观众为之倾倒。 </font></font></font></font><br>
+<strong><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><font style="vertical-align:inherit;">立即获取 MIDI 钢琴动作工具 Pro Max！</font></font></font></font></strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p>MIDI 钢琴动作工具 Pro Max - 音乐转化为视觉魔法
+<br>
+<br>用 MIDI 钢琴动作工具 Pro Max 让你的音乐活跃起来，这是从 MIDI 文件创建令人惊艳的钢琴动画的终极 Blender 插件。无论你是在创建音乐视频、教育内容还是艺术可视化，这个强大的工具都能让专业钢琴动画对每个人都易于使用。
+<br>
+<br>主要功能：
+<br>
+<br>🎹 完整的钢琴动画系统
+<br>- 具有逼真时序的自动钢琴按键动画
+<br>- 与音符同步的锤击动画
+<br>- 踏板动画（延音、柔和、保持）
+<br>- 支持 88 键钢琴范围（MIDI 音符 21-108）
+<br>
+<br>🎨 高级视觉效果
+<br>- 具有可自定义颜色的动态按键发射效果
+<br>- 彩虹渐变和速度基础颜色方案
+<br>- 按通道和按键的颜色自定义
+<br>- 用于音乐可视化的球体下降效果
+<br>- 多通道颜色管理（16 个 MIDI 通道）
+<br>
+<br>🎵 音频集成
+<br>- 用于音频生成的内置 SF2 音色库支持
+<br>- 按 MIDI 通道分割音频导出
+<br>- 自定义音色库管理
+<br>- 用于高质量音频渲染的 流体Synth 集成
+<br>
+<br>⚡ 专业动画控制
+<br>- 多种插值模式（线性、常数、贝塞尔曲线、智能）
+<br>- 速度敏感动画时长
+<br>- MIDI 控制器支持（音高弯曲、调制）
+<br>- 帧精确定时同步
+<br>- 批量动画清理和管理
+<br>
+<br>🎛️ 灵活的工作流
+<br>- 直观的边栏面板界面（View3D > 边栏 > 钢琴）
+<br>- 实时 MIDI 通道启用/禁用控制
+<br>- 音频和动画的按通道静音/取消静音
+<br>- 视觉序列编辑器集成
+<br>- 自动动画数据组织
+<br>
+<br>🔧 高级自定义
+<br>- 自定义按键命名约定支持
+<br>- 可调整的动画时序和时长
+<br>- 可配置的发射强度和褪色
+<br>- 用于自然运动的智能插值
+<br>- 全面的MIDI 信息显示
+<br>
+<br>完美用于：
+<br>✓ 音乐视频制作者和内容创作者
+<br>✓ 创建视觉学习材料的音乐教育工作者
+<br>✓ 探索音乐可视化的艺术家
+<br>✓ 需要钢琴场景的动画工作室
+<br>✓ 展示其表演的音乐家
+<br>✓ 任何想要漂亮地可视化 MIDI 音乐的人
+<br>
+<br>工作流：
+<br>1. 导入或附加包含的钢琴模型（或使用你自己的自定义钢琴）
+<br>2. 通过钢琴面板加载你的 MIDI 文件
+<br>3. 配置动画选项（按键、锤子、效果、颜色）
+<br>4. 一键生成动画
+<br>5. 使用内置通道控制进行微调
+<br>6. 如果需要，使用 SF2 音色库导出音频
+<br>7. 渲染你美丽的钢琴动画
+<br>
+<br>技术亮点：
+<br>- 支持 Blender 4.2.0 及更高版本
+<br>- 包括捆绑的库（mido、numpy、scipy、fluidsynth）
+<br>- 附带默认 SF2 音色库
+<br>- 自定义音色库支持
+<br>- 高效的 F 曲线管理和组织
+<br>- 基于材料节点的发射系统
+<br>- 完整的16 通道 MIDI 支持
+<br>
+<br>包含的资产：
+<br>- 高质量钢琴 3D 模型 (piano5.blend)
+<br>- 默认 SF2 音色库（植物大战僵尸任天堂 DS）
+<br>- 用于音频渲染的 流体Synth 二进制文件
+<br>- 所有所需的 Python 库
+<br>
+<br>立即获取 MIDI 钢琴动作工具 Pro Max，将你的 MIDI 文件转换为令人惊艳的动画表演，迷住你的观众！</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/MIDI_Piano_运动_工具s_Pro_Max.zip">MIDI_Piano_运动_工具s_Pro_Max.zip</a> <span class="file-size">(55.3 MB)</span></li>
+  <li><a href="files/MIDI_Piano_运动_工具s_Pro_Max_CN.zip">MIDI_Piano_运动_工具s_Pro_Max_CN.zip</a> <span class="file-size">(1.0 KB)</span></li>
+  <li><a href="files/file_2.zip">file_2.zip</a> <span class="file-size">(55.3 MB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  来自 Superhive (Blender Market) 创意者仪表板的备份
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SyncTools Pro For Houdini</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>SyncTools Pro For Houdini</h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.jpg" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">Categories</span><span class="meta-value">Addons, 动画, 导入 & 导出, Modeling</span></div>
+  <div class="meta-item"><span class="meta-label">License</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">Price</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-asset-for-vfx</span>
+  <span class="tag">3d-workflow</span>
+  <span class="tag">asset-manager</span>
+  <span class="tag">automation</span>
+  <span class="tag">blender</span>
+  <span class="tag">copy-paste</span>
+  <span class="tag">cross-software</span>
+  <span class="tag">data-exchange</span>
+  <span class="tag">export</span>
+  <span class="tag">fbx</span>
+  <span class="tag">file-transfer</span>
+  <span class="tag">houdini</span>
+  <span class="tag">import</span>
+  <span class="tag">互操作性</span>
+  <span class="tag">mesh-transfer</span>
+  <span class="tag">pipeline</span>
+  <span class="tag">production-tool</span>
+  <span class="tag">scene-management</span>
+  <span class="tag">sync-tools</span>
+  <span class="tag">time-saving</span>
+  <span class="tag">vfx</span>
+  <span class="tag">workflow</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><span style="font-family:Degular , sans-serif;font-size:2rem;"><b>SyncTools for Houdini</b></span></p><h3>概述</h3><p>SyncTools Pro 是一款跨软件工具，旨在简化不同应用程序（如 Blender 和 Houdini）之间复制和粘贴详细场景数据的过程。只需单击一下，即可将对象（包括网格、灯光、摄像机、材质、动画等）从一个场景导出并导入到另一个场景，显著节省您的制作工作流程中的时间和精力。</p><h3>多 DCC 平台支持</h3><p>SyncTools 系列现已扩展支持主要数字内容创作软件，包括：</p><ul>
+<li>
+<strong>SyncTools for Blender</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Maya</strong> (已发布)</li>
+<li>
+<strong>SyncTools for 3ds Max</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Cinema 4D</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Houdini</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Zbrush</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Rhino</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Marvelous Designer</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Substance Painter</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Unreal Engine</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Unity</strong> (开发中)</li>
+</ul><p>所有插件使用统一的数据交换协议，实现无缝跨平台、无损资产转换和真正的多软件协同工作流程。</p><p><img src="images/desc_00_e4b35d2e26385d0ab4752e0f88a93a63.jpg" style="max-width:100%;"><br></p><h3>
+<img src="images/desc_01_d59c0ded7e251bd6a7fd5e434a628687.jpg" style="max-width:100%;"><br>
+</h3><h3>Blender 端</h3><h4>1. 插件安装</h4><ul>
+<li>
+<strong>步骤 1</strong>：打开 Blender 并导航到 <code>编辑 > 偏好设置 > 插件</code>。</li>
+<li>
+<strong>步骤 2</strong>：点击 <code>安装</code> 按钮并选择 SyncTools Pro ZIP 文件。</li>
+<li>
+<strong>步骤 3</strong>：安装后，勾选 SyncTools Pro 旁边的复选框以启用插件。插件界面将出现在 3D 视图侧边栏的 SyncTools 标签页下。</li>
+</ul><h4>2. 插件设置</h4><p>在偏好设置菜单中，您可以通过直观的界面配置各种选项：</p><ul>
+<li>
+<strong>快捷键模式</strong>：根据个人工作习惯，在标准键盘快捷键与鼠标拖动方式之间进行选择。</li>
+<li>
+<strong>导入/导出选项</strong>：选择传输数据时要包含的元素。选项包括灯光、摄像机、材质、网格、骨骼和烘焙动画。</li>
+<li>
+<strong>全局缩放设置</strong>：调整导入和导出期间应用于场景的整体缩放比例。</li>
+<li>
+<strong>渲染器同步功能</strong>：启用"同步渲染器"选项（例如 Octane 材质同步）以确保材质设置在不同环境中保持一致。</li>
+</ul><blockquote>
+<p>注意：所有设置更改都会在后台自动生效，调整后无需额外操作。</p>
+</blockquote><h4>3. 工作流</h4><p><strong>复制操作</strong></p><ul>
+<li>
+<strong>选择</strong>：在 3D 视图中，选择要复制的对象。</li>
+<li>
+<strong>复制</strong>: 点击 SyncTools 面板中的 <code>复制</code> 按钮或使用指定的快捷键（默认：<code>Ctrl+Shift+C</code>）。</li>
+<li>
+<strong>导出</strong>: 插件将您的选择导出为 FBX 文件到指定的缓存文件夹（<code>Documents/cache</code> 文件夹）。</li>
+</ul><p><strong>粘贴操作</strong></p><ul>
+<li>
+<strong>切换场景</strong>：切换到目标场景或项目。</li>
+<li>
+<strong>粘贴</strong>: 点击 <code>粘贴</code> 按钮或使用相应的快捷键（默认：<code>Ctrl+Shift+V</code>）。</li>
+<li>
+<strong>导入</strong>: 插件将自动从缓存中导入最新的 FBX 文件，并根据您的导入设置过滤数据。</li>
+</ul><p><strong>使用快捷键</strong>
+除了面板按钮外，您可以使用可自定义的快捷键（例如 <code>Ctrl+Shift+C</code> 复制，<code>Ctrl+Shift+V</code> 粘贴）来简化工作流程。如有需要，可在插件设置中调整这些快捷键。</p><hr><h3>Houdini 端</h3><h4>1. 插件安装 & Initialization</h4><p><strong>系统要求：</strong></p><ul>
+<li>Houdini 16 或更高版本</li>
+<li>支持 Windows、macOS、Linux</li>
+</ul><p><strong>安装步骤：</strong></p><ol>
+<li>复制 <code>SyncTools_复制.py</code> and <code>SyncTools_粘贴.py</code> 文件复制到 Houdini 的工具栏目录中：
+<ul>
+<li>Windows: <code>C:\Users\【您的用户名】\Documents\Houdini版本\toolbar</code>
+</li>
+<li>macOS: <code>~/Documents/Houdini版本/toolbar</code>
+</li>
+<li>Linux: <code>~/Houdini版本/toolbar</code>
+</li>
+</ul>
+</li>
+<li>启动 Houdini。</li>
+<li>创建一个新的工具架标签页：
+<ul>
+<li>右键点击工具架标签栏，选择 <code>New Shelf Tab</code>。</li>
+<li>将其命名为 <code>SyncTools</code>，点击 <code>Accept</code>。</li>
+</ul>
+</li>
+<li>添加复制工具：
+<ul>
+<li>右键点击 <code>SyncTools</code> 标签页，选择 <code>New Tool</code>。</li>
+<li>将其命名为 <code>复制</code>，并将 <code>shelf_c</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+<li>添加粘贴工具：
+<ul>
+<li>再次右键点击 <code>SyncTools</code> 标签页，选择 <code>New Tool</code>。</li>
+<li>将其命名为 <code>粘贴</code>，并将 <code>shelf_p</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+</ol><blockquote>
+<p>注意：如果您使用的版本低于 Houdini 20.5，请修改脚本路径：
+<code>python > toolbar_path = os.path.expanduser("~/Documents/Houdini版本/toolbar")</code></p>
+</blockquote><h4>2. 使用插件</h4><p><strong>复制操作</strong></p><ul>
+<li>
+<strong>选择</strong>：在 Houdini 中，选择要复制的对象。</li>
+<li>
+<strong>复制命令</strong>：点击工具架上的 <code>复制</code> 按钮。</li>
+<li>
+<strong>导出</strong>: 插件将选定对象导出为 FBX 文件并保存在 <code>Documents/cache</code> 目录中。</li>
+</ul><p><strong>粘贴操作</strong></p><ul>
+<li>
+<strong>目标场景</strong>：打开或切换到要导入数据的场景。</li>
+<li>
+<strong>粘贴命令</strong>：点击工具架上的 <code>粘贴</code> 按钮。</li>
+<li>
+<strong>导入</strong>: 插件将自动从缓存中导入最新的 FBX 文件并将其集成到场景中。</li>
+</ul><hr><h3>版本兼容性</h3><p><strong>Blender 支持：</strong></p><ul>
+<li>官方支持：4.2 LTS 及更高版本</li>
+<li>实验性支持：4.0–4.1（高级功能受限）</li>
+</ul><p><strong>Houdini 支持：</strong></p><ul>
+<li>官方支持：Houdini 20.x</li>
+<li>兼容：Houdini 16.x - 19.x（可能需要调整路径）</li>
+</ul><hr><h3>数据兼容性</h3><p><strong>完全支持：</strong></p><ul>
+<li>✔ 基本几何体（网格/NURBS）</li>
+<li>✔ 变换层级</li>
+<li>✔ 核心材质属性（PBR 工作流）</li>
+<li>✔ 点光源/聚光灯/平行光</li>
+<li>✔ 基本动画关键帧</li>
+<li>✔ 摄像机参数（FOV/焦距）</li>
+</ul><p><strong>部分支持：</strong></p><ul>
+<li>⚠ 复杂着色器节点（自动转换为近似值）</li>
+<li>⚠ 蒙皮权重（顶点顺序必须匹配）</li>
+<li>⚠ 驱动动画（需要等效表达式）</li>
+<li>⚠ UV 贴图（最多支持 4 个通道）</li>
+</ul><p><strong>不支持：</strong></p><ul>
+<li>✖ 粒子系统</li>
+<li>✖ 流体模拟数据</li>
+<li>✖ 程序纹理（需要预烘焙）</li>
+<li>✖ 自定义着色器网络</li>
+<li>✖ 动态约束（刚体/布料）</li>
+<li>✖ Houdini 特有的程序化资产（HDA）</li>
+</ul><hr><h3>重要说明</h3><ol>
+<li>
+<strong>单位系统</strong>：建议使用公制单位（米）。</li>
+<li>
+<strong>轴向转换</strong>：自动处理 Y 轴朝上 ↔ Z 轴朝上的转换。</li>
+<li>
+<strong>材质映射</strong>：Blender Principled BSDF ↔ Houdini 材质。</li>
+<li>
+<strong>命名</strong>：特殊字符（例如 <code>@</code>、<code>#</code>、<code>%</code>）可能导致导入问题。</li>
+<li>
+<strong>插件依赖</strong>：需要匹配的 SyncTools 版本。</li>
+<li>
+<strong>缓存位置</strong>：所有临时文件存储在 <code>Documents/cache</code> 目录中。
+<blockquote>
+<p>(数据通过 FBX 中间件转换 - 请查看发布说明了解最新兼容性更新。)</p>
+</blockquote>
+</li>
+</ol><hr><h3>故障排除</h3><p>如果工具无法正常工作，请检查：</p><ul>
+<li>文件是否在正确的路径中。</li>
+<li>脚本路径是否与您的 Houdini 版本匹配。</li>
+<li><code>~/Documents/cache</code> 目录是否存在且具有写入权限。</li>
+<li>导入/导出过程中是否有任何控制台错误消息。</li>
+</ul><hr><h3>其他资源</h3><p>如需详细教程和更新，请访问： <strong><a href="https://chatgpt.com/c/67c02f43-2900-8004-ae8a-2c393d04af3a#">官方文档</a></strong></p><hr><h3>总结</h3><p>SyncTools for Houdini 提供了一种在 Blender 和 Houdini 之间无缝高效传输场景数据的方式。通过简单的复制粘贴操作，您可以轻松交换详细的场景信息，简化创作流程。使用 SyncTools for Houdini，享受更高效的工作流程！</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。 每个月，我们将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p><hr>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Documentation</h2>
+  <div class="documentation">
+    <p><br></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/SyncTools_v2.1.2_2519.zip">SyncTools_v2.1.2_2519.zip</a> <span class="file-size">(10.3 KB)</span></li>
+  <li><a href="files/Synctools_houdini_new.zip">Synctools_houdini_new.zip</a> <span class="file-size">(3.8 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  Backup from Superhive (Blender Market) Creator 仪表板
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CrossFire UCC 文件 导出-导入 (.ucc)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>CrossFire UCC 文件 导出-导入 (.ucc)</h1>
+  <span class="price">$20.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/06_gallery.png" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 导入 & 导出</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">3.6 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">授权协议</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$20.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-modeling</span>
+  <span class="tag">blender-add-on</span>
+  <span class="tag">coordinate-conversion</span>
+  <span class="tag">crossfire</span>
+  <span class="tag">file-format</span>
+  <span class="tag">game-development</span>
+  <span class="tag">game-engine</span>
+  <span class="tag">import-export</span>
+  <span class="tag">level-design</span>
+  <span class="tag">map-workshop</span>
+  <span class="tag">ucc-export</span>
+  <span class="tag">workshop-tools</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><strong style="font-family:Degular , sans-serif;font-size:2.5rem;">CrossFire UCC 文件 导出-导入 Blender 插件</strong></p><p>通过这款强大的 Blender 插件改变您的 <strong>CrossFire 地图创建工作流程</strong>，专为 <strong>CrossFire 地图工坊开发者</strong>设计。<br>
+This comprehensive tool enables <strong>seamless import and export of UCC (Unreal Coordinate 容器) files</strong>, bridging the gap between Blender’s 3D modeling power and CrossFire’s engine requirements.</p><hr><h2>🎯 <strong>精确的 UCC 文件处理</strong>
+</h2><ul>
+<li>
+<p>导入 UCC 文件，完整保留 <strong>坐标、旋转和缩放</strong></p>
+</li>
+<li>
+<p>将 Blender 场景导出为 UCC，带有 <strong>高级变换选项</strong></p>
+</li>
+<li>
+<p>内置<strong>数据验证</strong>防止损坏并确保兼容性</p>
+</li>
+</ul><hr><h2>🔧 <strong>高级变换控件</strong>
+</h2><ul>
+<li>
+<p><strong><strong>Z 轴旋转</strong>调整全局场景方向</p>
+</li>
+<li>
+<p><strong><strong>位置乘数</strong>用于坐标系转换</p>
+</li>
+<li>
+<p><strong><strong>缩放乘数</strong>自动负转正转换</p>
+</li>
+<li>
+<p><strong><strong>位置偏移</strong>用于精确地图对齐</p>
+</li>
+</ul><hr><h2>⚡ <strong>简化的工作流程</strong>
+</h2><ul>
+<li>
+<p><strong>快速导出测试</strong> 用于快速迭代</p>
+</li>
+<li>
+<p>临时场景处理，保护您的原始工作安全</p>
+</li>
+<li>
+<p><strong>详细的日志系统</strong> 用于跟踪导出操作</p>
+</li>
+<li>
+<p><strong>批量处理</strong> 用于多个对象和大型地图</p>
+</li>
+</ul><hr><h2>🎮 <strong>游戏就绪输出</strong>
+</h2><ul>
+<li>
+<p>针对 <strong>CrossFire 地图工坊集成</strong>进行了优化</p>
+</li>
+<li>
+<p>保留<strong>对象命名规范</strong></p>
+</li>
+<li>
+<p>维护<strong>变换层次结构</strong></p>
+</li>
+<li>
+<p>完全兼容<strong>现有 CrossFire 工作流程</strong></p>
+</li>
+</ul><hr><h2>💼 <strong>适合</strong>
+</h2><ul>
+<li>
+<p>为 CrossFire 构建关卡的游戏设计师</p>
+</li>
+<li>
+<p>使用 Blender 制作资源和布局的地图创作者</p>
+</li>
+<li>
+<p>需要精确坐标转换的开发者</p>
+</li>
+<li>
+<p>需要<strong>标准化、可靠导出流程</strong>的团队</p>
+</li>
+</ul><hr><p>此插件<strong>消除了繁琐的手动转换</strong>，让您专注于<strong>设计出色的环境</strong>。<br>
+Whether you’re crafting <strong>competitive arenas</strong>, <strong>custom game modes</strong>, or <strong>detailed architectural spaces</strong>, this tool ensures your Blender creations translate <strong>perfectly into the CrossFire engine</strong>.</p><p><strong>安装简单</strong>，配有直观的 <strong>N 面板界面</strong>，无缝集成到 Blender 中。全面的<strong>日志记录和错误处理</strong>为您的工作流程提供可靠性和信心。</p><hr><p>🚀 通过<strong>专业级导入/导出功能</strong>将您的 <strong>CrossFire 地图创建</strong>提升到新的水平，保证精度、性能和易用性。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p>CrossFire UCC 文件 导出-导入 插件 文档</p><p><br></p><p>=================================================================</p><p><br></p><p>目录</p><p>1. 简介</p><p>2. 安装</p><p>3. 用户界面</p><p>4. 导入功能</p><p>5. 导出功能</p><p>6. 高级设置</p><p>7. 工作流程示例</p><p>8. 故障排除</p><p>9. 技术说明</p><p><br></p><p>=================================================================</p><p><br></p><p>1. 简介</p><p><br></p><p>CrossFire UCC 文件导出-导入插件是 Blender 的专用工具，实现 Blender 3D 环境与 CrossFire 地图工坊之间的无缝集成。 UCC（虚幻坐标容器）文件包含游戏对象的空间数据，包括位置、旋转、缩放和命名信息。</p><p><br></p><p>此插件适用于：</p><p>- 游戏关卡设计师</p><p>- CrossFire 地图创作者</p><p>- 处理坐标转换的开发者</p><p>- 需要精确导出工作流程的团队</p><p><br></p><p>=================================================================</p><p><br></p><p>2. 安装</p><p><br></p><p>系统要求：</p><p>- Blender 3.0.0 或更高版本</p><p>- Windows 操作系统（推荐）</p><p><br></p><p>安装步骤：</p><p>1. 下载插件 zip 文件</p><p>2. 打开 Blender 并前往 编辑 > 偏好设置 > 插件</p><p>3. 点击"安装..."并选择 zip 文件</p><p>4. 启用"CrossFire UCC 文件导出-导入"插件</p><p>5. 面板将出现在 3D 视口侧边栏的"CF 工具"下</p><p><br></p><p>=================================================================</p><p><br></p><p>3. 用户界面</p><p><br></p><p>插件界面位于：</p><p>View3D > Sidebar > CF 工具 > UCC 文件操作</p><p><br></p><p>主要控件：</p><p>- Z 轴旋转角度：导出时应用的全局旋转 (-360° to 360°)</p><p>- 位置乘数：坐标缩放系数 (0.1 to 1000.0)</p><p>- 位置偏移：X、Y、Z 偏移值 (-1000.0 to 1000.0)</p><p>- 缩放乘数：大小缩放系数 (0.1 to 1000.0)</p><p>- 负转正：自动转换负缩放值</p><p>- 源文件：选择快速(mf5)或标准(mf6)模板</p><p><br></p><p>操作按钮：</p><p>- 导入 UCC：将 UCC 文件导入 Blender</p><p>- 导出 UCC：将场景导出为 UCC 文件</p><p>- 快速导出测试：快速导出到预定义位置</p><p><br></p><p>=================================================================</p><p><br></p><p>4. 导入功能</p><p><br></p><p>导入 UCC 文件：</p><p>1. 点击"导入 UCC"</p><p>2. 导航到您的 UCC 文件</p><p>3. 选择文件并点击"导入 UCC"</p><p><br></p><p>导入流程：</p><p>- 读取对象坐标、旋转和缩放数据</p><p>- 创建包含导入数据的文本块</p><p>- 验证数据完整性（检查 NaN/无限值）</p><p>- 报告成功导入的对象数量</p><p><br></p><p>文本块中的数据格式：</p><p>名称：[对象名称], 位置: (x,y,z), 旋转: (x,y,z,w), 大小: (x,y,z), </p><p>坐标索引： [position], 旋转索引： [position], 大小索引： [position]</p><p><br></p><p>=================================================================</p><p><br></p><p>5. 导出功能</p><p><br></p><p>标准导出：</p><p>1. 使用网格对象设置场景</p><p>2. 在面板中配置导出设置</p><p>3. 点击"导出 UCC"</p><p>4. 选择保存位置和文件名</p><p>5. 查看导出日志了解详情</p><p><br></p><p>快速导出测试：</p><p>1. 配置您的场景</p><p>2. 选择源模板（mf5 或 mf6）</p><p>3. 点击"快速导出测试"</p><p>4. 文件导出到 ~/文档/CF系统/UCC/untitled.ucc</p><p><br></p><p>导出流程：</p><p>- 创建临时场景进行处理</p><p>- 围绕组合中心应用全局 Z 轴旋转</p><p>- 转换坐标系统（Blender 到 UCC）</p><p>- 应用位置和缩放乘数</p><p>- 处理负缩放转换</p><p>- 清除未使用的对象插槽</p><p>- 生成详细的操作日志</p><p><br></p><p>=================================================================</p><p><br></p><p>6. 高级设置</p><p><br></p><p>Z 轴旋转角度：</p><p>- 围绕所有对象的组合中心全局应用</p><p>- 用于坐标系统对齐</p><p>- 默认：90 度</p><p><br></p><p>位置乘数：</p><p>- 导出时缩放坐标值</p><p>- Blender 单位到 UCC 单位转换</p><p>- 默认：1.0</p><p><br></p><p>位置偏移：</p><p>- 为对象位置添加偏移</p><p>- X、Y、Z 轴的单独控制</p><p>- 用于地图对齐</p><p><br></p><p>缩放乘数：</p><p>- 导出时缩放对象大小</p><p>- 应用于所有缩放维度</p><p>- 默认：1.0</p><p><br></p><p>负转正转换：</p><p>- 自动将负缩放值转换为正值</p><p>- 正确处理镜像对象</p><p>- 记录哪些轴被转换</p><p><br></p><p>源文件选择：</p><p>- mf5（快速）：简化模板</p><p>- mf6（标准）：完整功能模板</p><p>- 模板存储在 core/ 文件夹中</p><p><br></p><p>=================================================================</p><p><br></p><p>7. 工作流程示例</p><p><br></p><p>基本导出工作流程：</p><p>1. 在 Blender 中创建或导入 3D 模型</p><p>2. 按需定位对象</p><p>3. 设置对象使用四元数旋转模式</p><p>4. 配置导出设置</p><p>5. 使用快速导出测试进行迭代</p><p>6. 使用标准导出进行最终输出</p><p><br></p><p>坐标系统转换：</p><p>- Blender 使用右手坐标系</p><p>- UCC 格式使用特定缩放（35 倍乘数）</p><p>- Z 轴旋转处理方向差异</p><p>- 位置乘数调整坐标缩放</p><p><br></p><p>多对象场景：</p><p>- 对象按名称字母顺序处理</p><p>- 每个对象的变换数据都被保留</p><p>- 未使用的插槽自动归零</p><p>- 最多支持约 10,000 个对象</p><p><br></p><p>=================================================================</p><p><br></p><p>8. 故障排除</p><p><br></p><p>常见问题：</p><p><br></p><p>"找不到源文件"：</p><p>- 确保 core/mf5.ucc 和 core/mf6.ucc 存在</p><p>- 检查文件权限</p><p>- 验证插件安装</p><p><br></p><p>"对象超出文件大小"：</p><p>- 模板容量中对象过多</p><p>- 减少对象数量或使用更大的模板</p><p><br></p><p>"无法创建导出目录"：</p><p>- 检查文件夹权限</p><p>- 确保有足够的磁盘空间</p><p>- 验证路径可访问性</p><p><br></p><p>旋转问题：</p><p>- 确保对象使用四元数旋转模式</p><p>- 插件自动转换旋转模式</p><p>- 检查复杂层次结构中的旋转顺序</p><p><br></p><p>缩放问题：</p><p>- 为镜像对象启用"负转正"</p><p>- 调整缩放乘数进行大小转换</p><p>- 检查零或无限缩放值</p><p><br></p><p>=================================================================</p><p><br></p><p>9. 技术说明</p><p><br></p><p>文件格式详情：</p><p>- UCC 文件使用二进制格式</p><p>- 每个对象固定 200 字节块</p><p>- 坐标数据：12 字节（3 个浮点数）</p><p>- 旋转数据：16 字节（4 个浮点数，四元数）</p><p>- 缩放数据：12 字节（3 个浮点数）</p><p><br></p><p>坐标转换：</p><p>UCC_X = Blender_X * 35 * 位置乘数</p><p>UCC_Y = Blender_Y * 35 * 位置乘数</p><p>UCC_Z = Blender_Z * 35 * 位置乘数</p><p><br></p><p>内存管理：</p><p>- 临时场景会自动清理</p><p>- 导出期间保留原始场景</p><p>- 文本块存储操作日志</p><p><br></p><p>性能注意事项：</p><p>- 大型场景（>1000 个对象）可能需要一些时间处理</p><p>- 快速导出测试针对迭代进行了优化</p><p>- 可以禁用日志记录以获得更好的性能</p><p><br></p><p>数据验证：</p><p>- 检查 NaN 和无限值</p><p>- 验证文件边界</p><p>- 报告数据完整性问题</p><p><br></p><p>=================================================================</p><p><br></p><p>如需支持和更新，请访问 CrossFire 开发社区。</p><p>本文档涵盖插件 2.0.0 版本。</p><div><br></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/crossfire_ucc_export_import.zip">crossfire_ucc_export_import.zip</a> <span class="file-size">(1.0 KB)</span></li>
+  <li><a href="files/file_1.zip">file_1.zip</a> <span class="file-size">(148.7 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  备份自 Superhive (Blender Market) 创作者仪表板
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN" lang="zh-CN"><head><meta charset="utf-8"><title>SyncTools Pro For Houdini - 产品描述</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:900px;margin:40px auto;padding:20px;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>SyncTools Pro For Houdini</h1><p><span style="font-family:Degular , sans-serif;font-size:2rem;"><b>SyncTools for Houdini</b></span></p><h3>概述</h3><p>SyncTools Pro 是一款跨软件工具，旨在简化在不同应用程序（如 Blender 与 Houdini）之间复制和粘贴详细场景数据的流程。只需单击一次，即可将对象（包括网格、灯光、摄像机、材质、动画等）从一个场景导出并导入另一个场景，为您的制作工作流程节省大量时间和精力。</p><h3>多 DCC 平台支持</h3><p>SyncTools 系列现已扩展对主流数字内容创作软件的支持，包括：</p><ul>
+<li>
+<strong>SyncTools for Blender</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Maya</strong>（已发布）</li>
+<li>
+<strong>SyncTools for 3ds Max</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Cinema 4D</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Houdini</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Zbrush</strong>（开发中）</li>
+<li>
+<strong>SyncTools for Rhino</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Marvelous Designer</strong>（已发布）</li>
+<li>
+<strong>SyncTools for Substance Painter</strong>（开发中）</li>
+<li>
+<strong>SyncTools for Unreal Engine</strong>（开发中）</li>
+<li>
+<strong>SyncTools for Unity</strong>（开发中）</li>
+</ul><p>所有插件采用统一的数据交换协议，实现无缝跨平台、无损资产转换，以及真正的多软件协同工作流程。</p><p><img src="https://assets.superhivemarket.com/cache/e4b35d2e26385d0ab4752e0f88a93a63.jpg" style="max-width:100%;"><br></p><h3>
+<img src="https://assets.superhivemarket.com/cache/d59c0ded7e251bd6a7fd5e434a628687.jpg" style="max-width:100%;"><br>
+</h3><h3>Blender 端</h3><h4>1. 插件安装</h4><ul>
+<li>
+<strong>第一步</strong>：打开 Blender，导航至 <code>编辑 > 偏好设置 > 添加-ons</code>。</li>
+<li>
+<strong>第二步</strong>：点击 <code>安装</code> 按钮，选择 SyncTools Pro 的 ZIP 文件。</li>
+<li>
+<strong>第三步</strong>：安装完成后，勾选 SyncTools Pro 旁边的复选框以启用插件。插件界面将显示在 3D 视图侧边栏的 SyncTools 选项卡下。</li>
+</ul><h4>2. 插件设置</h4><p>在首选项菜单中，您可以通过直观的界面配置各种选项：</p><ul>
+<li>
+<strong>快捷键模式</strong>：根据个人工作习惯，在标准键盘快捷键与鼠标拖动方式之间进行选择。</li>
+<li>
+<strong>导入/导出选项</strong>：选择传输数据时要包含的元素，选项包括灯光、摄像机、材质、网格、骨骼和烘焙动画。</li>
+<li>
+<strong>全局缩放设置</strong>：调整导入和导出时应用于场景的整体缩放比例。</li>
+<li>
+<strong>渲染器同步功能</strong>：启用"同步渲染器"选项（例如用于 Octane 材质同步），以确保材质设置在不同环境中保持一致。</li>
+</ul><blockquote>
+<p>注意：所有设置更改均会在后台自动生效，调整后无需额外操作。</p>
+</blockquote><h4>3. 工作流程</h4><p><strong>复制</strong></p><ul>
+<li>
+<strong>选择</strong>：在 3D 视图中，选中您要复制的对象。</li>
+<li>
+<strong>复制</strong>：点击 SyncTools 面板中的 <code>复制</code> 按钮，或使用指定的快捷键（默认：<code>Ctrl+Shift+C</code>）。</li>
+<li>
+<strong>导出</strong>：插件将您的选择导出为 FBX 文件，存储到指定的缓存文件夹（<code>Documents/cache</code> 文件夹）。</li>
+</ul><p><strong>粘贴</strong></p><ul>
+<li>
+<strong>切换场景</strong>：切换到目标场景或项目。</li>
+<li>
+<strong>粘贴</strong>：点击 <code>粘贴</code> 按钮，或使用相应的快捷键（默认：<code>Ctrl+Shift+V</code>）。</li>
+<li>
+<strong>导入</strong>：插件自动从缓存中导入最新的 FBX 文件，并根据您的导入设置过滤数据。</li>
+</ul><p><strong>使用快捷键</strong>
+除面板按钮外，您还可以使用可自定义的快捷键（例如 <code>Ctrl+Shift+C</code> 复制，<code>Ctrl+Shift+V</code> 粘贴）来简化工作流程。如有需要，可在插件设置中调整这些快捷键。</p><hr><h3>Houdini 端</h3><h4>1. 插件安装与初始化</h4><p><strong>系统要求：</strong></p><ul>
+<li>Houdini 16 或更高版本</li>
+<li>支持 Windows、macOS、Linux</li>
+</ul><p><strong>安装步骤：</strong></p><ol>
+<li>将 <code>SyncTools_复制.py</code> 和 <code>SyncTools_粘贴.py</code> 文件复制到 Houdini 的工具栏目录：
+<ul>
+<li>Windows：<code>C:\Users\【您的用户名】\Documents\Houdini版本\toolbar</code>
+</li>
+<li>macOS：<code>~/Documents/Houdini版本/toolbar</code>
+</li>
+<li>Linux：<code>~/Houdini版本/toolbar</code>
+</li>
+</ul>
+</li>
+<li>启动 Houdini。</li>
+<li>创建新的工具架选项卡：
+<ul>
+<li>右键单击工具架选项卡栏，选择 <code>New Shelf Tab</code>。</li>
+<li>将其命名为 <code>SyncTools</code>，点击 <code>Accept</code>。</li>
+</ul>
+</li>
+<li>添加 复制 工具：
+<ul>
+<li>右键单击 <code>SyncTools</code> 选项卡，选择 <code>New 工具</code>。</li>
+<li>将其命名为 <code>复制</code>，并将 <code>shelf_c</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+<li>添加 粘贴 工具：
+<ul>
+<li>再次右键单击 <code>SyncTools</code> 选项卡，选择 <code>New 工具</code>。</li>
+<li>将其命名为 <code>粘贴</code>，并将 <code>shelf_p</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+</ol><blockquote>
+<p>注意：如果您使用的是 Houdini 20.5 之前的版本，请修改脚本路径：
+<code>python > toolbar_path = os.path.expanduser("~/Documents/Houdini版本/toolbar")</code></p>
+</blockquote><h4>2. 使用插件</h4><p><strong>复制</strong></p><ul>
+<li>
+<strong>选择</strong>：在 Houdini 中，选中您要复制的对象。</li>
+<li>
+<strong>复制命令</strong>：点击工具架上的 <code>复制</code> 按钮。</li>
+<li>
+<strong>导出</strong>：插件将选中的对象导出为 FBX 文件，保存在 <code>Documents/cache</code> 目录中。</li>
+</ul><p><strong>粘贴</strong></p><ul>
+<li>
+<strong>目标场景</strong>：打开或切换到您要导入数据的场景。</li>
+<li>
+<strong>粘贴命令</strong>：点击工具架上的 <code>粘贴</code> 按钮。</li>
+<li>
+<strong>导入</strong>：插件自动从缓存中导入最新的 FBX 文件，并将其整合到场景中。</li>
+</ul><hr><h3>版本兼容性</h3><p><strong>Blender 支持：</strong></p><ul>
+<li>正式版：4.2 LTS 及更高版本</li>
+<li>实验性支持：4.0–4.1（高级功能有所限制）</li>
+</ul><p><strong>Houdini 支持：</strong></p><ul>
+<li>正式版：Houdini 20.x</li>
+<li>兼容版：Houdini 16.x - 19.x（可能需要调整路径）</li>
+</ul><hr><h3>数据兼容性</h3><p><strong>完全支持：</strong></p><ul>
+<li>✔ 基础几何体（网格/NURBS）</li>
+<li>✔ 变换层级</li>
+<li>✔ 核心材质属性（PBR 工作流）</li>
+<li>✔ 点光源/聚光灯/方向光</li>
+<li>✔ 基础动画关键帧</li>
+<li>✔ 摄像机参数（FOV/焦距）</li>
+</ul><p><strong>部分支持：</strong></p><ul>
+<li>⚠ 复杂着色器节点（自动转换为近似值）</li>
+<li>⚠ 蒙皮权重（顶点顺序必须匹配）</li>
+<li>⚠ 驱动动画（需要等效表达式）</li>
+<li>⚠ UV 贴图（最多支持 4 个通道）</li>
+</ul><p><strong>不支持：</strong></p><ul>
+<li>✖ 粒子系统</li>
+<li>✖ 流体模拟数据</li>
+<li>✖ 程序化纹理（需提前烘焙）</li>
+<li>✖ 自定义着色器网络</li>
+<li>✖ 动态约束（刚体/布料）</li>
+<li>✖ Houdini 特有的程序化资产（HDA）</li>
+</ul><hr><h3>重要注意事项</h3><ol>
+<li>
+<strong>单位系统</strong>：建议使用公制（米）。</li>
+<li>
+<strong>轴向转换</strong>：自动处理 Y-上 ↔ Z-上 转换。</li>
+<li>
+<strong>材质映射</strong>：Blender Principled BSDF ↔ Houdini 材质。</li>
+<li>
+<strong>命名规范</strong>：特殊字符（如 <code>@</code>、<code>#</code>、<code>%</code>）可能导致导入问题。</li>
+<li>
+<strong>插件依赖</strong>：需要匹配的 SyncTools 版本。</li>
+<li>
+<strong>缓存位置</strong>：所有临时文件存储在 <code>Documents/cache</code> 目录中。
+<blockquote>
+<p>（数据通过 FBX 中间件转换——请查看发行说明以获取最新兼容性更新。）</p>
+</blockquote>
+</li>
+</ol><hr><h3>故障排除</h3><p>如果工具无法正常运行，请检查：</p><ul>
+<li>文件是否位于正确路径。</li>
+<li>脚本路径是否与您的 Houdini 版本匹配。</li>
+<li><code>~/Documents/cache</code> 目录是否存在且具有写入权限。</li>
+<li>导入/导出时控制台是否有报错信息。</li>
+</ul><hr><h3>其他资源</h3><p>如需详细教程和更新，请访问：<strong><a href="https://chatgpt.com/c/67c02f43-2900-8004-ae8a-2c393d04af3a#">官方文档</a></strong></p><hr><h3>结语</h3><p>SyncTools for Houdini 提供了一种在 Blender 与 Houdini 之间无缝高效传输场景数据的方式。通过简单的复制和粘贴操作，您可以轻松交换详细的场景信息，简化创作流程。使用 SyncTools for Houdini，享受更高效的工作流程！</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们致力于回馈使我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p><hr></body></html>

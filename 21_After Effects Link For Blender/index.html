@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After Effects Link For Blender - SyncTools Pro</title>
+    <meta name="description" content="After Effects Link For Blender - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; After Effects Link For Blender
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="After Effects Link For Blender"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="After Effects Link For Blender" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="After Effects Link For Blender" data-index="1">
+                <img src="images/02_gallery.png" alt="After Effects Link For Blender" data-index="2">
+                <img src="images/03_gallery.png" alt="After Effects Link For Blender" data-index="3">
+                <img src="images/04_gallery.png" alt="After Effects Link For Blender" data-index="4">
+                <img src="images/05_gallery.png" alt="After Effects Link For Blender" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">After Effects Link For Blender</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">资产管理</span>
+                    <span class="meta-tag">导入与导出</span>
+                    <span class="meta-tag">材质与着色</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/After_Effects_Link.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件、资产管理、导入与导出、材质与着色</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">授权协议</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-animation</span>
+                    <span class="compat-chip">adobe</span>
+                    <span class="compat-chip">adobe-integration</span>
+                    <span class="compat-chip">after-effects</span>
+                    <span class="compat-chip">animation</span>
+                    <span class="compat-chip">animation-export</span>
+                    <span class="compat-chip">asset-management</span>
+                    <span class="compat-chip">automation</span>
+                    <span class="compat-chip">blender</span>
+                    <span class="compat-chip">cache-management</span>
+                    <span class="compat-chip">compositing</span>
+                    <span class="compat-chip">creative-tools</span>
+                    <span class="compat-chip">file-management</span>
+                    <span class="compat-chip">frame-sequence</span>
+                    <span class="compat-chip">media-export</span>
+                    <span class="compat-chip">motion-graphics</span>
+                    <span class="compat-chip">pipeline</span>
+                    <span class="compat-chip">post-production</span>
+                    <span class="compat-chip">production-tools</span>
+                    <span class="compat-chip">productivity</span>
+                    <span class="compat-chip">professional-tools</span>
+                    <span class="compat-chip">project-management</span>
+                    <span class="compat-chip">render-cache</span>
+                    <span class="compat-chip">render-export</span>
+                    <span class="compat-chip">rendering</span>
+                    <span class="compat-chip">render-management</span>
+                    <span class="compat-chip">sequence-export</span>
+                    <span class="compat-chip">time-saving</span>
+                    <span class="compat-chip">vfx</span>
+                    <span class="compat-chip">video-editing</span>
+                    <span class="compat-chip">workflow</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p><strong style="font-family:Degular , sans-serif;font-size:2.5rem;">After Effects Link for Blender</strong></p><p><strong>一键无缝连接 Blender 与 After Effects！</strong></p><p>使用 <strong>After Effects Link</strong> 彻底改变您的动画工作流程，这是专为在 <strong>Blender</strong> 和 <strong>After Effects</strong> 之间工作的艺术家打造的终极工具。此插件可将渲染结果和序列从 Blender 即时传输到 After Effects——<strong>无需手动管理文件！</strong></p><hr><h2><strong>✨ 核心功能</strong></h2><h3>🎬 <strong>智能序列处理</strong>
+</h3><p>✅ 导出完整的动画序列或单帧<br>
+✅ 自动检测序列并正确导入 After Effects<br>
+✅ 保持帧顺序和时间轴</p><h3>🔄 <strong>灵活的导出选项</strong>
+</h3><p>✅ 直接从渲染缓存发送以实现即时预览<br>
+✅ 以完整质量从已保存文件导出<br>
+✅ 支持多种图像和视频格式</p><h3>⚡ <strong>自动合成设置</strong>
+</h3><p>✅ 自动创建或更新 After Effects 合成<br>
+✅ 匹配分辨率和宽高比<br>
+✅ 智能居中并缩放图层<br>
+✅ 保留图层名称和组织结构</p><h3>🎨 <strong>渲染通道支持</strong>
+</h3><p>✅ 处理所有常见渲染通道<br>
+✅ 支持 <strong>Cryptomatte、Beauty、RGB</strong> 及其他通道<br>
+✅ 保持正确的通道命名和组织结构</p><hr><h2>
+<img src="images/desc_00_ba6bc592e29db46f3c2f519b96e9e7a0.png" style="max-width:100%;"><strong><br></strong>
+</h2><h2>
+<img src="images/desc_01_23fed612cd725316cd6af1e37bd49001.png" style="max-width:100%;"><strong><br></strong>
+</h2><h2><strong>🚀 使用方法</strong></h2><p>1️⃣ <strong>在 Blender 中渲染</strong></p><ul>
+<li>在 Blender 中创建动画或单帧</li>
+<li>使用<strong>视口渲染</strong>或<strong>最终渲染</strong>均可
+</li>
+</ul><p>2️⃣ <strong>导出到 After Effects</strong></p><ul>
+<li>选择 <strong>"Cache to After Effects"</strong> 进行快速预览</li>
+<li>或选择 <strong>"Send to After Effects"</strong> 进行最终质量导出</li>
+<li>选择序列或单帧导出</li>
+</ul><p>3️⃣ <strong>在 After Effects 中继续创作</strong></p><ul>
+<li>文件<strong>自动导入</strong>到新的或现有的合成中</li>
+<li>图层<strong>命名规范、组织有序</strong>
+</li>
+<li><strong>随时可进行合成和特效处理</strong></li>
+</ul><hr><h2><strong>🖥 系统要求</strong></h2><p>✅ Blender <strong>3.0 或更高版本</strong><br>
+✅ After Effects <strong>CC 2023-2024</strong><br>
+✅ Windows <strong>10/11</strong><br>
+✅ 系统中必须已安装 <strong>After Effects</strong></p><hr><h2><strong>💡 为什么选择 After Effects Link？</strong></h2><p>✔️ 非常适合<strong>动态设计师、VFX 艺术家和动画师</strong><br>
+✔️ 消除<strong>繁琐的文件管理和导入步骤</strong><br>
+✔️ 保持应用程序之间的<strong>创作流畅性</strong><br>
+✔️ 满足<strong>专业工作流程需求</strong></p><hr><h2><strong>🔧 安装与支持</strong></h2><p>✅ 通过 Blender 插件系统<strong>简单安装</strong><br>
+✅ <strong>自动检测 After Effects</strong><br>
+✅ <strong>附带详细文档</strong><br>
+✅ 可通过 <strong>BlenderMarket 消息</strong>获得支持</p><hr><h2><strong>💰 价格：$12</strong></h2><p><strong>立即升级您的动画流水线——获取 After Effects Link！</strong><br>
+优化您从 Blender 到 After Effects 的工作流程，专注于创作精彩内容。</p><p>🔗 <strong>标签：</strong> Blender 插件、After Effects 集成、动画工作流、合成、动态图形、VFX 工具</p><p>💬 <strong>对本产品有疑问？</strong><br>
+📩 联系创作者：<strong>[Han Yue</strong><strong style="">]</strong></p><p>
+🌍 [qq475519905@gmail.com]</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。每个月，我们将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p><p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/After_Effects_Link.zip">After_Effects_Link.zip</a><span class="file-size">6.2 MB</span></li>
+                <li><a href="files/Instal.txt">Instal.txt</a><span class="file-size">2.2 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

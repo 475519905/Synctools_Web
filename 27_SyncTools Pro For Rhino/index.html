@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools Pro For Rhino - SyncTools Pro</title>
+    <meta name="description" content="SyncTools Pro For Rhino - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools Pro For Rhino
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools Pro For Rhino"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools Pro For Rhino" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="SyncTools Pro For Rhino" data-index="1">
+                <img src="images/02_gallery.png" alt="SyncTools Pro For Rhino" data-index="2">
+                <img src="images/03_gallery.png" alt="SyncTools Pro For Rhino" data-index="3">
+                <img src="images/04_gallery.png" alt="SyncTools Pro For Rhino" data-index="4">
+                <img src="images/05_gallery.png" alt="SyncTools Pro For Rhino" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools Pro For Rhino</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">Addons</span>
+                    <span class="meta-tag">资产 Management</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                    <span class="meta-tag">Modeling</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$15.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/SyncTools.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Categories</span><span class="sidebar-info-value">Addons, 资产 Management, 导入 &amp; 导出, Modeling</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">License</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-design</span>
+                    <span class="compat-chip">3d-modeling</span>
+                    <span class="compat-chip">3d-可视化</span>
+                    <span class="compat-chip">3d-workflow</span>
+                    <span class="compat-chip">建筑-design</span>
+                    <span class="compat-chip">建筑-tools</span>
+                    <span class="compat-chip">建筑-workflow</span>
+                    <span class="compat-chip">architecture</span>
+                    <span class="compat-chip">architecture-software</span>
+                    <span class="compat-chip">bim</span>
+                    <span class="compat-chip">cad</span>
+                    <span class="compat-chip">copy-paste</span>
+                    <span class="compat-chip">cross-document</span>
+                    <span class="compat-chip">data-transfer</span>
+                    <span class="compat-chip">design-automation</span>
+                    <span class="compat-chip">design-efficiency</span>
+                    <span class="compat-chip">design-productivity</span>
+                    <span class="compat-chip">design-software</span>
+                    <span class="compat-chip">design-tools</span>
+                    <span class="compat-chip">digital-fabrication</span>
+                    <span class="compat-chip">file-management</span>
+                    <span class="compat-chip">grasshopper</span>
+                    <span class="compat-chip">industrial-design</span>
+                    <span class="compat-chip">interior-design</span>
+                    <span class="compat-chip">mcneel</span>
+                    <span class="compat-chip">mesh-modeling</span>
+                    <span class="compat-chip">modeling-tools</span>
+                    <span class="compat-chip">nurbs-modeling</span>
+                    <span class="compat-chip">parametric-design</span>
+                    <span class="compat-chip">plugin</span>
+                    <span class="compat-chip">productivity</span>
+                    <span class="compat-chip">professional-tools</span>
+                    <span class="compat-chip">rhino3d</span>
+                    <span class="compat-chip">rhinoceros</span>
+                    <span class="compat-chip">rhino-plugin</span>
+                    <span class="compat-chip">synctools</span>
+                    <span class="compat-chip">time-saving-tools</span>
+                    <span class="compat-chip">workflow-optimization</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p>Here’以下是您的格式化版本:</p><hr><h1><strong>SyncTools Pro for Rhino - 无缝资产传输</strong></h1><h2><strong>概述</strong></h2><p>SyncTools for Rhino 是一款专业级工具，旨在简化不同 Rhino 文档之间复制和粘贴 3D 对象的流程。只需一键，即可将选中的对象从一个场景传输到另一个场景，同时保持所有几何属性和层级关系。此工具可显著提升您的 Rhino 工作流程效率。</p><h3 style="color:rgb(33, 37, 41);overflow:hidden !important;"><span style="font-weight:bolder;">多 DCC 平台支持</span></h3><h2></h2><p style="font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">SyncTools 系列现已扩展对主流数字内容创作软件的支持，包括：</p><ul style="font-size:16px;color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank">SyncTools for Maya</a></span><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank">SyncTools for 3ds Max</a></span><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank">SyncTools for Houdini</a></span><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank">SyncTools for Cinema 4D</a></span><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank">SyncTools for Rhino</a></span><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank">SyncTools for Marvelous Designer</a></span><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank"> (Released)</a>
+</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Substance Painter</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unreal Engine</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Zbrush</span> (开发中)</li>
+</ul><p style="font-family:sans-serif;font-size:16px;"><span style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;">所有插件均采用统一的数据交换协议，实现跨平台无损资产转换和真正的多软件协同工作流程。</span></p><hr><h2>
+<img src="images/desc_00_1e55eb367cbd479ffb18508997ffd272.png" style="max-width:100%;"><strong><br></strong>
+</h2><h2>
+<img src="images/desc_01_3144be61846c68e67e26972c4e809b79.jpg" style="max-width:100%;"><strong><br></strong>
+</h2><h2><strong>Rhino 安装与使用</strong></h2><h3><strong>1. 插件安装</strong></h3><ol>
+<li>下载 plugin file <strong>SyncTools_Rhino.py</strong>
+</li>
+<li>将文件复制到 Rhino 的 Python 脚本目录</li>
+<li>在 Rhino 中运行脚本</li>
+<li>工具会自动注册并创建浮动窗口</li>
+</ol><h3><strong>2. 工作流程</strong></h3><h4><strong>复制操作</strong></h4><ol>
+<li>在场景中选择要复制的对象</li>
+<li>Click <strong>"复制"</strong> 在 SyncTools 窗口中</li>
+<li>插件将您的选择导出到指定的缓存文件夹</li>
+</ol><h4><strong>粘贴操作</strong></h4><ol>
+<li>切换到目标 Rhino 文档</li>
+<li>Click <strong>"粘贴"</strong> 在 SyncTools 窗口中</li>
+<li>插件自动导入最新的缓存文件</li>
+</ol><hr><h2><strong>版本兼容性</strong></h2><h3><strong>官方支持:</strong></h3><ul>
+<li>Rhino 6 及更高版本</li>
+<li>blender 3.43 及更高版本</li>
+<li>MacOS 11 及更高版本</li>
+<li>Windows 7 及更高版本</li>
+</ul><hr><h2><strong>数据兼容性</strong></h2><h3><strong>完全支持:</strong></h3><p>✔ <strong>NURBS 几何体</strong><br>
+✔ <strong>网格对象</strong><br>
+✔ <strong>变换层级</strong><br>
+✔ <strong>对象属性</strong><br>
+✔ <strong>图层结构</strong></p><h3><strong>部分支持:</strong></h3><p>⚠ <strong>材质和纹理</strong><br>
+⚠ <strong>自定义属性</strong><br>
+⚠ <strong>块定义</strong></p><h3><strong>不支持:</strong></h3><p>✖ <strong>视口显示模式</strong><br>
+✖ <strong>分析对象</strong><br>
+✖ <strong>动态块</strong><br>
+✖ <strong>自定义插件数据</strong></p><hr><h2><strong>重要注意事项</strong></h2><p>1️⃣ <strong>单位系统</strong>: 兼容所有 Rhino 单位系统<br>
+2️⃣ <strong>Selection</strong>: 仅传输选中的对象<br>
+3️⃣ <strong>缓存管理</strong>: 自动清理临时文件<br>
+4️⃣ <strong>撤销支持</strong>: 与 Rhino 撤销系统完全集成<br>
+5️⃣ <strong>跨版本</strong>: 不同 Rhino 版本之间兼容</p><hr><h2><strong>结语</strong></h2><p>SyncTools for Rhino 为 Rhino 文档之间的高效对象传输提供了专业解决方案。 其直观的界面和强大的功能使其成为建筑师、设计师和 3D 艺术家处理多个 Rhino 文件时的必备工具。</p><p>如需技术支持或有任何问题，请通过 <strong>Blender Market’的支持系统</strong>.</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。 每个月，我们将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/SyncTools.zip">SyncTools.zip</a><span class="file-size">10.4 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

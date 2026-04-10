@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Cinema4D Octane Material Pro v2.10 - SyncTools Pro</title>
+    <meta name="description" content="Import Cinema4D Octane Material Pro v2.10 - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; Import Cinema4D Octane Material Pro v2.10
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="Import Cinema4D Octane Material Pro v2.10"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="Import Cinema4D Octane Material Pro v2.10" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="Import Cinema4D Octane Material Pro v2.10" data-index="1"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">Import Cinema4D Octane Material Pro v2.10</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/file_1.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件, 导入 &amp; 导出</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">2.93 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">许可证</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">c4dtoblender</span>
+                    <span class="compat-chip">cinema4d</span>
+                    <span class="compat-chip">cover</span>
+                    <span class="compat-chip">export</span>
+                    <span class="compat-chip">import</span>
+                    <span class="compat-chip">materialconversion</span>
+                    <span class="compat-chip">materials</span>
+                    <span class="compat-chip">octane</span>
+                    <span class="compat-chip">synctools</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p></p><p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">告别重复性工作！ </span><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">Import Octane Material Pro </span><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">帮助您即时将 Octane 材质导入 Blender！</span></p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/KYyNTmI0x2E" width="640" height="360" class="note-video-clip"></iframe></div><p><br></p><p><img src="images/desc_00_0d47d9b15fc437e49597f314f8e8270b.png" style="max-width:100%;"><br></p>
+<h2>
+<img src="images/desc_01_4209a35f0014b7426193844f9b4d17c1.png" style="max-width:100%;"><strong style="font-size:2rem;display:inline !important;"><br></strong>
+</h2><h2><strong style="font-size:2rem;display:inline !important;">停止浪费时间重建材质</strong></h2>
+<p>您是否厌倦了在 Blender Cycles 中手动重建 Cinema 4D Octane 材质这一繁琐耗时的过程？<br>
+您是否希望能够无缝将高质量的 C4D 资产传输到 Blender，而不必花费数小时处理节点和排除故障？</p>
+<p>C4D/Octane 和 Blender 之间的跨平台工作流面临重大挑战，尤其是材质转换方面。 手动转换复杂的节点设置、确保 PBR 准确性和匹配视觉保真度通常令人沮丧且容易出错。</p>
+<p><strong>隆重推出 Import Octane Material Pro — 您的终极解决方案！</strong><br>
+这个强大而智能的 Blender 插件弥合了 C4D/Octane 和 Blender Cycles 之间的差距。 它自动化材质转换，智能将 Octane 的核心属性和着色器网络映射到 Cycles 等效项，保留您的艺术愿景并节省宝贵的创作时间。</p><hr><h2 class="">🎁 特别优惠！</h2><p><strong>立即购买 SyncTools — 免费获得 Import Octane Material Pro！</strong></p><p>将您的跨平台 3D 工作流提升到新的水平。<br>
+购买 <strong>SyncTools</strong> 即可获得 <strong>Import Octane Material Pro</strong> 作为<strong>额外赠品</strong>——无需额外费用！</p><p>✅ 使用 SyncTools 实现无缝资产传输<br>
+✅ 使用 Import Octane Material Pro 实现即时材质转换<br>
+✅ 节省数小时的手动工作<br>
+✅ 最大化您的创作自由</p><blockquote>
+<p><strong>限时优惠——不要错过！</strong></p>
+</blockquote><p class="">👉<b> [<a href="https://superhivemarket.com/products/synctools-pro-v2" target="_blank">立即获取 SyncTools</a>] </b></p>
+<hr>
+<h2 class="" style="color:rgb(0, 0, 0);">
+<img src="images/desc_02_0c22305eeb778d67132d9d60efe3975b.png" style="width:1632.01px;"><img src="images/desc_03_82db006ceb2e70f14448c950ef968c58.png"><br>
+</h2><h3 style="color:rgb(0, 0, 0);">
+<img src="images/desc_04_293cdd72595e3f219eb728c36729ab8d.png" style="max-width:100%;"><br>
+</h3><h2>
+<img src="images/desc_05_81053f232c14328add9de05806c5e96a.png" style="max-width:100%;"><strong><br></strong>
+</h2><h2><strong>核心价值</strong></h2>
+<p>✅ 节省<strong>数小时</strong>繁琐的手动工作。<br>
+✅ 专注于真正重要的事——<strong>您的创意</strong>！</p>
+<hr>
+<h2><strong>解锁无缝工作流：核心优势与功能</strong></h2>
+<ul>
+<li>
+<p><strong>加速您的流程：</strong> 在将 C4D 项目或资产迁移到 Blender 时大幅减少材质设置时间。</p>
+</li>
+<li>
+<p><strong>保留艺术意图：</strong> 忠实转换 Octane 材质的原始外观和质感。</p>
+</li>
+<li>
+<p><strong>消除 PBR 错误：</strong> 自动颜色空间处理防止常见纹理问题。</p>
+</li>
+<li>
+<p><strong>专注创意：</strong> 花更多时间创作，减少排除节点故障的时间。</p>
+</li>
+<li>
+<p><strong>对艺术家友好：</strong> 直观、易用的界面——无需编码。</p>
+</li>
+</ul>
+<hr>
+<h2><strong>功能深度解析</strong></h2>
+<h3>核心材质类型转换</h3>
+<ul>
+<li>
+<p>支持关键 Octane 材质： <strong>Universal, Glossy, Metallic, Specular，</strong><strong><span class="ne-text" style="font-size:16px;">Diffuse</span></strong></p>
+</li>
+<li>
+<p>智能转换为 Blender 的 <strong>Principled BSDF</strong> 节点。</p>
+</li>
+</ul>
+<h3>智能 PBR 通道映射</h3>
+<p>自动连接：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Octane 通道</th>
+<th align="left">Blender 输入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Albedo / Diffuse→</td>
+<td align="left">基础 颜色</td>
+</tr>
+<tr>
+<td align="left">Roughness→</td>
+<td align="left">Roughness</td>
+</tr>
+<tr>
+<td align="left">Metallic→</td>
+<td align="left">Metallic</td>
+</tr>
+<tr>
+<td align="left">正常→</td>
+<td align="left">正常 (via 正常 映射 node)</td>
+</tr>
+<tr>
+<td align="left">Bump→</td>
+<td align="left">正常 (via Bump node)</td>
+</tr>
+<tr>
+<td align="left">Emission→</td>
+<td align="left">Emission 颜色 &amp; Strength</td>
+</tr>
+<tr>
+<td align="left">不透明度→</td>
+<td align="left">透明度</td>
+</tr>
+<tr>
+<td align="left">Transmission→</td>
+<td align="left">Transmission &amp; 基础 颜色</td>
+</tr>
+<tr>
+<td align="left">IOR→</td>
+<td align="left">IOR</td>
+</tr>
+<tr>
+<td align="left">Displacement→</td>
+<td align="left">材料 输出 &gt; Displacement</td>
+</tr>
+</tbody>
+</table>
+<p><br></p><p>颜色空间自动检测并分配（<code>sRGB</code> 或 <code>Non-Color</code>）——确保 PBR 正确性！</p>
+<h3>常用着色器节点转换</h3>
+<ul>
+<li>
+<p>支持 Octane 节点如 <strong>Image Texture</strong>、<strong>RGB Color</strong>、<strong>Noise</strong>、<strong>Mix</strong>、<strong>Multiply</strong>、<strong>Invert</strong>、<strong>Color Correction</strong>、<strong>Transform</strong> 等。</p>
+</li>
+<li>
+<p>在可能的情况下，程序化节点会转换为 Cycles 等效节点，或建议烘焙处理。</p>
+</li>
+</ul>
+<h3>置换贴图支持</h3>
+<ul>
+<li>
+<p>将 Octane 置换贴图连接到 Blender 的置换系统。</p>
+</li>
+<li>
+<p>需要在 Blender 中正确设置细分和材质以确保正常显示。</p>
+</li>
+</ul>
+<h3>可选：SyncTools 集成</h3>
+<ul>
+<li>
+<p>如果您拥有 <strong><a href="https://superhivemarket.com/products/synctools-pro-v2" target="_blank">SyncTools</a></strong>，可以<strong>直接从 C4D 复制粘贴到 Blender</strong>，实现更快的工作流程。</p>
+<p><br></p>
+</li>
+</ul><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/ngV5gOfUv40" width="640" height="360" class="note-video-clip"></iframe></div><ul>
+<li>
+<p><br></p>
+</li>
+</ul>
+<hr>
+<h2><strong>技术深入解析：转换映射表</strong></h2>
+<h3>Octane 材质类型 → Cycles 节点映射</h3><p><img src="images/desc_06_0afc83c9f2f10552ad742cfab8752495.png" style="max-width:100%;"><br></p>
+
+<h3>Octane 通道 → Blender BSDF 输入</h3><p><img src="images/desc_07_dfffbbe62aff5e8f60394bec2992b085.png" style="max-width:100%;"><br></p>
+<br>
+<h3>常用 Octane 节点 → Blender 节点</h3><p><img src="images/desc_08_0afac6dc38529779e6d581b73d0ef28d.png" style="max-width:100%;"><br></p>
+
+<h2><strong>简单步骤：工作流指南</strong></h2>
+<h3>标准 FBX 工作流</h3>
+<ol>
+<li>
+<p>在 C4D 中完成 Octane 材质设置。</p>
+</li>
+<li>
+<p>从 C4D 导出 FBX 文件。</p>
+</li>
+<li>
+<p>将 FBX 导入到 Blender。</p>
+</li>
+<li>
+<p>选择导入的对象，打开 <strong>Import Octane Material Pro</strong> 面板，点击"<span style="font-weight:bolder;">导入 Octane 材质</span>"。</p>
+</li>
+<li>
+<p>验证结果，如有必要进行微调。</p>
+</li>
+</ol>
+<h3>使用 SyncTools 的加速工作流</h3>
+<ol>
+<li>
+<p>确保 <strong><a href="https://superhivemarket.com/products/synctools-pro-v2" target="_blank">SyncTools</a></strong> 在 C4D 和 Blender 中都已运行。</p>
+</li>
+<li>
+<p>在 C4D 中复制选中的资产。</p>
+</li>
+<li>
+<p>直接粘贴到 Blender 中。</p>
+</li>
+<li>
+<p>材质将被即时导入并转换。</p>
+</li>
+</ol>
+<hr>
+<h2><strong>重要注意事项</strong></h2>
+<ul>
+<li>
+<p><strong>不保证完美的 1:1 匹配：</strong>由于引擎差异，可能会出现细微变化。</p>
+</li>
+<li>
+<p><strong>复杂材质可能需要微调：</strong>特别是那些大量使用程序化设置的材质。</p>
+</li>
+<li>
+<p><strong>建议：</strong>烘焙复杂的程序化纹理以获得最佳视觉准确度。</p>
+</li>
+<li>
+<p><strong>支持的 Blender 版本：</strong>2.93 → 4.3+</p>
+</li>
+<li>
+<p><strong>包含：</strong>配套 C4D 导出脚本</p>
+</li>
+<li>
+<p><strong>未来更新：</strong>包含在内并持续进行！</p>
+</li>
+</ul>
+<hr>
+<h1><strong>停止与节点斗争，开始创作！</strong></h1>
+<p>您准备好重新获得数小时的创作时间并简化 C4D 到 Blender 的工作流程了吗？<br>
+<strong>立即获取 Import Octane Material Pro — 专注于您最擅长的事：创作精彩的艺术作品！</strong></p>
+<p>✅ <strong>投资效率。</strong><br>
+✅ <strong>投资创意。</strong></p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信回馈让我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <h2 class="" style="color:rgb(0, 0, 0);">Steps to Use</h2><h4 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">方法 1: Using FBX 导出</span></h4><ol>
+<li>
+<p><span style="font-weight:bolder;">导出 the Scene from C4D:</span></p>
+<ul>
+<li>Open your project in Cinema 4D and ensure all Octane materials are properly set up.</li>
+<li>导出 the scene as an <span style="font-weight:bolder;">FBX file</span>:<ul>
+<li>Go to <code style="">文件 &gt; 导出</code> and choose <code style="">FBX 文件</code>.</li>
+<li>制作 sure the export settings include geometry, materials, and texture paths.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">导入 into Blender:</span></p>
+<ul>
+<li>Open Blender and load your project or create a new scene.</li>
+<li>导入 the FBX file:<ul><li>Go to <code style="">文件 &gt; 导入 &gt; FBX</code>, then select and load your exported file.</li></ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">运行 the 插件:</span></p>
+<ul>
+<li>Ensure the <span style="font-weight:bolder;">Import Octane Material Pro</span> plugin is installed and enabled:<ul><li>Go to <code style="">编辑 &gt; 偏好设置 &gt; 插件</code>, then install and enable the plugin.</li></ul>
+</li>
+<li>Open the plugin panel in Blender and click <span style="font-weight:bolder;">"导入 Octane 材料s"</span>. The plugin will automatically match the geometry and Octane materials.</li>
+</ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">Check and 调整:</span></p>
+<ul>
+<li>验证 the materials and textures are correctly applied.</li>
+<li>制作 further adjustments as needed, such as tweaking lights or fine-tuning shaders.</li>
+</ul>
+</li>
+</ol><h4 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">方法 2: Using SyncTools for 快速 导入 (Recommended)</span></h4><ol>
+<li>
+<p><span style="font-weight:bolder;">启用 SyncTools:</span></p>
+<ul><li>Ensure that the SyncTools plugin is installed and running in both C4D and Blender.</li></ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">复制 in C4D:</span></p>
+<ul>
+<li>Select the 3D asset(s) you want to transfer along with their Octane materials.</li>
+<li>
+<span style="font-weight:bolder;">右-click</span> and choose <span style="font-weight:bolder;">"复制"</span>, or use the appropriate shortcut to copy the selection.</li>
+</ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">粘贴 in Blender:</span></p>
+<ul>
+<li>Open the SyncTools panel in Blender.</li>
+<li>Click <span style="font-weight:bolder;">"粘贴"</span> or use the corresponding shortcut. The 3D asset(s) will be imported into Blender, complete with geometry, materials, and textures.</li>
+</ul>
+</li>
+<li>
+<p><span style="font-weight:bolder;">快速的 Check:</span></p>
+<ul>
+<li>Review the imported asset to ensure the materials and geometry are intact.</li>
+<li>If there are minor issues, simply make slight adjustments manually.</li>
+</ul>
+</li>
+</ol>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/file_1.zip">file_1.zip</a><span class="file-size">3.6 MB</span></li>
+                <li><a href="files/导入_Octane_材料_Pro_Official.zip">导入_Octane_材料_Pro_Official.zip</a><span class="file-size">1.0 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

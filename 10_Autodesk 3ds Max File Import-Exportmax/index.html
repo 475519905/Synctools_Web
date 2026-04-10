@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autodesk 3ds Max 文件 导入-导出（.max） - SyncTools Pro</title>
+    <meta name="description" content="Autodesk 3ds Max 文件 导入-导出（.max） - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; Autodesk 3ds Max 文件 导入-导出（.max）
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="Autodesk 3ds Max 文件 导入-导出（.max）"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="Autodesk 3ds Max 文件 导入-导出（.max）" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="1">
+                <img src="images/02_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="2">
+                <img src="images/03_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="3">
+                <img src="images/04_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="4">
+                <img src="images/05_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="5">
+                <img src="images/06_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="6">
+                <img src="images/07_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="7">
+                <img src="images/08_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="8">
+                <img src="images/09_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="9">
+                <img src="images/10_gallery.jpg" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="10">
+                <img src="images/11_gallery.png" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="11">
+                <img src="images/12_gallery.png" alt="Autodesk 3ds Max 文件 导入-导出（.max）" data-index="12"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">Autodesk 3ds Max 文件 导入-导出（.max）</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$15.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/Autodesk_Max_文件_导入-导出_Pro.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件, 导入 &amp; 导出</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">4.2 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">授权协议</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-modeling</span>
+                    <span class="compat-chip">3ds-max</span>
+                    <span class="compat-chip">animation</span>
+                    <span class="compat-chip">autodesk</span>
+                    <span class="compat-chip">convert-format</span>
+                    <span class="compat-chip">cross-platform</span>
+                    <span class="compat-chip">file-conversion</span>
+                    <span class="compat-chip">import-export</span>
+                    <span class="compat-chip">interoperability</span>
+                    <span class="compat-chip">pipeline</span>
+                    <span class="compat-chip">professional-tools</span>
+                    <span class="compat-chip">workflow</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">Autodesk 3ds Max 文件 Blender 导入-导出插件</span></p><p>无缝地 bridge the gap between <strong>Blender</strong> and <strong>Autodesk 3ds Max</strong> with this powerful import/export addon.<br>
+This professional-grade tool enables direct workflow integration between two of the industry's most popular 3D applications by providing <strong>native .max 文件 support</strong> in Blender.</p><hr><h2>✨ 核心功能</h2><h3>🔄 Bidirectional 文件 支持</h3><ul>
+<li>
+<p>导入 <strong>.max 文件s</strong> directly into Blender with full scene integrity</p>
+</li>
+<li>
+<p>导出 Blender scenes to <strong>.max format</strong> for 3ds Max compatibility</p>
+</li>
+<li>
+<p>高-fidelity data transfer ensures models, materials, and animations are preserved</p>
+</li>
+</ul><h3>⚙️ 高级导入选项</h3><ul>
+<li>
+<p>Selective asset import: models, lights, cameras, splines, animations, materials, armatures</p>
+</li>
+<li>
+<p>自动 coordinate system adjustment (<strong>X-axis 180° rotation option</strong>)</p>
+</li>
+<li>
+<p>缩放 conversion support (<strong>0.01x scaling for unit compatibility</strong>)</p>
+</li>
+<li>
+<p>Customizable default import 设置 for a streamlined workflow</p>
+</li>
+</ul><h3>🎯 智能导出 控件</h3><ul>
+<li>
+<p>过滤 export by object type: meshes, lights, cameras, curves, animations</p>
+</li>
+<li>
+<p>Selection-only export for targeted asset transfer</p>
+</li>
+<li>
+<p>Preserve material assignments and animation data</p>
+</li>
+<li>
+<p>Maintain scene hierarchy and object relationships</p>
+</li>
+</ul><h3>🔧 Intelligent 3ds Max Detection</h3><ul>
+<li>
+<p>自动 registry-based detection of 3ds Max installations</p>
+</li>
+<li>
+<p>支持 for multiple 3ds Max 版本s (<strong>2020–2026+</strong>)</p>
+</li>
+<li>
+<p>Flexible Python path configuration</p>
+</li>
+<li>
+<p>全面的error logging and troubleshooting</p>
+</li>
+</ul><h3>💼 专业工作流 Integration</h3><ul>
+<li>
+<p>Drag-and-drop <strong>.max 文件 support</strong> for instant imports</p>
+</li>
+<li>
+<p>全面的preference system with per-project 设置</p>
+</li>
+<li>
+<p>Detailed logging system for debugging and workflow optimization</p>
+</li>
+<li>
+<p>Windows platform optimized with full registry integration</p>
+</li>
+</ul><hr><h2>🖥️ Technical Specifications</h2><ul>
+<li>
+<p><strong>Blender 4.2+ compatibility</strong></p>
+</li>
+<li>
+<p><strong>Windows platform support</strong></p>
+</li>
+<li>
+<p>Requires <strong>Autodesk 3ds Max installation</strong> (2023+)</p>
+</li>
+<li>
+<p>Uses native <strong>3ds Max Python API &amp; MAXScript</strong> for reliable conversion</p>
+</li>
+<li>
+<p>Ensures broad compatibility and preservation of scene features</p>
+</li>
+</ul><hr><h2>🎯 适合</h2><ul>
+<li>
+<p>Studios working with <strong>mixed 3ds Max/Blender pipelines</strong></p>
+</li>
+<li>
+<p>自由职业者 collaborating across different 3D applications</p>
+</li>
+<li>
+<p>资产 conversion and migration projects</p>
+</li>
+<li>
+<p>教育 environments teaching multiple 3D platforms</p>
+</li>
+<li>
+<p>Technical artists optimizing cross-platform workflows</p>
+</li>
+</ul><hr><h2>🚀 Why Choose This 添加on?</h2><p>This addon eliminates the complexity typically associated with 3ds Max 文件 conversion, providing a <strong>one-click solution</strong> that maintains scene integrity, material assignments, and animation data.</p><p>Whether you're migrating existing projects or establishing a cross-platform workflow, this tool provides the <strong>reliability and functionality demanded by professional 3D production environments</strong>.</p><p>👉 Experience seamless interoperability between Blender and 3ds Max – <strong>download now and streamline your 3D workflow today!</strong></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">AUTODESK 3DS MAX 文件导入-导出插件</span></p><p><strong>文档</strong></p><hr><h2>目录</h2><ol>
+<li>
+<p>概述</p>
+</li>
+<li>
+<p>安装</p>
+</li>
+<li>
+<p>系统要求</p>
+</li>
+<li>
+<p>配置</p>
+</li>
+<li>
+<p>导入3ds Max 文件</p>
+</li>
+<li>
+<p>导出to 3ds Max</p>
+</li>
+<li>
+<p>高级设置</p>
+</li>
+<li>
+<p>故障排除</p>
+</li>
+<li>
+<p>FAQ</p>
+</li>
+<li>
+<p>支持</p>
+</li>
+</ol><hr><h2>1. 概述</h2><p>Autodesk 3ds Max 文件导入-导出插件通过原生 <code>.max</code> 文件支持实现 Blender 和 Autodesk 3ds Max 之间的无缝集成。<br>
+该插件使用智能转换在文件传输过程中保持场景完整性、材质、动画和对象层次结构。</p><p><strong>核心功能:</strong></p><ul>
+<li>
+<p>直接<code>.max</code> 文件导入/导出</p>
+</li>
+<li>
+<p>选择性资源过滤（模型、灯光、摄像机、样条线、动画）</p>
+</li>
+<li>
+<p>自动检测 3ds Max 安装</p>
+</li>
+<li>
+<p>拖放文件支持</p>
+</li>
+<li>
+<p>全面的日志系统</p>
+</li>
+<li>
+<p>专业工作流程集成</p>
+</li>
+</ul><hr><h2>2. 安装</h2><p><strong>标准安装：</strong></p><ol>
+<li>
+<p>下载插件 <code>.zip</code> 文件</p>
+</li>
+<li>
+<p>打开 Blender → <em>编辑 &gt; 偏好设置 &gt; 插件</em></p>
+</li>
+<li>
+<p>点击<strong>安装...</strong>并选择 <code>.zip</code></p>
+</li>
+<li>
+<p>启用插件，位于 <strong>Autodesk 3ds Max 文件 导入-导出</strong></p>
+</li>
+<li>
+<p>配置 3ds Max Python 路径 (see <em>配置</em>)</p>
+</li>
+</ol><p><strong>手动安装：</strong></p><ol>
+<li>
+<p>Extract the addon into Blender’s addons folder:</p>
+<ul>
+<li>
+<p>Windows: <code>%APPDATA%\Blender Foundation\Blender\[version]\scripts\addons\</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>重启 Blender</p>
+</li>
+<li>
+<p>在以下位置启用插件： <em>偏好设置 &gt; 插件</em></p>
+</li>
+</ol><hr><h2>3. 系统要求</h2><ul>
+<li>
+<p><strong>OS:</strong> Windows 10/11 (64-bit)</p>
+</li>
+<li>
+<p><strong>Blender:</strong> 4.2+</p>
+</li>
+<li>
+<p><strong>3ds Max:</strong> 2023+ (any edition)</p>
+</li>
+<li>
+<p><strong>Python:</strong> 兼容 3ds Max 安装</p>
+</li>
+<li>
+<p><strong>磁盘空间：</strong> 50MB+ for temp 文件s</p>
+</li>
+<li>
+<p><strong>RAM:</strong> 最低 4GB（推荐 8GB）</p>
+</li>
+</ul><p><strong>注意事项：</strong></p><ul>
+<li>
+<p>需要已安装的 Autodesk 3ds Max</p>
+</li>
+<li>
+<p>不支持 Linux/macOS</p>
+</li>
+<li>
+<p>首次设置可能需要管理员权限</p>
+</li>
+</ul><hr><h2>4. 配置</h2><p><strong>初始设置：</strong></p><ol>
+<li>
+<p>Open <em>偏好设置 &gt; 插件</em></p>
+</li>
+<li>
+<p>展开<strong>Autodesk 3ds Max 文件 导入-导出</strong> 设置</p>
+</li>
+<li>
+<p>点击<strong>自动检测</strong> （定位 3ds Max Python 路径）</p>
+</li>
+<li>
+<p>如果检测失败，请手动浏览到：</p>
+<ul>
+<li>
+<p><code>C:\Program 文件\Autodesk\3ds Max 2025\Python\python.exe</code></p>
+</li>
+<li>
+<p><code>C:\Program 文件\Autodesk\3ds Max 2024\bin\python.exe</code></p>
+</li>
+</ul>
+</li>
+</ol><p><strong>默认导入设置：</strong></p><ul>
+<li>
+<p>模型（已启用）</p>
+</li>
+<li>
+<p>灯光（已启用）</p>
+</li>
+<li>
+<p>摄像机（已启用）</p>
+</li>
+<li>
+<p>样条线（已启用）</p>
+</li>
+<li>
+<p>动画（已启用）</p>
+</li>
+<li>
+<p>材质（已启用）</p>
+</li>
+<li>
+<p>骨架（已启用）</p>
+</li>
+<li>
+<p>应用 X 轴 180° 旋转（已禁用）</p>
+</li>
+<li>
+<p>应用 0.01 缩放（已启用）</p>
+</li>
+</ul><hr><h2>5. 导入 3DS MAX 文件</h2><p><strong>方法一：文件菜单</strong></p><ol>
+<li>
+<p><em>文件 &gt; 导入 &gt; Autodesk 3ds Max (.max)</em></p>
+</li>
+<li>
+<p>选择<code>.max</code> 文件</p>
+</li>
+<li>
+<p>调整导入选项</p>
+</li>
+<li>
+<p>点击<strong>导入</strong></p>
+</li>
+</ol><p><strong>方法 2: Drag &amp; Drop</strong></p><ol>
+<li>
+<p>将<code>.max</code> 文件拖入 Blender 视口</p>
+</li>
+<li>
+<p>选项对话框出现</p>
+</li>
+<li>
+<p>配置设置 → <strong>OK</strong></p>
+</li>
+</ol><p><strong>导入选项：</strong></p><ul>
+<li>
+<p>模型、灯光、摄像机、样条线、动画、材质、骨架</p>
+</li>
+<li>
+<p>X 轴 180° 旋转（坐标修正）</p>
+</li>
+<li>
+<p>0.01 缩放（单位转换）</p>
+</li>
+</ul><p><strong>提示：</strong></p><ul>
+<li>
+<p>Large 文件s may take minutes</p>
+</li>
+<li>
+<p>检查<em>系统控制台</em>查看进度</p>
+</li>
+<li>
+<p>确保有足够的磁盘空间</p>
+</li>
+<li>
+<p>导入期间关闭占用资源的应用程序</p>
+</li>
+</ul><hr><h2>6. 导出到 3DS MAX</h2><p><strong>标准导出：</strong></p><ol>
+<li>
+<p><em>文件 &gt; 导出 &gt; Autodesk 3ds Max (.max)</em></p>
+</li>
+<li>
+<p>选择目标路径/文件名</p>
+</li>
+<li>
+<p>配置导出选项</p>
+</li>
+<li>
+<p>点击<strong>导出</strong></p>
+</li>
+</ol><p><strong>导出选项：</strong></p><ul>
+<li>
+<p>模型、灯光、摄像机、样条线、动画</p>
+</li>
+<li>
+<p>仅选中项（可选）</p>
+</li>
+</ul><p><strong>流程：</strong></p><ol>
+<li>
+<p>Blender 生成中间数据</p>
+</li>
+<li>
+<p>3ds Max 转换为 <code>.max</code></p>
+</li>
+<li>
+<p>Temp 文件s cleaned automatically</p>
+</li>
+<li>
+<p>最终文件已保存</p>
+</li>
+</ol><p><strong>最佳实践：</strong></p><ul>
+<li>
+<p>导出前应用变换</p>
+</li>
+<li>
+<p>使用标准材质</p>
+</li>
+<li>
+<p>用简单场景测试</p>
+</li>
+<li>
+<p>在 3ds Max 中验证导出的文件</p>
+</li>
+</ul><hr><h2>7. 高级设置</h2><p><strong>日志系统：</strong></p><ul>
+<li>
+<p>日志存储在： <code>文档s\blender_3dsmax_log.txt</code></p>
+</li>
+<li>
+<p>包含转换步骤、错误和性能数据</p>
+</li>
+</ul><p><strong>缓存目录：</strong></p><ul>
+<li>
+<p>存储在： <code>文档s\blender_3dsmax_cache\</code></p>
+</li>
+<li>
+<p>操作后自动清理</p>
+</li>
+</ul><p><strong>性能优化：</strong></p><ul>
+<li>
+<p>使用 SSD 加快处理速度</p>
+</li>
+<li>
+<p>为大型场景增加虚拟内存</p>
+</li>
+<li>
+<p>关闭不必要的应用程序</p>
+</li>
+<li>
+<p>监控系统资源</p>
+</li>
+</ul><hr><h2>8. 故障排除</h2><p><strong>常见问题：</strong></p><ul>
+<li>
+<p><em>"找不到 3ds Max Python 可执行文件"</em><br>
+→ 验证安装，使用自动检测，或手动设置</p>
+</li>
+<li>
+<p><em>"导出失败"</em><br>
+→ 检查对象有效性、不支持的类型，或单独导出</p>
+</li>
+<li>
+<p><em>"3ds Max 脚本执行失败"</em><br>
+→ 验证安装完整性，释放磁盘空间，重启 Blender/3ds Max</p>
+</li>
+<li>
+<p><em>"导入显示空场景"</em><br>
+→ 启用过滤器，检查文件完整性，查看日志</p>
+</li>
+<li>
+<p><em>转换太慢</em><br>
+→ 降低场景复杂度，关闭应用程序，拆分大型场景</p>
+</li>
+<li>
+<p><em>文件太大</em><br>
+→ 优化纹理，减少多边形数量，简化动画</p>
+</li>
+</ul><hr><h2>9. 常见问题</h2><p><strong>问：支持哪些版本的 3ds Max？</strong><br>
+答：2020 及更高版本（自动检测已安装的最高版本）。</p><p><strong>问：没有安装 3ds Max 可以使用吗？</strong><br>
+答：不可以。需要已安装的 3ds Max。</p><p><strong>问：材质会保留吗？</strong><br>
+答：是的，启用选项后可以保留。保真度取决于材质系统。</p><p><strong>问：动画呢？</strong><br>
+答：关键帧会保留。程序化数据可能需要调整。</p><p><strong>问：支持批量转换吗？</strong><br>
+答：暂不支持。文件必须单独转换。</p><p><strong>问：为什么使用中间 FBX？</strong><br>
+答：Blender 和 3ds Max 之间的最佳兼容性。</p><p><strong>问：Blender 扩展兼容性？</strong><br>
+答：是的，包含 Blender 4.2+ 扩展的 manifest。</p><hr><h2>10. 支持</h2><p><strong>获取帮助：</strong></p><ol>
+<li>
+<p>查阅此文档</p>
+</li>
+<li>
+<p>检查<code>blender_3dsmax_log.txt</code></p>
+</li>
+<li>
+<p>查看<em>故障排除</em>部分</p>
+</li>
+<li>
+<p>Contact support with errors &amp; logs</p>
+</li>
+</ol><p><strong>报告问题时，请包含：</strong></p><ul>
+<li>
+<p>Blender 版本</p>
+</li>
+<li>
+<p>3ds Max 版本</p>
+</li>
+<li>
+<p>操作系统详情</p>
+</li>
+<li>
+<p>错误信息</p>
+</li>
+<li>
+<p>复现步骤</p>
+</li>
+<li>
+<p>日志内容</p>
+</li>
+</ul><p><strong>性能提示：</strong></p><ul>
+<li>
+<p>保持 Blender/3ds Max 为最新版本</p>
+</li>
+<li>
+<p>确保 10GB+ 可用磁盘空间</p>
+</li>
+<li>
+<p>关闭占用资源的后台应用</p>
+</li>
+<li>
+<p>对网络文件使用有线连接s</p>
+</li>
+</ul><p><strong>更新：</strong></p><ul>
+<li>
+<p>检查addon description for changelog &amp; new features</p>
+</li>
+</ul><hr><p><strong>版本:</strong> 1.0.0<br>
+<strong>最后更新：</strong> 2024</p><p>感谢您使用 Autodesk 3ds Max 文件导入-导出插件！</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/Autodesk_Max_文件_导入-导出_Pro.zip">Autodesk_Max_文件_导入-导出_Pro.zip</a><span class="file-size">1.0 KB</span></li>
+                <li><a href="files/file_1.zip">file_1.zip</a><span class="file-size">18.2 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools Pro For Zbrush - SyncTools Pro</title>
+    <meta name="description" content="SyncTools Pro For Zbrush - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools Pro For Zbrush
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools Pro For Zbrush"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools Pro For Zbrush" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="SyncTools Pro For Zbrush" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SyncTools Pro For Zbrush" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SyncTools Pro For Zbrush" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SyncTools Pro For Zbrush" data-index="4">
+                <img src="images/05_gallery.jpg" alt="SyncTools Pro For Zbrush" data-index="5">
+                <img src="images/06_gallery.png" alt="SyncTools Pro For Zbrush" data-index="6"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools Pro For Zbrush</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">添加ons</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                    <span class="meta-tag">材质 and Shading</span>
+                    <span class="meta-tag">建模</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/SyncTools_Zbrush.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Categories</span><span class="sidebar-info-value">添加ons, 导入 &amp; 导出, 材质 and Shading, 建模</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">License</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-art</span>
+                    <span class="compat-chip">3d-artists</span>
+                    <span class="compat-chip">3d-design</span>
+                    <span class="compat-chip">3d-geometry</span>
+                    <span class="compat-chip">3d-modeling</span>
+                    <span class="compat-chip">3d-model-transfer</span>
+                    <span class="compat-chip">3d-resources</span>
+                    <span class="compat-chip">3d-software</span>
+                    <span class="compat-chip">3d-workflow</span>
+                    <span class="compat-chip">blender-market</span>
+                    <span class="compat-chip">copy-paste-plugin</span>
+                    <span class="compat-chip">cross-project-workflow</span>
+                    <span class="compat-chip">digital-art</span>
+                    <span class="compat-chip">macos</span>
+                    <span class="compat-chip">obj-file</span>
+                    <span class="compat-chip">productivity-tools</span>
+                    <span class="compat-chip">subtools</span>
+                    <span class="compat-chip">synctools</span>
+                    <span class="compat-chip">time-saving</span>
+                    <span class="compat-chip">windows</span>
+                    <span class="compat-chip">workflow-optimization</span>
+                    <span class="compat-chip">zbrush</span>
+                    <span class="compat-chip">zbrush-2022</span>
+                    <span class="compat-chip">zbrush-2023</span>
+                    <span class="compat-chip">zbrush-add-on</span>
+                    <span class="compat-chip">zbrush-integration</span>
+                    <span class="compat-chip">zbrush-plugin</span>
+                    <span class="compat-chip">zbrush-tools</span>
+                    <span class="compat-chip">zbrush-users</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <h1 class=""><strong>SyncTools for ZBrush</strong></h1><h1 class=""><strong><br></strong></h1><h2 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">🌍 多 DCC 平台支持</span></h2><h1 style="margin-top:24px;margin-bottom:12px;line-height:1.25;color:rgb(0, 0, 0);font-size:2em;"></h1><h1 class=""></h1><p style="font-family:sans-serif;font-size:16px;font-weight:400;">SyncTools 系列扩展支持主要的 <span style="font-weight:bolder;">数字内容创作软件</span>, 包括:</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅ <span style="font-weight:bolder;">SyncTools for Maya</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for 3ds Max</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Houdini</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Cinema 4D</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Rhino</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Marvelous Designer</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅<span style="font-weight:bolder;">SyncTools for 虚幻引擎</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Substance Painter</span> (已发布)<br>🛠 <span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)<br>✅ <span style="font-weight:bolder;">SyncTools for Zbrush</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">所有插件使用 <span style="font-weight:bolder;">统一的数据交换协议</span>, 实现 <span style="font-weight:bolder;">跨平台无损资产转换</span> and <span style="font-weight:bolder;">真正的多软件协同工作流</span>.</p><h1 class="">
+<img src="images/desc_00_5bfbca1e0e8cba6ba8f552c13e044388.jpg" style="max-width:100%;"><strong><br></strong>
+</h1><h1 class="">
+<img src="images/desc_01_0fa1c370ae192d49d8bc4f897b7cabf2.jpg" style="max-width:100%;"><strong><br></strong>
+</h1><h1 class="">
+<img src="images/desc_02_e15ba862ed3c883dcfbb5e892ca6f2f2.png" style="max-width:100%;"><strong><br></strong>
+</h1><h3><br></h3><h3>ZBrush 支持</h3><p><strong>推荐配置:</strong></p><ul>
+<li>
+<p><strong>推荐版本:</strong> ZBrush 2023 （或更高版本）</p>
+</li>
+<li>
+<p><strong>最低兼容版本:</strong> ZBrush 2022</p>
+</li>
+<li>
+<p><strong>支持的操作系统:</strong> Windows (64-bit), macOS (64-bit)</p>
+</li>
+</ul><h3>功能</h3><p>SyncTools for ZBrush 支持以下 3D 资源类型的双向导入/导出:</p><ul>
+<li>
+<p><strong>3D 模型几何</strong></p>
+</li>
+<li>
+<p><strong>Subtool 结构</strong></p>
+</li>
+<li>
+<p><strong>FBX 格式数据传输</strong></p>
+</li>
+</ul><p>该插件使用复制和粘贴操作同步资源，大大简化了跨多个 ZBrush 窗口或项目的工作流。</p><h3>安装指南</h3><p><img src="images/desc_03_610f0d971bea5cf89d93be870807e0dc.png" style="max-width:100%;"><br></p><ol>
+<li>
+<p>将以下文件复制到 ZBrush 安装目录下的 <code>ZStartup/ZPlugs64/SyncTools/</code> （如果文件夹不存在则创建）：</p>
+</li>
+<li>
+<p>重启 ZBrush, 插件将自动加载。</p>
+</li>
+</ol><h3>使用方法</h3><p><img src="images/desc_04_347594fd01cdb13624dc96ccce49b751.png" style="max-width:100%;"><br></p><ul>
+<li>
+<p><strong>打开插件面板:</strong> <code>Alt + Shift + P</code></p>
+</li>
+</ul><h4>快捷键:</h4><ul>
+<li>
+<p><strong>复制:</strong> 复制当前选中的 Subtool 几何体<br>
+<strong>快捷键:</strong> <code>Alt + Shift + C</code></p>
+</li>
+<li>
+<p><strong>粘贴:</strong> 将几何体粘贴到当前 ZBrush 场景中<br>
+<strong>快捷键:</strong> <code>Alt + Shift + V</code></p>
+</li>
+</ul><h3>注意事项</h3><ul>
+<li>
+<p>插件会在后台自动创建临时文件以进行数据交换。</p>
+</li>
+<li>
+<p>确保有足够的磁盘空间（建议至少 500MB）。</p>
+</li>
+<li>
+<p>使用插件前请务必保存您的工作，以避免意外数据丢失。</p>
+</li>
+<li>
+<p>粘贴前必须先执行复制操作。</p>
+</li>
+</ul><h3>常见问题及解决方案</h3><h4>插件面板未显示</h4><p><br></p><ul>
+<li>
+<p>确保插件文件正确放置在 <code>ZPlugs64/SyncTools</code> 目录中。</p>
+</li>
+<li>
+<p>检查您的 ZBrush 版本（最低要求：2023）。</p>
+</li>
+<li>
+<p>重启 ZBrush。</p>
+</li>
+</ul><h4>复制失败</h4><ul>
+<li>
+<p>确保已选择要复制的 Subtool。</p>
+</li>
+<li>
+<p>检查是否有足够的磁盘空间。</p>
+</li>
+<li>
+<p>Ensure Subtool名称 not contain special characters (* ? / \ | " &lt; &gt; :).</p>
+</li>
+</ul><h4>粘贴失败</h4><ul>
+<li>
+<p>确保已先执行复制操作。</p>
+</li>
+<li>
+<p>检查界面上是否显示"缓冲区为空！"消息。</p>
+</li>
+<li>
+<p>验证指定系统路径中是否存在临时文件。</p>
+</li>
+</ul><h3>数据兼容性</h3><h4>支持的数据类型:</h4><ul>
+<li>
+<p><strong>✔ 完全支持:</strong></p>
+<ul>
+<li>
+<p>基本几何网格</p>
+</li>
+<li>
+<p>Subtool 结构</p>
+</li>
+<li>
+<p>FBX 格式数据</p>
+</li>
+<li>
+<p>顶点 positions and topology</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>⚠ 部分支持:</strong></p>
+<ul>
+<li>
+<p>UV 映射数据</p>
+</li>
+<li>
+<p>多边形组信息 (Poly分组s)</p>
+</li>
+<li>
+<p>顶点颜色数据 (Polypaint)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>✖ 不支持:</strong></p>
+<ul>
+<li>
+<p>ZBrush 材质</p>
+</li>
+<li>
+<p>多边形组着色</p>
+</li>
+<li>
+<p>笔刷笔触</p>
+</li>
+<li>
+<p>图层信息</p>
+</li>
+<li>
+<p>动态细分设置</p>
+</li>
+</ul>
+</li>
+</ul><h3>重要说明</h3><ul>
+<li>
+<p><strong>数据格式:</strong> 使用标准 FBX 格式进行数据传输，确保广泛的兼容性。</p>
+</li>
+<li>
+<p><strong>临时文件管理:</strong> 插件自动创建和删除临时交换文件——无需手动干预。</p>
+</li>
+<li>
+<p><strong>命名规范:</strong> 避免在文件名中使用特殊字符，以防止复制/粘贴失败。</p>
+</li>
+<li>
+<p><strong>系统要求:</strong> 该插件仅支持 64 位操作系统环境。</p>
+</li>
+</ul><h3>总结</h3><p>SyncTools for ZBrush 提供了一种简单高效的方式，可在不同 ZBrush 实例或项目之间快速传输 3D 模型数据。 通过一键复制粘贴流程，显著提高了多窗口和跨项目工作流的便利性和生产力。</p><p>此插件遵循 GPL 开源许可证，将持续更新和优化。 如果您遇到任何问题或有功能建议，请随时联系我们！</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/SyncTools_Zbrush.zip">SyncTools_Zbrush.zip</a><span class="file-size">969.0 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

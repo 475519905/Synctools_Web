@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super3D Extra 格式 Bridge - SyncTools Pro</title>
+    <meta name="description" content="Super3D Extra 格式 Bridge - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; Super3D Extra 格式 Bridge
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="Super3D Extra 格式 Bridge"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="Super3D Extra 格式 Bridge" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="Super3D Extra 格式 Bridge" data-index="1">
+                <img src="images/02_gallery.png" alt="Super3D Extra 格式 Bridge" data-index="2">
+                <img src="images/03_gallery.png" alt="Super3D Extra 格式 Bridge" data-index="3">
+                <img src="images/04_gallery.png" alt="Super3D Extra 格式 Bridge" data-index="4">
+                <img src="images/05_gallery.png" alt="Super3D Extra 格式 Bridge" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">Super3D Extra 格式 Bridge</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$20.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/add-on-super3d-io-addon-v0.3.1.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">4.0 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">授权协议</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3dmax</span>
+                    <span class="compat-chip">c4d</span>
+                    <span class="compat-chip">cinema4d</span>
+                    <span class="compat-chip">conversion-tool</span>
+                    <span class="compat-chip">export</span>
+                    <span class="compat-chip">format-conversion</span>
+                    <span class="compat-chip">houdini</span>
+                    <span class="compat-chip">import</span>
+                    <span class="compat-chip">maya</span>
+                    <span class="compat-chip">sketchup</span>
+                    <span class="compat-chip">super3d</span>
+                    <span class="compat-chip">transformation</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <h2>Super3D Extra 格式 Bridge</h2><img src="images/desc_00_37v6qv3opsl7yy6t92y3hb3s8hit.png"><p class="figcaption"></p><p>导入和导出超过20种 Blender 原生不支持的3D文件格式。</p><p>此插件在 Blender 的<strong>文件 → 导入</strong>和<strong>文件 → 导出</strong>菜单中添加了额外选项，让用户能够打开和保存更多常见的3D格式文件。</p><hr><h2>支持的格式</h2><p><img src="images/desc_01_896da74d2dc4b3b8cc6dcea172c95a2c.png" style="max-width:100%;"><br></p><p></p><h3>
+<img src="images/desc_02_d8a5e53c05240c6bff2e568a52deecb7.png" style="max-width:100%;"><br>
+</h3><h3>
+<img src="images/desc_03_95f50683abac952fff8539ea8125329c.png" style="max-width:100%;"><br>
+</h3><h3>DCC / 动画</h3><ul>
+<li><p>Cinema 4D (.c4d)</p></li>
+<li><p>3ds Max (.max)</p></li>
+<li><p>Maya ASCII (.ma)</p></li>
+<li><p>Maya Binary (.mb)</p></li>
+<li><p>Houdini (.hip / .hiplc / .hipnc)</p></li>
+<li><p>Fusion 360 (.f3d)</p></li>
+</ul><h3>CAD / 工程</h3><ul>
+<li><p>AutoCAD DWG (.dwg)</p></li>
+<li><p>STEP (.step / .stp)</p></li>
+<li><p>IGES (.iges / .igs)</p></li>
+<li><p>IFC (.ifc)</p></li>
+<li><p>Parasolid X_T (.x_t)</p></li>
+<li><p>JT (.jt)</p></li>
+</ul><h3>其他3D格式</h3><ul>
+<li><p>SketchUp (.skp)</p></li>
+<li><p>3D Studio (.3ds)</p></li>
+<li><p>3MF (.3mf)</p></li>
+<li><p>APX (.apx)</p></li>
+<li><p>3DXML (.3dxml)</p></li>
+</ul><hr><h2>工作原理</h2><p><br></p><p></p><h3>导入</h3><img src="images/desc_04_jc24mag66yj72d3kcj5i4zx9od4j.png"><p class="figcaption"></p><ol>
+<li><p>从<strong>文件 → 导入</strong>中选择支持的文件格式。</p></li>
+<li><p>插件将文件上传至 Super3D 转换服务。</p></li>
+<li><p>文件被转换为 OBJ 格式并导入当前 Blender 场景。</p></li>
+</ol><h3>导出</h3><img src="images/desc_05_z66i5jfq0qqbkyv5xbc64158g8xw.png"><p class="figcaption"></p><p><img src="images/desc_06_707ba9853e828f353c26f6abd3a982c8.png" style="max-width:100%;"><br></p><ol>
+<li><p>从<strong>文件 → 导出</strong>中选择支持的格式。</p></li>
+<li><p>场景被导出为 OBJ 格式。</p></li>
+<li><p>OBJ 文件通过 Super3D 服务转换为所选格式并保存至本地。</p></li>
+</ol><hr><h2>核心功能</h2><ul>
+<li><p>支持超过20种常见3D文件格式</p></li>
+<li><p>与 Blender 原生导入/导出菜单深度集成</p></li>
+<li><p>单一轻量级插件文件（.py）</p></li>
+<li><p>兼容 Blender 4.0 及更高版本</p></li>
+<li><p>可配置的 API 超时时间（30秒至2小时）</p></li>
+<li><p>可选择保留或自动删除临时文件</p></li>
+<li><p>除 Blender 内置 Python 外无需任何外部依赖</p></li>
+</ul><hr><h2>安装方法</h2><ol>
+<li><p>下载插件 .zip 文件。</p></li>
+<li><p>打开 Blender，进入<strong>编辑 → 偏好设置 → 插件</strong>。</p></li>
+<li><p>点击<strong>安装…</strong>并选择下载的 .zip 文件。</p></li>
+<li><p>在插件列表中启用该插件。</p></li>
+</ol><hr><h2>系统要求</h2><ul>
+<li><p>Blender 4.0 或更高版本</p></li>
+<li><p>网络连接</p></li>
+</ul><hr><p>由 <strong>475519905</strong> 开发</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p>安装</p><p>1. 下载产品 zip 压缩包。</p><p>2. 在 Blender 中，进入编辑 &gt; 偏好设置 &gt; 插件。</p><p>3. 点击安装，选择 super3d_io_addon.zip，然后启用该插件。</p><p><br></p><p>使用方法</p><p>- 导入：文件 &gt; 导入 &gt; Super3D</p><p>- 导出：文件 &gt; 导出 &gt; Super3D</p><p><br></p><p>最佳实践</p><p>- 使用产品页面上列出的受支持的 Blender 版本。</p><p>- 对于生产管线，在批量部署前请验证导出的文件。</p><p>- 保持命名规范一致，以获得可预期的结果。</p><p><br></p><p>故障排除</p><p>- 如果导入/导出失败，请先用最简单的示例文件进行测试。</p><p>- 禁用冲突的插件后重试。</p><p>- 提交问题时请附上 Blender 版本 + 操作系统 + 示例文件。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/add-on-super3d-io-addon-v0.3.1.zip">add-on-super3d-io-addon-v0.3.1.zip</a><span class="file-size">19.5 KB</span></li>
+                <li><a href="files/add-on-super3d-io-addon-v0.3.3.zip">add-on-super3d-io-addon-v0.3.3.zip</a><span class="file-size">19.6 KB</span></li>
+                <li><a href="files/super3d_io_addon.zip">super3d_io_addon.zip</a><span class="file-size">40.6 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools Pro For Houdini - SyncTools Pro</title>
+    <meta name="description" content="SyncTools Pro For Houdini - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools Pro For Houdini
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools Pro For Houdini"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools Pro For Houdini" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="SyncTools Pro For Houdini" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SyncTools Pro For Houdini" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SyncTools Pro For Houdini" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SyncTools Pro For Houdini" data-index="4">
+                <img src="images/05_gallery.jpg" alt="SyncTools Pro For Houdini" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools Pro For Houdini</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">Addons</span>
+                    <span class="meta-tag">动画</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                    <span class="meta-tag">Modeling</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/Synctools_houdini_new.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Categories</span><span class="sidebar-info-value">Addons, 动画, 导入 &amp; 导出, Modeling</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">License</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-asset-for-vfx</span>
+                    <span class="compat-chip">3d-workflow</span>
+                    <span class="compat-chip">asset-manager</span>
+                    <span class="compat-chip">automation</span>
+                    <span class="compat-chip">blender</span>
+                    <span class="compat-chip">copy-paste</span>
+                    <span class="compat-chip">cross-software</span>
+                    <span class="compat-chip">data-exchange</span>
+                    <span class="compat-chip">export</span>
+                    <span class="compat-chip">fbx</span>
+                    <span class="compat-chip">file-transfer</span>
+                    <span class="compat-chip">houdini</span>
+                    <span class="compat-chip">import</span>
+                    <span class="compat-chip">互操作性</span>
+                    <span class="compat-chip">mesh-transfer</span>
+                    <span class="compat-chip">pipeline</span>
+                    <span class="compat-chip">production-tool</span>
+                    <span class="compat-chip">scene-management</span>
+                    <span class="compat-chip">sync-tools</span>
+                    <span class="compat-chip">time-saving</span>
+                    <span class="compat-chip">vfx</span>
+                    <span class="compat-chip">workflow</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p><span style="font-family:Degular , sans-serif;font-size:2rem;"><b>SyncTools for Houdini</b></span></p><h3>概述</h3><p>SyncTools Pro 是一款跨软件工具，旨在简化不同应用程序（如 Blender 和 Houdini）之间复制和粘贴详细场景数据的过程。只需单击一下，即可将对象（包括网格、灯光、摄像机、材质、动画等）从一个场景导出并导入到另一个场景，显著节省您的制作工作流程中的时间和精力。</p><h3>多 DCC 平台支持</h3><p>SyncTools 系列现已扩展支持主要数字内容创作软件，包括：</p><ul>
+<li>
+<strong>SyncTools for Blender</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Maya</strong> (已发布)</li>
+<li>
+<strong>SyncTools for 3ds Max</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Cinema 4D</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Houdini</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Zbrush</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Rhino</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Marvelous Designer</strong> (已发布)</li>
+<li>
+<strong>SyncTools for Substance Painter</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Unreal Engine</strong> (开发中)</li>
+<li>
+<strong>SyncTools for Unity</strong> (开发中)</li>
+</ul><p>所有插件使用统一的数据交换协议，实现无缝跨平台、无损资产转换和真正的多软件协同工作流程。</p><p><img src="images/desc_00_e4b35d2e26385d0ab4752e0f88a93a63.jpg" style="max-width:100%;"><br></p><h3>
+<img src="images/desc_01_d59c0ded7e251bd6a7fd5e434a628687.jpg" style="max-width:100%;"><br>
+</h3><h3>Blender 端</h3><h4>1. 插件安装</h4><ul>
+<li>
+<strong>步骤 1</strong>：打开 Blender 并导航到 <code>编辑 > 偏好设置 > 插件</code>。</li>
+<li>
+<strong>步骤 2</strong>：点击 <code>安装</code> 按钮并选择 SyncTools Pro ZIP 文件。</li>
+<li>
+<strong>步骤 3</strong>：安装后，勾选 SyncTools Pro 旁边的复选框以启用插件。插件界面将出现在 3D 视图侧边栏的 SyncTools 标签页下。</li>
+</ul><h4>2. 插件设置</h4><p>在偏好设置菜单中，您可以通过直观的界面配置各种选项：</p><ul>
+<li>
+<strong>快捷键模式</strong>：根据个人工作习惯，在标准键盘快捷键与鼠标拖动方式之间进行选择。</li>
+<li>
+<strong>导入/导出选项</strong>：选择传输数据时要包含的元素。选项包括灯光、摄像机、材质、网格、骨骼和烘焙动画。</li>
+<li>
+<strong>全局缩放设置</strong>：调整导入和导出期间应用于场景的整体缩放比例。</li>
+<li>
+<strong>渲染器同步功能</strong>：启用"同步渲染器"选项（例如 Octane 材质同步）以确保材质设置在不同环境中保持一致。</li>
+</ul><blockquote>
+<p>注意：所有设置更改都会在后台自动生效，调整后无需额外操作。</p>
+</blockquote><h4>3. 工作流</h4><p><strong>复制操作</strong></p><ul>
+<li>
+<strong>选择</strong>：在 3D 视图中，选择要复制的对象。</li>
+<li>
+<strong>复制</strong>: 点击 SyncTools 面板中的 <code>复制</code> 按钮或使用指定的快捷键（默认：<code>Ctrl+Shift+C</code>）。</li>
+<li>
+<strong>导出</strong>: 插件将您的选择导出为 FBX 文件到指定的缓存文件夹（<code>Documents/cache</code> 文件夹）。</li>
+</ul><p><strong>粘贴操作</strong></p><ul>
+<li>
+<strong>切换场景</strong>：切换到目标场景或项目。</li>
+<li>
+<strong>粘贴</strong>: 点击 <code>粘贴</code> 按钮或使用相应的快捷键（默认：<code>Ctrl+Shift+V</code>）。</li>
+<li>
+<strong>导入</strong>: 插件将自动从缓存中导入最新的 FBX 文件，并根据您的导入设置过滤数据。</li>
+</ul><p><strong>使用快捷键</strong>
+除了面板按钮外，您可以使用可自定义的快捷键（例如 <code>Ctrl+Shift+C</code> 复制，<code>Ctrl+Shift+V</code> 粘贴）来简化工作流程。如有需要，可在插件设置中调整这些快捷键。</p><hr><h3>Houdini 端</h3><h4>1. 插件安装 &amp; Initialization</h4><p><strong>系统要求：</strong></p><ul>
+<li>Houdini 16 或更高版本</li>
+<li>支持 Windows、macOS、Linux</li>
+</ul><p><strong>安装步骤：</strong></p><ol>
+<li>复制 <code>SyncTools_复制.py</code> and <code>SyncTools_粘贴.py</code> 文件复制到 Houdini 的工具栏目录中：
+<ul>
+<li>Windows: <code>C:\Users\【您的用户名】\Documents\Houdini版本\toolbar</code>
+</li>
+<li>macOS: <code>~/Documents/Houdini版本/toolbar</code>
+</li>
+<li>Linux: <code>~/Houdini版本/toolbar</code>
+</li>
+</ul>
+</li>
+<li>启动 Houdini。</li>
+<li>创建一个新的工具架标签页：
+<ul>
+<li>右键点击工具架标签栏，选择 <code>New Shelf Tab</code>。</li>
+<li>将其命名为 <code>SyncTools</code>，点击 <code>Accept</code>。</li>
+</ul>
+</li>
+<li>添加复制工具：
+<ul>
+<li>右键点击 <code>SyncTools</code> 标签页，选择 <code>New Tool</code>。</li>
+<li>将其命名为 <code>复制</code>，并将 <code>shelf_c</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+<li>添加粘贴工具：
+<ul>
+<li>再次右键点击 <code>SyncTools</code> 标签页，选择 <code>New Tool</code>。</li>
+<li>将其命名为 <code>粘贴</code>，并将 <code>shelf_p</code> 文件的内容粘贴到脚本区域。</li>
+<li>点击 <code>Accept</code> 保存。</li>
+</ul>
+</li>
+</ol><blockquote>
+<p>注意：如果您使用的版本低于 Houdini 20.5，请修改脚本路径：
+<code>python &gt; toolbar_path = os.path.expanduser("~/Documents/Houdini版本/toolbar")</code></p>
+</blockquote><h4>2. 使用插件</h4><p><strong>复制操作</strong></p><ul>
+<li>
+<strong>选择</strong>：在 Houdini 中，选择要复制的对象。</li>
+<li>
+<strong>复制命令</strong>：点击工具架上的 <code>复制</code> 按钮。</li>
+<li>
+<strong>导出</strong>: 插件将选定对象导出为 FBX 文件并保存在 <code>Documents/cache</code> 目录中。</li>
+</ul><p><strong>粘贴操作</strong></p><ul>
+<li>
+<strong>目标场景</strong>：打开或切换到要导入数据的场景。</li>
+<li>
+<strong>粘贴命令</strong>：点击工具架上的 <code>粘贴</code> 按钮。</li>
+<li>
+<strong>导入</strong>: 插件将自动从缓存中导入最新的 FBX 文件并将其集成到场景中。</li>
+</ul><hr><h3>版本兼容性</h3><p><strong>Blender 支持：</strong></p><ul>
+<li>官方支持：4.2 LTS 及更高版本</li>
+<li>实验性支持：4.0–4.1（高级功能受限）</li>
+</ul><p><strong>Houdini 支持：</strong></p><ul>
+<li>官方支持：Houdini 20.x</li>
+<li>兼容：Houdini 16.x - 19.x（可能需要调整路径）</li>
+</ul><hr><h3>数据兼容性</h3><p><strong>完全支持：</strong></p><ul>
+<li>✔ 基本几何体（网格/NURBS）</li>
+<li>✔ 变换层级</li>
+<li>✔ 核心材质属性（PBR 工作流）</li>
+<li>✔ 点光源/聚光灯/平行光</li>
+<li>✔ 基本动画关键帧</li>
+<li>✔ 摄像机参数（FOV/焦距）</li>
+</ul><p><strong>部分支持：</strong></p><ul>
+<li>⚠ 复杂着色器节点（自动转换为近似值）</li>
+<li>⚠ 蒙皮权重（顶点顺序必须匹配）</li>
+<li>⚠ 驱动动画（需要等效表达式）</li>
+<li>⚠ UV 贴图（最多支持 4 个通道）</li>
+</ul><p><strong>不支持：</strong></p><ul>
+<li>✖ 粒子系统</li>
+<li>✖ 流体模拟数据</li>
+<li>✖ 程序纹理（需要预烘焙）</li>
+<li>✖ 自定义着色器网络</li>
+<li>✖ 动态约束（刚体/布料）</li>
+<li>✖ Houdini 特有的程序化资产（HDA）</li>
+</ul><hr><h3>重要说明</h3><ol>
+<li>
+<strong>单位系统</strong>：建议使用公制单位（米）。</li>
+<li>
+<strong>轴向转换</strong>：自动处理 Y 轴朝上 ↔ Z 轴朝上的转换。</li>
+<li>
+<strong>材质映射</strong>：Blender Principled BSDF ↔ Houdini 材质。</li>
+<li>
+<strong>命名</strong>：特殊字符（例如 <code>@</code>、<code>#</code>、<code>%</code>）可能导致导入问题。</li>
+<li>
+<strong>插件依赖</strong>：需要匹配的 SyncTools 版本。</li>
+<li>
+<strong>缓存位置</strong>：所有临时文件存储在 <code>Documents/cache</code> 目录中。
+<blockquote>
+<p>(数据通过 FBX 中间件转换 - 请查看发布说明了解最新兼容性更新。)</p>
+</blockquote>
+</li>
+</ol><hr><h3>故障排除</h3><p>如果工具无法正常工作，请检查：</p><ul>
+<li>文件是否在正确的路径中。</li>
+<li>脚本路径是否与您的 Houdini 版本匹配。</li>
+<li><code>~/Documents/cache</code> 目录是否存在且具有写入权限。</li>
+<li>导入/导出过程中是否有任何控制台错误消息。</li>
+</ul><hr><h3>其他资源</h3><p>如需详细教程和更新，请访问： <strong><a href="https://chatgpt.com/c/67c02f43-2900-8004-ae8a-2c393d04af3a#">官方文档</a></strong></p><hr><h3>总结</h3><p>SyncTools for Houdini 提供了一种在 Blender 和 Houdini 之间无缝高效传输场景数据的方式。通过简单的复制粘贴操作，您可以轻松交换详细的场景信息，简化创作流程。使用 SyncTools for Houdini，享受更高效的工作流程！</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。 每个月，我们将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p><hr>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/Synctools_houdini_new.zip">Synctools_houdini_new.zip</a><span class="file-size">3.8 KB</span></li>
+                <li><a href="files/SyncTools_v2.1.2_2519.zip">SyncTools_v2.1.2_2519.zip</a><span class="file-size">10.3 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

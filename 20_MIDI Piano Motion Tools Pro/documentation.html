@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN" lang="zh-CN"><head><meta charset="utf-8"><title>MIDI Piano Motion Tools Pro - 文档</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:900px;margin:40px auto;padding:20px;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>MIDI Piano Motion Tools Pro - 文档</h1><p><strong style="font-family:Degular , sans-serif;font-size:2.5rem;">Piano运动 Pro</strong></p><h2><strong>User Manual</strong></h2><h3><strong>1. Introduction</strong></h3><p><strong>Piano运动 Pro</strong> 是一个动画辅助插件-on for Blender 可以将标准 MIDI 文件导入 Blender, automatically generating realistic animations for piano key presses, pedal movements, hammer actions, and optional effects like falling balls and key illumination. It's perfect for:</p><ul>
+<li>
+<p><strong>Music 动画 Creators</strong>: 快速的ly produce synchronized piano performance visualizations.</p>
+</li>
+<li>
+<p><strong>教育/演示nstrations</strong>: 高light rhythm and note positions with glowing keys or falling balls.</p>
+</li>
+<li>
+<p><strong>3D Artists</strong>: 消除手动为每个关键帧制作动画的繁琐过程, allowing more focus on design and camera work.</p>
+</li>
+</ul><p>本手册将指导您完成安装, UI functionality, and a complete usage workflow, helping you create perfectly synchronized music animations with ease.</p><hr><h3><strong>2. 安装</strong></h3><h4><strong>2.1 插件 安装</strong></h4><p>安装 the <code>.zip</code> via Blender 偏好设置:</p><ul>
+<li>
+<p>Obtain the <code>.zip</code> file, e.g., <code>MIDI_Piano运动_工具s.zip</code>, from the website or the developer.</p>
+</li>
+<li>
+<p>In Blender, go to <strong>编辑 > 偏好设置 > 插件</strong>.</p>
+</li>
+<li>
+<p>Click <strong>安装</strong>, select the <code>.zip</code> file, and click “安装 插件”.</p>
+</li>
+<li>
+<p>In the add-on list, find <strong>Piano运动 Pro</strong> 并勾选复选框启用.</p>
+</li>
+</ul><h4><strong>2.2 <code>mido</code> 库 Dependency</strong></h4><p><code>mido</code> 是一个用于处理 MIDI 文件的 Python 库, required by Piano运动 Pro.</p><p>如果您看到类似的错误 <strong>"No module named 'mido'"</strong>, it means the library is missing.</p><p><strong>Solutions:</strong></p><ul>
+<li>
+<p>In Blender's <strong>Python Console</strong>, run:</p>
+</li>
+</ul><pre><code class="language-python">import pip
+pip.main(['install', 'mido'])
+</code></pre><p>Or:</p><ul>
+<li>
+<p>安装 <code>mido</code> using your system Python, then copy the module into Blender’s <code>scripts/modules</code> folder.</p>
+</li>
+</ul><p>重启 Blender. If successful, MIDI import will work correctly.</p><p>After installation, press <code>N</code> in the 3D 视口并进入 <strong>Piano</strong> 标签以访问插件面板.</p><hr><h3><strong>3. User 接口 概述</strong></h3><p>When enabled, the add-on panel appears in the 3D 视口下的 <strong>Piano</strong> tab (<code>N</code> key). 界面分为多个部分:</p><ul>
+<li>
+<p>MIDI 文件 Info <em>(shown after successful import)</em></p>
+</li>
+<li>
+<p>动画 组件s</p>
+</li>
+<li>
+<p>动画 Timing</p>
+</li>
+<li>
+<p>MIDI 控制ler 设置</p>
+</li>
+<li>
+<p>键 设置</p>
+</li>
+<li>
+<p>键 颜色s & Custom 键 颜色s</p>
+</li>
+<li>
+<p>Hammer 设置</p>
+</li>
+<li>
+<p>Pedal 设置</p>
+</li>
+<li>
+<p>Emission 设置</p>
+</li>
+<li>
+<p>Ball 设置</p>
+</li>
+<li>
+<p>Test 组件s & 清除 动画s</p>
+</li>
+<li>
+<p>创建 动画</p>
+</li>
+</ul><hr><h3><strong>4. 功能 概述</strong></h3><h4><strong>4.1 MIDI 文件 Info</strong></h4><ul>
+<li>
+<p><strong>BPM</strong>: 每分钟拍数 (tempo).</p>
+</li>
+<li>
+<p><strong>注意 计数</strong>: 总计 number of notes in the MIDI file.</p>
+</li>
+<li>
+<p><strong>持续时间</strong>: 播放 length in seconds.</p>
+</li>
+<li>
+<p><strong>通道 Info</strong>: 列表s detected channels with note count, instruments, and velocity ranges.</p>
+</li>
+</ul><p>用于识别多轨文件中的正确音轨-channel MIDI files.</p><hr><h4><strong>4.2 动画 组件s</strong></h4><ul>
+<li>
+<p><strong>启用 键 动画</strong>: 创建s press/release animations for piano keys.</p>
+</li>
+<li>
+<p><strong>启用 Hammer 动画</strong>: 动画内部琴锤 to simulate real mechanical movement (requires correct naming).</p>
+</li>
+<li>
+<p><strong>启用 Pedal 动画</strong>: Auto-generates keyframes for pedals based on MIDI messages (64, 66, 67).</p>
+</li>
+<li>
+<p><strong>启用 Falling Balls</strong>: 添加s Synthesia-style falling balls for notes.</p>
+</li>
+<li>
+<p><strong>启用 键 Emission</strong>: 制作s keys glow when pressed and fade when released.</p>
+</li>
+</ul><hr><h4><strong>4.3 动画 Timing</strong></h4><ul>
+<li>
+<p><strong>开始 帧</strong>: 帧 where animation begins on the timeline.</p>
+</li>
+<li>
+<p><strong>键 Press 持续时间</strong>: 数字 of frames a key stays pressed visually (independent from actual note duration).</p>
+</li>
+<li>
+<p><strong>速度 Influence</strong>: Weight (0–1) of note velocity affecting animation length and speed.</p>
+</li>
+</ul><hr><h4><strong>4.4 MIDI 控制ler 设置</strong></h4><ul>
+<li>
+<p><strong>Use Pitch Bend</strong>: 启用s MIDI pitch wheel effects (e.g., glide).</p>
+</li>
+<li>
+<p><strong>Pitch Bend 范围</strong>: 弯音的最大半音范围 (e.g., 2–4 recommended).</p>
+</li>
+<li>
+<p><strong>Use Modulation</strong>: 启用s modulation wheel effects.</p>
+</li>
+<li>
+<p><strong>Modulation 效果</strong>:</p>
+<ul>
+<li>
+<p><strong>VIBRATO</strong>: 琴键轻微振动</p>
+</li>
+<li>
+<p><strong>EMISSION</strong>: 发光亮度控制</p>
+</li>
+<li>
+<p><strong>BOTH</strong>: 颤音和亮度同时变化</p>
+</li>
+</ul>
+</li>
+</ul><p><em>注意: 需要 MIDI 文件中的实际调制数据.</em></p><hr><h4><strong>4.5 键 设置</strong></h4><ul>
+<li>
+<p><strong>White 键 Prefix / Black 键 Prefix</strong>: 用于识别白键和黑键对象名称.</p>
+</li>
+<li>
+<p><strong>键 Separator</strong>: 字符 between prefix and number (e.g., <code>.</code>, <code>_</code>).</p>
+</li>
+</ul><p>Example: <code>White键.001</code> → Prefix = <code>White键</code>, Separator = <code>.</code></p><hr><h4><strong>4.6 键 颜色s & Custom 键 颜色s</strong></h4><p><strong>(1) 键 颜色s</strong></p><ul>
+<li>
+<p><strong>White/Black 键 颜色</strong>: 设置s base color of keys.</p>
+</li>
+<li>
+<p><strong>Roughness</strong>: 材料 roughness (0 = smooth, 1 = rough).</p>
+</li>
+</ul><p><strong>(2) Custom 键 颜色s</strong></p><ul>
+<li>
+<p><strong>Use Custom 键 颜色s</strong>: 启用s per-note glow colors (for notes 21–108).</p>
+</li>
+<li>
+<p>分配特定颜色 using the mapping or eyedropper tool.</p>
+</li>
+</ul><hr><h4><strong>4.7 Hammer 设置</strong></h4><ul>
+<li>
+<p><strong>Hammer Prefix</strong>: 琴锤对象的命名前缀 (e.g., <code>pCube</code>).</p>
+</li>
+<li>
+<p><strong>Hammer 移动ment</strong>: 距离 the hammer moves when triggered.</p>
+</li>
+</ul><hr><h4><strong>4.8 Pedal 设置</strong></h4><ul>
+<li>
+<p><strong>Damper / Sostenuto / Una Corda Pedal</strong>: 对象 names for pedal animation.</p>
+</li>
+<li>
+<p><strong>Pedal 旋转</strong>: 旋转 angle around the X-axis when pressed.</p>
+</li>
+</ul><hr><h4><strong>4.9 Emission 设置</strong></h4><ul>
+<li>
+<p><strong>Emission Strength</strong>: 按键时的亮度.</p>
+</li>
+<li>
+<p><strong>Fade 帧s</strong>: 数字 of frames until glow fades out.</p>
+</li>
+<li>
+<p><strong>Use Gradient 颜色s</strong>: 启用s color gradients based on direction.</p>
+</li>
+<li>
+<p><strong>Gradient Direction</strong>: Horizontal / Vertical / Single key.</p>
+</li>
+<li>
+<p><strong>Gradient 停止s</strong>: 定义颜色停止点 for the gradient.</p>
+</li>
+</ul><p>如果不使用渐变, glow color is assigned by hand (left/right) using <code>split_note</code> + <code>emission_color</code>.</p><hr><h4><strong>4.10 Ball 设置</strong></h4><p><strong>(1) Main 参数s</strong></p><ul>
+<li>
+<p><strong>Ball 大小</strong>: 每个球的半径.</p>
+</li>
+<li>
+<p><strong>开始 高度</strong>: Initial Y-position above keys.</p>
+</li>
+<li>
+<p><strong>Bounce 高度</strong>: 撞击后的回弹高度.</p>
+</li>
+</ul><p><strong>(2) 物理</strong></p><ul>
+<li>
+<p><strong>Bounce 力</strong>: 球回弹乘数.</p>
+</li>
+<li>
+<p><strong>后退 力</strong>: Horizontal movement.</p>
+</li>
+<li>
+<p><strong>Vertical Factor</strong>: Larger value = more vertical bounce.</p>
+</li>
+</ul><p><strong>(3) 动画</strong></p><ul>
+<li>
+<p><strong>Bounce 持续时间 / 时间</strong>: 弹跳动画的时间.</p>
+</li>
+<li>
+<p><strong>Fade 时间</strong>: 帧s until ball shrinks and disappears.</p>
+</li>
+</ul><p><strong>(4) Emission</strong></p><ul>
+<li>
+<p><strong>Emission 偏移</strong>: 发光效果时间偏移.</p>
+</li>
+<li>
+<p><strong>Timing 偏移</strong>: 从按键开始的下落时间偏移.</p>
+</li>
+<li>
+<p><strong>碰撞 Brightness / Falling Brightness</strong>: 撞击和下落时的发光强度.</p>
+</li>
+</ul><hr><h4><strong>4.11 Test 组件s & 清除 动画s</strong></h4><p><strong>Test 组件s</strong>:<br>
+Checks if objects (keys, pedals, hammers) are properly named and detected.<br>
+警告s will indicate missing parts, allowing you to correct them beforehand.</p><p><strong>清除 动画s</strong>:<br>
+删除s all animations, objects, and materials generated by the plugin.<br>
+在导入新 MIDI 或更改设置时很有用.</p><hr><h4><strong>4.12 创建 动画</strong></h4><p>执行流程的主按钮:</p><ul>
+<li>
+<p>打开文件浏览器以选择 <code>.mid</code> file.</p>
+</li>
+<li>
+<p>解析 MIDI 并根据面板设置生成关键帧.</p>
+</li>
+<li>
+<p>时间line and Action 编辑or will display the new animations.</p>
+</li>
+<li>
+<p>A message will confirm success, e.g., “动画 created! 持续时间: 5:12”.</p>
+</li>
+</ul><hr><h3><strong>5. 工作流</strong></h3><p><strong>1. 准备工作</strong></p><ul>
+<li>
+<p>确保场景中包含命名正确的钢琴模型 (keys, hammers, pedals).</p>
+</li>
+<li>
+<p>Apply transforms (<code>Ctrl + A</code>) to normalize axes and origins.</p>
+</li>
+<li>
+<p>保存 a backup <code>.blend</code> before testing.</p>
+</li>
+</ul><p><strong>2. Test 组件s</strong></p><ul>
+<li>
+<p>Use the “Test 组件s” button to detect missing or misnamed parts.</p>
+</li>
+</ul><p><strong>3. 导入 MIDI</strong></p><ul>
+<li>
+<p>Click “创建 动画” and select a <code>.mid</code> file.</p>
+</li>
+<li>
+<p>选择特定轨道/channels or transpose if needed.</p>
+</li>
+</ul><p><strong>4. Review & 调整</strong></p><ul>
+<li>
+<p>播放动画并检查琴键, pedals, balls, and emission.</p>
+</li>
+<li>
+<p>如果需要更改 (e.g., duration, colors), <strong>清除 动画</strong> and <strong>创建 动画</strong> again.</p>
+</li>
+</ul><p><strong>5. Finalize</strong></p><ul>
+<li>
+<p>重复 as needed until satisfied.</p>
+</li>
+<li>
+<p>添加 camera, lighting, and export the final animation.</p>
+</li>
+</ul><hr><h3><strong>6. FAQ</strong></h3><p><strong>6.1 No animation?</strong></p><ul>
+<li>
+<p>检查 <code>mido</code> 是否已安装.</p>
+</li>
+<li>
+<p>Use “Test 组件s” to find misnamed objects.</p>
+</li>
+<li>
+<p>尝试使用外部软件将有问题的 MIDI 转换为标准格式.</p>
+</li>
+</ul><p><strong>6.2 键s not glowing?</strong></p><ul>
+<li>
+<p>Ensure “启用 键 Emission” is checked.</p>
+</li>
+<li>
+<p>增加发光强度或启用 <strong>Bloom</strong> 在 Eevee 中.</p>
+</li>
+<li>
+<p>确认正确的材质 connections.</p>
+</li>
+</ul><p><strong>6.3 部分 animation only?</strong></p><ul>
+<li>
+<p>Use <strong>"时间 范围"</strong> 在导入对话框中 to set duration.</p>
+</li>
+<li>
+<p>删除 excess keyframes manually in the Action 编辑or.</p>
+</li>
+<li>
+<p>限制到特定音轨/channels during import.</p>
+</li>
+</ul><p><strong>6.4 Balls not showing?</strong></p><ul>
+<li>
+<p>Confirm “启用 Falling Balls” is enabled.</p>
+</li>
+<li>
+<p>调整 <strong>ball size</strong> and <strong>ball height</strong> if invisible.</p>
+</li>
+<li>
+<p>检查是否选择 tracks contain note data.</p>
+</li>
+</ul><p><strong>6.5 调整ing start frame or speed?</strong></p><ul>
+<li>
+<p>更改 <strong>开始 帧</strong> or <strong>速度倍率</strong> 在导入对话框中.</p>
+</li>
+<li>
+<p>可以通过移动关键帧进行微调, but major changes should use the panel options.</p>
+</li>
+</ul><hr><h3><strong>7. 系统要求</strong></h3><p><strong>Piano 模型 Specs</strong></p><ul>
+<li>
+<p>52 White 键s</p>
+</li>
+<li>
+<p>36 Black 键s</p>
+</li>
+<li>
+<p>88 Hammers</p>
+</li>
+<li>
+<p>3 Pedals</p>
+</li>
+</ul><p><strong>命名规则</strong></p><ul>
+<li>
+<p>White 键s: <code>meshId57_name.1</code> to <code>.52</code></p>
+</li>
+<li>
+<p>Black 键s: <code>meshId56_name.1</code> to <code>.36</code></p>
+</li>
+<li>
+<p>Hammers: <code>pCube1</code> to <code>pCube88</code></p>
+</li>
+<li>
+<p>Pedals: <code>piano_pedal_metal01</code>, <code>metal02</code>, <code>metal03</code></p>
+</li>
+</ul><p><strong>性能 提示</strong></p><ul>
+<li>
+<p>较大的 MIDI 文件处理时间更长.</p>
+</li>
+<li>
+<p>使用短 MIDI 文件进行测试以提高效率.</p>
+</li>
+</ul><hr><h3><strong>8. 总结</strong></h3><p>通过本手册, you now have the tools to turn MIDI files into stunning piano animations using Piano运动 Pro. Whether for teaching, visualization, or artistic projects, this plugin simplifies a complex task into a creative workflow.</p><p>如需高级功能或进一步自定义, refer to other documentation or join discussions in the community.</p><p><strong>Happy animating, and may your creations shine!</strong></p><p><em>Tip: 添加 UI screenshots or rendered images throughout this manual to enhance clarity and understanding.</em></p><hr><h3><strong>9. Technical 支持</strong></h3><ul>
+<li>
+<p><strong>Author</strong>: 475519905</p>
+</li>
+<li>
+<p><strong>版本</strong>: 1.0</p>
+</li>
+<li>
+<p><strong>类别</strong>: 动画</p>
+</li>
+<li>
+<p><strong>Contact</strong>: [qq475519905]</p>
+</li>
+</ul><hr><h3><strong>10. 许可证</strong></h3><p>GNU General Public 许可证 v3.0 (GPL-3.0)</p><hr><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>如有问题请'd like this formatted into a PDF, turned into a webpage, or if you want help adding screenshots to specific sections!</p></body></html>

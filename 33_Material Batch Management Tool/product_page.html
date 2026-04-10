@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>材质批量管理工具</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>材料 Batch 管理ment 工具</h1>
+  <span class="price">$5.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">图库</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="封面"></div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件、资产管理、材质与着色</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$5.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">assign</span>
+  <span class="tag">batch</span>
+  <span class="tag">bsdf</span>
+  <span class="tag">children</span>
+  <span class="tag">cleanup</span>
+  <span class="tag">duplicate</span>
+  <span class="tag">manager</span>
+  <span class="tag">material</span>
+  <span class="tag">materials</span>
+  <span class="tag">merge</span>
+  <span class="tag">mesh</span>
+  <span class="tag">node</span>
+  <span class="tag">object</span>
+  <span class="tag">organize</span>
+  <span class="tag">override</span>
+  <span class="tag">parent</span>
+  <span class="tag">pbr</span>
+  <span class="tag">plugin</span>
+  <span class="tag">principled</span>
+  <span class="tag">quick-edit</span>
+  <span class="tag">shader</span>
+  <span class="tag">texture</span>
+  <span class="tag">tool</span>
+  <span class="tag">utility</span>
+  <span class="tag">workflow</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p></p><p></p><p style="height:0px;width:589px;" class=""></p><h1 class=""></h1><h1>
+<strong>Material Manager </strong><span style="color:rgb(33, 37, 41);font-size:2.5rem;background-color:rgb(255, 255, 255);"><b style="">Pro</b></span>
+</h1><hr><h2><strong>简介</strong></h2><p><strong>Material Manager Pro</strong> is a powerful Blender add-on designed to simplify and optimize your material workflow. Whether you're working on architectural visualizations, game assets, or general 3D projects, this tool provides an efficient solution for managing, replacing, and assigning materials across multiple objects.</p><p><br></p><h3 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">键 Benefits</span></h3><ul>
+<li>
+<span style="font-weight:bolder;">Batch material operations</span> that save hours of manual work.</li>
+<li>
+<span style="font-weight:bolder;">Intelligent handling</span> of parent-child relationships.</li>
+<li>
+<span style="font-weight:bolder;">快速的 access</span> to common material properties.</li>
+<li>
+<span style="font-weight:bolder;">智能的 cleanup tools</span> for organizing materials.</li>
+<li>
+<span style="font-weight:bolder;">User-friendly interface</span> seamlessly integrated into Blender's UI.</li>
+</ul><p><span style="font-weight:bolder;">兼容性:</span><br>Material Manager works with Blender 4.2 and above, utilizing modern Blender features for optimal performance.</p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/NGSnMx3e1zU" width="640" height="360" class="note-video-clip"></iframe></div><br><p><img src="images/desc_00_c9cab5952e074f2a1262539c51dc6e56.png" style="max-width:100%;"><br></p><hr><h2><strong>位置</strong></h2><p>After installation:<br>
+查找 the <strong>"Material Manager Pro"</strong> tab in the 3D View's sidebar (press <code>N</code>).</p><hr><h2><strong>主要功能</strong></h2><h3>1. <strong>材质清理工具</strong>
+</h3><ul>
+<li>
+<strong>移除未使用</strong>：从场景中删除未使用的材质。</li>
+<li>
+<strong>合并重复项</strong>：合并具有相同基本名称的重复材质（如 Material.001、Material.002）。</li>
+</ul><hr><h3>2. <strong>批量替换材质</strong>
+</h3><ul>
+<li>
+<strong>原始材质</strong>：选择要被替换的材质。</li>
+<li>
+<strong>替换为</strong>：选择目标材质。</li>
+<li>
+<strong>替换材质</strong>：执行替换。</li>
+</ul><h4><strong>选项：</strong></h4><ul>
+<li>
+<strong>覆盖</strong>：完全替换并删除原始材质。</li>
+<li>
+<strong>编辑</strong>：切换快速编辑模式。</li>
+<li>
+<strong>子对象</strong>：将操作应用到所有子网格对象。</li>
+</ul><hr><h3>3. <strong>批量指定材质</strong>
+</h3><ul>
+<li>
+<strong>选择材质</strong>：选择要指定的材质。</li>
+<li>
+<strong>指定给选中对象</strong>：将选定材质应用于所选对象。</li>
+</ul><h4><strong>子对象选项：</strong></h4><p>勾选后，材质将自动应用于所有子网格对象。</p><hr><h3>4. <strong>材质列表</strong>
+</h3><ul>
+<li>显示场景中的所有材质。</li>
+<li>每个材质条目包含：
+<ul>
+<li>
+<strong>预览图标</strong>：材质的视觉表示。</li>
+<li>
+<strong>材质名称</strong>：可点击以快速指定。</li>
+<li>
+<strong>删除按钮</strong>：移除特定材质。</li>
+</ul>
+</li>
+</ul><hr><h3>5. <strong>快速编辑模式</strong>
+</h3><h3>
+<img src="images/desc_01_eb5b08e36ed8b0feaa1c409797426e4f.png" style="max-width:100%;"><strong><br></strong>
+</h3><ul>
+<li>
+<strong>启用 编辑</strong>: Check the "编辑" option in the interface.</li>
+<li>
+<strong>编辑 Properties</strong>:
+<ul>
+<li>基础颜色</li>
+<li>金属度</li>
+<li>粗糙度</li>
+<li>透明度</li>
+<li>节点连接信息</li>
+</ul>
+</li>
+</ul><hr><h3>6. <strong>创建新材质</strong>
+</h3><ul>
+<li>Click the <strong>"New 材料"</strong> button to create a new material.</li>
+</ul><hr><h2><strong>使用技巧</strong></h2><h3><strong>批量替换材质</strong></h3><ol>
+<li>Select the material to replace in <strong>"原始 材料."</strong>
+</li>
+<li>Choose the target material in <strong>"Replace With."</strong>
+</li>
+<li>Decide if <strong>Override Mode</strong> is required.</li>
+<li>Click <strong>"Replace 材料"</strong> to execute.</li>
+</ol><hr><h3><strong>批量指定材质</strong></h3><ol>
+<li>Select target objects.</li>
+<li>Check <strong>"Children"</strong> to process child objects.</li>
+<li>Assign 材料s:
+<ul>
+<li>
+<strong>选项 1</strong>: Choose material in <strong>"Select 材料"</strong> and click <strong>"Assign to Selected."</strong>
+</li>
+<li>
+<strong>选项 2</strong>: Directly click a material name in the 材料 列表.</li>
+</ul>
+</li>
+</ol><hr><h3><strong>材质清理</strong></h3><ol>
+<li>Use <strong>"移除 Unused"</strong> to delete unused materials.</li>
+<li>Use <strong>"合并 复制s"</strong> to combine duplicate materials.</li>
+<li>移除 specific materials using the delete button (<code>X</code>) in the 材料 列表.</li>
+<li>Use <strong>快速的 编辑 Mode</strong> to adjust material properties.</li>
+</ol><hr><h3><strong>快速编辑材质</strong></h3><ol>
+<li>Check the <strong>"编辑"</strong> option.</li>
+<li>Click a material name in the list.</li>
+<li>调整 material properties in the popup dialog.</li>
+</ol><hr><h2><strong>重要说明</strong></h2><ul>
+<li>
+<strong>Override Mode</strong> deletes original materials permanently.</li>
+<li>
+<strong>后up your file</strong> before performing batch operations.</li>
+<li>处理ing many objects may take time.</li>
+<li>
+<strong>Some operations cannot be undone</strong>—proceed with caution.</li>
+</ul><hr><h2><strong>最佳实践</strong></h2><ol>
+<li>开始 by cleaning up your material library.</li>
+<li>创建 new materials as needed.</li>
+<li>Use batch tools for efficient material processing.</li>
+<li>Fine-tune material properties with 快速的 编辑 Mode.</li>
+</ol><hr><h2><strong>技术要求</strong></h2><ul>
+<li>
+<strong>Blender 4.2 or higher</strong>.</li>
+<li>Sufficient system memory for large-scale operations.</li>
+<li>A graphics card that supports material previews.</li>
+</ul><hr><h2><strong>故障排除</strong></h2><ul>
+<li>If materials aren't applying:
+<ul>
+<li>验证 object selection.</li>
+<li>Ensure materials have proper node setups.</li>
+<li>Check the <strong>"Children"</strong> option for hierarchy-related operations.</li>
+<li>Confirm that materials are not locked or protected.</li>
+</ul>
+</li>
+</ul><hr><h2><strong>键盘快捷键</strong></h2><ul>
+<li>
+<code>N</code>: Toggle sidebar visibility.</li>
+<li>快速的 access to tools via material list clicks.</li>
+<li>Use standard Blender undo/redo for supported operations.</li>
+</ul><hr><h2><strong>附加提示</strong></h2><ul>
+<li>Use <strong>Override Mode</strong> for complete material replacement.</li>
+<li>组织 materials before batch operations.</li>
+<li>监视 system resources during large operations.</li>
+<li>Regularly save your project during batch processes.</li>
+</ul><hr><h2><strong>支持</strong></h2><ul>
+<li>Refer to Blender documentation for basic material concepts.</li>
+<li>报告 issues through the add-on's official support channels.</li>
+<li>Keep the add-on updated for the best performance.</li>
+</ul><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>This guide outlines the key features and workflows of the <strong>Material Manager Pro</strong> add-on. For advanced queries, consult detailed documentation or reach out to the support team.</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender Foundation</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信回馈让我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p><p></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <h1 style="margin-bottom:0px;line-height:1em;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">Material Manager 安装指南</span></h1><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">系统要求</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Blender 4.2 或更高版本</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">操作系统：Windows、macOS 或 Linux</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">推荐最低 8GB 内存</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">显卡需支持 OpenGL 4.</span><span style=""></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">安装方法</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h3 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);"><span style="">方法一：安装</span><span style=""> via Blender 偏好设置 (Recommended</span><span style="">)</span></span></h3><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">下载 the </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">material_manager.zip</span></span><span style=""> file</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Keep the zip file as</span><span style="">-is, do not extract it</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">制作 sure the file extension is </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">.zip</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">打开 Blender 并进入首选项</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Click</span><span style=""> </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">编辑</span></span><span style=""> in the top menu</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Select</span><span style=""> </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">偏好设置</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Or use keyboar</span><span style="">d shortcut </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">Ctrl + Alt + U</span></span><span style=""> (Windows/Linux) or </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">Cm</span><span style="">d + ,</span></span><span style=""> (macOS)</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">安装</span><span style=""> the 插件</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">In 偏好设置, select</span><span style=""> the </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">插件</span></span><span style=""> tab</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Click </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">安装</span></span><span style=""> button at the top</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Navigate to</span><span style=""> and select the downloaded </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">material_manager.</span><span style="">zip</span></span><span style=""> file</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Click </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">安装 Ad</span><span style="">d-on</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">启用插件</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">搜索 for "Material Manager" in the</span><span style=""> add-ons search box</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Check</span><span style=""> the checkbox next to the add-on to</span><span style=""> enable it</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Wait for the add-on</span><span style=""> to initialize</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h3 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">方法二：手动安装</span></h3><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><span style="background-color:rgb(255, 255, 255);"><span style="margin-top:0px;">1. 下载 the </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">material_manager.zip</span></span><span style="margin-bottom:0px;"> file</span></span><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">定位 your Blender ad</span><span style="">dons directory:</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Windows: </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">C</span><span style="">:\Users\{USERNAME}\App数据\</span><span style="">Roaming\Blender Foundation\Blender\{</span><span style="">VERSION}\scripts\addons</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">macOS: </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">/Users/{USERNAME}/库/</span><span style="">应用 支持/Blender/{VERSION}/scripts/ad</span><span style="">dons</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Linux: </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">~/.config/bl</span><span style="">ender/{VERSION}/scripts/addons</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">解压 zip 文件</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Extract the contents into</span><span style=""> the addons directory</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Ensure the</span><span style=""> files are in a folder named </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">material_manager</span></span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">重启 Blender 并启用插件</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:24px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Follow steps 3-4</span><span style=""> from 方法 1</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">验证</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><span style="background-color:rgb(255, 255, 255);"><span style="margin-top:0px;">After</span><span style="margin-bottom:0px;"> installation:</span></span><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Press </span><span class="markdown-inline-code" style="border-radius:4px;padding:1px 4px;font-family:Consolas ,;"><span style="">N</span></span><span style=""> in</span><span style=""> the 3D Viewport to open the sidebar</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Look for the "Material Manager" tab</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">If visible, the installation was successful</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">Troubleshooting</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h3 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);"><span style="">Common Issues an</span><span style="">d Solutions</span></span></h3><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h4 style="margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">插件 Not Appearing</span></h4><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">验证</span><span style=""> Blender version compatibility</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Ensure the zip file wasn't extracted before installation</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Try</span><span style=""> restarting Blender</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Check</span><span style=""> Blender's console for error messages</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h4 style="margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">安装 Faile</span><span style="">d</span></span></h4><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">验证 you have write permissions in the ad</span><span style="">d-ons directory</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Close Blender and try</span><span style=""> installing again</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Check if antivirus is</span><span style=""> blocking installation</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h4 style="margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">插件 启用d but Not Working</span></h4><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Check Blender's 系统</span><span style=""> Console for error messages</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">验证 all</span><span style=""> required dependencies are installed</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Try disabling an</span><span style="">d re-enabling the add-on</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h3 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);"><span style="">Getting</span><span style=""> Help</span></span></h3><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Check the documentation for known issues</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Visit our support forum</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">报告 bugs through our</span><span style=""> issue tracker</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">上dating the 插件</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><span style="margin-top:0px;margin-bottom:0px;background-color:rgb(255, 255, 255);">1. 禁用 the current version</span><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><span style="margin-top:0px;margin-bottom:0px;background-color:rgb(255, 255, 255);">2. 移除 the old version</span><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">安装 the</span><span style=""> new version following the above steps</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Re</span><span style="">-enable the add-on</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);"><span style="">Un</span><span style="">installation</span></span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Open Blender</span><span style=""> 偏好设置</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Go to the 添加</span><span style="">-ons tab</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">搜索 for "Material Manager</span><span style="">"</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Uncheck to disable</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="list-style-type:decimal;padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Click "移除</span><span style="">" to completely uninstall</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">最好的 Practices</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Always</span><span style=""> backup your Blender settings before installing new add</span><span style="">-ons</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Keep the original zip file for future reinst</span><span style="">allation</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Regularly check for updates</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">安装</span><span style=""> one add-on at a time to isolate any</span><span style=""> potential issues</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><h2 style="margin-bottom:0px;font-weight:600 !important;"><span style="background-color:rgb(255, 255, 255);">添加itional Resources</span></h2><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);"><span style="">Official</span><span style=""> documentation</span></span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Video tutorials</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">支持 community</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><li style="padding-left:0px;padding-top:2px;padding-bottom:2px;margin-top:0px;margin-bottom:0px;"><span style="background-color:rgb(255, 255, 255);">Bug reporting guidelines</span></li><div class="markdown-section-toolbar" style=""><div style="height:0px;width:589px;"><div class="markdown-section-toolbar-internal" style="border-radius:4px;display:flex;position:absolute;right:8px;top:0px;">
+<div class="markdown-section-toolbar-item dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-reply" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+<div class="markdown-section-toolbar-item markdown-section-toolbar-copy dark" style="align-items:center;border-radius:3px;cursor:pointer;display:flex;height:20px;justify-content:center;position:relative;width:20px;"><span class="codicon codicon-copy" style="display:inline-block;font-size:14px;line-height:1;font-family:codicon;text-align:center;"></span></div>
+</div></div></div><span style="background-color:rgb(255, 255, 255);"><span style="margin-top:0px;">For additional support or questions, please refer</span><span style=""> to our documentation or contact our support team</span><span style="margin-bottom:0px;">.</span></span>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/材料_管理r.zip">材料_管理r.zip</a> <span class="file-size">(5.1 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  备份自 Superhive (Blender Market) 创作者控制台
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SideFX Houdini 导入-导出 (.hip) 文件 - SyncTools Pro</title>
+    <meta name="description" content="SideFX Houdini 导入-导出 (.hip) 文件 - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SideFX Houdini 导入-导出 (.hip) 文件
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SideFX Houdini 导入-导出 (.hip) 文件"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SideFX Houdini 导入-导出 (.hip) 文件" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="4">
+                <img src="images/05_gallery.jpg" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="5">
+                <img src="images/06_gallery.jpg" alt="SideFX Houdini 导入-导出 (.hip) 文件" data-index="6"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SideFX Houdini 导入-导出 (.hip) 文件</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">Addons</span>
+                    <span class="meta-tag">动画</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                    <span class="meta-tag">Modeling</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/SideFX_Houdini_Import-导出.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Categories</span><span class="sidebar-info-value">Addons, 动画, 导入 &amp; 导出, Modeling</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">License</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d</span>
+                    <span class="compat-chip">3d-animation</span>
+                    <span class="compat-chip">3d-artists</span>
+                    <span class="compat-chip">3d-modeling</span>
+                    <span class="compat-chip">3d-pipeline</span>
+                    <span class="compat-chip">3d-software</span>
+                    <span class="compat-chip">3d-workflow</span>
+                    <span class="compat-chip">addon</span>
+                    <span class="compat-chip">asset-transfer</span>
+                    <span class="compat-chip">automation</span>
+                    <span class="compat-chip">blender</span>
+                    <span class="compat-chip">blender-addon</span>
+                    <span class="compat-chip">blender-integration</span>
+                    <span class="compat-chip">file-import</span>
+                    <span class="compat-chip">file-importer</span>
+                    <span class="compat-chip">geometry-transfer</span>
+                    <span class="compat-chip">houdini</span>
+                    <span class="compat-chip">houdini-files</span>
+                    <span class="compat-chip">houdini-to-blender</span>
+                    <span class="compat-chip">import-automation</span>
+                    <span class="compat-chip">import-tool</span>
+                    <span class="compat-chip">performance-optimization</span>
+                    <span class="compat-chip">scale-optimization</span>
+                    <span class="compat-chip">scene-integration</span>
+                    <span class="compat-chip">scene-management</span>
+                    <span class="compat-chip">sidefx</span>
+                    <span class="compat-chip">smart-processing</span>
+                    <span class="compat-chip">technical-support</span>
+                    <span class="compat-chip">workflow-optimization</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p></p><h1></h1><h1 style="line-height:19px;" class=""><b>SideFX Houdini 导入-导出 (.hip) 文件</b></h1><h1 style="line-height:19px;" class=""><b><br></b></h1><h2>概述</h2><p>在 Blender 中无缝导入 Houdini 文件。 这款强大的插件打通了 Houdini 与 Blender 之间的壁垒，让艺术家无需中断即可保持创作工作流程。</p><hr><h2>核心功能</h2><h3>直接导入</h3><ul>
+<li>在 Blender 中直接导入 <code>.hip</code>、<code>.hipnc</code> 和 <code>.hiplc</code> 文件。</li>
+<li>保留 Houdini 场景中的几何体细节。</li>
+<li>自动缩放与变换优化。</li>
+</ul><p><br></p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/7xn_jhFQlEA" width="640" height="360" class="note-video-clip"></iframe></div><br><ul>
+</ul><h3>
+<img src="images/desc_00_738285d476185e8856571c60759f644f.jpg" style="max-width:100%;"><br>
+</h3><h3>
+<img src="images/desc_01_fdb36b2f438c0c7f450bec1f462a52b5.jpg" style="max-width:100%;"><br>
+</h3><h3>无缝集成</h3><ul>
+<li>原生 Blender 导入菜单集成。</li>
+<li>用户友好的界面。</li>
+<li>全面的日志系统。</li>
+</ul><h3>智能处理</h3><ul>
+<li>智能几何体处理。</li>
+<li>自动变换管理。</li>
+<li>精确模型缩放。</li>
+</ul><hr><h2>技术要求</h2><h3>软件</h3><ul>
+<li>Blender 4.0 或更高版本。</li>
+<li>Houdini（商业版/Indie版/学习版）。</li>
+<li>Windows 操作系统。</li>
+</ul><h3>硬件</h3><ul>
+<li>推荐：16GB 内存。</li>
+<li>支持 OpenGL 4.0 的显卡。</li>
+<li>大文件建议使用 SSD 存储。</li>
+</ul><hr><h2>安装与使用</h2><h3>快速入门</h3><ol>
+<li>通过 Blender 的偏好设置安装插件。</li>
+<li>设置您的 Houdini 安装路径。</li>
+<li>通过 <code>文件 > 导入 > 导入 SideFX Houdini 文件</code> 访问。</li>
+<li>选择您的 Houdini 文件并导入。</li>
+</ol><h3>最佳实践</h3><ul>
+<li>导入大型场景前请先保存您的 Blender 项目。</li>
+<li>查看文档以获取最佳设置建议。</li>
+<li>检查日志文件以获取详细操作信息。</li>
+</ul><hr><h2>支持与文档</h2><h3>资源</h3><ul>
+<li>全面的在线文档。</li>
+<li>定期更新与维护。</li>
+<li>活跃的用户社区。</li>
+</ul><h3>技术支持</h3><ul>
+<li>专用 Discord 用户群组。</li>
+<li>邮件支持。</li>
+<li>Bug 反馈系统。</li>
+</ul><hr><h2>为什么选择此插件？</h2><h3>工作流增强</h3><ul>
+<li>消除手动导出-导入流程。</li>
+<li>保持场景完整性。</li>
+<li>专注于创作，而非技术操作。</li>
+</ul><h3>时间效率</h3><ul>
+<li>快速导入流程。</li>
+<li>自动化优化。</li>
+<li>降低流水线复杂度。</li>
+</ul><h3>可靠性</h3><ul>
+<li>强健的错误处理。</li>
+<li>详细的日志系统。</li>
+<li>定期更新与改进。</li>
+</ul><hr><h2>专业功能</h2><h3>场景管理</h3><ul>
+<li>精确的几何体传输。</li>
+<li>自动缩放优化。</li>
+<li>智能变换处理。</li>
+</ul><h3>质量保证</h3><ul>
+<li>全面的错误检查。</li>
+<li>详细的进度反馈。</li>
+<li>场景完整性验证。</li>
+</ul><hr><h2>更新与维护</h2><h3>定期更新</h3><ul>
+<li>持续性能优化。</li>
+<li>新功能实现。</li>
+<li>兼容性更新。</li>
+</ul><h3>版本控制</h3><ul>
+<li>清晰的更新日志。</li>
+<li>向后兼容。</li>
+<li>简单的更新流程。</li>
+</ul><hr><p><em>立即革新您的 Houdini-Blender 工作流程，使用这款连接两大强大 3D 应用程序的必备桥梁。</em></p><hr><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>如需任何调整，请随时告知！</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。 每个月，我们将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/SideFX_Houdini_Import-导出.zip">SideFX_Houdini_Import-导出.zip</a><span class="file-size">4.3 KB</span></li>
+                <li><a href="files/SideFX_Houdini_Import-导出_1.1.zip">SideFX_Houdini_Import-导出_1.1.zip</a><span class="file-size">4.3 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

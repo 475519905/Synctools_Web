@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender Live Sync Cinema 4D</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Blender Live Sync Cinema 4D</h1>
+  <span class="price">$20.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.jpg" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 动画, 导入 & 导出, 建模</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">4.2 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$20.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">animation</span>
+  <span class="tag">cinema4d</span>
+  <span class="tag">game</span>
+  <span class="tag">keyframeanimation</span>
+  <span class="tag">live</span>
+  <span class="tag">real-time</span>
+  <span class="tag">sync</span>
+  <span class="tag">synctools</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><span style="font-family:Degular , sans-serif;font-size:2rem;font-weight:600;">Blender Live Sync for Cinema 4D — 插件概述</span></p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/XEf6UZfDmSg" width="640" height="360" class="note-video-clip"></iframe></div><p><strong>Blender Live Sync for Cinema 4D</strong> 是一个实时同步插件，旨在简化以下软件之间的工作流： <strong>Cinema 4D (C4D)</strong> and <strong>Blender</strong>。它实现近零延迟更新，让艺术家在 C4D 中建模、变形、雕刻、绑定和动画的同时，即时在 Blender 中看到结果——消除重复的导出和导入。</p><h3>🚀 实时同步</h3><p>在 <strong>Cinema 4D</strong> 中工作，实时在 <strong>Blender</strong> 中查看更新。 在 C4D 中对模型进行变形、雕刻和骨骼绑定，实时更新反映在 Blender 中，实现更快的迭代和更流畅的制作。</p><p><img src="images/desc_00_3fea1ac772f3e993dd406246371e9cec.gif" style="max-width:100%;"><br></p><h3>✅ 广泛功能支持</h3><p>插件支持生产流程中常用的多种数据类型和对象：</p><p><font style="vertical-align:inherit;"><font style="vertical-align:inherit;"><br></font></font></p><h4><strong>模型数据</strong></h4><p>实时传输基本网格信息，包括：</p><ul>
+<li><p>顶点和拓扑</p></li>
+<li><p>UV、法线等</p></li>
+</ul><h4><strong>变形器</strong></h4><p>支持所有影响几何变形的变形设备，包括：</p><ul><li><p>变形器、场/域及相关系统</p></li></ul><h4><strong>生成器</strong></h4><p>C4D 生成器生成的几何体实时更新，使程序化工作流完全支持同步。</p><h4><strong>Motion 图形s (MoGraph)</strong></h4><p>同步运动图形对象，如：</p><ul>
+<li><p>克隆器</p></li>
+<li><p>矩阵</p></li>
+<li><p>其他 MoGraph 元素</p></li>
+</ul><h4><strong>骨骼 / 绑定</strong></h4><p>骨骼变形的实时同步，实现高效的绑定和动画工作流。</p><h4><strong>雕刻 / 雕刻</strong></h4><p>通过雕刻（雕刻笔刷）修改的模型在 Blender 中即时更新，保持雕刻工作流的快速和响应。</p><h4><strong>相机同步</strong></h4><p>同步相机参数，包括：</p><ul>
+<li><p>位置和旋转</p></li>
+<li><p>焦距和其他相机设置</p></li>
+</ul><h4><strong>时间轴同步</strong></h4><h4><strong><br></strong></h4><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/MgdSPoDWSEo" width="640" height="360" class="note-video-clip"></iframe></div><br><h4><strong><br></strong></h4><p>保持两个应用程序同步：</p><ul>
+<li><p>当前帧</p></li>
+<li><p>起始帧和结束帧</p></li>
+<li><p>帧率同步</p></li>
+</ul><h3>⚡ 高性能</h3><p><br></p><p><img src="images/desc_01_8efa98daecd5a0e09cb90ba6b3deebf2.jpg" style="max-width:100%;"></p><p><img src="images/desc_02_a325080535ab1228a0f522c82f23e28d.jpg" style="max-width:100%;"><br></p><p><img src="images/desc_03_06f5e05f9c676dd84bbcd919863123be.jpg" style="max-width:100%;"><br></p><p>采用<strong>共享内存技术</strong>驱动，插件仅传输变化的数据——以几乎零延迟实现极快的性能。</p><h3>🧭 可配置的轴映射</h3><p>自定义从 <strong>C4D 到 Blender</strong> 的坐标系转换，支持：</p><ul>
+<li><p>轴映射调整</p></li>
+<li><p>缩放</p></li>
+<li><p>偏移控制</p></li>
+</ul>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">Blender Live Sync for Cinema 4D</span></p><p><img src="https://assets.superhivemarket.com/cache/e1605c6c5d50009a9c2151178cb9f81d.png" style="max-width:100%;"><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;"><br></span></p><h2>安装 & 设置up Guide</h2><p><strong>Blender Live Sync for Cinema 4D</strong> 是一个实时同步插件，连接 <strong>Cinema 4D (C4D)</strong> and <strong>Blender</strong>，实现网格、变形器、生成器、MoGraph 对象、骨骼、雕刻变更、相机和时间轴设置的近零延迟更新。</p><p>本文档说明如何在两端安装插件以及如何建立首次成功连接。</p><p><br></p><hr><h2>目录</h2><ol>
+<li><p>系统要求</p></li>
+<li><p>包内容</p></li>
+<li><p>安装 Cinema 4D 插件</p></li>
+<li><p>安装 Blender 插件</p></li>
+<li><p>首次连接设置</p></li>
+<li><p>验证同步</p></li>
+<li><p>轴映射设置</p></li>
+<li><p>故障排除</p></li>
+<li><p>支持</p></li>
+</ol><hr><h2>1. 系统要求</h2><h3>支持的软件</h3><ul>
+<li><p><strong>Cinema 4D</strong>: R25 / 2023 / 2024 或更新版本（推荐）</p></li>
+<li><p><strong>Blender</strong>: 3.x / 4.x（推荐）</p></li>
+</ul><h3>操作系统</h3><ul><li><p>Windows / macOS <em>（取决于您的插件版本）</em></p></li></ul><h3>推荐设置</h3><p>为获得最佳性能和最低延迟，请在<strong>同一台电脑上运行 Cinema 4D 和 Blender</strong>。<br>(某些版本可能支持网络同步，具体取决于您的版本。)</p><hr><h2>2. 包内容</h2><p>您的下载包通常包含：</p><ul>
+<li>
+<p><strong>Cinema 4D 插件文件夹</strong></p>
+<ul><li><p>Example: <code>BlenderLiveSync_C4D/</code></p></li></ul>
+</li>
+<li>
+<p><strong>Blender 插件</strong></p>
+<ul><li><p>Example: <code>BlenderLiveSync_Blender.zip</code> or <code>BlenderLiveSync.py</code></p></li></ul>
+</li>
+<li>
+<p>可选文档文件：</p>
+<ul><li><p><code>README.txt</code>, <code>Manual.pdf</code>, etc.</p></li></ul>
+</li>
+</ul><blockquote><p>⚠️ 注意：文件夹名称可能因插件版本而异。</p></blockquote><hr><h2>3. 安装 Cinema 4D 插件 (C4D Side)</h2><h3>选项 A（推荐）：安装到 C4D 的 <code>plugins</code> 文件夹</h3><ol>
+<li><p>关闭 Cinema 4D（如果正在运行）。</p></li>
+<li><p>找到您的 Cinema 4D 安装目录：</p></li>
+</ol><p><strong>Windows（示例）：</strong><br><code>C:\Program Files\Maxon Cinema 4D 2024\plugins\</code></p><p><strong>macOS（示例）：</strong><br><code>应用/Maxon Cinema 4D 2024/plugins/</code></p><ol><li><p>将插件文件夹复制到 <code>plugins</code> 目录中。</p></li></ol><p>Example:<br><code>BlenderLiveSync_C4D/</code> → <code>.../Cinema 4D/plugins/</code></p><ol>
+<li><p>启动 Cinema 4D。</p></li>
+<li><p>验证插件出现在以下位置之一：</p></li>
+</ol><ul>
+<li><p><strong>扩展</strong> 菜单</p></li>
+<li><p><strong>插件</strong> 菜单</p></li>
+<li><p>专用插件面板 / 工具栏</p></li>
+</ul><hr><h3>选项 B：安装到用户插件文件夹（无需管理员权限）</h3><p>如果您无法访问系统安装目录：</p><ol>
+<li><p>打开 Cinema 4D</p></li>
+<li><p>前往：<strong>编辑 → 偏好设置</strong></p></li>
+<li><p>找到：<strong>插件</strong></p></li>
+<li><p>找到 <strong>用户插件路径</strong></p></li>
+<li><p>将插件文件夹复制到该目录</p></li>
+<li><p>重启 Cinema 4D</p></li>
+</ol><hr><h2>4. 安装 Blender 插件 (Blender Side)</h2><ol>
+<li><p>打开 <strong>Blender</strong></p></li>
+<li><p>前往：<strong>编辑 → 偏好设置 → 插件</strong></p></li>
+<li><p>点击 <strong>安装…</strong></p></li>
+<li>
+<p>选择插件文件：</p>
+<ul>
+<li><p>如果您收到的是 <code>.zip</code>, 请直接安装 <code>.zip</code> （<strong>不要解压</strong>）</p></li>
+<li><p>如果您收到的是 <code>.py</code>，请选择 <code>.py</code> file</p></li>
+</ul>
+</li>
+<li><p>安装后，搜索插件名称：<br><strong>Blender Live Sync for Cinema 4D</strong></p></li>
+<li><p>通过勾选复选框启用插件</p></li>
+</ol><p>启用后，插件界面通常出现在：</p><ul>
+<li><p><strong>3D Viewport → Sidebar (press <code>N</code>)</strong></p></li>
+<li><p>或 Blender 界面中的插件标签页（取决于版本）</p></li>
+</ul><hr><h2>5. 首次连接设置</h2><p>两个插件都安装完成后，按以下步骤连接。</p><h3>步骤 1：在 Cinema 4D 中开始同步</h3><ol>
+<li><p>打开您的 C4D 场景</p></li>
+<li><p>Open the plugin panel from <strong>扩展s / 插件s</strong></p></li>
+<li><p>点击以下选项之一（名称可能不同）：</p></li>
+</ol><ul>
+<li><p><strong>开始</strong></p></li>
+<li><p><strong>连接</strong></p></li>
+<li><p><strong>启用 Sync</strong></p></li>
+<li><p><strong>Live Sync On</strong></p></li>
+</ul><ol><li><p>Confirm the plugin status shows something similar to:</p></li></ol><ul>
+<li><p><strong>运行ning</strong></p></li>
+<li><p><strong>Waiting for Blender</strong></p></li>
+<li><p><strong>连接ed</strong></p></li>
+</ul><hr><h3>Step 2: 开始 Sync in Blender</h3><ol>
+<li><p>Open Blender</p></li>
+<li><p>Open the plugin panel (usually in the <strong>N-panel</strong>)</p></li>
+<li><p>Click:</p></li>
+</ol><ul>
+<li><p><strong>连接</strong></p></li>
+<li><p><strong>开始 Sync</strong></p></li>
+<li><p><strong>Receive</strong></p></li>
+</ul><ol><li><p>If the plugin supports connection settings, confirm:</p></li></ol><ul>
+<li><p>连接ion mode = <strong>Shared 内存</strong></p></li>
+<li><p>Status = <strong>连接ed</strong></p></li>
+</ul><hr><h2>6. 验证同步</h2><p>After connecting, use the following tests to confirm everything works correctly.</p><h3>6.1 网格 更新 Test</h3><ol>
+<li><p>In Cinema 4D, create a cube (or any primitive)</p></li>
+<li><p>移动, rotate, or scale it</p></li>
+<li><p>The object should update in Blender immediately</p></li>
+</ol><h3>6.2 顶部ology / UV / 正常 Test</h3><ol>
+<li><p>In C4D, convert a primitive to editable mesh</p></li>
+<li><p>修改 points / edges / polygons</p></li>
+<li><p>Confirm Blender updates the mesh shape correctly</p></li>
+</ol><h3>6.3 Deformer Test</h3><ol>
+<li><p>添加 a deformer in C4D (Bend / Twist / etc.)</p></li>
+<li><p>调整 deformer strength and settings</p></li>
+<li><p>Blender should update in real time</p></li>
+</ol><h3>6.4 Generator & MoGraph Test</h3><ol>
+<li><p>创建 a generator or MoGraph object in C4D</p></li>
+<li><p>更改 its parameters (clone count, spacing, etc.)</p></li>
+<li><p>Blender should update the generated geometry</p></li>
+</ol><h3>6.5 Bone Deformation Test</h3><ol>
+<li><p>Bind bones to a mesh in C4D</p></li>
+<li><p>移动/rotate bones</p></li>
+<li><p>Blender should update deformation instantly</p></li>
+</ol><h3>6.6 Camera Sync Test</h3><ol>
+<li><p>Select a camera in C4D</p></li>
+<li>
+<p>调整:</p>
+<ul>
+<li><p>位置 / rotation</p></li>
+<li><p>Focal length</p></li>
+</ul>
+</li>
+<li><p>Blender camera should match the changes</p></li>
+</ol><h3>6.7 时间轴同步 Test</h3><ol>
+<li><p>In C4D, scrub the timeline or press play</p></li>
+<li>
+<p>Confirm Blender synchronizes:</p>
+<ul>
+<li><p>当前帧</p></li>
+<li><p>开始 frame / end frame</p></li>
+<li><p>帧 rate (FPS)</p></li>
+</ul>
+</li>
+</ol><hr><h2>7. 轴映射设置 (Coordinate Conversion)</h2><p>Cinema 4D and Blender use different coordinate systems.<br>If you notice incorrect orientation (flipped axes, wrong rotation, scale mismatch), configure the axis mapping:</p><ol>
+<li><p>Open plugin settings (C4D side or Blender side depending on version)</p></li>
+<li><p>查找 <strong>Axis 映射ping / Coordinate Conversion</strong></p></li>
+<li><p>调整:</p></li>
+</ol><ul>
+<li><p>Axis conversion (X/Y/Z mapping)</p></li>
+<li><p><strong>缩放</strong></p></li>
+<li><p><strong>偏移</strong></p></li>
+</ul><blockquote><p>Tip: If your model appears rotated 90° or mirrored, axis mapping is usually the cause.</p></blockquote><hr><h2>8. 故障排除</h2><h3>Issue: 插件 does not appear in Cinema 4D</h3><p><strong>Solutions:</strong></p><ul>
+<li><p>Confirm the plugin folder is placed in the correct <code>plugins</code> directory</p></li>
+<li><p>制作 sure the folder is not nested incorrectly<br>(Example: avoid <code>plugins/BlenderLiveSync/BlenderLiveSync/</code>)</p></li>
+<li><p>重启 Cinema 4D</p></li>
+<li><p>Try installing via the <strong>User 插件s 路径</strong></p></li>
+</ul><hr><h3>Issue: 插件 does not appear in Blender</h3><p><strong>Solutions:</strong></p><ul>
+<li><p>制作 sure it is enabled in <strong>偏好设置 → 插件</strong></p></li>
+<li><p>Use the search bar and type <strong>Live Sync</strong></p></li>
+<li><p>Check the <strong>N-panel</strong> in the 3D Viewport</p></li>
+</ul><hr><h3>Issue: No connection / no updates</h3><p><strong>Solutions:</strong></p><ul>
+<li><p>Ensure both plugins are running</p></li>
+<li><p>重启 both Cinema 4D and Blender</p></li>
+<li><p>Try re-clicking <strong>连接 / 开始 Sync</strong></p></li>
+<li><p>Confirm the plugin is using <strong>Shared 内存</strong> mode (if available)</p></li>
+</ul><hr><h3>Issue: Lag or slow performance</h3><p><strong>Solutions:</strong></p><ul>
+<li><p>Reduce the number of synced objects</p></li>
+<li><p>Avoid syncing extremely high-poly sculpt meshes during heavy edits</p></li>
+<li><p>Use shared memory mode for best speed</p></li>
+<li><p>Sync only changing data (recommended workflow)</p></li>
+</ul><hr><h3>Issue: Wrong scale or rotation in Blender</h3><p><strong>Solutions:</strong></p><ul>
+<li><p>配置 <strong>Axis 映射ping</strong></p></li>
+<li><p>Apply scale/offset settings</p></li>
+<li><p>验证 both scenes use consistent units</p></li>
+</ul><hr><h2>9. 支持</h2><p>If you still have issues, please prepare the following information before contacting support:</p><ul>
+<li><p>Cinema 4D version</p></li>
+<li><p>Blender version</p></li>
+<li><p>Operating system</p></li>
+<li><p>插件 version</p></li>
+<li><p>A short description of the issue</p></li>
+<li><p>Screenshots of plugin status panels (C4D + Blender)</p></li>
+</ul><p><br></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/LiveSync_n2.zip">LiveSync_n2.zip</a> <span class="file-size">(43.3 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  备份自 Superhive (Blender Market) 创作者仪表板
+</footer>
+
+</div>
+</body>
+</html>

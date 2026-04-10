@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Octane Material Transfer Master</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Octane Material Transfer Master</h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/06_gallery.png" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">Categories</span><span class="meta-value">动画, 导入 & 导出, 建模, 模型s</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">3.6 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-workflow</span>
+  <span class="tag">animation-transfer</span>
+  <span class="tag">asset-sync</span>
+  <span class="tag">auto-cache</span>
+  <span class="tag">blender-octane</span>
+  <span class="tag">blender-plugin</span>
+  <span class="tag">blender-tools</span>
+  <span class="tag">c4d-blender-bridge</span>
+  <span class="tag">cinema-4d-to-blender</span>
+  <span class="tag">copy-paste</span>
+  <span class="tag">material-sync</span>
+  <span class="tag">material-transfer</span>
+  <span class="tag">mesh-import</span>
+  <span class="tag">octane</span>
+  <span class="tag">octane-compatibility</span>
+  <span class="tag">octane-render</span>
+  <span class="tag">realtime-sync</span>
+  <span class="tag">render-pipeline</span>
+  <span class="tag">scene-integration</span>
+  <span class="tag">shader-transfer</span>
+  <span class="tag">visual-effects</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><span style="font-family:Degular , sans-serif;font-size:2rem;font-weight:600;">🔁 Octane Material Transfer Master</span></p><p><strong>轻松的 材料 & 网格 转移 from Cinema 4D to Blender Octane</strong></p><p><strong><br></strong></p><p></p><div class="ratio ratio-16x9"><iframe frameborder="0" src="//www.youtube.com/embed/P7rgm-1sVGo" width="640" height="360" class="note-video-clip"></iframe></div><br><p><strong><br></strong></p><hr><h3>🚀 功能介绍</h3><p>Octane Material Transfer Master 弥合了 Cinema 4D 和 Blender 之间的差距，提供了 <strong>一键 复制 & 粘贴</strong> <strong>Octane 兼容资产</strong>的解决方案。 无论您处理的是复杂材质还是动画几何体，此工具都能保持一切整洁、准确，并在 Blender 中随时可渲染。</p><hr><h3>
+<img src="images/desc_00_6b05f7c6e56bbc4b38cb2c4056c3fade.png" style="max-width:100%;"><br>
+</h3><h3>💡 核心功能</h3><ul>
+<li>
+<p>✅ <strong>一键 复制 从 Cinema 4D</strong><br>
+导出 selected objects and all their Octane configurations 只需一键 — 无需手动清理.</p>
+</li>
+<li>
+<p>✅ <strong>一键 粘贴 到 Blender</strong><br>
+在 Blender 中立即重建原始层级结构、材质和几何体，保持准确的 Octane 设置。</p>
+</li>
+<li>
+<p>✅ <strong>保留动画</strong><br>
+转移s 启用时传输动画数据 — 无需烘焙或重新绑定.</p>
+</li>
+<li>
+<p>✅ <strong>智能场景集成</strong><br>
+自动 命名、分组和变换导入的资产。 You can even enable “Replace” mode to update previous imports without breaking scene layout.</p>
+</li>
+<li>
+<p>✅ <strong>自动预览和优化</strong><br>
+可选择 生成原生 Octane 预览，应用正确的视图变换，并为您切换渲染引擎。</p>
+</li>
+<li>
+<p>✅ <strong>无需浏览文件</strong><br>
+在后台, 智能缓存系统保持一切井然有序 — 只需点击复制和粘贴.</p>
+<p><img src="images/desc_01_87cc6d00c3656a5625dba1aad972a617.jpg" style="max-width:100%;"></p>
+<p><img src="images/desc_02_bc8d9e0d275310e603abf1077cd54646.jpg" style="max-width:100%;"></p>
+<p><img src="images/desc_03_40974f28b2f54cae2b6478822e5ee3e5.jpg" style="max-width:100%;"><br></p>
+</li>
+</ul><hr><h3>🧰 使用场景</h3><ul>
+<li>
+<p>将您的 <strong>Octane 渲染场景</strong>从 C4D 迁移到 Blender，无需重建材质</p>
+</li>
+<li>
+<p>更新角色或道具资产 in Blender 只需一键</p>
+</li>
+<li>
+<p>在使用不同 DCC 工具的部门之间共享资产</p>
+</li>
+<li>
+<p>简化 建模师和渲染艺术家之间的协作</p>
+</li>
+</ul><hr><h3>📦 包含内容</h3><ul>
+<li>
+<p>Cinema 4D 导出脚本</p>
+</li>
+<li>
+<p>集成 UI 的 Blender 插件</p>
+</li>
+<li>
+<p>自动缓存管理器</p>
+</li>
+<li>
+<p>干净安装, 无外部依赖</p>
+</li>
+<li>
+<p>PDF 快速入门指南</p>
+</li>
+</ul><hr><h3>🔧 系统要求</h3><ul>
+<li>
+<p>Blender 4.2+</p>
+</li>
+<li>
+<p>Cinema 4D R21 或更高版本</p>
+</li>
+<li>
+<p>两个应用程序中均安装了 OctaneRender</p>
+</li>
+<li>
+<p>Windows或macOS</p>
+</li>
+</ul><hr><h3>🗣️ 用户评价</h3><blockquote>
+<p>“It's basically like copy-pasting Octane 资产跨软件传输. I used to spend hours fixing nodes – not anymore.”<br>
+— 自由职业 3D 艺术家</p>
+</blockquote><hr><h3>🎁 Bonus</h3><p>Includes <strong>免费终身更新</strong> and 优先支持 for future versions.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p><br></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Product 文件s</h2>
+  <ul class="file-list">
+  <li><a href="files/Octane_材料_转移_掌握.zip">Octane_材料_转移_掌握.zip</a> <span class="file-size">(1.0 KB)</span></li>
+  <li><a href="files/file_1.zip">file_1.zip</a> <span class="file-size">(10.1 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  后up from Superhive (Blender Market) Creator 仪表板
+</footer>
+
+</div>
+</body>
+</html>

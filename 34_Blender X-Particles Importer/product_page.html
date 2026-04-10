@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blender X-粒子s 导入er</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Blender X-粒子s 导入er</h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">图库</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="封面"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.png" alt="图库"></div>
+  <div class="gallery-item"><img src="images/02_gallery.png" alt="图库"></div>
+  <div class="gallery-item"><img src="images/03_gallery.png" alt="图库"></div>
+  <div class="gallery-item"><img src="images/04_gallery.png" alt="图库"></div>
+  <div class="gallery-item"><img src="images/05_gallery.png" alt="图库"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件、动画、资产管理、导入与导出</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-animation</span>
+  <span class="tag">alembic-io</span>
+  <span class="tag">batch-processing</span>
+  <span class="tag">blender</span>
+  <span class="tag">blender-particles</span>
+  <span class="tag">c4d</span>
+  <span class="tag">c4d-to-blender</span>
+  <span class="tag">cinema-4d</span>
+  <span class="tag">cinema4d-to-blender</span>
+  <span class="tag">cross-platform</span>
+  <span class="tag">data-pipeline</span>
+  <span class="tag">dynamic-effects</span>
+  <span class="tag">film-vfx</span>
+  <span class="tag">fire-animation</span>
+  <span class="tag">fluid-simulation</span>
+  <span class="tag">fx-tools</span>
+  <span class="tag">game-vfx</span>
+  <span class="tag">geometry-nodes</span>
+  <span class="tag">houdini-integration</span>
+  <span class="tag">motion-graphics</span>
+  <span class="tag">particle-effects</span>
+  <span class="tag">particles-import</span>
+  <span class="tag">particle-simulation</span>
+  <span class="tag">real-time-rendering</span>
+  <span class="tag">shader-control</span>
+  <span class="tag">simulation</span>
+  <span class="tag">smoke-effects</span>
+  <span class="tag">technical-art</span>
+  <span class="tag">unity</span>
+  <span class="tag">unity3d</span>
+  <span class="tag">unreal</span>
+  <span class="tag">unreal-engine</span>
+  <span class="tag">vfx</span>
+  <span class="tag">vfx-tools</span>
+  <span class="tag">workflow-integration</span>
+  <span class="tag">x-particles</span>
+  <span class="tag">xparticles-importer</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p style="color:#8b949e;">暂无描述。</p>
+  </div>
+</div>
+
+<footer>
+  备份自 Superhive (Blender Market) 创作者控制台
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能法线修复工具 - 智能网格法线修复 - SyncTools Pro</title>
+    <meta name="description" content="智能法线修复工具 - 智能网格法线修复 - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; 智能法线修复工具 - 智能网格法线修复
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="智能法线修复工具 - 智能网格法线修复"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="智能法线修复工具 - 智能网格法线修复" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="智能法线修复工具 - 智能网格法线修复" data-index="1">
+                <img src="images/02_gallery.jpg" alt="智能法线修复工具 - 智能网格法线修复" data-index="2">
+                <img src="images/03_gallery.jpg" alt="智能法线修复工具 - 智能网格法线修复" data-index="3">
+                <img src="images/04_gallery.jpg" alt="智能法线修复工具 - 智能网格法线修复" data-index="4">
+                <img src="images/05_gallery.jpg" alt="智能法线修复工具 - 智能网格法线修复" data-index="5">
+                <img src="images/06_gallery.png" alt="智能法线修复工具 - 智能网格法线修复" data-index="6"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">智能法线修复工具 - 智能网格法线修复</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">材质与着色</span>
+                    <span class="meta-tag">建模</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/file_1.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件, 材质与着色, 建模</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">3.6 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">许可证</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-printing</span>
+                    <span class="compat-chip">auto-smooth</span>
+                    <span class="compat-chip">batch-processing</span>
+                    <span class="compat-chip">cad-import</span>
+                    <span class="compat-chip">face-selection</span>
+                    <span class="compat-chip">game-asset</span>
+                    <span class="compat-chip">geometry-repair</span>
+                    <span class="compat-chip">mesh-cleanup</span>
+                    <span class="compat-chip">normal-fix</span>
+                    <span class="compat-chip">smart-analysis</span>
+                    <span class="compat-chip">vertex-merge</span>
+                    <span class="compat-chip">workflow-optimization</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">智能正常s Fix 工具 – 智能网格法线修复</span></p><h2>🎯 一键解决所有法线问题</h2><p>使用 Blender 最智能的法线修复工具，彻底改变您的网格工作流程。<br>
+告别繁琐的手动调整，迎接自动化的完美结果。</p><hr><h2>
+<img src="images/desc_00_1769b4ad842243b84f5960bf634b6a60.png" style="max-width:100%;"><br>
+</h2><h2>✨ 核心功能</h2><h3>🧠 智能分析引擎</h3><ul>
+<li>
+<p>检测翻转法线、重复顶点及网格问题</p>
+</li>
+<li>
+<p>根据几何体复杂度推荐最佳自动平滑角度</p>
+</li>
+<li>
+<p>实时反馈问题与解决方案
+</p><p><img src="images/desc_01_e52ac8badda7f59e945e51465ca7772f.jpg" style="max-width:100%;"><br></p>
+
+</li>
+</ul><h3>⚡ 上下文感知操作</h3><ul>
+<li>
+<p><strong>面级精确处理</strong>：在编辑模式下修复选中的面</p>
+</li>
+<li>
+<p><strong>对象级批量处理</strong>：同时处理多个对象</p>
+</li>
+<li>
+<p><strong>场景全局清理</strong>：一键处理所有网格</p>
+</li>
+<li>
+<p><strong>智能检测</strong>：根据您的选择自动确定最佳处理范围</p>
+</li>
+</ul><h3>🔧 高级处理选项</h3><ul>
+<li>
+<p>清除自定义分裂法线</p>
+</li>
+<li>
+<p>带距离控制的智能顶点合并</p>
+</li>
+<li>
+<p>重新计算外部法线</p>
+</li>
+<li>
+<p>带智能角度推荐的自动平滑</p>
+</li>
+<li>
+<p>应用平滑着色
+</p><p><img src="images/desc_02_58db0306aaec45590b743cc15cc48bb3.jpg" style="max-width:100%;"><br></p>
+
+</li>
+</ul><h3>🎨 直观的用户界面</h3><ul>
+<li>
+<p>简洁专业的面板设计</p>
+</li>
+<li>
+<p>可折叠的高级设置，适合高级用户</p>
+</li>
+<li>
+<p>实时状态更新</p>
+</li>
+<li>
+<p>常见场景一键智能修复</p>
+</li>
+</ul><hr><h2>🚀 为什么选择智能法线修复工具？</h2><p><strong>节省大量时间</strong></p><ul>
+<li>
+<p>无需逐面修复</p>
+</li>
+<li>
+<p>消除对自动平滑角度的猜测</p>
+</li>
+<li>
+<p>无缝批量处理多个对象</p>
+</li>
+</ul><p><strong>专业级结果</strong></p><ul>
+<li>
+<p>行业标准算法</p>
+</li>
+<li>
+<p>保持网格完整性</p>
+</li>
+<li>
+<p>在各种几何类型上结果一致</p>
+</li>
+</ul><p><strong>适合新手到专业用户</strong></p><ul>
+<li>
+<p>一键操作，适合初学者</p>
+</li>
+<li>
+<p>面向技术艺术家的高级控制</p>
+</li>
+<li>
+<p>智能默认值，99% 的情况下开箱即用</p>
+</li>
+</ul><hr><h2>📋 适用场景</h2><ul>
+<li>
+<p>游戏资产准备</p>
+</li>
+<li>
+<p>3D打印清理</p>
+</li>
+<li>
+<p>建筑可视化</p>
+</li>
+<li>
+<p>产品渲染</p>
+</li>
+<li>
+<p>动画就绪网格</p>
+</li>
+<li>
+<p>CAD导入优化</p>
+</li>
+</ul><hr><h2>🔧 技术规格</h2><ul>
+<li>
+<p><strong>Blender 版本</strong>：3.0+</p>
+</li>
+<li>
+<p><strong>分类</strong>：网格工具</p>
+</li>
+<li>
+<p><strong>安装</strong>：单个 .py 文件</p>
+</li>
+<li>
+<p><strong>性能</strong>：针对大型网格优化</p>
+</li>
+<li>
+<p><strong>系统影响</strong>：轻量级，内存占用极少</p>
+</li>
+</ul><hr><h2>🎬 常见使用场景</h2><p><strong>游戏开发</strong></p><ul>
+<li>
+<p>清理导入的 FBX/OBJ 文件</p>
+</li>
+<li>
+<p>为引擎准备低模</p>
+</li>
+<li>
+<p>修复法线贴图问题</p>
+</li>
+</ul><p><strong>3D打印</strong></p><ul>
+<li>
+<p>确保几何体为流形</p>
+</li>
+<li>
+<p>修正内外翻转的法线</p>
+</li>
+<li>
+<p>清理混乱的拓扑</p>
+</li>
+</ul><p><strong>建筑可视化</strong></p><ul>
+<li>
+<p>处理 CAD 导入文件</p>
+</li>
+<li>
+<p>批量修复建筑组件</p>
+</li>
+<li>
+<p>优化渲染就绪网格</p>
+</li>
+</ul><hr><h2>💡 智能功能实战</h2><ul>
+<li>
+<p>为精细细节推荐 30° 自动平滑</p>
+</li>
+<li>
+<p>为粗糙几何体建议 80°</p>
+</li>
+<li>
+<p>查找重复顶点并建议合并</p>
+</li>
+<li>
+<p>在需要时清除自定义分裂法线</p>
+</li>
+</ul><hr><h2>🏆 用户评价</h2><p><em>"这个工具帮我节省了好几个小时。智能检测准确得令人惊叹！"</em><br>
+<em>"终于有了一个理解我工作流程的法线工具。面级编辑真是改变游戏规则。"</em><br>
+<em>"对于 CAD 导入来说简直完美。一键搞定一切。"</em></p><hr><h2>📦 包含内容</h2><ul>
+<li>
+<p>完整 Python 插件文件</p>
+</li>
+<li>
+<p>安装说明</p>
+</li>
+<li>
+<p>附示例的用户指南</p>
+</li>
+<li>
+<p>Blender 3.0+ 终身更新</p>
+</li>
+</ul><hr><h2>🛠 安装与设置</h2><ol>
+<li>
+<p>下载 .py 文件</p>
+</li>
+<li>
+<p>前往 <strong>编辑 &gt; 首选项 &gt; 插件</strong></p>
+</li>
+<li>
+<p>点击 <strong>安装</strong> 并选择文件</p>
+</li>
+<li>
+<p>启用 <strong>智能正常s Fix 工具</strong></p>
+</li>
+<li>
+<p>在 <strong>3D视口 &gt; N面板 &gt; 法线</strong> 标签中找到它</p>
+</li>
+</ol><hr><h2>🔄 持续更新</h2><p>我们根据用户反馈持续改进算法并添加新功能。<br>
+您的购买包含所有未来更新。</p><hr><p><strong>立即改变您的法线工作流程。<br>
+获取 <em>智能正常s Fix 工具</em>，体验 Blender 网格处理的未来。</strong></p><p><em>✔ 兼容 Blender 3.0+ | 📥 即时下载 | 💸 30天退款保障</em></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">智能正常s Fix 工具 - 用户文档</span></p><h3>系统要求</h3><ul>
+<li>
+<p>Blender <strong>3.0+</strong></p>
+</li>
+<li>
+<p>Python <strong>3.7+</strong>（随 Blender 捆绑安装）</p>
+</li>
+</ul><h3>安装步骤</h3><ol>
+<li>
+<p>下载 <code>fix normals.py</code> 文件</p>
+</li>
+<li>
+<p>打开 Blender</p>
+</li>
+<li>
+<p>前往 <strong>编辑 &gt; 首选项 &gt; 插件</strong></p>
+</li>
+<li>
+<p>点击 <strong>安装</strong></p>
+</li>
+<li>
+<p>选择 <code>fix normals.py</code> 文件</p>
+</li>
+<li>
+<p>启用插件（勾选"智能正常s Fix 工具"）</p>
+</li>
+<li>
+<p>工具将出现在 3D视口侧边栏的 <strong>法线</strong> 标签下</p>
+</li>
+</ol><hr><h2>快速入门</h2><h3>快速开始</h3><ol>
+<li>
+<p><strong>选择您的网格对象</strong>，或进入编辑模式并选择面</p>
+</li>
+<li>
+<p>在 3D视口侧边栏中打开 <strong>法线面板</strong>（N键）</p>
+</li>
+<li>
+<p>点击 <strong>智能修复</strong></p>
+</li>
+<li>
+<p><strong>完成！</strong>您的法线现在已正确定向并平滑</p>
+</li>
+</ol><h3>初次设置</h3><ul>
+<li>
+<p>使用默认设置开箱即用</p>
+</li>
+<li>
+<p>默认启用智能模式</p>
+</li>
+<li>
+<p>高级设置默认折叠，界面简洁</p>
+</li>
+</ul><hr><h2>界面概览</h2><h3>主面板区域</h3><ol>
+<li>
+<p><strong>智能设置</strong></p>
+<ul>
+<li>
+<p>启用智能分析以自动检测和修复</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>高级设置（可折叠）</strong></p>
+<ul>
+<li>
+<p>范围：选择目标（选中的面 / 对象 / 所有网格 / 智能检测）</p>
+</li>
+<li>
+<p>方法：自动平滑、重新计算法线或完整修复</p>
+</li>
+<li>
+<p>自动平滑角度：平滑阈值</p>
+</li>
+<li>
+<p>按距离合并 &amp; 合并距离：顶点合并控制</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>当前状态</strong></p>
+<ul>
+<li>
+<p>显示当前模式（编辑/对象）</p>
+</li>
+<li>
+<p>显示选择详情（面/对象数量）</p>
+</li>
+<li>
+<p>提供实时反馈</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>操作按钮</strong></p>
+<ul>
+<li>
+<p>智能修复选中的面</p>
+</li>
+<li>
+<p>智能修复选中的对象</p>
+</li>
+<li>
+<p>智能修复所有网格</p>
+</li>
+</ul>
+</li>
+</ol><hr><h2>基本使用</h2><h3>修复选中的面</h3><ol>
+<li>
+<p>进入 <strong>编辑模式</strong>（Tab键）</p>
+</li>
+<li>
+<p>选择面</p>
+</li>
+<li>
+<p>点击 <strong>智能修复选中的面</strong></p>
+</li>
+</ol><h3>修复整个对象</h3><ol>
+<li>
+<p>选择网格对象</p>
+</li>
+<li>
+<p>点击 <strong>智能修复选中的对象</strong></p>
+</li>
+</ol><h3>修复所有网格</h3><ol>
+<li>
+<p>点击 <strong>智能修复所有网格</strong></p>
+</li>
+<li>
+<p>场景中所有网格对象将被处理</p>
+</li>
+</ol><hr><h2>高级功能</h2><h3>智能检测模式</h3><ul>
+<li>
+<p><strong>编辑模式 + 选中的面</strong> → 处理选中的面</p>
+</li>
+<li>
+<p><strong>对象模式 + 选中的对象</strong> → 处理选中的对象</p>
+</li>
+<li>
+<p><strong>无选择</strong> → 处理所有网格</p>
+</li>
+</ul><h3>处理方法</h3><ul>
+<li>
+<p><strong>仅自动平滑</strong> → 快速平滑，不重新计算法线</p>
+</li>
+<li>
+<p><strong>仅重新计算法线</strong> → 重新计算外部法线，清除自定义数据</p>
+</li>
+<li>
+<p><strong>完整修复（推荐）</strong> → 两者结合，实现最彻底的清理</p>
+</li>
+</ul><h3>顶点合并</h3><ul>
+<li>
+<p><strong>按距离合并</strong>会合并重叠的顶点</p>
+</li>
+<li>
+<p>默认阈值：<strong>0.0001 单位</strong>（非常精确）</p>
+</li>
+<li>
+<p>适用于清理导入的模型</p>
+</li>
+</ul><hr><h2>智能分析</h2><h3>检测到的问题</h3><ul>
+<li>
+<p>翻转的面</p>
+</li>
+<li>
+<p>重复顶点</p>
+</li>
+<li>
+<p>自定义分裂法线</p>
+</li>
+<li>
+<p>几何体复杂度</p>
+</li>
+</ul><h3>自动推荐</h3><ul>
+<li>
+<p><strong>精细几何体</strong>（&lt; 30°）→ 自动平滑 30°</p>
+</li>
+<li>
+<p><strong>中等几何体</strong>（30–60°）→ 自动平滑 60°</p>
+</li>
+<li>
+<p><strong>粗糙几何体</strong>（&gt; 60°）→ 自动平滑 80°</p>
+</li>
+<li>
+<p>重复顶点 → 启用按距离合并</p>
+</li>
+<li>
+<p>自定义法线 → 清除分裂法线</p>
+</li>
+</ul><h3>反馈示例</h3><ul>
+<li>
+<p><code>"智能Detection: Using SELECTED_FACES mode"</code></p>
+</li>
+<li>
+<p><code>"Found 5 potentially flipped faces"</code></p>
+</li>
+<li>
+<p><code>"处理ed 12 selected faces"</code></p>
+</li>
+</ul><hr><h2>故障排除</h2><h3>常见问题</h3><ul>
+<li>
+<p><strong>"请进入编辑模式并选择面"</strong> → 进入编辑模式（Tab键）并选择面</p>
+</li>
+<li>
+<p><strong>"未选中任何面"</strong> → 确保已选择面（使用数字键3切换到面选择）</p>
+</li>
+<li>
+<p><strong>"当前对象不是网格对象"</strong> → 请选择网格，而非灯光/相机</p>
+</li>
+<li>
+<p><strong>"在所选范围内未找到网格对象"</strong> → 检查选择或范围设置</p>
+</li>
+</ul><h3>性能提示</h3><ul>
+<li>
+<p>大型网格：使用面级处理</p>
+</li>
+<li>
+<p>多个对象：逐个处理</p>
+</li>
+<li>
+<p>复杂场景：使用"选中的对象"范围</p>
+</li>
+</ul><hr><h2>常见问题</h2><ul>
+<li>
+<p><strong>智能模式与高级设置有什么区别？</strong><br>
+智能模式自动优化，高级设置允许手动控制。</p>
+</li>
+<li>
+<p><strong>何时使用面级处理与对象级处理？</strong><br>
+面级用于局部修复，对象级用于全面清理。</p>
+</li>
+<li>
+<p><strong>按距离合并是什么？</strong><br>
+在指定距离内合并重叠的顶点。</p>
+</li>
+<li>
+<p><strong>为什么推荐不同的自动平滑角度？</strong><br>
+角度取决于几何体复杂度——细节越多角度越小，越粗糙角度越大。</p>
+</li>
+<li>
+<p><strong>可以撤销更改吗？</strong><br>
+可以，Ctrl+Z 适用于此工具。</p>
+</li>
+<li>
+<p><strong>与修改器兼容吗？</strong><br>
+仅在基础网格上工作。如有需要，请先应用修改器。</p>
+</li>
+<li>
+<p><strong>与其他法线工具兼容吗？</strong><br>
+兼容，但建议先运行此工具以清除有问题的自定义法线。</p>
+</li>
+</ul><hr><h2>技巧与最佳实践</h2><h3>工作流程集成</h3><ol>
+<li>
+<p><strong>导入模型</strong> → 先清理法线</p>
+</li>
+<li>
+<p><strong>UV展开前</strong> → 修复法线以避免着色问题</p>
+</li>
+<li>
+<p><strong>绑定骨骼前</strong> → 确保角色模型法线正确</p>
+</li>
+<li>
+<p><strong>渲染前</strong> → 最终法线检查</p>
+</li>
+</ol><h3>性能优化</h3><ul>
+<li>
+<p>大型网格使用面级处理</p>
+</li>
+<li>
+<p>分批处理对象，而非一次性全部处理</p>
+</li>
+<li>
+<p>使用智能模式进行自动优化</p>
+</li>
+</ul><h3>质量保证</h3><ul>
+<li>
+<p>始终在渲染视图中检查</p>
+</li>
+<li>
+<p>启用 <strong>面朝向</strong> 叠加层进行验证</p>
+</li>
+<li>
+<p>在不同光照设置下测试</p>
+</li>
+</ul><hr><h2>支持与更新</h2><h3>获取帮助</h3><ul>
+<li>
+<p>查阅故障排除章节</p>
+</li>
+<li>
+<p>确保使用 Blender 3.0+</p>
+</li>
+<li>
+<p>验证插件的安装和激活</p>
+</li>
+</ul><h3>更新内容</h3><ul>
+<li>
+<p>改进的智能分析</p>
+</li>
+<li>
+<p>新的处理选项</p>
+</li>
+<li>
+<p>性能增强</p>
+</li>
+<li>
+<p>错误修复</p>
+</li>
+</ul><h3>兼容性</h3><ul>
+<li>
+<p><strong>Blender 3.0+</strong> → 完全支持</p>
+</li>
+<li>
+<p><strong>Blender 2.93</strong> → 有限支持</p>
+</li>
+<li>
+<p><strong>未来版本</strong> → 提供更新</p>
+</li>
+</ul>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/file_1.zip">file_1.zip</a><span class="file-size">4.6 KB</span></li>
+                <li><a href="files/fix_normals.zip">fix_normals.zip</a><span class="file-size">1.0 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

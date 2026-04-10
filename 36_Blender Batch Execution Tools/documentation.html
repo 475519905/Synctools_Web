@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" lang="zh-CN"><head><meta charset="utf-8"><title>Blender Batch Execution Tools - 文档</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:900px;margin:40px auto;padding:20px;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>Blender Batch Execution Tools - 文档</h1><p></p><h3>安装指南</h3><ol>
+<li>
+<p><strong>下载插件</strong><br>
+在 Blender Market 购买插件后，下载 <code>.zip</code> 文件到您的电脑（例如 <code>batch_script_execution.zip</code>).</p>
+</li>
+<li>
+<p><strong>打开 Blender 偏好设置</strong><br>
+在 Blender 中，前往 <strong>编辑 > 偏好设置...</strong> 并点击左侧的 <strong>插件</strong> 标签页。</p>
+</li>
+<li>
+<p><strong>安装插件</strong><br>
+点击 <strong>安装...</strong> 按钮（位于偏好设置窗口顶部）。<br>
+找到之前下载的 <code>.zip</code> 文件并选择它。<br>
+点击 <strong>安装插件</strong>。</p>
+</li>
+<li>
+<p><strong>启用插件</strong><br>
+安装完成后，在插件列表中搜索 "Batch Script Execution"。<br>
+勾选其名称旁边的复选框以启用它。<br>
+关闭偏好设置窗口。</p>
+</li>
+</ol><p>您的插件现已安装完成并可以使用。</p><hr><h3>使用教程</h3><ol>
+<li>
+<p><strong>打开面板</strong><br>
+切换到 Blender 的 <strong>3D 视口</strong>。按 <strong>N</strong> 打开侧边栏。<br>
+导航到 <strong>Scripts</strong> 标签页，在那里您会找到 "Batch Script Execution" 面板。</p>
+</li>
+<li>
+<p><strong>选择 Python 脚本</strong><br>
+在 "Script Selection" 框下，选择要对多个 <code>.blend</code> <br>
+文件执行的脚本。该脚本可以修改对象、材质、渲染设置或您创建的任何自定义逻辑。</p>
+</li>
+<li>
+<p><strong>选择目录</strong><br>
+点击 <strong>"Select 目录"</strong> 选择包含 <code>.blend</code> 文件的文件夹。</p>
+<ul>
+<li>如果您的 <code>.blend</code> 文件存储在子文件夹中，请启用 <strong>"Include Subfolders"</strong> 以同时处理它们。</li>
+</ul>
+</li>
+<li>
+<p><strong>配置选项</strong><br>
+从可用选项中选择以定制您的批量处理：</p>
+<ul>
+<li>
+<strong>将保存版本设为 0：</strong> 不会创建备份版本 (<code>.blend1</code>, <code>.blend2</code>）。</li>
+<li>
+<strong>清理未使用数据块：</strong> 自动移除场景中未使用的数据块。</li>
+<li>
+<strong>打包资源：</strong> 将所有外部文件（纹理等）打包到每个 <code>.blend</code> 文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>运行批量处理</strong><br>
+一切设置好后，点击 <strong>"RUN"</strong> 按钮。<br>
+插件将打开每个 <code>.blend</code> 文件（在选定的目录及子目录中，如果已启用），运行选定的 Python 脚本，然后自动保存文件。</p>
+</li>
+<li>
+<p><strong>监视进度</strong><br>
+控制台或终端窗口（如果已打开）将显示进度，包括已处理的文件数量和所用时间。<br>
+完成后，将出现一条消息显示已处理的文件总数。</p>
+</li>
+</ol><hr><h3>提示与最佳实践</h3><ul>
+<li>
+<strong>先在单个文件上测试：</strong> 在批量处理大量文件之前，先在单个 <code>.blend</code> 上运行脚本以确保其按预期工作。</li>
+<li>
+<strong>备份重要文件：</strong> 虽然您可以将保存版本设为 0，但在运行批量操作前请考虑保留重要文件的备份。</li>
+<li>
+<strong>检查控制台错误：</strong> 如果有任何异常，请打开 Blender 控制台（<code>窗口 > 切换系统控制台</code>，Windows 上）以查看脚本的错误消息或打印语句。</li>
+</ul><p>
+
+
+
+
+
+
+
+
+
+
+</p><p>按照上述步骤，您可以快速将 "Batch Script Execution" 集成到工作流中，在需要对多个 <code>.blend</code> 文件进行批量处理时节省大量时间。</p></body></html>

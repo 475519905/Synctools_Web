@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools Pro for Cinema 4D - SyncTools Pro</title>
+    <meta name="description" content="SyncTools Pro for Cinema 4D - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools Pro for Cinema 4D
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools Pro for Cinema 4D"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools Pro for Cinema 4D" class="active" data-index="0">
+                <img src="images/01_gallery.png" alt="SyncTools Pro for Cinema 4D" data-index="1">
+                <img src="images/02_gallery.png" alt="SyncTools Pro for Cinema 4D" data-index="2">
+                <img src="images/03_gallery.png" alt="SyncTools Pro for Cinema 4D" data-index="3">
+                <img src="images/04_gallery.png" alt="SyncTools Pro for Cinema 4D" data-index="4"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools Pro for Cinema 4D</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$20.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="product_page.html">打开备份页</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件, 导入 &amp; 导出</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Blender 版本</span><span class="sidebar-info-value">2.93 ~ 5.0</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">许可证</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-workflow-automation</span>
+                    <span class="compat-chip">animation-transfer</span>
+                    <span class="compat-chip">bidirectional-sync</span>
+                    <span class="compat-chip">blender</span>
+                    <span class="compat-chip">c4d-blender-integration</span>
+                    <span class="compat-chip">camera-settings-sync</span>
+                    <span class="compat-chip">cinema-4d</span>
+                    <span class="compat-chip">cross-platform-pipeline</span>
+                    <span class="compat-chip">cross-software-compatibility</span>
+                    <span class="compat-chip">efficiency-enhancement</span>
+                    <span class="compat-chip">importexport-tools</span>
+                    <span class="compat-chip">lighting-sync</span>
+                    <span class="compat-chip">material-conversion</span>
+                    <span class="compat-chip">maya</span>
+                    <span class="compat-chip">model-import-export</span>
+                    <span class="compat-chip">multi-software-workflow</span>
+                    <span class="compat-chip">one-click-transfer</span>
+                    <span class="compat-chip">productivity-tool</span>
+                    <span class="compat-chip">project-parameter-sync</span>
+                    <span class="compat-chip">sync-tools</span>
+                    <span class="compat-chip">workflow-optimization</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <h1 style=""><span style="background-color:rgb(255, 255, 255);"><b>SyncTools Pro for Cinema 4D</b></span></h1><p><span style="font-family:Degular , sans-serif;font-size:2rem;"><b>支持范围</b></span></p><p>SyncTools 支持以下 3D 资源类型的双向导入和导出：角色、动画、样条线、材质、模型、相机、灯光和项目设置。</p><h3 style="color:rgb(33, 37, 41);overflow:hidden !important;"><b>多 DCC 平台支持</b></h3><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">SyncTools 系列现已扩展支持主要数字内容创建软件，包括：</p><ul style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank">SyncTools for Maya</a></span><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank">SyncTools for 3ds Max</a></span><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank">SyncTools for Houdini</a></span><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank">SyncTools for Cinema 4D</a></span><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank">SyncTools for Rhino</a></span><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank">SyncTools for Marvelous Designer</a></span><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Substance Painter</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unreal Engine</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Zbrush</span> (开发中)</li>
+</ul><p><span style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;">所有插件采用统一的数据交换协议，实现跨平台无损资产转换和真正的多软件协作工作流。</span><br></p><h2 class=""><b>插件介绍</b></h2><p>您是否厌倦了频繁切换不同的 3D 软件、处理重复性任务以及在复杂操作上浪费宝贵时间？ Sync Tools 旨在优化您的工作流程并简化 3D 设计过程。</p><p>作为一款以效率和生产力为核心的工具，它可以显著提升您的日常工作体验，让您的 3D 艺术家生活更轻松。</p><p>Try “SyncTools Pro" now—it will change the way you work in Cinema 4D and Blender.</p><p><br></p><p class=""></p><h2 class=""><b>这些场景是否扼杀了您的创造力？</b></h2><h2 class=""><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 在 Blender 和 Cinema 4D 之间传输资产时浪费数小时手动对齐比例/轴向</span></h2><p class=""><span style="background-color:rgb(255, 255, 255);"><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 由于软件间帧率或分辨率设置不匹配导致的渲染灾难<br></span><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 每次迁移后从头重建复杂的 Octane/Redshift 材质节点<br></span><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 动画曲线被破坏得面目全非，迫使逐帧修复</span></span></p><h2 class=""><span style="font-weight:bolder;font-family:Degular , sans-serif;font-size:1.75rem;">主要功能</span></h2><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">1. 快速复制粘贴</span></h4><p>一键在 C4D 和 Blender 之间无缝传输对象。 无需手动调整繁琐的比例、轴向或层级结构。 节省大量时间，专注于真正重要的事——您的创意愿景。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">2. 核心项目参数自动同步s</span></h4><p>自动同步核心项目参数，包括焦距、分辨率、图像宽高比和帧率。 确保不同软件间项目设置一致，提高跨平台工作流的准确性和效率。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">3. 广泛材质支持</span></h4><p>该插件涵盖几乎所有主流渲染器的材质导入和导出，包括 Octane、Redshift 等。 它还支持材质选择集的导入和导出。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">4. 灯光支持</span></h4><p>导入灯光时，Sync Tools 准确还原灯光强度，自动生成相应的灯光节点和标签，并保留灯光的颜色和纹理信息。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">5. 完整动画支持</span></h4><p>该插件支持动画导入，完全保留关键帧和曲线手柄，确保无损动画精度。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">6. 持续优化与更新s</span></h4><p>Sync Tools 持续优化升级中。 所有用户可免费升级到最新版本。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">7. 持久导入导出功能</span></h4><p>即使在导出或导入操作后关闭软件，插件仍可正常使用导入和导出功能。</p><p><img src="images/desc_00_fd3deae7eb331adf232dacb67d1840e4.png" style="max-width:100%;"><br></p><p><img src="images/desc_01_9e20e1de3c1065b43c0026a5fcae4257.png" style="max-width:100%;"><br></p><h3 class="">
+<img src="images/desc_02_432212f803afb472d6e1506796b7e09d.png" style="max-width:100%;">
+</h3><h2 class=""></h2><p><strong style="font-size:2rem;">支持 Blender 基金会</strong></p><p class="">
+我们相信回馈让我们的工作成为可能的社区。 每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p><h2 class=""><b style="font-size:2rem;">更新日志</b></h2><h2 class=""><b style="font-size:2rem;"><br></b></h2><h4 class=""><b>v2.10 更新说明</b></h4><p class=""><br>服务器维护期间，请暂时使用云存储手动更新！<br>修复了一些错误，请大家更新！<br>1. 支持 Blender 4.3.1&amp;Cinema 4D 2025.1<br>2. 添加自定义快捷键偏好设置支持<br>3. 添加非标准材质的自动检测与修复功能<br>4. 自动为导入的 OC 材质添加映射节点<br>5. 导出算法逻辑优化<br>6. 修复 Blender 导入 OC 透射材质的错误<br>7. 修复 Blender 导入 OC 金属材质的错误<br><br></p><h4 class=""><b>V1.3 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 添加兼容模式（支持 UE、MAX、MAYA、ZB、BL、4D 测试）.<br>2. 插件更新功能已上线（支持自动更新、手动更新和静默更新）。<br>3. OC 材质支持更多节点。<br>4. 用户体验优化（允许重复和实例材质名称）。<br>5. 识别渲染器（勾选后可直接导入 OC 材质）<br><br><br><h4 class=""><b>1.21 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 更新支持 R2025 和 4.2.1LTS<br>2. 导入 4D 文件支持 Mac<br>3. 添加拖放事件（可直接拖放导入 C4D 文件）<br>4. 添加图标和帮助文档<br>5. 重大性能优化和错误修复<br><br><br><h4 class=""><b>1.2 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 添加偏好设置和全局缩放调整设置<br>2. Increase selective import&amp;export of asset types such as animation, lighting models, etc<br>3. 功能稳定性和错误修复<h3 class=""><br></h3>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <h1>安装 Guide for Sync Tools</h1><h2>Prerequisites</h2><ul>
+<li>
+<strong>Cinema 4D Minimum 版本</strong>: Cinema 4D R21 or higher</li>
+<li>
+<strong>Blender Minimum 版本</strong>: Blender 3.3 or higher</li>
+<li>
+<strong>支持ed Operating 系统</strong>: Windows, macOS, Linux</li>
+</ul><hr><h3>安装 Steps</h3><h4>1. <strong>下载 and Extract</strong>
+</h4><ul>
+<li>After downloading the plugin, right-click the archive and extract it.</li>
+<li>The extracted folder will contain two subfolders, one for Cinema 4D and one for Blender.</li>
+</ul><hr><h3><strong>Cinema 4D 安装</strong></h3><ol>
+<li>
+<p><strong>定位 the 插件 目录</strong>:</p>
+<ul>
+<li>Default path:<br>
+<code>C:\Program Files\Maxon Cinema 4D 2024\plugins</code>
+</li>
+<li>If the folder does not exist, manually create it.</li>
+</ul>
+</li>
+<li>
+<p><strong>复制 文件</strong>:</p>
+<ul>
+<li>复制 the entire plugin folder to the <code>plugins</code> directory mentioned above.</li>
+</ul>
+</li>
+<li>
+<p><strong>导入ant 注意s</strong>:</p>
+<ul>
+<li>
+<strong>权限s Issue</strong>: Avoid installing the plugin in other drives as it may fail due to permission restrictions.</li>
+<li>
+<strong>No 复制 安装</strong>: Do not install the plugin in both the configuration folder's <code>plugins</code> directory and the Cinema 4D root <code>plugins</code> directory simultaneously.</li>
+</ul>
+</li>
+</ol><hr><h3><strong>Blender 安装</strong></h3><ol>
+<li>
+<p><strong>访问 Blender 偏好设置</strong>:</p>
+<ul>
+<li>Open Blender, go to <code>编辑 &gt; 偏好设置 &gt; 插件</code>.</li>
+<li>Select <code>安装...</code> from the 偏好设置 window.</li>
+</ul>
+</li>
+<li>
+<p><strong>安装 插件</strong>:</p>
+<ul>
+<li>Navigate to the downloaded plugin file and select it.</li>
+<li>For older versions of Blender, click <code>安装 插件</code> directly.</li>
+</ul>
+</li>
+<li>
+<p><strong>导入ant 注意s</strong>:</p>
+<ul>
+<li>
+<strong>No Extraction Required</strong>: For Blender, install the plugin directly without extracting it.</li>
+<li>
+<strong>安装 Both</strong>: To ensure proper functionality, install the plugin for both Cinema 4D and Blender.</li>
+</ul>
+</li>
+</ol><hr><h3>Verification</h3><p>After installation:</p><ul>
+<li>重启 Cinema 4D and Blender.</li>
+<li>In Cinema 4D, you should see <strong>Sync Tools</strong> in the top menu or the 扩展s panel.</li>
+<li>In Blender, check the 插件 list under 偏好设置 to confirm that Sync Tools is enabled.</li>
+</ul><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>Now you’re ready to start using Sync Tools!</p><h1>How to Use the 插件</h1><p>After installing the plugin and restarting the software, you will find <strong>Sync Tools</strong> in:</p><ul>
+<li>
+<strong>Cinema 4D</strong>: 定位d in the top menu.</li>
+<li>
+<strong>Blender</strong>: 访问ible from the 插件/扩展s menu.</li>
+</ul><hr><h3>Main Operations</h3><p>
+
+
+
+
+</p><ul>
+<li>
+<strong>复制</strong>: Copies the selected object(s) to Cinema 4D &amp; Blender.</li>
+<li>
+<strong>粘贴</strong>: 粘贴s the copied object(s) into the current scene.</li>
+</ul><p><br></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

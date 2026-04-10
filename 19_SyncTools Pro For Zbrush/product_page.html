@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SyncTools Pro For Zbrush</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>SyncTools Pro For Zbrush</h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/06_gallery.png" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 导入 & 导出, 材质 and Shading, 建模</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-art</span>
+  <span class="tag">3d-artists</span>
+  <span class="tag">3d-design</span>
+  <span class="tag">3d-geometry</span>
+  <span class="tag">3d-modeling</span>
+  <span class="tag">3d-model-transfer</span>
+  <span class="tag">3d-resources</span>
+  <span class="tag">3d-software</span>
+  <span class="tag">3d-workflow</span>
+  <span class="tag">blender-market</span>
+  <span class="tag">copy-paste-plugin</span>
+  <span class="tag">cross-project-workflow</span>
+  <span class="tag">digital-art</span>
+  <span class="tag">macos</span>
+  <span class="tag">obj-file</span>
+  <span class="tag">productivity-tools</span>
+  <span class="tag">subtools</span>
+  <span class="tag">synctools</span>
+  <span class="tag">time-saving</span>
+  <span class="tag">windows</span>
+  <span class="tag">workflow-optimization</span>
+  <span class="tag">zbrush</span>
+  <span class="tag">zbrush-2022</span>
+  <span class="tag">zbrush-2023</span>
+  <span class="tag">zbrush-add-on</span>
+  <span class="tag">zbrush-integration</span>
+  <span class="tag">zbrush-plugin</span>
+  <span class="tag">zbrush-tools</span>
+  <span class="tag">zbrush-users</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <h1 class=""><strong>SyncTools for ZBrush</strong></h1><h1 class=""><strong><br></strong></h1><h2 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">🌍 多 DCC 平台支持</span></h2><h1 style="margin-top:24px;margin-bottom:12px;line-height:1.25;color:rgb(0, 0, 0);font-size:2em;"></h1><h1 class=""></h1><p style="font-family:sans-serif;font-size:16px;font-weight:400;">SyncTools 系列扩展支持主要的 <span style="font-weight:bolder;">数字内容创作软件</span>, 包括:</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅ <span style="font-weight:bolder;">SyncTools for Maya</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for 3ds Max</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Houdini</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Cinema 4D</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Rhino</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Marvelous Designer</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅<span style="font-weight:bolder;">SyncTools for 虚幻引擎</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Substance Painter</span> (已发布)<br>🛠 <span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)<br>✅ <span style="font-weight:bolder;">SyncTools for Zbrush</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">所有插件使用 <span style="font-weight:bolder;">统一的数据交换协议</span>, 实现 <span style="font-weight:bolder;">跨平台无损资产转换</span> and <span style="font-weight:bolder;">真正的多软件协同工作流</span>.</p><h1 class="">
+<img src="images/desc_00_5bfbca1e0e8cba6ba8f552c13e044388.jpg" style="max-width:100%;"><strong><br></strong>
+</h1><h1 class="">
+<img src="images/desc_01_0fa1c370ae192d49d8bc4f897b7cabf2.jpg" style="max-width:100%;"><strong><br></strong>
+</h1><h1 class="">
+<img src="images/desc_02_e15ba862ed3c883dcfbb5e892ca6f2f2.png" style="max-width:100%;"><strong><br></strong>
+</h1><h3><br></h3><h3>ZBrush 支持</h3><p><strong>推荐配置:</strong></p><ul>
+<li>
+<p><strong>推荐版本:</strong> ZBrush 2023 （或更高版本）</p>
+</li>
+<li>
+<p><strong>最低兼容版本:</strong> ZBrush 2022</p>
+</li>
+<li>
+<p><strong>支持的操作系统:</strong> Windows (64-bit), macOS (64-bit)</p>
+</li>
+</ul><h3>功能</h3><p>SyncTools for ZBrush 支持以下 3D 资源类型的双向导入/导出:</p><ul>
+<li>
+<p><strong>3D 模型几何</strong></p>
+</li>
+<li>
+<p><strong>Subtool 结构</strong></p>
+</li>
+<li>
+<p><strong>FBX 格式数据传输</strong></p>
+</li>
+</ul><p>该插件使用复制和粘贴操作同步资源，大大简化了跨多个 ZBrush 窗口或项目的工作流。</p><h3>安装指南</h3><p><img src="images/desc_03_610f0d971bea5cf89d93be870807e0dc.png" style="max-width:100%;"><br></p><ol>
+<li>
+<p>将以下文件复制到 ZBrush 安装目录下的 <code>ZStartup/ZPlugs64/SyncTools/</code> （如果文件夹不存在则创建）：</p>
+</li>
+<li>
+<p>重启 ZBrush, 插件将自动加载。</p>
+</li>
+</ol><h3>使用方法</h3><p><img src="images/desc_04_347594fd01cdb13624dc96ccce49b751.png" style="max-width:100%;"><br></p><ul>
+<li>
+<p><strong>打开插件面板:</strong> <code>Alt + Shift + P</code></p>
+</li>
+</ul><h4>快捷键:</h4><ul>
+<li>
+<p><strong>复制:</strong> 复制当前选中的 Subtool 几何体<br>
+<strong>快捷键:</strong> <code>Alt + Shift + C</code></p>
+</li>
+<li>
+<p><strong>粘贴:</strong> 将几何体粘贴到当前 ZBrush 场景中<br>
+<strong>快捷键:</strong> <code>Alt + Shift + V</code></p>
+</li>
+</ul><h3>注意事项</h3><ul>
+<li>
+<p>插件会在后台自动创建临时文件以进行数据交换。</p>
+</li>
+<li>
+<p>确保有足够的磁盘空间（建议至少 500MB）。</p>
+</li>
+<li>
+<p>使用插件前请务必保存您的工作，以避免意外数据丢失。</p>
+</li>
+<li>
+<p>粘贴前必须先执行复制操作。</p>
+</li>
+</ul><h3>常见问题及解决方案</h3><h4>插件面板未显示</h4><p><br></p><ul>
+<li>
+<p>确保插件文件正确放置在 <code>ZPlugs64/SyncTools</code> 目录中。</p>
+</li>
+<li>
+<p>检查您的 ZBrush 版本（最低要求：2023）。</p>
+</li>
+<li>
+<p>重启 ZBrush。</p>
+</li>
+</ul><h4>复制失败</h4><ul>
+<li>
+<p>确保已选择要复制的 Subtool。</p>
+</li>
+<li>
+<p>检查是否有足够的磁盘空间。</p>
+</li>
+<li>
+<p>确保 Subtool 名称不包含特殊字符（* ? / \ | " < > :）。</p>
+</li>
+</ul><h4>粘贴失败</h4><ul>
+<li>
+<p>确保已先执行复制操作。</p>
+</li>
+<li>
+<p>检查界面上是否显示"缓冲区为空！"消息。</p>
+</li>
+<li>
+<p>验证指定系统路径中是否存在临时文件。</p>
+</li>
+</ul><h3>数据兼容性</h3><h4>支持的数据类型:</h4><ul>
+<li>
+<p><strong>✔ 完全支持:</strong></p>
+<ul>
+<li>
+<p>基本几何网格</p>
+</li>
+<li>
+<p>Subtool 结构</p>
+</li>
+<li>
+<p>FBX 格式数据</p>
+</li>
+<li>
+<p>顶点 positions and topology</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>⚠ 部分支持:</strong></p>
+<ul>
+<li>
+<p>UV 映射数据</p>
+</li>
+<li>
+<p>多边形组信息 (Poly分组s)</p>
+</li>
+<li>
+<p>顶点颜色数据 (Polypaint)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>✖ 不支持:</strong></p>
+<ul>
+<li>
+<p>ZBrush 材质</p>
+</li>
+<li>
+<p>多边形组着色</p>
+</li>
+<li>
+<p>笔刷笔触</p>
+</li>
+<li>
+<p>图层信息</p>
+</li>
+<li>
+<p>动态细分设置</p>
+</li>
+</ul>
+</li>
+</ul><h3>重要说明</h3><ul>
+<li>
+<p><strong>数据格式:</strong> 使用标准 FBX 格式进行数据传输，确保广泛的兼容性。</p>
+</li>
+<li>
+<p><strong>临时文件管理:</strong> 插件自动创建和删除临时交换文件——无需手动干预。</p>
+</li>
+<li>
+<p><strong>命名规范:</strong> 避免在文件名中使用特殊字符，以防止复制/粘贴失败。</p>
+</li>
+<li>
+<p><strong>系统要求:</strong> 该插件仅支持 64 位操作系统环境。</p>
+</li>
+</ul><h3>总结</h3><p>SyncTools for ZBrush 提供了一种简单高效的方式，可在不同 ZBrush 实例或项目之间快速传输 3D 模型数据。 通过一键复制粘贴流程，显著提高了多窗口和跨项目工作流的便利性和生产力。</p><p>此插件遵循 GPL 开源许可证，将持续更新和优化。 如果您遇到任何问题或有功能建议，请随时联系我们！</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p><br></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Product 文件s</h2>
+  <ul class="file-list">
+  <li><a href="files/SyncTools_Zbrush.zip">SyncTools_Zbrush.zip</a> <span class="file-size">(969.0 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  后up from Superhive (Blender Market) Creator 仪表板
+</footer>
+
+</div>
+</body>
+</html>

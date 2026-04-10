@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN" lang="zh-CN"><head><meta charset="utf-8"><title>MIDI PianoMotion Tools V1.50 - 文档</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:900px;margin:40px auto;padding:20px;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>MIDI PianoMotion Tools V1.50 - 文档</h1><h1 class="">PianoMotion</h1><h2 class="">用户手册</h2><hr class=""><h3 class="">插件概述</h3><p class=""><strong>MIDI PianoMotion Tools</strong> 是专为 Blender 设计的专用插件，用于将 MIDI 文件转换为钢琴动画。<br>
+它可以生成逼真的按键动画、琴槌动作和踏板效果，并支持可自定义的发射效果以增强视觉表现。</p><hr class=""><h3 class="">系统要求</h3><ul>
+<li class="">
+<p class="">Blender 4.2.0 或更高版本</p>
+</li>
+<li class="">
+<p class="">Python 库依赖： <code>mido</code> (附带安装说明)</p>
+</li>
+</ul><hr class=""><h3 class="">功能</h3><p class=""><strong>MIDI 文件导入</strong></p><ul>
+<li class="">
+<p class="">支持标准 MIDI 文件格式</p>
+</li>
+<li class="">
+<p class="">自动将 MIDI 事件转换为钢琴动画</p>
+</li>
+</ul><p class=""><strong>动画效果</strong></p><ul>
+<li class="">
+<p class="">逼真的按键动画</p>
+</li>
+<li class="">
+<p class="">琴槌机构动画</p>
+</li>
+<li class="">
+<p class="">三踏板动画效果</p>
+</li>
+<li class="">
+<p class="">左右手颜色区分</p>
+</li>
+</ul><p class=""><strong>自定义选项</strong></p><ul>
+<li class="">
+<p class="">可调节的琴键颜色</p>
+</li>
+<li class="">
+<p class="">灵活的琴键命名规则</p>
+</li>
+<li class="">
+<p class="">可调节的动画参数</p>
+</li>
+</ul><hr class=""><h3 class="">安装</h3><h4 class="">2.1 插件安装</h4><p class="">通过 Blender 偏好设置从以下文件安装插件： <code>.zip</code> 文件：</p><ol>
+<li class="">
+<p class="">获取 <code>.zip</code> 文件，来自网站或开发者，例如 <code>MIDI_PianoMotion_Tools.zip</code>.</p>
+</li>
+<li class="">
+<p class="">在 Blender 中，前往 <strong>编辑 > 偏好设置 > 插件</strong>。</p>
+</li>
+<li class="">
+<p class="">点击 <strong>安装</strong>，选择 <code>.zip</code> 文件，然后点击 <strong>安装插件</strong>。</p>
+</li>
+<li class="">
+<p class="">在插件列表中，找到 <strong>PianoMotion Pro</strong> 并通过勾选复选框启用它。</p>
+</li>
+</ol><h4 class="">2.2 Mido 库依赖</h4><p class=""><code>mido</code> 是一个用于处理 MIDI 文件的 Python 库。 <strong>PianoMotion Pro</strong> 需要 <code>mido</code> 才能正常工作。</p><p class="">如果您遇到类似 <code>No module named 'mido'</code>的错误，说明该库缺失。</p><p class=""><strong>解决方案：</strong></p><p class="">In Blender’s <strong>Python Console</strong>, run:</p><pre class="overflow-visible!"><div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary">
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary select-none rounded-t-[5px]">
+<span class="hljs-keyword" style="color:inherit;font-size:inherit;">import</span><span style="color:inherit;font-size:inherit;"> pip</span>
+</div>
+<div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary select-none rounded-t-[5px]">
+<span style="color:inherit;font-size:inherit;"><br></span><span style="color:inherit;font-size:inherit;">pip.main([</span><span class="hljs-string" style="color:inherit;font-size:inherit;">'install'</span><span style="color:inherit;font-size:inherit;">, </span><span class="hljs-string" style="color:inherit;font-size:inherit;">'mido'</span><span style="color:inherit;font-size:inherit;">])</span>
+</div>
+</div></pre><p class="">或者：</p><ul>
+<li class="">
+<p class="">安装 <code>mido</code> using your system’s Python installation.</p>
+</li>
+<li class="">
+<p class="">复制 the installed <code>mido</code> module into Blender’s <code>scripts/modules</code> folder.</p>
+</li>
+</ul><p class="">然后重启 Blender。如果成功，MIDI 文件导入将正常工作。</p><hr class=""><p class="">安装后，按 <strong>N</strong> 键在 <strong>3D 视口</strong>中打开侧边栏，然后前往 <strong>Piano</strong> 标签页访问插件面板。</p><hr class=""><h3 class="">用户界面</h3><p class="">插件面板位于 3D 视口的侧边栏中（按 <strong>N</strong> 键打开）。 在 <strong>Piano</strong> 标签页下找到它。</p><h4 class="">主要设置面板</h4><p class=""><strong>琴键设置</strong></p><ul>
+<li class="">
+<p class=""><strong>白键前缀：</strong> 白键的名称前缀</p>
+</li>
+<li class="">
+<p class=""><strong>黑键前缀：</strong> 黑键的名称前缀</p>
+</li>
+<li class="">
+<p class=""><strong>琴键分隔符：</strong> 琴键名称的分隔符</p>
+</li>
+<li class="">
+<p class=""><strong>白键颜色：</strong> 白键的默认颜色</p>
+</li>
+<li class="">
+<p class=""><strong>黑键颜色：</strong> 黑键的默认颜色</p>
+</li>
+</ul><p class=""><strong>琴槌设置</strong></p><ul>
+<li class="">
+<p class=""><strong>琴槌前缀：</strong> 琴槌的名称前缀</p>
+</li>
+<li class="">
+<p class=""><strong>琴槌移动距离：</strong> 琴槌的移动距离</p>
+</li>
+</ul><p class=""><strong>踏板设置</strong></p><ul>
+<li class="">
+<p class=""><strong>制音踏板：</strong> 制音踏板的对象名称</p>
+</li>
+<li class="">
+<p class=""><strong>持续音踏板：</strong> 持续音踏板的对象名称</p>
+</li>
+<li class="">
+<p class=""><strong>柔音踏板：</strong> 柔音踏板的对象名称</p>
+</li>
+<li class="">
+<p class=""><strong>踏板旋转：</strong> 踏板的旋转角度</p>
+</li>
+<li class="">
+</li>
+</ul><hr class=""><h3 class="">工作流程</h3><p class=""><strong>准备工作</strong></p><ul>
+<li class="">
+<p class="">确保钢琴模型使用正确的对象命名。</p>
+</li>
+<li class="">
+<p class="">使用 <strong>测试组件</strong> 按钮验证正确的映射。</p>
+</li>
+</ul><p class=""><strong>创建动画</strong></p><ol>
+<li class="">
+<p class="">点击 <strong>创建钢琴动画</strong> 按钮。</p>
+</li>
+<li class="">
+<p class="">选择要导入的 MIDI 文件。</p>
+</li>
+<li class="">
+<p class="">等待动画生成。</p>
+</li>
+</ol><p class=""><strong>调整参数</strong></p><ul>
+<li class="">
+<p class="">根据需要微调发射效果。</p>
+</li>
+<li class="">
+<p class="">调整琴键颜色和动画设置。</p>
+</li>
+<li class="">
+<p class="">实时预览结果。</p>
+</li>
+</ul><hr class=""><h3 class="">重要注意事项</h3><p class=""><strong>钢琴模型要求</strong></p><ul>
+<li class="">
+<p class="">52 个白键</p>
+</li>
+<li class="">
+<p class="">36 个黑键</p>
+</li>
+<li class="">
+<p class="">88 个琴槌</p>
+</li>
+<li class="">
+<p class="">3 个踏板</p>
+</li>
+</ul><p class=""><strong>命名约定</strong></p><ul>
+<li class="">
+<p class=""><strong>白键：</strong> <code>meshId57_name.1</code> to <code>meshId57_name.52</code></p>
+</li>
+<li class="">
+<p class=""><strong>黑键：</strong> <code>meshId56_name.1</code> to <code>meshId56_name.36</code></p>
+</li>
+<li class="">
+<p class=""><strong>琴槌：</strong> <code>pCube1</code> to <code>pCube88</code></p>
+</li>
+<li class="">
+<p class=""><strong>踏板：</strong> <code>piano_pedal_metal01</code>, <code>piano_pedal_metal02</code>, <code>piano_pedal_metal03</code></p>
+</li>
+</ul><p class=""><strong>性能注意事项</strong></p><ul>
+<li class="">
+<p class="">较大的 MIDI 文件生成动画需要更长时间。</p>
+</li>
+<li class="">
+<p class="">建议先使用较短的 MIDI 文件进行测试。</p>
+</li>
+</ul><hr class=""><h3 class="">故障排除</h3><p class=""><strong>如果组件测试失败</strong></p><ul>
+<li class="">
+<p class="">检查对象命名是否遵循所需的约定。</p>
+</li>
+<li class="">
+<p class="">确认所有必要的钢琴组件都存在。</p>
+</li>
+<li class="">
+<p class="">验证对象层级是否正确。</p>
+</li>
+</ul><p class=""><strong>如果动画效果不满意</strong></p><ul>
+<li class="">
+<p class="">修改琴键和琴槌的移动设置。</p>
+</li>
+<li class="">
+<p class="">检查并调整踏板旋转设置。</p>
+</li>
+</ul><hr class=""><h3 class="">技术支持</h3><ul>
+<li class="">
+<p class=""><strong>作者：</strong> 475519905</p>
+</li>
+<li class="">
+<p class=""><strong>版本：</strong> 1.0</p>
+</li>
+<li class="">
+<p class=""><strong>类别：</strong> 动画</p>
+</li>
+<li class="">
+<p class=""><strong>联系方式：</strong> [qq475519905]</p>
+</li>
+</ul><hr class=""><h3 class="">许可证</h3><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="">本软件基于 <strong>GNU 通用公共许可证 v3.0 (GPL-3.0)</strong> 授权。</p></body></html>

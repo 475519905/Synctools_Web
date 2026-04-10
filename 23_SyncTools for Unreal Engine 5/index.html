@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools for Unreal Engine 5 - SyncTools Pro</title>
+    <meta name="description" content="SyncTools for Unreal Engine 5 - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools for Unreal Engine 5
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools for Unreal Engine 5"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools for Unreal Engine 5" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="SyncTools for Unreal Engine 5" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SyncTools for Unreal Engine 5" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SyncTools for Unreal Engine 5" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SyncTools for Unreal Engine 5" data-index="4">
+                <img src="images/05_gallery.png" alt="SyncTools for Unreal Engine 5" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools for Unreal Engine 5</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">插件</span>
+                    <span class="meta-tag">动画</span>
+                    <span class="meta-tag">导入与导出</span>
+                    <span class="meta-tag">建模</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/SyncTools_UE.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">分类</span><span class="sidebar-info-value">插件、动画、导入与导出、建模</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">授权协议</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3dartist</span>
+                    <span class="compat-chip">3dmodeling</span>
+                    <span class="compat-chip">assetmanagement</span>
+                    <span class="compat-chip">copypaste</span>
+                    <span class="compat-chip">developertools</span>
+                    <span class="compat-chip">digitalart</span>
+                    <span class="compat-chip">environmentartist</span>
+                    <span class="compat-chip">epic</span>
+                    <span class="compat-chip">gameart</span>
+                    <span class="compat-chip">gameassets</span>
+                    <span class="compat-chip">gamedesign</span>
+                    <span class="compat-chip">gamedev</span>
+                    <span class="compat-chip">gamedevelopment</span>
+                    <span class="compat-chip">gametech</span>
+                    <span class="compat-chip">gameworkflow</span>
+                    <span class="compat-chip">indiegame</span>
+                    <span class="compat-chip">leveldesign</span>
+                    <span class="compat-chip">leveleditor</span>
+                    <span class="compat-chip">pipelinetool</span>
+                    <span class="compat-chip">plugindevelopment</span>
+                    <span class="compat-chip">productivitytools</span>
+                    <span class="compat-chip">scenedesign</span>
+                    <span class="compat-chip">scenelayout</span>
+                    <span class="compat-chip">staticmesh</span>
+                    <span class="compat-chip">ue4</span>
+                    <span class="compat-chip">ue426</span>
+                    <span class="compat-chip">ue427</span>
+                    <span class="compat-chip">ue5</span>
+                    <span class="compat-chip">ue54</span>
+                    <span class="compat-chip">unity</span>
+                    <span class="compat-chip">unity3d</span>
+                    <span class="compat-chip">unrealcommunity</span>
+                    <span class="compat-chip">unrealengine</span>
+                    <span class="compat-chip">unrealengine5</span>
+                    <span class="compat-chip">unrealengineplugin</span>
+                    <span class="compat-chip">unrealenginetool</span>
+                    <span class="compat-chip">workflowtools</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <div style=""><div class=" hide-if-empty" style="padding:1px 18px 0.4rem;position:relative;"><div style=""><span class="anysphere-markdown-container-root" style="background-color:rgb(255, 255, 255);"><h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;"></h1>
+<p><strong style="font-size:2.5rem;">SyncTools for Unreal Engine</strong><span style="font-size:2.5rem;font-weight:500;"> 🚀</span></p>
+<h2><strong>概述</strong></h2>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+
+</h1>
+<p>SyncTools for Unreal Engine 是一款专为 Unreal Engine 环境中<strong>复制和粘贴详细场景数据</strong>而设计的专用插件，旨在<strong>简化</strong>这一流程。只需一键，即可从一个场景导出<strong>静态网格 Actor</strong>（包含其<strong>完整的变换数据、材质和属性</strong>），并将其导入到另一个场景中。这显著提升了<strong>关卡设计和场景合成工作流程</strong>的<strong>效率</strong>。</p>
+<h2><strong>🌍 多 DCC 平台支持</strong></h2>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>SyncTools 系列扩展支持主流<strong>数字内容创作软件</strong>，包括：</p>
+<p>✅ <strong>SyncTools for Maya</strong>（已发布）<br>
+✅ <strong>SyncTools for 3ds Max</strong>（已发布）<br>
+✅ <strong>SyncTools for Houdini</strong>（已发布）<br>
+✅ <strong>SyncTools for Cinema 4D</strong>（已发布）<br>
+✅ <strong>SyncTools for Rhino</strong>（已发布）<br>
+✅ <strong>SyncTools for Marvelous Designer</strong>（已发布）</p>
+<p>✅<span style="font-weight:bolder;">SyncTools for Unreal Engine</span>（已发布）<br>
+🛠 <strong>SyncTools for Substance Painter</strong>（开发中）<br>
+🛠 <strong>SyncTools for Unity</strong>（开发中）<br>
+🛠 <strong>SyncTools for Zbrush</strong>（开发中）</p>
+<p>所有插件均采用<strong>统一数据交换协议</strong>，实现<strong>跨平台无损资产转换</strong>和<strong>真正的多软件协同工作流</strong>。</p>
+<p><br><img src="images/desc_00_cd2d10a398435ffa3ba85ba906bed5cc.jpg" style="max-width:100%;"></p>
+<p><img src="images/desc_01_7870de4138a096278bf0cc00fbe045b4.jpg" style="max-width:100%;"><br></p>
+<p><br></p>
+<h2><strong>🛠 Unreal Engine 安装与使用</strong></h2>
+<h3><strong>1️⃣ 插件安装</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+
+</h1>
+<p>🔹 下载插件文件 Synctools_UE<strong>.py</strong><br>
+🔹 将文件复制到您的 <strong>Unreal Engine Python 脚本目录</strong><br>
+🔹 重启 <strong>Unreal Engine</strong><br>
+🔹 安装成功后，您将在主菜单栏中找到 <strong>"SyncTools"</strong></p>
+<h3><strong>2️⃣ 工作流程</strong></h3>
+<h4><strong>📋 复制操作</strong></h4>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+
+</h1>
+<p>✅ 在场景中<strong>选择</strong>要复制的静态网格 Actor<br>
+✅ 从 <strong>SyncTools 菜单</strong>点击 <strong>"复制"</strong><br></p>
+<h4><strong>📂 粘贴操作</strong></h4>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>✅ <strong>切换</strong>到目标场景<br>
+✅ 从 <strong>SyncTools 菜单</strong>点击 <strong>"粘贴"</strong><br>
+✅ 插件<strong>自动导入</strong>最新的缓存文件，并在导入成功后<strong>自动清理</strong></p>
+<h2><strong>📝 版本兼容性</strong></h2>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>✅ <strong>官方支持：</strong>Unreal Engine <strong>4.26 及更高版本</strong></p>
+<p>✅ <span style="font-weight:bolder;">官方支持：</span>Unreal Engine <span style="font-weight:bolder;">5.04 及更高版本</span><strong></strong></p>
+<h2><strong>📊 数据兼容性</strong></h2>
+<h3><strong>✔ 完全支持：</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+
+</h1>
+<p>🔹 <strong>静态网格 Actor</strong><br>
+🔹 <strong>变换数据</strong>（位置、旋转、缩放）<br>
+🔹 <strong>Actor 标签和名称</strong><br>
+🔹 <strong>顶点颜色</strong><br>
+🔹 <strong>LOD 设置</strong></p>
+<h3><strong>⚠ 部分支持：</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>🔸 <strong>材质</strong>（基础属性）<br>
+🔸 <strong>纹理</strong>（需要匹配路径）<br>
+🔸 <strong>碰撞网格</strong>（导出时过滤）</p>
+<p>🔸 动画和关键帧（基础属性）</p>
+<h3><strong>❌ 不支持：</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>❌ <strong>骨骼网格</strong><br>
+❌ <strong>Blueprint Actor</strong><br>
+❌ <strong>粒子系统</strong><br>
+❌ <strong>地形数据</strong><br>
+❌ <strong>动态对象</strong><br>
+❌ <strong>灯光 Actor</strong></p>
+<h2><strong>⚡ 重要说明</strong></h2>
+<h3><strong>1️⃣ 缓存管理</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+
+</h1>
+<p>🗑 操作成功后<strong>自动清理</strong><br>
+📁 <strong>缓存位置：</strong><code>Documents/cache/</code></p>
+<h3><strong>2️⃣ 资产处理</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>🎯 <strong>自动过滤碰撞网格</strong><br>
+🏷 <strong>保留原始 Actor 名称和标签</strong><br>
+📍 <strong>保持精确的变换数据</strong></p>
+<h3><strong>3️⃣ 最佳实践</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>✔ 仅用于<strong>静态网格 Actor</strong><br>
+✔ 确保缓存文件有<strong>足够的磁盘空间</strong><br>
+✔ 保持<strong>源和目标 Unreal Engine 版本兼容</strong></p>
+<h3><strong>4️⃣ 性能</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>⚡ <strong>针对快速复制粘贴操作优化</strong><br>
+📉 <strong>最小化临时存储使用</strong><br>
+🧹 <strong>高效的清理流程</strong></p>
+<h3><strong>5️⃣ 数据交换</strong></h3>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>🔄 <strong>FBX 格式</strong>用于<strong>网格数据</strong><br>
+📜 <strong>JSON 格式</strong>用于<strong>变换数据</strong><br>
+🔧 <strong>自动文件管理</strong></p>
+<h2><strong>🎯 总结</strong></h2>
+<h1 style="font-size:2em;line-height:1.25;margin-bottom:12px;margin-top:24px;font-weight:600 !important;">
+</h1>
+<p>SyncTools for Unreal Engine 专为在 Unreal Engine 环境中提供<strong>无缝高效的静态网格 Actor 传输方法</strong>而设计。通过<strong>简单的复制和粘贴操作</strong>，您可以轻松<strong>交换详细的场景信息</strong>，从而<strong>简化您的关卡设计工作流</strong>。</p>
+<p>✨ <strong>使用 SyncTools，享受更高效的场景合成流程！</strong></p>
+<p>📩 <strong>需要支持？</strong>如需进一步帮助，请随时联系我们！</p>
+<hr>
+<p>如需进一步优化，欢迎告知！😊</p>
+<p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-weight:700;font-size:2rem;">支持 Blender 基金会</span></p>
+<p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信应当回馈让我们的工作成为可能的社区。每个月，我们将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p></span></div></div></div>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/SyncTools_UE.zip">SyncTools_UE.zip</a><span class="file-size">3.7 KB</span></li>
+                <li><a href="files/SyncTools_v2.1.3_3418.zip">SyncTools_v2.1.3_3418.zip</a><span class="file-size">16.3 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

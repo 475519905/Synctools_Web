@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN" lang="zh-CN"><head><meta charset="utf-8"><title>原点调整控制 - 描述</title>
+<style>body{font-family:-apple-system,sans-serif;max-width:900px;margin:40px auto;padding:20px;}img{max-width:100%;height:auto;}</style>
+</head><body><h1>原点调整控制</h1><h3><strong>Origin Adjustment Control</strong></h3><h3><strong><br></strong></h3><h4>概述</h4><p>此插件增强了在 Blender 中精确操控对象原点的能力。它支持对齐原点、将原点吸附到曲面、应用变换、管理预设等操作。界面包含模态交互、面板控件，以及 Gizmo 显示和坐标转换等工具增强功能。</p><hr><h3>
+<img src="https://assets.superhivemarket.com/cache/cc60ce45e267396a7908ae6f8fcc6d68.png" style="max-width:100%;"><br>
+</h3><h3>功能说明</h3><h4><strong>1. 全局函数</strong></h4><ul>
+<li>
+<p><strong><code>get_valid_objects(context)</code></strong><br>
+获取所有类型为 <code>MESH</code>、<code>CURVE</code>、<code>SURFACE</code> 或 <code>FONT</code> 的选中对象，用于原点调整。</p>
+</li>
+<li>
+<p><strong><code>apply_origin_transform(obj, new_origin)</code></strong><br>
+在保持几何形状不变的情况下，将对象的原点变换到世界空间中的指定位置。</p>
+</li>
+</ul><hr><h4><strong>2. 模态操作符</strong></h4><ul>
+<li>
+<strong><code>ADJUST_ORIGIN_OT_modal</code></strong>：通过鼠标移动以交互方式调整对象原点。<br>
+<strong>使用步骤：</strong>
+<ol>
+<li>启用自定义原点功能。</li>
+<li>通过"调整原点模态"按钮调用操作。</li>
+<li>使用鼠标重新定位原点；左键确认，右键取消。</li>
+</ol>
+</li>
+</ul><hr><h4><strong>3. 动作与操作符</strong></h4><ul>
+<li>
+<p><strong><code>APPLY_ORIGIN_OT_apply</code></strong>：将原点移至对象的几何中心。<br>
+<strong>用法：</strong>在插件面板中点击"原点到中心"。</p>
+</li>
+<li>
+<p><strong><code>ORIGIN_OT_ModeSwitch</code></strong>：在原点控制模式之间切换：<strong>世界</strong>、<strong>局部</strong>或<strong>自定义参考</strong>。</p>
+</li>
+<li>
+<p><strong><code>OBJECT_OT_precise_rotation</code></strong>：根据每个轴的输入角度，对对象应用精确的旋转值。</p>
+</li>
+</ul><hr><h4><strong>4. 自定义原点面板（界面）</strong></h4><ul>
+<li>位于 <code>VIEW_3D &gt; 侧边栏 &gt; 原点调整</code>。<br>
+<strong>面板功能：</strong>
+<ul>
+<li>通过切换开关启用自定义原点定位。</li>
+<li>手动输入精确的原点位置。</li>
+<li>调用关键原点相关操作符的按钮。</li>
+</ul>
+</li>
+</ul><hr><h4><strong>5. 主要特性</strong></h4><h5>5.1. <strong>精确变换</strong>
+</h5><ul>
+<li>使用属性输入（<code>custom_origin</code> 或 <code>precise_rotation</code>）直接更新原点的位置或旋转。</li>
+</ul><h5>5.2. <strong>原点 Gizmo</strong>
+</h5><ul>
+<li>通过可见的 3D 控件，提供直观且交互式的原点操控方式。</li>
+</ul><h5>5.3. <strong>关键帧支持</strong>
+</h5><ul>
+<li>使用 <code>ORIGIN_OT_AddKeyframe</code> 操作符添加关键帧，以记录和动画化原点变换。</li>
+</ul><h5>5.4. <strong>吸附系统</strong>
+</h5><ul>
+<li>使用 <code>ORIGIN_OT_SnapToSurface</code> 将原点吸附到最近的曲面点。</li>
+</ul><hr><h4><strong>6. 坐标转换</strong></h4><ul>
+<li><code>ORIGIN_OT_CoordinateConverter</code> 操作符支持在<strong>世界</strong>、<strong>局部</strong>和<strong>自定义</strong>空间之间转换坐标，实现灵活的原点控制。</li>
+</ul><hr><h4><strong>7. 预设管理</strong></h4><ul>
+<li>
+<strong>原点预设系统</strong>：
+<ul>
+<li>使用自定义名称保存当前原点位置和旋转（<code>ORIGIN_OT_PresetManager</code>）。</li>
+<li>加载已保存的预设以应用一致的变换。</li>
+<li>通过<code>保存</code>、<code>加载</code>或<code>删除</code>操作管理预设。</li>
+</ul>
+</li>
+</ul><hr><h4><strong>8. 批量操作</strong></h4><p>对选中对象执行批量变换：</p><ul>
+<li>
+<strong>对齐</strong>：将所有选中对象的原点对齐到活动对象。</li>
+<li>
+<strong>分布</strong>：均匀分布对象间的原点（开发中）。</li>
+<li>
+<strong>重置</strong>：将原点重置为世界坐标中的 <code>(0, 0, 0)</code>。</li>
+</ul><hr><h3>安装说明</h3><h4><strong>安装步骤：</strong></h4><ol>
+<li>将 Python 脚本（<code>*.py</code>）保存到您的计算机。</li>
+<li>打开 Blender，前往 <code>编辑 &gt; 首选项 &gt; 插件 &gt; 安装</code>。</li>
+<li>选择脚本文件并勾选复选框以启用插件。</li>
+</ol><h4><strong>注册与注销：</strong></h4><ul>
+<li>
+<strong>注册：</strong>启用插件后自动初始化。</li>
+<li>
+<strong>注销：</strong>在首选项中使用禁用选项，或手动调用 <code>unregister()</code> 函数。</li>
+</ul><p><img src="https://assets.superhivemarket.com/cache/431db310c0ec43cc84929855a316289e.png" style="max-width:100%;"><br></p><ul>
+</ul><hr><h3>控件概览</h3><table>
+<thead>
+<tr>
+<th><strong>工具/功能</strong></th>
+<th><strong>用法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调整原点模态</td>
+<td>使用鼠标进行交互式调整。</td>
+</tr>
+<tr>
+<td>应用原点</td>
+<td>将原点移动到对象的几何中心。</td>
+</tr>
+<tr>
+<td>坐标转换器</td>
+<td>切换给定点或对象的坐标空间。</td>
+</tr>
+<tr>
+<td>预设管理</td>
+<td>保存和加载自定义位置和旋转以供重用。</td>
+</tr>
+<tr>
+<td>原点 Gizmo</td>
+<td>在 3D 视口中进行实时变换的可视化辅助工具。</td>
+</tr>
+<tr>
+<td>关键帧动画</td>
+<td>记录动画化的原点变换以实现基于时间的效果。</td>
+</tr>
+<tr>
+<td>批量操作</td>
+<td>对多个对象高效执行原点变换。</td>
+</tr>
+</tbody>
+</table><hr><h3>自定义属性</h3><p>以下属性已添加到 <code>Scene</code> 对象：</p><ul>
+<li>
+<strong><code>enable_custom_origin</code></strong>：切换自定义原点模式。</li>
+<li>
+<strong><code>custom_origin</code></strong>：将当前原点位置存储为 3D 向量。</li>
+<li>
+<strong><code>last_origin_location</code></strong>：跟踪上次使用的原点位置以便快速还原。</li>
+</ul><p>其他属性链接到对象实例，例如用于动画的 <code>origin_keyframes</code> 和用于预设管理的 <code>origin_presets</code>。</p><hr><h3>开发说明</h3><ul>
+<li>此工具采用模块化设计，便于未来更新扩展。</li>
+<li>使用 <code>REGISTER/UNREGISTER</code> 块的模板结构进行安全的属性管理。</li>
+</ul><p>
+</p><p>享受对原点的无缝控制，提升您的建模、动画和工作流程精度！</p><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;"><span style="font-size:2rem;">支持 Blender 基金会</span></p><p class="" style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;line-height:1.6 !important;overflow:hidden !important;">我们相信回馈让我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。感谢您帮助我们为开源创意的未来做出贡献。</p><p><img src="https://assets.superhivemarket.com/cache/11e11607f01854fea2a5658900c87e39.png" style="max-width:100%;"><br></p></body></html>

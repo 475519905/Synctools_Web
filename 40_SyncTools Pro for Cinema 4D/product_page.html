@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SyncTools Pro for Cinema 4D</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>SyncTools Pro for Cinema 4D</h1>
+  <span class="price">$20.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.png" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.png" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 导入 & 导出</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">2.93 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$20.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-workflow-automation</span>
+  <span class="tag">animation-transfer</span>
+  <span class="tag">bidirectional-sync</span>
+  <span class="tag">blender</span>
+  <span class="tag">c4d-blender-integration</span>
+  <span class="tag">camera-settings-sync</span>
+  <span class="tag">cinema-4d</span>
+  <span class="tag">cross-platform-pipeline</span>
+  <span class="tag">cross-software-compatibility</span>
+  <span class="tag">efficiency-enhancement</span>
+  <span class="tag">importexport-tools</span>
+  <span class="tag">lighting-sync</span>
+  <span class="tag">material-conversion</span>
+  <span class="tag">maya</span>
+  <span class="tag">model-import-export</span>
+  <span class="tag">multi-software-workflow</span>
+  <span class="tag">one-click-transfer</span>
+  <span class="tag">productivity-tool</span>
+  <span class="tag">project-parameter-sync</span>
+  <span class="tag">sync-tools</span>
+  <span class="tag">workflow-optimization</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <h1 style=""><span style="background-color:rgb(255, 255, 255);"><b>SyncTools Pro for Cinema 4D</b></span></h1><p><span style="font-family:Degular , sans-serif;font-size:2rem;"><b>支持范围</b></span></p><p>SyncTools 支持以下 3D 资源类型的双向导入和导出：角色、动画、样条线、材质、模型、相机、灯光和项目设置。</p><h3 style="color:rgb(33, 37, 41);overflow:hidden !important;"><b>多 DCC 平台支持</b></h3><p style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">SyncTools 系列现已扩展支持主要数字内容创建软件，包括：</p><ul style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;overflow:hidden !important;">
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank">SyncTools for Maya</a></span><a href="https://blendermarket.com/products/synctools-for-maya" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank">SyncTools for 3ds Max</a></span><a href="https://blendermarket.com/products/synctools-for-3ds-max" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank">SyncTools for Houdini</a></span><a href="https://blendermarket.com/products/synctools-for-houdini" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank">SyncTools for Cinema 4D</a></span><a href="https://blendermarket.com/products/synctools-pro-v2" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank">SyncTools for Rhino</a></span><a href="https://blendermarket.com/products/synctools-for-rhino" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;"><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank">SyncTools for Marvelous Designer</a></span><a href="https://blendermarket.com/products/synctools-for-marvelous-designer" target="_blank"> (已发布)</a>
+</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Substance Painter</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unreal Engine</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)</li>
+<li>
+<span style="font-weight:bolder;">SyncTools for Zbrush</span> (开发中)</li>
+</ul><p><span style="color:rgb(33, 37, 41);font-family:Inter , sans-serif;">所有插件采用统一的数据交换协议，实现跨平台无损资产转换和真正的多软件协作工作流。</span><br></p><h2 class=""><b>插件介绍</b></h2><p>您是否厌倦了频繁切换不同的 3D 软件、处理重复性任务以及在复杂操作上浪费宝贵时间？ Sync Tools 旨在优化您的工作流程并简化 3D 设计过程。</p><p>作为一款以效率和生产力为核心的工具，它可以显著提升您的日常工作体验，让您的 3D 艺术家生活更轻松。</p><p>Try “SyncTools Pro" now—it will change the way you work in Cinema 4D and Blender.</p><p><br></p><p class=""></p><h2 class=""><b>这些场景是否扼杀了您的创造力？</b></h2><h2 class=""><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 在 Blender 和 Cinema 4D 之间传输资产时浪费数小时手动对齐比例/轴向</span></h2><p class=""><span style="background-color:rgb(255, 255, 255);"><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 由于软件间帧率或分辨率设置不匹配导致的渲染灾难<br></span><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 每次迁移后从头重建复杂的 Octane/Redshift 材质节点<br></span><span style="font-family:Inter , system-ui , -apple-system , BlinkMacSystemFont ,;">❌ 动画曲线被破坏得面目全非，迫使逐帧修复</span></span></p><h2 class=""><span style="font-weight:bolder;font-family:Degular , sans-serif;font-size:1.75rem;">主要功能</span></h2><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">1. 快速复制粘贴</span></h4><p>一键在 C4D 和 Blender 之间无缝传输对象。 无需手动调整繁琐的比例、轴向或层级结构。 节省大量时间，专注于真正重要的事——您的创意愿景。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">2. 核心项目参数自动同步s</span></h4><p>自动同步核心项目参数，包括焦距、分辨率、图像宽高比和帧率。 确保不同软件间项目设置一致，提高跨平台工作流的准确性和效率。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">3. 广泛材质支持</span></h4><p>该插件涵盖几乎所有主流渲染器的材质导入和导出，包括 Octane、Redshift 等。 它还支持材质选择集的导入和导出。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">4. 灯光支持</span></h4><p>导入灯光时，Sync Tools 准确还原灯光强度，自动生成相应的灯光节点和标签，并保留灯光的颜色和纹理信息。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">5. 完整动画支持</span></h4><p>该插件支持动画导入，完全保留关键帧和曲线手柄，确保无损动画精度。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">6. 持续优化与更新s</span></h4><p>Sync Tools 持续优化升级中。 所有用户可免费升级到最新版本。</p><h4 class="" style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">7. 持久导入导出功能</span></h4><p>即使在导出或导入操作后关闭软件，插件仍可正常使用导入和导出功能。</p><p><img src="images/desc_00_fd3deae7eb331adf232dacb67d1840e4.png" style="max-width:100%;"><br></p><p><img src="images/desc_01_9e20e1de3c1065b43c0026a5fcae4257.png" style="max-width:100%;"><br></p><h3 class="">
+<img src="images/desc_02_432212f803afb472d6e1506796b7e09d.png" style="max-width:100%;">
+</h3><h2 class=""></h2><p><strong style="font-size:2rem;">支持 Blender 基金会</strong></p><p class="">
+我们相信回馈让我们的工作成为可能的社区。 每个月，我们都会将插件收入的一部分用于支持 Blender 基金会。 感谢您帮助我们为开源创意的未来做出贡献。</p><h2 class=""><b style="font-size:2rem;">更新日志</b></h2><h2 class=""><b style="font-size:2rem;"><br></b></h2><h4 class=""><b>v2.10 更新说明</b></h4><p class=""><br>服务器维护期间，请暂时使用云存储手动更新！<br>修复了一些错误，请大家更新！<br>1. 支持 Blender 4.3.1&Cinema 4D 2025.1<br>2. 添加自定义快捷键偏好设置支持<br>3. 添加非标准材质的自动检测与修复功能<br>4. 自动为导入的 OC 材质添加映射节点<br>5. 导出算法逻辑优化<br>6. 修复 Blender 导入 OC 透射材质的错误<br>7. 修复 Blender 导入 OC 金属材质的错误<br><br></p><h4 class=""><b>V1.3 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 添加兼容模式（支持 UE、MAX、MAYA、ZB、BL、4D 测试）.<br>2. 插件更新功能已上线（支持自动更新、手动更新和静默更新）。<br>3. OC 材质支持更多节点。<br>4. 用户体验优化（允许重复和实例材质名称）。<br>5. 识别渲染器（勾选后可直接导入 OC 材质）<br><br><br><h4 class=""><b>1.21 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 更新支持 R2025 和 4.2.1LTS<br>2. 导入 4D 文件支持 Mac<br>3. 添加拖放事件（可直接拖放导入 C4D 文件）<br>4. 添加图标和帮助文档<br>5. 重大性能优化和错误修复<br><br><br><h4 class=""><b>1.2 更新说明</b></h4><h4 class=""><b><br></b></h4>1. 添加偏好设置和全局缩放调整设置<br>2. 增加动画、灯光模型等资产类型的选择性导入和导出<br>3. 功能稳定性和错误修复<h3 class=""><br></h3>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <h1>安装 Guide for Sync Tools</h1><h2>Prerequisites</h2><ul>
+<li>
+<strong>Cinema 4D Minimum 版本</strong>: Cinema 4D R21 or higher</li>
+<li>
+<strong>Blender Minimum 版本</strong>: Blender 3.3 or higher</li>
+<li>
+<strong>支持ed Operating 系统</strong>: Windows, macOS, Linux</li>
+</ul><hr><h3>安装 Steps</h3><h4>1. <strong>下载 and Extract</strong>
+</h4><ul>
+<li>After downloading the plugin, right-click the archive and extract it.</li>
+<li>The extracted folder will contain two subfolders, one for Cinema 4D and one for Blender.</li>
+</ul><hr><h3><strong>Cinema 4D 安装</strong></h3><ol>
+<li>
+<p><strong>定位 the 插件 目录</strong>:</p>
+<ul>
+<li>Default path:<br>
+<code>C:\Program Files\Maxon Cinema 4D 2024\plugins</code>
+</li>
+<li>If the folder does not exist, manually create it.</li>
+</ul>
+</li>
+<li>
+<p><strong>复制 文件</strong>:</p>
+<ul>
+<li>复制 the entire plugin folder to the <code>plugins</code> directory mentioned above.</li>
+</ul>
+</li>
+<li>
+<p><strong>导入ant 注意s</strong>:</p>
+<ul>
+<li>
+<strong>权限s Issue</strong>: Avoid installing the plugin in other drives as it may fail due to permission restrictions.</li>
+<li>
+<strong>No 复制 安装</strong>: Do not install the plugin in both the configuration folder's <code>plugins</code> directory and the Cinema 4D root <code>plugins</code> directory simultaneously.</li>
+</ul>
+</li>
+</ol><hr><h3><strong>Blender 安装</strong></h3><ol>
+<li>
+<p><strong>访问 Blender 偏好设置</strong>:</p>
+<ul>
+<li>Open Blender, go to <code>编辑 > 偏好设置 > 插件</code>.</li>
+<li>Select <code>安装...</code> from the 偏好设置 window.</li>
+</ul>
+</li>
+<li>
+<p><strong>安装 插件</strong>:</p>
+<ul>
+<li>Navigate to the downloaded plugin file and select it.</li>
+<li>For older versions of Blender, click <code>安装 插件</code> directly.</li>
+</ul>
+</li>
+<li>
+<p><strong>导入ant 注意s</strong>:</p>
+<ul>
+<li>
+<strong>No Extraction Required</strong>: For Blender, install the plugin directly without extracting it.</li>
+<li>
+<strong>安装 Both</strong>: To ensure proper functionality, install the plugin for both Cinema 4D and Blender.</li>
+</ul>
+</li>
+</ol><hr><h3>Verification</h3><p>After installation:</p><ul>
+<li>重启 Cinema 4D and Blender.</li>
+<li>In Cinema 4D, you should see <strong>Sync Tools</strong> in the top menu or the 扩展s panel.</li>
+<li>In Blender, check the 插件 list under 偏好设置 to confirm that Sync Tools is enabled.</li>
+</ul><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>Now you’re ready to start using Sync Tools!</p><h1>How to Use the 插件</h1><p>After installing the plugin and restarting the software, you will find <strong>Sync Tools</strong> in:</p><ul>
+<li>
+<strong>Cinema 4D</strong>: 定位d in the top menu.</li>
+<li>
+<strong>Blender</strong>: 访问ible from the 插件/扩展s menu.</li>
+</ul><hr><h3>Main Operations</h3><p>
+
+
+
+
+</p><ul>
+<li>
+<strong>复制</strong>: Copies the selected object(s) to Cinema 4D & Blender.</li>
+<li>
+<strong>粘贴</strong>: 粘贴s the copied object(s) into the current scene.</li>
+</ul><p><br></p>
+  </div>
+</div>
+
+
+
+<footer>
+  备份自 Superhive (Blender Market) 创作者仪表板
+</footer>
+
+</div>
+</body>
+</html>

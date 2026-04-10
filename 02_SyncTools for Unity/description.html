@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyncTools for Unity - 描述</title>
+<style>
+  /* === 重置 & 基础 === */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #374151;
+    background-color: #f9fafb;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === Product 描述 容器 === */
+  .product-description {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 60px;
+    background: #ffffff;
+    min-height: 100vh;
+  }
+
+  /* === Typography === */
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    line-height: 1.35;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  strong {
+    color: #111827;
+    font-weight: 600;
+  }
+
+  /* === 概述 Lead Paragraph === */
+  .lead {
+    font-size: 17px;
+    color: #4b5563;
+    margin-bottom: 24px;
+  }
+
+  /* === 图像 === */
+  .desc-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 24px 0;
+  }
+
+  /* === Horizontal Rule === */
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 36px 0;
+  }
+
+  /* === 列表s === */
+  ul, ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+
+  ul li, ol li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  ul li ul, ol li ol, ul li ol, ol li ul {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  /* === Platform 列表 (checkmarks) === */
+  .platform-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .platform-list li {
+    padding: 6px 0;
+    padding-left: 0;
+    font-size: 15px;
+  }
+
+  /* === 块quote === */
+  blockquote {
+    border-left: 4px solid #e07a2f;
+    background: #fffbf5;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+    color: #92400e;
+    font-size: 15px;
+  }
+
+  blockquote p {
+    margin-bottom: 0;
+  }
+
+  /* === Inline Code === */
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 14px;
+    background: #f3f4f6;
+    color: #dc2626;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* === 兼容性 表格s === */
+  .compat-section {
+    margin-bottom: 20px;
+  }
+
+  .compat-section h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .compat-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .compat-section ul li {
+    padding: 4px 0;
+    padding-left: 0;
+  }
+
+  /* === 导入ant 注意s === */
+  .notes-section p {
+    margin-bottom: 14px;
+    padding-left: 8px;
+    border-left: 3px solid #e5e7eb;
+  }
+
+  /* === Footer / 支持 Section === */
+  .support-section {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 36px;
+  }
+
+  .support-section h2 {
+    margin-top: 0;
+    color: #166534;
+    font-size: 20px;
+  }
+
+  .support-section p {
+    color: #15803d;
+    margin-bottom: 0;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 640px) {
+    .product-description {
+      padding: 24px 16px 40px;
+    }
+    h1 { font-size: 24px; }
+    h2 { font-size: 19px; margin-top: 32px; }
+    h3 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="product-description">
+
+  <!-- Title -->
+  <h1>SyncTools for Unity</h1>
+
+  <!-- 概述 -->
+  <h2>概述</h2>
+  <p class="lead"><strong>SyncTools Pro</strong> 是一款跨软件工具，旨在简化不同应用程序之间复制和粘贴场景数据的流程。只需一键即可将物体（包括网格、灯光、摄像机、材质、动画等）从一个场景导出并导入到另一个场景中，大幅节省生产流程中的时间和精力。</p>
+
+  <hr>
+
+  <!-- Banner -->
+  <img class="desc-img" src="https://assets.superhivemarket.com/cache/6dad4b4ae76b157acd543528118ad2bb.png" alt="SyncTools Banner">
+
+  <!-- Multi-DCC 支持 -->
+  <h2>多 DCC 平台支持</h2>
+  <p>SyncTools 系列现已扩展支持主流数字内容创作软件，包括：</p>
+  <ul class="platform-list">
+    <li>✅ SyncTools for Maya（已发布）</li>
+    <li>✅ SyncTools for 3ds Max（已发布）</li>
+    <li>✅ SyncTools for Houdini（已发布）</li>
+    <li>✅ SyncTools for Cinema 4D（已发布）</li>
+    <li>✅ SyncTools for Rhino（已发布）</li>
+    <li>✅ SyncTools for Marvelous Designer（已发布）</li>
+    <li>✅ SyncTools for Unity（已发布）</li>
+    <li>✅ SyncTools for Substance Painter（已发布）</li>
+    <li>✅ SyncTools for Unreal Engine（已发布）</li>
+    <li>✅ SyncTools for Zbrush（已发布）</li>
+  </ul>
+  <p>所有插件采用统一的数据交换协议，实现<strong>跨平台无损资产转换</strong>以及真正的<strong>多软件协作工作流</strong>。</p>
+
+  <hr>
+
+  <!-- 功能 图像 -->
+  <img class="desc-img" src="https://assets.superhivemarket.com/cache/68ea4385611cdc92d5d134cc4a5e8b9e.jpg" alt="SyncTools 功能 1">
+  <img class="desc-img" src="https://assets.superhivemarket.com/cache/24cc6c7bd50d0ba08f942fc618691ecf.jpg" alt="SyncTools 功能 2">
+  <img class="desc-img" src="https://assets.superhivemarket.com/cache/51d874f53b04411317bd0d22b561af36.jpg" alt="SyncTools 功能 3">
+
+  <!-- Unity 功能 -->
+  <h2>SyncTools for Unity 的功能</h2>
+  <p>SyncTools for Unity 专注于<strong>在 Unity 与外部工具之间快速交换场景数据</strong>，适用于以下工作流：</p>
+  <ul>
+    <li>将 DCC 工具中的布局/灯光/摄像机设置导入 Unity</li>
+    <li>将选定的 Unity 场景对象发送至其他 DCC 工具进行精细调整</li>
+    <li>在 Unity 与外部工具之间快速迭代，无需手动重建场景</li>
+  </ul>
+
+  <blockquote>
+    <p>注意：SyncTools 传输受支持的场景数据。Unity 特有的组件和行为在导入后可能仍需手动设置。</p>
+  </blockquote>
+
+  <hr>
+
+  <!-- 安装ation -->
+  <h2>Unity 安装与使用</h2>
+
+  <img class="desc-img" src="https://assets.superhivemarket.com/cache/d2d941a528e1643d286b82a7a612cfe3.jpg" alt="SyncTools Unity 安装ation">
+
+  <h3>1. 插件安装</h3>
+
+  <p><strong>前提条件</strong></p>
+  <ul>
+    <li><strong>Unity 版本</strong>：2020.3 LTS 及更高版本
+      <ul><li>推荐：<strong>2021.3+ / 2022.3+ / 2023.x</strong></li></ul>
+    </li>
+    <li><strong>必需包</strong>：<strong>FBX Exporter</strong>（<code>com.unity.formats.fbx</code>）</li>
+  </ul>
+
+  <p><strong>安装 FBX Exporter 包</strong></p>
+  <ol>
+    <li>打开 Unity 编辑器 → <strong>Window &gt; 包管理器</strong></li>
+    <li>点击左上角 <strong>+</strong> → <strong>通过 git URL 添加包</strong></li>
+    <li>输入：<code>com.unity.formats.fbx</code>
+      <ul><li>或在 <strong>Unity Registry</strong> 中搜索 <strong>FBX Exporter</strong> 并安装</li></ul>
+    </li>
+    <li>等待安装完成</li>
+  </ol>
+
+  <p><strong>安装 SyncTools 插件</strong></p>
+  <ol>
+    <li>将 <code>SyncTools</code> 文件夹复制到：<code>Assets/</code></li>
+    <li>Unity 自动编译脚本，安装完成</li>
+    <li>在 Unity 菜单栏中即可找到 <strong>SyncTools</strong></li>
+  </ol>
+
+  <hr>
+
+  <h3>2. 插件设置</h3>
+
+  <p><strong>打开设置窗口</strong></p>
+  <ul>
+    <li>Unity 菜单栏 → <strong>SyncTools &gt; 设置</strong></li>
+  </ul>
+
+  <p><strong>配置选项</strong></p>
+  <ul>
+    <li><strong>缓存路径（缓存 路径）</strong><br>指定用于复制/粘贴交换的缓存目录。
+      <ul>
+        <li>默认：<code>文档s/cache</code></li>
+        <li>必须与 Blender/Maya 端使用的缓存路径一致</li>
+      </ul>
+    </li>
+    <li><strong>导入文件夹（导入 文件夹）</strong><br>指定导入的资产在 Unity 项目中的存储位置。
+      <ul>
+        <li>必须以 <code>Assets/</code> 开头</li>
+        <li>默认：<code>Assets/SyncTools缓存/Incoming</code></li>
+      </ul>
+    </li>
+    <li><strong>导入后删除缓存文件（删除 缓存 文件s after 导入）</strong><br>启用后，粘贴完成后自动删除临时缓存文件。
+      <ul><li>默认：<strong>启用</strong></li></ul>
+    </li>
+    <li><strong>设置导入摄像机近裁剪面（设置 导入 Camera Near Clip）</strong><br>启用后，导入的摄像机将自动应用近裁剪面数值。</li>
+    <li><strong>近裁剪面数值（Near Clip 值）</strong><br>摄像机设置启用时使用。
+      <ul><li>默认：<code>1.0</code></li></ul>
+    </li>
+  </ul>
+  <p>✅ 更改内容自动保存至 <strong>Unity 编辑orPrefs</strong>。</p>
+
+  <hr>
+
+  <h3>3. 工作流程</h3>
+
+  <h4>复制</h4>
+  <ol>
+    <li>选择要复制的 Game对象（在层级面板或场景视图中）</li>
+    <li>使用 <strong>SyncTools &gt; 复制 (导出 Selected)</strong>
+      <ul><li>快捷键：<strong>Ctrl+Shift+C</strong>（Windows）/ <strong>Cmd+Shift+C</strong>（Mac）</li></ul>
+    </li>
+    <li>SyncTools 将选中内容导出到共享缓存，供其他 DCC 软件使用。</li>
+  </ol>
+
+  <h4>粘贴</h4>
+  <ol>
+    <li>切换到目标场景</li>
+    <li>使用 <strong>SyncTools &gt; 粘贴 (导入 Latest)</strong>
+      <ul><li>快捷键：<strong>Ctrl+Shift+V</strong>（Windows）/ <strong>Cmd+Shift+V</strong>（Mac）</li></ul>
+    </li>
+    <li>SyncTools 导入最新的缓存数据，应用设置（如已启用），并清理临时文件（如已启用）。</li>
+  </ol>
+  <p>✅ 所有操作均支持 <strong>Unity 撤销</strong>。</p>
+
+  <hr>
+
+  <!-- 版本 兼容性 -->
+  <h2>版本兼容性</h2>
+
+  <p><strong>官方支持</strong></p>
+  <ul>
+    <li>Unity <strong>2021.3 LTS / 2022.3 LTS / 2023.x</strong></li>
+    <li>Blender <strong>4.0+</strong></li>
+  </ul>
+
+  <p><strong>实验性支持</strong></p>
+  <ul>
+    <li>Unity <strong>2020.3 LTS</strong>（部分功能可能受限）</li>
+  </ul>
+
+  <p><strong>必需包</strong></p>
+  <ul>
+    <li>FBX Exporter（<code>com.unity.formats.fbx</code>）
+      <ul>
+        <li>最低版本：<strong>7.1.0</strong></li>
+        <li>推荐：<strong>最新稳定版</strong></li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
+
+  <!-- 数据 兼容性 -->
+  <h2>数据兼容性</h2>
+
+  <div class="compat-section">
+    <h3>完全支持</h3>
+    <ul>
+      <li>✔ 基础几何体（网格）</li>
+      <li>✔ 变换层级</li>
+      <li>✔ 核心材质属性（PBR 工作流）</li>
+      <li>✔ 点光源 / 聚光灯 / 平行光</li>
+      <li>✔ 基础动画关键帧</li>
+      <li>✔ 摄像机参数（FOV / 焦距）</li>
+    </ul>
+
+    <h3>部分支持</h3>
+    <ul>
+      <li>⚠ 复杂着色器节点（自动转换为 Unity 标准材质）</li>
+      <li>⚠ 骨骼动画（需要匹配 Unity Avatar 系统）</li>
+      <li>⚠ UV 贴图（支持标准 UV 通道）</li>
+      <li>⚠ 法线贴图（可能需要在导入设置中启用）</li>
+    </ul>
+
+    <h3>不支持</h3>
+    <ul>
+      <li>✖ Unity 特有组件（碰撞体、刚体等——需手动添加）</li>
+      <li>✖ 粒子系统</li>
+      <li>✖ 物理约束</li>
+      <li>✖ 自定义着色器</li>
+      <li>✖ 程序化内容</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- 导入ant 注意s -->
+  <h2>重要说明</h2>
+
+  <div class="notes-section">
+    <p>1️⃣ <strong>缓存路径同步</strong><br>确保 Unity 端的缓存路径与 Blender/Maya 使用的缓存路径一致，否则交换将失败。</p>
+    <p>2️⃣ <strong>FBX Exporter 依赖</strong><br>插件依赖 Unity 的 FBX Exporter。若未安装，复制操作将失败并提示安装。</p>
+    <p>3️⃣ <strong>导入文件夹规则</strong><br>导入文件夹必须以 <code>Assets/</code> 开头，否则导入将失败。</p>
+    <p>4️⃣ <strong>命名规范</strong><br>特殊字符（如 <code>@ # %</code>）可能导致导入问题。重复名称会自动处理。</p>
+    <p>5️⃣ <strong>插件依赖</strong><br>为获得最佳效果，请在所有受支持的 DCC 应用中使用相同版本的 SyncTools。（请查阅版本说明了解兼容性更新。）</p>
+  </div>
+
+  <hr>
+
+  <!-- 摘要 -->
+  <h2>总结</h2>
+  <p>SyncTools Pro 为从其他 DCC 软件向 Unity 传输场景数据提供了流畅的复制/粘贴工作流。借助简单的操作和一致的设置，您可以高效交换详细的场景内容，保持生产进度。</p>
+  <p>如需进一步协助，欢迎随时联系我们。</p>
+
+  <hr>
+
+  <!-- Blender Foundation -->
+  <div class="support-section">
+    <h2>支持 Blender 基金会</h2>
+    <p>我们相信回馈让我们的工作成为可能的社区。每个月，我们都会将插件收入的一部分捐献给 Blender 基金会。感谢您帮助我们为开源创作的未来贡献力量。</p>
+  </div>
+
+</div>
+
+</body>
+</html>

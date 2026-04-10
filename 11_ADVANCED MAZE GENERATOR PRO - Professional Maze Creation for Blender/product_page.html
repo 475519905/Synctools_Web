@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高级迷宫生成器专业版 - Blender专业迷宫创建工具</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>高级迷宫生成器专业版 - Blender专业迷宫创建工具</h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">图库</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="封面"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.png" alt="图库"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="图库"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="图库"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="图库"></div>
+  <div class="gallery-item"><img src="images/05_gallery.jpg" alt="图库"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 预设</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">2.93 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">3d-modeling</span>
+  <span class="tag">algorithmic-art</span>
+  <span class="tag">architecture</span>
+  <span class="tag">blender-addon</span>
+  <span class="tag">game-development</span>
+  <span class="tag">level-design</span>
+  <span class="tag">maze-generator</span>
+  <span class="tag">mesh-generation</span>
+  <span class="tag">navigation-design</span>
+  <span class="tag">pathfinding</span>
+  <span class="tag">procedural-modeling</span>
+  <span class="tag">puzzle-creation</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品描述</h2>
+  <div class="description">
+    <h1 class=""><span style="font-family:Degular , sans-serif;font-size:2.5rem;font-weight:600;">Advanced Maze Generator Pro</span></h1><h3>Blender专业迷宫创建工具</h3><p>用 Blender 最全面的迷宫生成插件，为您的创意项目注入活力！<br>
+<strong>Advanced Maze Generator Pro</strong> 提供专业级迷宫创建工具，具备无与伦比的灵活性与控制力。</p><hr><h2>
+<img src="images/desc_00_216bf8ca392b07bb09db667ddad80b3e.png" style="max-width:100%;"><br>
+</h2><h2>
+<img src="images/desc_01_670f0a2942c5be005603719bd215e418.jpg" style="max-width:100%;"><br>
+</h2><h2>
+<img src="images/desc_02_640d3db8eeb96a21999b498cb7451a1a.jpg" style="max-width:100%;"><br>
+</h2><h2>
+<img src="images/desc_03_0219d16f69ad868e7ce5fd8626809e4e.jpg" style="max-width:100%;"><br>
+</h2><h2>🔥 核心功能</h2><h3>🎯 <strong>20余种生成算法</strong>
+</h3><ul>
+<li>
+<p>递归回溯法 – 经典深度优先探索</p>
+</li>
+<li>
+<p>克鲁斯卡尔算法 – 最小生成树方式</p>
+</li>
+<li>
+<p>普里姆算法 – 加权随机选择</p>
+</li>
+<li>
+<p>威尔逊算法 – 消除环路的随机游走</p>
+</li>
+<li>
+<p>埃勒算法 – 逐行生成</p>
+</li>
+<li>
+<p>二叉树 – 简单方向性偏置</p>
+</li>
+<li>
+<p>侧风算法 – 水平走廊生成</p>
+</li>
+<li>
+<p>生长树 – 灵活的优先级生成</p>
+</li>
+<li>
+<p>……以及更多高级算法！</p>
+</li>
+</ul><h3>🎨 <strong>多样迷宫形状</strong>
+</h3><ul>
+<li>
+<p>矩形、圆形、椭圆形、三角形</p>
+</li>
+<li>
+<p>菱形、五边形、六边形、八边形</p>
+</li>
+<li>
+<p>五角星、心形、十字形</p>
+</li>
+<li>
+<p>环形、L形、T形、螺旋形</p>
+</li>
+<li>
+<p>分形图案、基于噪波的形状</p>
+</li>
+<li>
+<p>支持自定义形状</p>
+</li>
+</ul><h3>⚙️ <strong>专业控制选项</strong>
+</h3><h3>
+</h3><ul>
+<li>
+<p>可精细调节的高级复杂度设置</p>
+</li>
+<li>
+<p>对称生成，适合均衡设计</p>
+</li>
+<li>
+<p>支持多种连接类型的房间生成</p>
+</li>
+<li>
+<p>可自定义样式的中心路径创建</p>
+</li>
+<li>
+<p>边缘环路路径，便于周边导航</p>
+</li>
+<li>
+<p>环路控制，适用于非传统迷宫</p>
+</li>
+<li>
+<p>热力图加权生成</p>
+</li>
+<li>
+<p>流量分析与优化</p>
+</li>
+</ul><h3>🎭 <strong>视觉自定义</strong>
+</h3><ul>
+<li>
+<p>多种墙壁与地板样式</p>
+</li>
+<li>
+<p>可调节的墙壁角度与厚度</p>
+</li>
+<li>
+<p>材质指定与颜色控制</p>
+</li>
+<li>
+<p>解题路径可视化</p>
+</li>
+<li>
+<p>起点/终点标记</p>
+</li>
+<li>
+<p>合并对象优化以提升性能</p>
+</li>
+</ul><h3>🚀 <strong>高级功能</strong>
+</h3><ul>
+<li>
+<p>批量生成多个迷宫</p>
+</li>
+<li>
+<p>迷宫数据导出/导入（JSON格式）</p>
+</li>
+<li>
+<p>性能监控与优化</p>
+</li>
+<li>
+<p>质量评估与评分</p>
+</li>
+<li>
+<p>路径分析与难度分级</p>
+</li>
+<li>
+<p>附带专业文档</p>
+</li>
+</ul><hr><h2>💼 适用场景：</h2><ul>
+<li>
+<p><strong>游戏开发</strong> – 关卡设计与导航谜题</p>
+</li>
+<li>
+<p><strong>建筑设计</strong> – 复杂布局与平面图</p>
+</li>
+<li>
+<p><strong>教育</strong> – 算法可视化与学习</p>
+</li>
+<li>
+<p><strong>艺术项目</strong> – 程序化艺术与装置</p>
+</li>
+<li>
+<p><strong>VR/AR</strong> – 沉浸式迷宫体验</p>
+</li>
+<li>
+<p><strong>3D打印</strong> – 实体迷宫模型</p>
+</li>
+<li>
+<p><strong>动画</strong> – 动态迷宫序列</p>
+</li>
+</ul><hr><h2>🛠️ 技术规格</h2><ul>
+<li>
+<p>兼容 <strong>Blender 3.0+</strong></p>
+</li>
+<li>
+<p>优化的网格生成</p>
+</li>
+<li>
+<p>内存高效算法</p>
+</li>
+<li>
+<p>可自定义性能限制</p>
+</li>
+<li>
+<p>跨平台兼容</p>
+</li>
+<li>
+<p>专业级代码质量</p>
+</li>
+</ul><hr><h2>📊 性能优化</h2><p><img src="images/desc_04_100ba526de8e3f4c44e4b596761dee4d.jpg" style="max-width:100%;"><br></p><ul>
+<li>
+<p>大型迷宫的合并几何体</p>
+</li>
+<li>
+<p>可配置的质量等级</p>
+</li>
+<li>
+<p>内存使用控制</p>
+</li>
+<li>
+<p>超时保护</p>
+</li>
+<li>
+<p>迭代次数限制以保证稳定性</p>
+</li>
+</ul><hr><h2>🎯 易于使用</h2><ul>
+<li>
+<p>直观的N面板界面</p>
+</li>
+<li>
+<p>实时预览更新</p>
+</li>
+<li>
+<p>全面的工具提示</p>
+</li>
+<li>
+<p>专业文档</p>
+</li>
+<li>
+<p>包含示例文件</p>
+</li>
+</ul><hr><p>✨ 无论您是在创建<strong>游戏关卡</strong>、<strong>建筑可视化</strong>、<strong>教育内容</strong>还是<strong>艺术装置</strong>，Advanced Maze Generator Pro 都能为您提供所需的工具与灵活性，让您的迷宫创意变为现实。</p><p>👉 立即开始，解锁 <strong>Blender 程序化迷宫生成的无限可能</strong>！</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <p><strong style="font-family:Degular , sans-serif;font-size:2.5rem;">ADVANCED MAZE GENERATOR PRO – 用户文档</strong></p><hr><h2>📑 <strong>目录</strong>
+</h2><ol>
+<li>
+<p>安装</p>
+</li>
+<li>
+<p>快速入门</p>
+</li>
+<li>
+<p>基本控制</p>
+</li>
+<li>
+<p>高级功能</p>
+</li>
+<li>
+<p>算法参考</p>
+</li>
+<li>
+<p>形状选项</p>
+</li>
+<li>
+<p>性能设置</p>
+</li>
+<li>
+<p>故障排除</p>
+</li>
+<li>
+<p>常见问题</p>
+</li>
+<li>
+<p>支持</p>
+</li>
+</ol><hr><h2>1. <strong>安装</strong>
+</h2><p><strong>系统要求：</strong></p><ul>
+<li>
+<p>Blender 3.0 或更新版本</p>
+</li>
+<li>
+<p>最低 4GB 内存（大型迷宫推荐 8GB）</p>
+</li>
+<li>
+<p>支持 OpenGL 3.3 的显卡</p>
+</li>
+</ul><p><strong>安装步骤：</strong></p><ol>
+<li>
+<p>下载插件 ZIP 文件</p>
+</li>
+<li>
+<p>打开 Blender</p>
+</li>
+<li>
+<p>前往 <strong>编辑 > 首选项 > 插件</strong></p>
+</li>
+<li>
+<p>点击 <strong>安装…</strong> 并选择 ZIP 文件</p>
+</li>
+<li>
+<p>在插件列表中启用 <strong>Advanced Maze Generator Pro</strong></p>
+</li>
+<li>
+<p>面板将出现在 <strong>3D视口 > N面板 > 迷宫生成</strong></p>
+</li>
+</ol><hr><h2>2. <strong>快速入门</strong>
+</h2><p><strong>快速开始指南：</strong></p><ol>
+<li>
+<p>打开 Blender 并切换到 3D视口</p>
+</li>
+<li>
+<p>按 <strong>N</strong> 打开 N面板</p>
+</li>
+<li>
+<p>找到 <strong>迷宫生成</strong> 标签页</p>
+</li>
+<li>
+<p>设置宽度/高度（初学者推荐：<strong>20×20</strong>）</p>
+</li>
+<li>
+<p>选择形状（默认为<strong>矩形</strong>）</p>
+</li>
+<li>
+<p>选择算法（初学者推荐<strong>递归回溯法</strong>）</p>
+</li>
+<li>
+<p>点击 <strong>生成迷宫</strong></p>
+</li>
+</ol><p>👉 迷宫将以独立的<strong>墙壁</strong>和<strong>地板</strong>对象形式生成，可直接进行材质指定。</p><hr><h2>3. <strong>基本控制</strong>
+</h2><p><strong>基本设置：</strong></p><ul>
+<li>
+<p>形状 – 从 15 种以上预设形状中选择</p>
+</li>
+<li>
+<p>算法 – 选择生成方式</p>
+</li>
+<li>
+<p>宽度/高度 – 迷宫尺寸（格数）</p>
+</li>
+<li>
+<p>随机种子 – 相同种子 = 可重现的迷宫</p>
+</li>
+</ul><p><strong>外观设置：</strong></p><ul>
+<li>
+<p>格元大小 – 迷宫格元的单位尺寸</p>
+</li>
+<li>
+<p>墙壁高度 – 墙壁高度</p>
+</li>
+<li>
+<p>墙壁厚度 – 控制几何体厚度</p>
+</li>
+<li>
+<p>墙壁角度 – 向内/向外倾斜墙壁</p>
+</li>
+</ul><p><strong>迷宫特性：</strong></p><ul>
+<li>
+<p>复杂度 – 整体难度</p>
+</li>
+<li>
+<p>死路比例 – 调整死路数量</p>
+</li>
+<li>
+<p>对称性 – 生成镜像布局</p>
+</li>
+<li>
+<p>中心聚焦 – 让路径向中心汇聚</p>
+</li>
+<li>
+<p>合并模型 – 优化为单一几何体</p>
+</li>
+</ul><p><strong>路径显示：</strong></p><ul>
+<li>
+<p>显示解题路径 – 可视化正确路线</p>
+</li>
+<li>
+<p>显示起点/终点 – 添加标记</p>
+</li>
+<li>
+<p>自定义颜色 – 控制路径/标记颜色</p>
+</li>
+</ul><hr><h2>4. <strong>高级功能</strong>
+</h2><ul>
+<li>
+<p><strong>房间生成</strong> – 插入可配置连接的开放空间</p>
+</li>
+<li>
+<p><strong>中心路径</strong> – 创建宽阔或特定样式的走廊</p>
+</li>
+<li>
+<p><strong>边缘环路</strong> – 添加可导航的周边路径</p>
+</li>
+<li>
+<p><strong>环路控制</strong> – 启用或限制环路形成</p>
+</li>
+<li>
+<p><strong>加权生成</strong> – 使用热力图实现受控路径偏置</p>
+</li>
+<li>
+<p><strong>性能优化</strong> – 质量等级、迭代控制、内存/时间限制</p>
+</li>
+</ul><hr><h2>5. <strong>算法参考</strong>
+</h2><ul>
+<li>
+<p><strong>递归回溯法</strong> – 深度优先，生成长走廊</p>
+</li>
+<li>
+<p><strong>克鲁斯卡尔算法</strong> – 树状有机结构</p>
+</li>
+<li>
+<p><strong>普里姆算法</strong> – 均衡复杂度</p>
+</li>
+<li>
+<p><strong>威尔逊算法</strong> – 均匀生成树</p>
+</li>
+<li>
+<p><strong>埃勒算法</strong> – 逐行生成，内存高效</p>
+</li>
+<li>
+<p><strong>二叉树</strong> – 简单，带方向性偏置</p>
+</li>
+<li>
+<p><strong>侧风算法</strong> – 水平走廊</p>
+</li>
+<li>
+<p><strong>生长树</strong> – 可自定义的优先级生成</p>
+</li>
+</ul><hr><h2>6. <strong>形状选项</strong>
+</h2><ul>
+<li>
+<p><strong>基础：</strong> 矩形、圆形、椭圆形、三角形</p>
+</li>
+<li>
+<p><strong>几何：</strong> 菱形、五边形、六边形、八边形</p>
+</li>
+<li>
+<p><strong>特殊：</strong> 星形、心形、十字形、环形</p>
+</li>
+<li>
+<p><strong>复杂：</strong> L形、T形、螺旋形、分形、噪波</p>
+</li>
+</ul><hr><h2>7. <strong>性能设置</strong>
+</h2><ul>
+<li>
+<p><strong>质量等级：</strong> 低 / 中 / 高 / 超高</p>
+</li>
+<li>
+<p><strong>优化模式：</strong> 速度优先 / 均衡 / 质量优先</p>
+</li>
+<li>
+<p><strong>内存控制：</strong> 限制内存用量、超时保护、迭代上限</p>
+</li>
+<li>
+<p><strong>批量生成：</strong> 自动生成多个迷宫并自动命名</p>
+</li>
+</ul><hr><h2>8. <strong>故障排除</strong>
+</h2><ul>
+<li>
+<p><strong>生成缓慢</strong> → 缩小尺寸、降低质量、使用简单算法</p>
+</li>
+<li>
+<p><strong>内存占用过高</strong> → 合并模型、缩小尺寸、降低限制</p>
+</li>
+<li>
+<p><strong>Blender 崩溃</strong> → 更新 Blender、缩小迷宫尺寸、释放内存</p>
+</li>
+<li>
+<p><strong>迷宫显示异常</strong> → 重置参数，尝试新种子</p>
+</li>
+<li>
+<p><strong>对象无法选择</strong> → 检查大纲视图、隐藏对象、正确的视图层</p>
+</li>
+</ul><hr><h2>9. <strong>常见问题</strong>
+</h2><p><strong>问：</strong> 生成的迷宫可以编辑吗？<br>
+<strong>答：</strong> 可以，墙壁/地板是独立的可编辑对象。</p><p><strong>问：</strong> 如何应用材质？<br>
+<strong>答：</strong> 选择墙壁/地板 → 在<strong>材质属性</strong>中应用。</p><p><strong>问：</strong> 可以导出到其他软件吗？<br>
+<strong>答：</strong> 可以，通过 <strong>FBX/OBJ 等</strong>格式或 JSON 导出。</p><p><strong>问：</strong> 最大迷宫尺寸？<br>
+<strong>答：</strong> 建议不超过 <strong>200×200</strong>，取决于系统内存。</p><p><strong>问：</strong> 可以创建三维迷宫吗？<br>
+<strong>答：</strong> 目前仅支持二维。可叠加多个迷宫实现多层布局。</p><p><strong>问：</strong> 迷宫的可解性有保证吗？<br>
+<strong>答：</strong> 有保证，除非显式启用了环路。</p><hr><h2>10. <strong>支持</strong>
+</h2><ul>
+<li>
+<p>📘 查看文档更新</p>
+</li>
+<li>
+<p>🐞 通过项目仓库报告错误</p>
+</li>
+<li>
+<p>🛒 在 <strong>BlenderMarket</strong> 上联系支持</p>
+</li>
+<li>
+<p>💬 加入社区论坛获取技巧</p>
+</li>
+</ul><p><strong>版本：</strong> 3.2.0<br>
+<strong>最后更新：</strong> 2025<br>
+<strong>兼容：</strong> Blender 3.0+</p><hr><p>✅ 感谢您使用 <strong>Advanced Maze Generator Pro！</strong></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品文件</h2>
+  <ul class="file-list">
+  <li><a href="files/advanced_maze_generator_pro.zip">advanced_maze_generator_pro.zip</a> <span class="file-size">(1.0 KB)</span></li>
+  <li><a href="files/file_1.zip">file_1.zip</a> <span class="file-size">(31.1 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  备份来自 Superhive (Blender Market) 创作者后台
+</footer>
+
+</div>
+</body>
+</html>

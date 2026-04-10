@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autodesk Maya文件 导入-导出 (.mb .ma) </title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .price { font-size: 1.4em; color: #58a6ff; font-weight: 600; }
+
+.section { margin-bottom: 40px; }
+.section-title { font-size: 1.3em; color: #f0f6fc; border-bottom: 1px solid #30363d; padding-bottom: 8px; margin-bottom: 16px; }
+
+.cover-image { margin-bottom: 20px; text-align: center; }
+.cover-image img { max-width: 100%; border-radius: 8px; border: 1px solid #30363d; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.gallery-item img { width: 100%; border-radius: 6px; border: 1px solid #30363d; cursor: pointer; transition: transform 0.2s; }
+.gallery-item img:hover { transform: scale(1.02); }
+
+.meta-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.meta-item { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 12px; }
+.meta-label { display: block; font-size: 0.8em; color: #8b949e; text-transform: uppercase; margin-bottom: 4px; }
+.meta-value { color: #f0f6fc; font-weight: 500; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; border-radius: 20px; padding: 4px 12px; font-size: 0.85em; }
+
+.description { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.description img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+.description h2 { color: #f0f6fc; margin-top: 20px; margin-bottom: 10px; }
+.description h3 { color: #e6edf3; margin-top: 16px; margin-bottom: 8px; }
+.description p { margin-bottom: 10px; }
+.description ul, .description ol { margin-left: 20px; margin-bottom: 10px; }
+.description li { margin-bottom: 4px; }
+.description hr { border: none; border-top: 1px solid #30363d; margin: 20px 0; }
+.description strong { color: #f0f6fc; }
+.description a { color: #58a6ff; text-decoration: none; }
+.description a:hover { text-decoration: underline; }
+
+.documentation { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+.documentation p { margin-bottom: 8px; }
+.documentation img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+
+.file-list { list-style: none; }
+.file-list li { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+.file-list a { color: #58a6ff; text-decoration: none; font-weight: 500; }
+.file-list a:hover { text-decoration: underline; }
+.file-size { color: #8b949e; font-size: 0.85em; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.85em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Autodesk Maya文件 导入-导出 (.mb .ma) </h1>
+  <span class="price">$12.00</span>
+</header>
+
+<div class="section">
+  <h2 class="section-title">相册</h2>
+  <div class="cover-image"><img src="images/00_cover.png" alt="Cover"></div>
+<div class="gallery">
+  <div class="gallery-item"><img src="images/01_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/02_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/03_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/04_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/05_gallery.jpg" alt="Gallery"></div>
+  <div class="gallery-item"><img src="images/06_gallery.jpg" alt="Gallery"></div>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">产品信息</h2>
+  <div class="meta-grid">
+  <div class="meta-item"><span class="meta-label">分类</span><span class="meta-value">插件, 导入与导出</span></div>
+  <div class="meta-item"><span class="meta-label">Blender 版本</span><span class="meta-value">4.2 ~ 5.0</span></div>
+  <div class="meta-item"><span class="meta-label">许可证</span><span class="meta-value">GPL</span></div>
+  <div class="meta-item"><span class="meta-label">价格</span><span class="meta-value">$12.00</span></div>
+</div>
+
+  <div class="tags">
+  <span class="tag">animation-transfer</span>
+  <span class="tag">blender</span>
+  <span class="tag">blender-addon</span>
+  <span class="tag">blender-tools</span>
+  <span class="tag">fbx-bridge</span>
+  <span class="tag">fps-camera-import</span>
+  <span class="tag">geometry-transfer</span>
+  <span class="tag">import-export</span>
+  <span class="tag">ma-file</span>
+  <span class="tag">maya</span>
+  <span class="tag">maya-integration</span>
+  <span class="tag">maya-to-blender</span>
+</div>
+
+</div>
+
+<div class="section">
+  <h2 class="section-title">描述</h2>
+  <div class="description">
+    <p><span style="font-family:Degular , sans-serif;font-size:2rem;font-weight:600;">Autodesk Maya文件 导入-导出 </span><span style="font-family:Degular , sans-serif;font-size:2rem;font-weight:600;">(.mb .ma)</span><span style="font-family:Degular , sans-serif;font-size:32px;font-weight:600;"> </span></p><hr><h3>🧩 概述</h3><p>这款强大且用户友好的插件简化了<strong>Blender与Autodesk Maya</strong>之间的工作流程，让您可以<strong>直接在Blender界面中导入和导出<code>.mb</code>和<code>.ma</code>文件</strong>——无需手动启动Maya。</p><p>它在后台利用Maya的Python环境（<code>mayapy.exe</code>）来读取和转换Maya原生资产。因此需要本地安装Autodesk Maya，但在过程中无需打开Maya本身。</p><hr><h3>
+<img src="images/desc_00_2cad3ef821a94c4304aa9c140e9a77dc.jpg" style="max-width:100%;"><br>
+</h3><h3>🎯 支持的资产 类型</h3><ul>
+<li>
+<p><strong>3D 模型s</strong>: 高保真几何体和UV传输，顺畅的跨平台兼容性。</p>
+</li>
+<li>
+<p><strong>动画</strong>: 支持绑定和关键帧动画。</p>
+</li>
+<li>
+<p><strong>材质</strong>: 通过FBX传输标准材质；复杂的Maya着色器网络可能需要手动调整。</p>
+</li>
+<li>
+<p><strong>角色资产</strong>: 包含绑定的网格、骨骼和蒙皮数据，可在Blender中进一步编辑和渲染（通过FBX转换）。</p>
+</li>
+<li>
+<p><strong>摄像机与灯光</strong>: 基本摄像机参数和灯光设置得到保留。</p>
+</li>
+</ul><hr><h3>
+<img src="images/desc_01_f101c17cfd13b6b1801eb1258f75c4d0.jpg" style="max-width:100%;"><br>
+</h3><h3>
+<img src="images/desc_02_25658ed3cb9807b2dcb798a445e0f5fd.jpg" style="max-width:100%;"><br>
+</h3><h3>⚙️ 系统要求与设置</h3><ul>
+<li>
+<p><strong>操作系统</strong>: Windows</p>
+</li>
+<li>
+<p><strong>所需软件</strong>: Blender 3.0+和Autodesk Maya 2018或更新版本（必须安装）</p>
+</li>
+<li>
+<p><strong>设置</strong>: 在插件偏好设置中，指定Maya的Python解释器路径（<code>mayapy.exe</code>）</p>
+</li>
+<li>
+<p><strong>无侵入性</strong>: Maya无需打开——转换完全在后台进行。</p>
+</li>
+</ul><hr><h3>
+<img src="images/desc_03_866e7e93af00c29f93bcd07400d38c78.jpg" style="max-width:100%;"><br>
+</h3><h3>💡 Who It's For</h3><p>非常适合同时使用Maya和Blender的艺术家、动画师和工作室，该插件：</p><ul>
+<li>
+<p>减少繁琐的导出/导入步骤</p>
+</li>
+<li>
+<p>保持跨格式的保真度</p>
+</li>
+<li>
+<p>在传输过程中保持创意资产的完整性</p>
+</li>
+</ul><hr><h3>💝 社区贡献</h3><p>我们每月自豪地将该插件收入的一部分捐赠给<strong>Blender基金会</strong>，支持开源三维创作的未来。您的购买将助力创意社区的创新。</p><hr><h3>🔎 与其他DCC桥接工具的主要区别</h3><ul>
+<li>
+<p><strong>Maya安装要求</strong>: 与C4D工作流程不同，该插件依赖<code>mayapy.exe</code>来访问原生文件，因此必须安装Maya。</p>
+</li>
+<li>
+<p><strong>仅支持Windows（目前）</strong>: 当前实现包含硬编码的Windows路径 (e.g., <code>C:\\Program 文件\\Autodesk\\Maya2025\\...</code>). 若支持macOS/Linux，需要跨平台路径检测或手动配置。</p>
+</li>
+<li>
+<p><strong>实际表述</strong>: 我们强调实际的简化作用，而非称其为“革命性的”，因为它依赖外部软件。</p>
+</li>
+</ul><p><br></p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">文档</h2>
+  <div class="documentation">
+    <h2>Autodesk Maya文件 导入-导出 插件</h2><p>用户指南 for <strong>Blender</strong> (v 2.0.1)</p><hr><h3>1. 概述</h3><p><strong>Autodesk Maya文件 导入-导出</strong> 允许您在 Blender 中直接读写原生 Maya <code>.mb / .ma</code> 文件。</p><p>工作流 简述</p><ol>
+<li>
+<p><strong>Blender side</strong> – 选中的对象将被导出为临时 FBX 文件。</p>
+</li>
+<li>
+<p><strong>Maya Standalone (mayapy)</strong> – FBX 文件将被转换为/Maya 文件，无需启动 Maya 界面。</p>
+</li>
+<li>
+<p><strong>Blender side</strong> – 最终文件将自动导入或保存。</p>
+</li>
+</ol><p><strong>键 优势</strong></p><ul>
+<li>
+<p>无需 open Maya’s GUI</p>
+</li>
+<li>
+<p>精细筛选 (网格, Lights, 摄像机, 样条线s, 动画s, 材质, Armatures)</p>
+</li>
+<li>
+<p>拖放 import, 批量转换, 详细日志记录, 自动缓存清理</p>
+</li>
+</ul><hr><h3>2. 系统 系统要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>最低 / 推荐配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blender</strong></td>
+<td>4.2.0 + (Windows / macOS / Linux)</td>
+</tr>
+<tr>
+<td><strong>Autodesk Maya</strong></td>
+<td>2018 – 2025 并安装了 <strong>mayapy</strong></td>
+</tr>
+<tr>
+<td><strong>磁盘 space</strong></td>
+<td>≥ 2 GB 可用空间（临时 FBX + 日志缓存）</td>
+</tr>
+</tbody>
+</table><hr><h3>3. 安装</h3><ol>
+<li>
+<p><strong>下载 the ZIP</strong> 从 GitHub 或 Blender Market 下载。</p>
+</li>
+<li>
+<p>Blender  → <strong>编辑 › 偏好设置 › 插件 › 安装…</strong> → 选择 ZIP 文件 → <strong>安装 插件</strong>.</p>
+</li>
+<li>
+<p>启用 <strong>Autodesk Maya文件 导入-导出</strong>.</p>
+</li>
+<li>
+<p>在插件-on 偏好设置中，设置路径到 <strong>mayapy</strong>:</p>
+<ul>
+<li>
+<p>默认路径（Windows）:<br>
+<code>C:\Program 文件s\Autodesk\Maya2025\bin\mayapy.exe</code></p>
+</li>
+<li>
+<p>macOS / Linux: 选择对应的 <code>mayapy</code> 可执行文件。</p>
+</li>
+</ul>
+</li>
+</ol><hr><h3>4. 导出ing from Blender to Maya</h3><ol>
+<li>
+<p>选择您要导出的对象。</p>
+</li>
+<li>
+<p><strong>文件 › 导出 › Autodesk Maya (.mb, .ma)</strong>.</p>
+</li>
+<li>
+<p>勾选要包含的资产类型 (网格, Lights, etc.).</p>
+</li>
+<li>
+<p>选择文件 name and extension (.mb or .ma) → <strong>导出 Maya文件</strong>.</p>
+</li>
+<li>
+<p>进度和错误信息会写入 <code>~/文档/blender_maya_log.txt</code>.</p>
+</li>
+</ol><p><em>Tip</em> – 导出动画 时，请勾选 <strong>动画s</strong> （可选骨架）并取消勾选其他所有选项。</p><hr><h3>5. 导入ing from Maya to Blender</h3><p><strong>方法 A – 菜单</strong></p><ol>
+<li>
+<p><strong>文件 › 导入 › Autodesk Maya (.mb, .ma)</strong>.</p>
+</li>
+<li>
+<p>选择一个 <code>.mb</code> or <code>.ma</code> 文件。</p>
+</li>
+<li>
+<p>在右侧-侧面板中选择要导入的内容。</p>
+</li>
+<li>
+<p>启用 <strong>Maya Axis</strong> (180 ° X-flip) 如果您在 Blender 中使用 Y-上坐标。</p>
+</li>
+<li>
+<p><strong>导入 Maya文件</strong>.</p>
+</li>
+</ol><p><strong>方法 B – 拖放</strong></p><p>拖动 <code>.mb</code> / <code>.ma</code> 文件到 3D 视口或大纲视图 → 配置选项 → <strong>OK</strong>.</p><hr><h3>6. 选项 参考</h3><table>
+<thead>
+<tr>
+<th>复选框 / 字段</th>
+<th>图标</th>
+<th>含义 (导出 ≈ 导入)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型s</strong></td>
+<td>🞇</td>
+<td>网格 对象</td>
+</tr>
+<tr>
+<td><strong>Lights</strong></td>
+<td>💡</td>
+<td>Light 对象</td>
+</tr>
+<tr>
+<td><strong>摄像机</strong></td>
+<td>📷</td>
+<td>摄像机</td>
+</tr>
+<tr>
+<td><strong>样条线s</strong></td>
+<td>➰</td>
+<td>曲线 / splines</td>
+</tr>
+<tr>
+<td><strong>动画s</strong></td>
+<td>🎞️</td>
+<td>键frames & bone animation</td>
+</tr>
+<tr>
+<td>
+<strong>材质</strong> †</td>
+<td>🎨</td>
+<td>保留材质槽</td>
+</tr>
+<tr>
+<td>
+<strong>Armatures</strong> †</td>
+<td>🦴</td>
+<td>骨架 / 骨骼数据</td>
+</tr>
+<tr>
+<td>
+<strong>Maya Axis</strong> †</td>
+<td>—</td>
+<td>旋转 +180 ° 绕 X 轴 (Y-上 ↔ Z-上)</td>
+</tr>
+</tbody>
+</table><p>† 导入-选项。</p><hr><h3>7. 缓存 & 日志ging</h3><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/文档/blender_maya_cache</code></td>
+<td>临时 FBX 文件（自动删除）</td>
+</tr>
+<tr>
+<td><code>~/文档/blender_maya_log.txt</code></td>
+<td>完整插件 + Maya Standalone 日志</td>
+</tr>
+</tbody>
+</table><p>检查日志 在出现问题时首先检查。</p><hr><h3>8. FAQ</h3><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>可能原因</th>
+<th>解决方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>“mayapy not found”</strong></td>
+<td>路径错误 / Maya 未安装</td>
+<td>重新输入正确路径到 偏好设置</td>
+</tr>
+<tr>
+<td><strong>导出 在 0% 处冻结</strong></td>
+<td>不支持的对象 / 无写入权限</td>
+<td>导出 仅所需资产；检查文件夹权限</td>
+</tr>
+<tr>
+<td><strong>导入ed 模型上下颠倒</strong></td>
+<td>坐标轴不匹配</td>
+<td>启用 <strong>Maya Axis</strong> 导入时启用或手动旋转</td>
+</tr>
+<tr>
+<td><strong>日志 显示 fbxmaya.mll 错误</strong></td>
+<td>Maya FBX 插件缺失</td>
+<td>加载 <strong>fbxmaya.mll</strong> 在 Maya 中加载或重新安装 Maya</td>
+</tr>
+</tbody>
+</table><hr><h3>9. 最好的 Practices</h3><ul>
+<li>
+<p><strong>坐标系</strong> – 确定使用 Y-上还是 Z-上并保持一致；使用 <strong>Maya Axis</strong> （按需启用）。</p>
+</li>
+<li>
+<p><strong>导入 only what you need</strong> – 速度s 转换速度并保持文件较小。</p>
+</li>
+<li>
+<p><strong>定期清理缓存</strong> 如果您批量转换许多文件。</p>
+</li>
+<li>
+<p><strong>调整 FBX 版本</strong> 如果您需要旧版兼容性，请在脚本中调整。</p>
+</li>
+</ul><hr><h3>10. 更新日志 (v 2.0.1)</h3><ul>
+<li>
+<p>拖放 import dialog</p>
+</li>
+<li>
+<p>按资产类型筛选 材质 和骨架</p>
+</li>
+<li>
+<p>增强d 日志格式化和错误标签</p>
+</li>
+<li>
+<p>自动临时 FBX 文件自动删除</p>
+</li>
+</ul><hr><h3>11. 支持 & Feedback</h3><p>提交 提交错误报告时，请包含：</p><ol>
+<li>
+<p>Blender 和 Maya 版本</p>
+</li>
+<li>
+<p>操作系统和 GPU 信息</p>
+</li>
+<li>
+<p>相关日志摘录来自 <code>blender_maya_log.txt</code></p>
+</li>
+</ol><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p>在两者之间愉快穿梭 Blender and Maya!</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title">Product 文件s</h2>
+  <ul class="file-list">
+  <li><a href="files/Autodesk_Maya_文件_导入-导出.zip">Autodesk_Maya_文件_导入-导出.zip</a> <span class="file-size">(10.7 KB)</span></li>
+  <li><a href="files/Autodesk_Maya_文件_导入-导出_2.15.zip">Autodesk_Maya_文件_导入-导出_2.15.zip</a> <span class="file-size">(1.0 KB)</span></li>
+  <li><a href="files/file_2.zip">file_2.zip</a> <span class="file-size">(7.7 KB)</span></li>
+</ul>
+
+</div>
+
+<footer>
+  后up from Superhive (Blender Market) Creator 仪表板
+</footer>
+
+</div>
+</body>
+</html>

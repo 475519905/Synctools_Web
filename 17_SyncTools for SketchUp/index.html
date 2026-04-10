@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncTools for SketchUp - SyncTools Pro</title>
+    <meta name="description" content="SyncTools for SketchUp - 离线产品备份页面">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .top-nav { position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); z-index: 1001; padding: 0 20px; height: 60px; display: flex; align-items: center; }
+        .nav-container { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .nav-left a { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 35px; height: 35px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .nav-right { display: flex; align-items: center; gap: 32px; }
+        .nav-link { color: #999; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: .5px; transition: color .3s; }
+        .nav-link:hover { color: #fff; }
+        .nav-login { background: #fff; color: #000 !important; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        .nav-login:hover { background: #f0f0f0; }
+        .breadcrumb { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; font-size: 0.85rem; color: #666; }
+        .breadcrumb a { color: #888; text-decoration: none; transition: color .2s; }
+        .breadcrumb a:hover { color: #fff; }
+        .product { max-width: 1200px; margin: 24px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 48px; }
+        .gallery { position: relative; }
+        .gallery-main { width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #111; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .3s; }
+        .gallery-thumbs { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .gallery-thumbs img { width: 90px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid transparent; cursor: pointer; opacity: 0.5; transition: all .2s; flex-shrink: 0; }
+        .gallery-thumbs img:hover { opacity: 0.8; }
+        .gallery-thumbs img.active { border-color: #fff; opacity: 1; }
+        .gallery-empty { display: flex; align-items: center; justify-content: center; min-height: 320px; border: 1px dashed rgba(255,255,255,0.15); border-radius: 16px; color: #666; }
+        .sidebar { position: sticky; top: 84px; align-self: start; }
+        .sidebar-card { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; }
+        .product-title { font-size: 1.6rem; font-weight: 800; line-height: 1.3; margin-bottom: 8px; }
+        .product-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .meta-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; color: #aaa; }
+        .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .price-now { font-size: 2.2rem; font-weight: 900; }
+        .price-license { font-size: 0.85rem; color: #888; }
+        .buy-btn { display: block; width: 100%; padding: 16px; background: #fff; color: #000; border: none; border-radius: 9999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .3s; text-align: center; text-decoration: none; }
+        .buy-btn:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .sidebar-info { margin-top: 20px; }
+        .sidebar-info-item { display: flex; justify-content: space-between; gap: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.88rem; }
+        .sidebar-info-label { color: #888; flex-shrink: 0; }
+        .sidebar-info-value { color: #ddd; font-weight: 500; text-align: right; word-break: break-word; }
+        .compat-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+        .compat-chip { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); border-radius: 6px; padding: 3px 10px; font-size: 0.78rem; font-weight: 600; }
+        .description { max-width: 1200px; margin: 48px auto 0; padding: 0 20px; }
+        .desc-tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 32px; overflow-x: auto; }
+        .desc-tab { padding: 12px 28px; color: #888; font-weight: 600; font-size: 0.95rem; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; background: none; border-top: none; border-left: none; border-right: none; flex-shrink: 0; }
+        .desc-tab:hover { color: #ccc; }
+        .desc-tab.active { color: #fff; border-bottom-color: #fff; }
+        .desc-panel { display: none; }
+        .desc-panel.active { display: block; }
+        .desc-content { max-width: 820px; line-height: 1.8; color: #ccc; }
+        .desc-content h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 32px 0 16px; }
+        .desc-content h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin: 28px 0 12px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .desc-content h3 { font-size: 1.15rem; font-weight: 700; color: #eee; margin: 20px 0 10px; }
+        .desc-content h4 { font-size: 1rem; font-weight: 600; color: #ddd; margin: 16px 0 8px; }
+        .desc-content p { margin-bottom: 12px; }
+        .desc-content ul, .desc-content ol { margin: 8px 0 16px 24px; }
+        .desc-content li { margin-bottom: 6px; }
+        .desc-content hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+        .desc-content img { max-width: 100%; border-radius: 12px; margin: 16px 0; border: 1px solid rgba(255,255,255,0.08); }
+        .desc-content blockquote { border-left: 3px solid #4ade80; padding: 12px 16px; margin: 16px 0; background: rgba(74,222,128,0.05); border-radius: 0 8px 8px 0; color: #aaa; }
+        .desc-content code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 0.88rem; color: #ff90e8; }
+        .desc-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; overflow-x: auto; margin: 12px 0; }
+        .desc-content pre code { background: none; padding: 0; color: #ccc; }
+        .desc-content table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .desc-content th, .desc-content td { padding: 10px 14px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .desc-content th { background: rgba(255,255,255,0.04); color: #fff; font-weight: 600; }
+        .desc-content strong { color: #fff; }
+        .file-list { list-style: none; }
+        .file-list li { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .file-list a { color: #fff; text-decoration: none; font-weight: 600; }
+        .file-list a:hover { text-decoration: underline; }
+        .file-size { color: #888; font-size: 0.85rem; flex-shrink: 0; }
+        .empty-note { color: #777; }
+        footer { margin-top: 80px; padding: 40px 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; color: #555; font-size: 0.85rem; }
+        footer a { color: #666; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 900px) {
+            .product { grid-template-columns: 1fr; gap: 24px; }
+            .sidebar { position: static; }
+            .gallery-main { aspect-ratio: 4/3; }
+        }
+        @media (max-width: 768px) {
+            .nav-right { gap: 16px; }
+            .nav-link { font-size: 0.8rem; }
+            .product-title { font-size: 1.3rem; }
+            .price-now { font-size: 1.8rem; }
+            .desc-tab { padding: 10px 16px; font-size: 0.88rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-link:not(.nav-login) { display: none; }
+            .gallery-thumbs img { width: 70px; height: 44px; }
+            .file-list li { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="../index.html">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 20 L20 10 L30 20 L20 30 Z" stroke="white" stroke-width="2" fill="none"/>
+                        <circle cx="20" cy="20" r="3" fill="white"/>
+                    </svg>
+                    <span class="logo-text">SyncTools</span>
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="../index.html" class="nav-link">商店</a>
+                <a href="#" class="nav-link">文档</a>
+                <a href="#" class="nav-link">下载</a>
+                <a href="#" class="nav-link nav-login">登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="../index.html">首页</a> &rsaquo; <a href="../index.html">产品列表</a> &rsaquo; SyncTools for SketchUp
+    </div>
+
+    <section class="product">
+        <div class="gallery">
+            <div class="gallery-main"><img id="mainImg" src="images/00_cover.png" alt="SyncTools for SketchUp"></div>
+            <div class="gallery-thumbs" id="thumbs">                <img src="images/00_cover.png" alt="SyncTools for SketchUp" class="active" data-index="0">
+                <img src="images/01_gallery.jpg" alt="SyncTools for SketchUp" data-index="1">
+                <img src="images/02_gallery.jpg" alt="SyncTools for SketchUp" data-index="2">
+                <img src="images/03_gallery.jpg" alt="SyncTools for SketchUp" data-index="3">
+                <img src="images/04_gallery.jpg" alt="SyncTools for SketchUp" data-index="4">
+                <img src="images/05_gallery.png" alt="SyncTools for SketchUp" data-index="5"></div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h1 class="product-title">SyncTools for SketchUp</h1>
+                <div class="product-meta">
+                    <span class="meta-tag">添加ons</span>
+                    <span class="meta-tag">导入 &amp; 导出</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-now">$12.00</span>
+                    <span class="price-license">GPL</span>
+                </div>
+                <a class="buy-btn" href="files/SyncTools_SU.zip">下载产品文件</a>
+                <div class="sidebar-info">
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">Categories</span><span class="sidebar-info-value">添加ons, 导入 &amp; 导出</span></div>
+                    <div class="sidebar-info-item"><span class="sidebar-info-label">License</span><span class="sidebar-info-value">GPL</span></div>
+                </div>
+                <div class="compat-list">
+                    <span class="compat-chip">3d-asset-management</span>
+                    <span class="compat-chip">3d-data-transfer</span>
+                    <span class="compat-chip">architectural-visualization</span>
+                    <span class="compat-chip">component-management</span>
+                    <span class="compat-chip">cross-platform-workflow</span>
+                    <span class="compat-chip">model-import-export</span>
+                    <span class="compat-chip">modeling-tools</span>
+                    <span class="compat-chip">sketchup</span>
+                    <span class="compat-chip">sketchup-2024</span>
+                    <span class="compat-chip">sketchup-extension</span>
+                    <span class="compat-chip">synctools</span>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <section class="description">
+        <div class="desc-tabs">
+            <button class="desc-tab active" data-tab="desc">产品介绍</button>
+            <button class="desc-tab" data-tab="docs">使用文档</button>
+            <button class="desc-tab" data-tab="files">产品文件</button>
+        </div>
+        <div class="desc-panel active" id="panel-desc">
+            <div class="desc-content">
+                <h1 class=""><strong>SyncTools for SketchUp</strong></h1><h1 class=""><strong><br></strong></h1><h2 style="color:rgb(0, 0, 0);"><span style="font-weight:bolder;">🌍 多 DCC 平台支持</span></h2><h1 style="margin-top:24px;margin-bottom:12px;line-height:1.25;color:rgb(0, 0, 0);font-size:2em;"></h1><h1 class="" style="color:rgb(0, 0, 0);"></h1><h1 class=""></h1><p style="font-family:sans-serif;font-size:16px;font-weight:400;">SyncTools 系列扩展支持主要的 <span style="font-weight:bolder;">数字内容创作软件</span>, 包括:</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅ <span style="font-weight:bolder;">SyncTools for Maya</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for 3ds Max</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Houdini</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Cinema 4D</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Rhino</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Marvelous Designer</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅<span style="font-weight:bolder;">SyncTools for 虚幻引擎</span> (已发布)<br>✅ <span style="font-weight:bolder;">SyncTools for Substance Painter</span> (已发布)<br>🛠 <span style="font-weight:bolder;">SyncTools for Unity</span> (开发中)<br>✅ <span style="font-weight:bolder;">SyncTools for Zbrush</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">✅ <span style="font-weight:bolder;">SyncTools for SketchUp</span> (已发布)</p><p style="font-family:sans-serif;font-size:16px;font-weight:400;">所有插件使用 <span style="font-weight:bolder;">统一的数据交换协议</span>, 实现 <span style="font-weight:bolder;">跨平台无损资产转换</span> 和 <span style="font-weight:bolder;">真正的多软件协同工作流</span>.</p><h1 class="">
+</h1><h3 class=""><strong>兼容性</strong></h3><ul>
+<li>
+<p><strong>推荐版本</strong>: SketchUp 2022 或更新版本</p>
+</li>
+<li>
+<p><strong>支持的版本</strong>: SketchUp 2014–2021</p>
+</li>
+<li>
+<p><strong>操作系统</strong>: Windows, macOS</p>
+<p><br></p>
+<p><img src="images/desc_00_10546d8562f1fa8b1c6ac1a9f1471e5b.jpg" style="max-width:100%;"><img src="images/desc_01_71fc8994c9e7074fe6539ac2d4ccd087.jpg" style="max-width:100%;"><br></p>
+</li>
+</ul><hr><h3><strong>功能概述</strong></h3><p>SyncTools supports bidirectional import 和 export of the following 3D assets:</p><ul>
+<li>
+<p>组件</p>
+</li>
+<li>
+<p>分组</p>
+</li>
+<li>
+<p>面</p>
+</li>
+<li>
+<p>材质</p>
+</li>
+<li>
+<p>几何</p>
+</li>
+<li>
+<p>层级结构</p>
+</li>
+</ul><hr><h3><strong style="font-size:1.75rem;">插件安装</strong></h3><p><strong>找到 SketchUp 插件目录</strong><br>
+根据您的操作系统，插件路径为：</p><ul>
+<li>
+<p><strong>Windows</strong>:<br>
+<code>C:\Users\[Username]\AppData\Roaming\SketchUp\SketchUp 2022\SketchUp\Plugins</code></p>
+</li>
+<li>
+<p><strong>macOS</strong>:<br>
+<code>~/Library/Application Support/SketchUp 2022/SketchUp/Plugins</code></p>
+</li>
+</ul><hr><h3><strong>排查插件加载问题</strong></h3><ul>
+<li>
+<p>Check that the plugin’s folder structure is correct</p>
+</li>
+<li>
+<p>Ensure the plugin files 和 directory have appropriate permissions</p>
+</li>
+<li>
+<p>验证您的 SketchUp 版本是否与插件兼容</p>
+</li>
+</ul><hr><h3><strong>使用方法</strong></h3><ul>
+<li>
+<p><strong>复制</strong>: 将选中的对象导出到缓存</p>
+</li>
+<li>
+<p><strong>粘贴</strong>: 将最近导出的对象导入当前场景</p>
+</li>
+</ul><hr><h3><strong>注意事项</strong></h3><ul>
+<li>
+<p>将在您的用户文档目录中创建一个 <code>cache</code> 文件夹来存储临时数据</p>
+</li>
+<li>
+<p>确保有足够的磁盘空间用于缓存文件</p>
+</li>
+<li>
+<p>每次粘贴操作后缓存文件会自动清理</p>
+</li>
+</ul><hr><h3><strong>常见问题及解决方案</strong></h3><p><strong>1. 工具栏未显示</strong></p><ul>
+<li>
+<p>检查插件是否正确安装</p>
+</li>
+<li>
+<p>重启 SketchUp</p>
+</li>
+<li>
+<p>确保在扩展管理器中启用了该插件</p>
+</li>
+</ul><p><strong>2. 复制操作失败</strong></p><ul>
+<li>
+<p>确保已选择对象</p>
+</li>
+<li>
+<p>检查可用磁盘空间</p>
+</li>
+<li>
+<p>查看显示的任何错误消息</p>
+</li>
+</ul><p><strong>3. 粘贴操作失败</strong></p><ul>
+<li>
+<p>确保之前已执行复制操作</p>
+</li>
+<li>
+<p>检查临时文件夹中是否存在缓存文件</p>
+</li>
+<li>
+<p>查看 Ruby 控制台获取详细的错误日志</p>
+</li>
+</ul><hr><h3><strong>数据兼容性</strong></h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>支持</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本几何</td>
+<td>✔️</td>
+<td>面 和 edges are fully preserved</td>
+</tr>
+<tr>
+<td>组件实例</td>
+<td>✔️</td>
+<td>—</td>
+</tr>
+<tr>
+<td>分组结构</td>
+<td>✔️</td>
+<td>—</td>
+</tr>
+<tr>
+<td>层级结构</td>
+<td>✔️</td>
+<td>—</td>
+</tr>
+<tr>
+<td>基本材料属性</td>
+<td>✔️</td>
+<td>包括颜色、透明度等</td>
+</tr>
+<tr>
+<td>变换信息</td>
+<td>✔️</td>
+<td>位置, rotation, 和 scale retained</td>
+</tr>
+<tr>
+<td>材料纹理</td>
+<td>⚠️</td>
+<td>检查纹理路径有效性</td>
+</tr>
+<tr>
+<td>UV 坐标</td>
+<td>⚠️</td>
+<td>某些情况下可能需要调整</td>
+</tr>
+<tr>
+<td>自定义属性</td>
+<td>⚠️</td>
+<td>可能需要手动迁移</td>
+</tr>
+<tr>
+<td>图层信息</td>
+<td>⚠️</td>
+<td>部分支持</td>
+</tr>
+<tr>
+<td>动画数据</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>插件特定功能</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>Dynamic 组件</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>场景设置</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>渲染设置</td>
+<td>❌</td>
+<td>不支持</td>
+</tr>
+</tbody>
+</table><hr><h3><strong>重要说明</strong></h3><ul>
+<li>
+<p><strong>单位</strong>: 保留原始项目单位，不自动转换</p>
+</li>
+<li>
+<p><strong>面朝向</strong>: 保留面方向以避免渲染错误</p>
+</li>
+<li>
+<p><strong>材质</strong>: 保留材质名称 和 basic properties</p>
+</li>
+<li>
+<p><strong>命名</strong>: 支持 Unicode 字符（例如中文或特殊符号）</p>
+</li>
+<li>
+<p><strong>文件格式</strong>: 内部使用 FBX 进行数据交换以确保兼容性</p>
+</li>
+</ul><hr><h3><strong>摘要</strong></h3><p><strong>SyncTools for SketchUp</strong> 提供了一种简单而强大的跨平台数据传输解决方案。 通过直观的复制和粘贴功能，让您轻松在不同 3D 应用程序之间同步模型，显著提高生产效率。</p><p>如果您在使用过程中遇到任何问题，请随时联系我们。</p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-docs">
+            <div class="desc-content">
+                <p><br></p>
+            </div>
+        </div>
+        <div class="desc-panel" id="panel-files">
+            <div class="desc-content">
+            <ul class="file-list">
+                <li><a href="files/SyncTools_SU.zip">SyncTools_SU.zip</a><span class="file-size">8.9 KB</span></li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SyncTools Pro &nbsp;|&nbsp; <a href="../index.html">返回产品列表</a></p>
+    </footer>
+
+    <script>
+        const mainImg = document.getElementById('mainImg');
+        const thumbs = document.getElementById('thumbs');
+        if (thumbs && mainImg) {
+            thumbs.addEventListener('click', (event) => {
+                const thumb = event.target.closest('img');
+                if (!thumb) return;
+                mainImg.src = thumb.src;
+                thumbs.querySelectorAll('img').forEach((image) => image.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        }
+
+        document.querySelectorAll('.desc-tab').forEach((tab) => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.desc-tab').forEach((item) => item.classList.remove('active'));
+                document.querySelectorAll('.desc-panel').forEach((panel) => panel.classList.remove('active'));
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + tab.dataset.tab);
+                if (panel) panel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
