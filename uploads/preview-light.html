@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyncTools Design System Preview — Light</title>
+<style>
+  :root {
+    --gap-sm: 14px;
+    --gap-md: 22px;
+    --gap-lg: 40px;
+    --gap-xl: 56px;
+    --section-gap: 86px;
+    --radius: 18px;
+    --text-primary: #0a0a0a;
+    --text-body: #4a4a4a;
+    --text-muted: #6b6b6b;
+    --text-faint: #999999;
+    --surface-1: #ffffff;
+    --surface-2: #f8f9fa;
+    --surface-3: #f0f1f3;
+    --border-hair: rgba(10, 10, 10, 0.05);
+    --border-soft: rgba(10, 10, 10, 0.08);
+    --border-strong: rgba(10, 10, 10, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--surface-1); color: var(--text-primary); overflow-x: hidden; position: relative; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* Navigation */
+  .nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1001; box-shadow: 0 4px 30px rgba(10, 10, 10, 0.04); }
+  .nav-logo { font-size: 17px; font-weight: 700; letter-spacing: 0.5px; color: var(--text-primary); }
+  .nav-links { display: flex; gap: 32px; font-size: 0.9rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.5px; }
+  .nav-links span { cursor: pointer; transition: color 0.3s; position: relative; }
+  .nav-links span::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--text-primary); transition: width 0.3s ease; }
+  .nav-links span:hover { color: var(--text-primary); }
+  .nav-links span:hover::after { width: 100%; }
+  .nav-cta { background: #0a0a0a; color: #fff; padding: 8px 20px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s ease; font-family: inherit; letter-spacing: 0.3px; }
+  .nav-cta:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 10, 10, 0.2); }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100vh; padding: 180px 40px 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #f0f1f3 100%); overflow: hidden; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(10, 10, 10, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridShift 20s linear infinite; pointer-events: none; }
+  @keyframes gridShift { 0% { background-position: 0 0, 0 0; } 100% { background-position: 60px 60px, 60px 60px; } }
+  .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(102,126,234,0.12) 0%, transparent 60%); pointer-events: none; }
+  .particle { position: absolute; width: 3px; height: 3px; background: #667eea; border-radius: 50%; opacity: 0.6; animation: float 8s ease-in-out infinite; }
+  .particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+  .particle:nth-child(2) { top: 30%; right: 20%; animation-delay: 1s; }
+  .particle:nth-child(3) { bottom: 25%; left: 30%; animation-delay: 2s; }
+  .particle:nth-child(4) { top: 60%; right: 10%; animation-delay: 3s; }
+  .particle:nth-child(5) { bottom: 40%; right: 35%; animation-delay: 4s; }
+  .particle:nth-child(6) { top: 15%; left: 55%; animation-delay: 5s; }
+  @keyframes float { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-30px); opacity: 0.8; } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 1400px; }
+  .hero h1 { font-size: clamp(4rem, 13vw, 12.5rem); font-weight: 900; letter-spacing: -2px; line-height: 1.0; margin-bottom: 32px; color: var(--text-primary); }
+  .hero .tagline { font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 400; color: var(--text-body); margin-bottom: 48px; line-height: 1.6; }
+  .hero .tagline strong { color: var(--text-primary); font-weight: 600; }
+  .hero .btn-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+  /* Buttons (Light surface uses inverted CTAs: dark on light) */
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; border-radius: 9999px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: none; text-decoration: none; letter-spacing: 0.3px; font-family: inherit; }
+  .btn-primary { background: #0a0a0a; color: #ffffff; }
+  .btn-primary:hover { background: #1a1a1a; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(10, 10, 10, 0.2); }
+  .btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid var(--text-primary); }
+  .btn-secondary:hover { background: rgba(10, 10, 10, 0.05); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(10, 10, 10, 0.1); }
+  .btn-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+  .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102,126,234,0.35); }
+  .btn-ghost { background: transparent; color: var(--text-muted); border: none; padding: 15px 24px; border-radius: 9999px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: inherit; transition: all 0.3s ease; }
+  .btn-ghost:hover { color: var(--text-primary); background: rgba(10, 10, 10, 0.04); }
+  .btn-text { background: none; color: var(--text-primary); border: none; font-size: 14px; font-weight: 500; padding: 0; cursor: pointer; position: relative; font-family: inherit; }
+  .btn-text::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--text-primary); transition: width 0.3s ease; }
+  .btn-text:hover::after { width: 100%; }
+
+  /* Section */
+  .section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; position: relative; }
+  .section-alt { background: var(--surface-2); max-width: 100%; padding: 100px 0; border-top: 1px solid var(--border-hair); border-bottom: 1px solid var(--border-hair); }
+  .section-alt .inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .section-label { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #667eea; margin-bottom: 20px; padding: 8px 18px; border: 1px solid rgba(102,126,234,0.25); border-radius: 9999px; background: rgba(102,126,234,0.06); }
+  .section-heading { font-size: 3rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 24px; color: var(--text-primary); }
+  .section-heading .accent { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-sub { font-size: 1.125rem; color: var(--text-body); line-height: 1.68; max-width: 640px; margin-bottom: 64px; }
+
+  /* Feature grid */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  .feature-card { background: var(--surface-1); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 40px; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(10, 10, 10, 0.03); }
+  .feature-card:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 20px 40px rgba(10, 10, 10, 0.08); border-color: var(--border-strong); }
+  .feature-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(102,126,234,0.25); }
+  .feature-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); }
+  .feature-card p { font-size: 16px; color: var(--text-body); line-height: 1.68; }
+
+  /* Screenshot showcase */
+  .showcase { display: flex; justify-content: center; margin-top: 64px; }
+  .screenshot { width: 100%; max-width: 1100px; height: 520px; border-radius: var(--radius); background: linear-gradient(135deg, #ffffff, #f0f1f3); border: 1px solid var(--border-soft); box-shadow: 0 40px 80px rgba(102, 126, 234, 0.15), 0 10px 30px rgba(10, 10, 10, 0.06); display: flex; align-items: center; justify-content: center; color: rgba(10,10,10,0.1); font-size: 80px; transition: transform 0.4s ease; }
+  .screenshot:hover { transform: scale(1.02); }
+
+  /* Two-column feature */
+  .feature-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+  .feature-split-img { background: linear-gradient(135deg, #ffffff, #f0f1f3); border-radius: var(--radius); height: 480px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: rgba(10,10,10,0.1); border: 1px solid var(--border-soft); box-shadow: 0 40px 80px rgba(102, 126, 234, 0.12), 0 10px 30px rgba(10, 10, 10, 0.05); }
+  .feature-split-text h2 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; color: var(--text-primary); }
+  .feature-split-text h2 .accent { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .feature-split-text p { font-size: 1.125rem; color: var(--text-body); line-height: 1.68; margin-bottom: 32px; }
+
+  /* Pricing */
+  .pricing-wrap { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .pricing-card { flex: 1; min-width: 320px; max-width: 400px; background: var(--surface-1); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 48px; position: relative; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(10, 10, 10, 0.04); }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(10, 10, 10, 0.1); }
+  .pricing-card.featured { border: 1px solid rgba(102,126,234,0.4); background: linear-gradient(180deg, rgba(102,126,234,0.04) 0%, #ffffff 100%); transform: scale(1.02); box-shadow: 0 20px 60px rgba(102, 126, 234, 0.15); }
+  .pricing-card.featured::before { content: 'RECOMMENDED'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 8px 20px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; box-shadow: 0 8px 24px rgba(102,126,234,0.4); }
+  .tier-name { font-size: 3rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+  .tier-tag { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; letter-spacing: 0.3px; }
+  .tier-price { font-size: 4rem; font-weight: 900; color: var(--text-primary); margin-bottom: 8px; line-height: 1; }
+  .tier-price small { font-size: 1rem; color: var(--text-muted); font-weight: 400; margin-left: 6px; }
+  .tier-features { list-style: none; margin: 36px 0; }
+  .tier-features li { font-size: 15px; color: var(--text-body); padding: 12px 0; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--border-hair); }
+  .tier-features li:last-child { border-bottom: none; }
+  .check { width: 20px; height: 20px; border-radius: 50%; background: rgba(74,222,128,0.15); color: #16a34a; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .tier-cta { display: block; width: 100%; padding: 16px 32px; border-radius: 50px; background: #0a0a0a; color: #fff; border: none; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+  .tier-cta:hover { background: #1a1a1a; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(10, 10, 10, 0.2); }
+
+  /* Testimonial */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .testimonial-card { background: var(--surface-1); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 40px; transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(10, 10, 10, 0.03); }
+  .testimonial-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(10, 10, 10, 0.08); }
+  .testimonial-quote { font-size: 1.125rem; color: var(--text-body); line-height: 1.68; margin-bottom: 24px; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 16px; }
+  .testimonial-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .testimonial-role { font-size: 13px; color: var(--text-faint); }
+
+  /* Color Swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; margin-bottom: 48px; }
+  .swatch { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border-soft); background: var(--surface-1); box-shadow: 0 2px 10px rgba(10, 10, 10, 0.03); }
+  .swatch-color { height: 80px; }
+  .swatch-info { padding: 12px 14px; font-size: 12px; }
+  .swatch-name { font-weight: 600; margin-bottom: 4px; color: var(--text-primary); }
+  .swatch-hex { color: var(--text-faint); font-family: "SFMono-Regular", Consolas, monospace; font-size: 11px; }
+
+  /* Typography */
+  .type-scale { margin-bottom: 48px; }
+  .type-row { display: flex; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--border-hair); gap: 24px; }
+  .type-label { width: 180px; flex-shrink: 0; font-size: 11px; color: var(--text-faint); font-family: "SFMono-Regular", Consolas, monospace; letter-spacing: 0.5px; line-height: 1.5; }
+  .type-sample { flex: 1; color: var(--text-primary); min-width: 0; }
+
+  /* Input */
+  .input-preview { display: flex; flex-direction: column; gap: 16px; max-width: 480px; margin-bottom: 48px; }
+  .input-light { background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 14px 20px; border-radius: 18px; font-size: 16px; width: 100%; outline: none; transition: all 0.3s ease; font-family: inherit; }
+  .input-light::placeholder { color: var(--text-faint); }
+  .input-light:focus { border-color: #667eea; background: #fff; box-shadow: 0 0 0 4px rgba(102,126,234,0.1); }
+  .input-pill { border-radius: 9999px; }
+
+  /* Semantic badges */
+  .semantic-row { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .semantic-badge { padding: 10px 22px; border-radius: 9999px; font-size: 14px; font-weight: 600; border: 1px solid; }
+
+  /* Border radius scale */
+  .radius-row { display: flex; gap: 32px; margin-bottom: 48px; align-items: end; flex-wrap: wrap; }
+  .radius-item { text-align: center; }
+  .radius-box { width: 90px; height: 90px; border: 2px solid rgba(10,10,10,0.15); margin-bottom: 10px; background: var(--surface-2); }
+  .radius-value { font-size: 12px; color: var(--text-muted); font-family: "SFMono-Regular", Consolas, monospace; }
+
+  /* Spacing */
+  .spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .spacing-bar { height: 24px; background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2)); border-radius: 6px; border: 1px solid rgba(102,126,234,0.4); }
+  .spacing-label { font-size: 12px; color: var(--text-muted); width: 140px; flex-shrink: 0; font-family: "SFMono-Regular", Consolas, monospace; }
+
+  /* Text hierarchy */
+  .text-scale p { font-size: 18px; margin-bottom: 10px; }
+
+  /* Footer */
+  .footer { background: var(--surface-2); padding: 80px 40px 40px; text-align: center; border-top: 1px solid var(--border-hair); }
+  .footer-logo { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 20px; letter-spacing: 0.5px; }
+  .footer-tag { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; }
+  .footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 48px; }
+  .social-chip { width: 50px; height: 50px; border-radius: 50%; background: var(--surface-1); border: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; font-size: 17px; font-weight: 600; box-shadow: 0 2px 10px rgba(10, 10, 10, 0.03); }
+  .social-chip:hover { transform: translateY(-5px); background: var(--text-primary); color: #fff; border-color: var(--text-primary); box-shadow: 0 10px 25px rgba(10, 10, 10, 0.15); }
+  .footer-copy { font-size: 13px; color: var(--text-faint); }
+
+  @media (max-width: 968px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-split { grid-template-columns: 1fr; gap: 48px; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    .section-heading { font-size: 2rem; }
+    .hero { padding: 140px 20px 60px; }
+    .pricing-card.featured { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-logo">SyncTools</div>
+  <div class="nav-links">
+    <span>Features</span>
+    <span>Pricing</span>
+    <span>Docs</span>
+    <span>Community</span>
+    <span>Download</span>
+  </div>
+  <button class="nav-cta">Get Pro</button>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="hero-content">
+    <h1>SyncTools</h1>
+    <p class="tagline">转换一切，从未如此简单<br/><strong>The cross-platform 3D workflow conversion tool.</strong></p>
+    <div class="btn-row">
+      <button class="btn btn-primary">Get Pro — ¥98</button>
+      <button class="btn btn-secondary">Watch Demo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Feature grid -->
+<div class="section-alt">
+  <div class="inner">
+    <span class="section-label">Core Features</span>
+    <h2 class="section-heading">One toolchain.<br/><span class="accent">Every DCC app.</span></h2>
+    <p class="section-sub">SyncTools bridges Cinema 4D, Blender, Maya, 3ds Max, and Houdini — transferring geometry, animation, materials, and lighting with full round-trip fidelity.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-time Sync</h3>
+        <p>Changes propagate instantly across your DCC apps. Edit in C4D, see it in Blender — no exports, no reloads.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◈</div>
+        <h3>Full Fidelity</h3>
+        <p>Preserves shaders, rig constraints, lights, cameras, and animation curves across the entire round trip.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3>Universal Format</h3>
+        <p>One unified scene graph that every supported DCC understands natively. No plugin hell, no conversion loss.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◎</div>
+        <h3>Material Transfer</h3>
+        <p>Translates node graphs between Redshift, Cycles, Arnold, and V-Ray while respecting each renderer's conventions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◐</div>
+        <h3>Animation Bake</h3>
+        <p>Bake rigged animation into portable formats that maintain timing, easing, and constraint relationships.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⬢</div>
+        <h3>Scene Diff</h3>
+        <p>Visual diffs between scene versions so teams can review changes before merging 3D data.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Screenshot Showcase -->
+<div class="section">
+  <span class="section-label">Interface</span>
+  <h2 class="section-heading">A workspace <span class="accent">built for pipelines.</span></h2>
+  <p class="section-sub">Clean, fast, and out of your way. The SyncTools interface sits quietly in the corner of every DCC, surfacing only when you need it.</p>
+  <div class="showcase">
+    <div class="screenshot">▦</div>
+  </div>
+</div>
+
+<!-- Feature split -->
+<div class="feature-split">
+  <div class="feature-split-img">◈</div>
+  <div class="feature-split-text">
+    <span class="section-label">Workflow</span>
+    <h2>Edit once. <span class="accent">Sync everywhere.</span></h2>
+    <p>Move assets between applications without thinking about file formats, exporters, or version drift. SyncTools maintains a single source of truth that every connected DCC reads and writes directly.</p>
+    <button class="btn btn-primary">Learn More</button>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="section-alt">
+  <div class="inner" style="text-align: center;">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-heading">Buy once. <span class="accent">Use forever.</span></h2>
+    <p class="section-sub" style="margin-left: auto; margin-right: auto;">One-time purchase, no subscriptions. Lifetime updates included.</p>
+    <div class="pricing-wrap">
+      <div class="pricing-card">
+        <div class="tier-name">Pro</div>
+        <div class="tier-tag">Professional License</div>
+        <div class="tier-price">¥98<small>permanently</small></div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span>2 device activation</li>
+          <li><span class="check">✓</span>Cloud updates forever</li>
+          <li><span class="check">✓</span>Community access</li>
+          <li><span class="check">✓</span>C4D + Blender sync</li>
+          <li><span class="check">✓</span>Core material transfer</li>
+        </ul>
+        <button class="tier-cta">Get Pro</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="tier-name">Ultra</div>
+        <div class="tier-tag">Full DCC Explorer</div>
+        <div class="tier-price">¥298<small>permanently</small></div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span>6 device activation</li>
+          <li><span class="check">✓</span>Cloud updates forever</li>
+          <li><span class="check">✓</span>Priority community access</li>
+          <li><span class="check">✓</span>All DCC apps supported</li>
+          <li><span class="check">✓</span>Advanced material graph</li>
+          <li><span class="check">✓</span>Early access to new features</li>
+        </ul>
+        <button class="tier-cta">Get Ultra</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div class="section">
+  <span class="section-label">Testimonials</span>
+  <h2 class="section-heading">Trusted by <span class="accent">studios and freelancers.</span></h2>
+  <p class="section-sub">From solo creators to production teams, SyncTools has become the backbone of multi-app 3D workflows.</p>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"I used to lose hours exporting FBX back and forth. SyncTools cut that down to literally zero. It's the tool I didn't know I needed."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">LZ</div>
+        <div>
+          <div class="testimonial-name">Liu Zhang</div>
+          <div class="testimonial-role">3D Artist, Independent</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"Our C4D and Houdini pipeline used to be a mess of exchange formats. Now it just works — materials, animation, lights, all of it."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MK</div>
+        <div>
+          <div class="testimonial-name">Mika Kato</div>
+          <div class="testimonial-role">Technical Director, Studio Neo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Color Swatches -->
+<div class="section-alt">
+  <div class="inner">
+    <span class="section-label">Tokens</span>
+    <h2 class="section-heading">Color palette on <span class="accent">light surfaces.</span></h2>
+    <p class="section-sub">The SyncTools palette inverted for light-mode contexts — the brand gradient and typography scale remain unchanged.</p>
+
+    <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px;">Primary & Brand</p>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#ffffff; border-bottom: 1px solid var(--border-soft);"></div><div class="swatch-info"><div class="swatch-name">Pure White</div><div class="swatch-hex">#ffffff</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#f8f9fa; border-bottom: 1px solid var(--border-soft);"></div><div class="swatch-info"><div class="swatch-name">Surface 2</div><div class="swatch-hex">#f8f9fa</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#f0f1f3; border-bottom: 1px solid var(--border-soft);"></div><div class="swatch-info"><div class="swatch-name">Surface 3</div><div class="swatch-hex">#f0f1f3</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#0a0a0a"></div><div class="swatch-info"><div class="swatch-name">Ink Black</div><div class="swatch-hex">#0a0a0a</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)"></div><div class="swatch-info"><div class="swatch-name">Brand Gradient</div><div class="swatch-hex">#667eea → #764ba2</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#667eea"></div><div class="swatch-info"><div class="swatch-name">Indigo Start</div><div class="swatch-hex">#667eea</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#764ba2"></div><div class="swatch-info"><div class="swatch-name">Indigo End</div><div class="swatch-hex">#764ba2</div></div></div>
+    </div>
+
+    <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px;">Text Hierarchy</p>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#0a0a0a"></div><div class="swatch-info"><div class="swatch-name">Text Primary</div><div class="swatch-hex">#0a0a0a</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#4a4a4a"></div><div class="swatch-info"><div class="swatch-name">Text Body</div><div class="swatch-hex">#4a4a4a</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#6b6b6b"></div><div class="swatch-info"><div class="swatch-name">Text Muted</div><div class="swatch-hex">#6b6b6b</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#999999"></div><div class="swatch-info"><div class="swatch-name">Text Faint</div><div class="swatch-hex">#999999</div></div></div>
+    </div>
+
+    <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px;">Semantic</p>
+    <div class="semantic-row">
+      <span class="semantic-badge" style="background:rgba(74,222,128,0.12); color:#16a34a; border-color:rgba(74,222,128,0.3);">Success #4ade80</span>
+      <span class="semantic-badge" style="background:rgba(239,68,68,0.1); color:#dc2626; border-color:rgba(239,68,68,0.3);">Danger #ef4444</span>
+      <span class="semantic-badge" style="background:rgba(251,191,36,0.12); color:#b45309; border-color:rgba(251,191,36,0.3);">Warning #fbbf24</span>
+    </div>
+  </div>
+</div>
+
+<!-- Typography -->
+<div class="section">
+  <span class="section-label">Typography</span>
+  <h2 class="section-heading">A single sans-serif <span class="accent">voice.</span></h2>
+  <p class="section-sub">System font stack — the same voice for English, numbers, and Chinese characters, with weight and scale as the only hierarchy tools.</p>
+  <div class="type-scale">
+    <div class="type-row"><span class="type-label">Hero Display<br>12.5rem / 900</span><span class="type-sample" style="font-size:7rem; font-weight:900; letter-spacing:-2px; line-height:1.0;">SyncTools</span></div>
+    <div class="type-row"><span class="type-label">Section H2<br>3rem / 800</span><span class="type-sample" style="font-size:3rem; font-weight:800; letter-spacing:-0.5px; line-height:1.15;">Transform Everything</span></div>
+    <div class="type-row"><span class="type-label">Feature H3<br>2rem / 700</span><span class="type-sample" style="font-size:2rem; font-weight:700; letter-spacing:-0.3px; line-height:1.2;">Cross-Platform Sync</span></div>
+    <div class="type-row"><span class="type-label">Card Title<br>1.5rem / 600</span><span class="type-sample" style="font-size:1.5rem; font-weight:600; line-height:1.3;">Animation Transfer</span></div>
+    <div class="type-row"><span class="type-label">Sub-heading<br>1.25rem / 500</span><span class="type-sample" style="font-size:1.25rem; font-weight:500; line-height:1.4; color: var(--text-body);">全平台 3D 工作流转换工具</span></div>
+    <div class="type-row"><span class="type-label">Lead Body<br>1.125rem / 400</span><span class="type-sample" style="font-size:1.125rem; font-weight:400; line-height:1.68; color: var(--text-body);">Seamless data interchange between Cinema 4D, Blender, Maya, and 3ds Max — geometry, animation, materials, lighting.</span></div>
+    <div class="type-row"><span class="type-label">Body<br>clamp(15,1.4vw,16) / 400</span><span class="type-sample" style="font-size:16px; font-weight:400; line-height:1.6; color: var(--text-body);">SyncTools Pro bridges DCC applications with real-time synchronization of 3D assets across the entire creative pipeline.</span></div>
+    <div class="type-row"><span class="type-label">Small Body<br>0.9rem / 400</span><span class="type-sample" style="font-size:0.9rem; font-weight:400; line-height:1.5; color: var(--text-muted);">Supports C4D R21+, Blender 3.0+, Maya 2022+, 3ds Max 2022+, Houdini 19+.</span></div>
+    <div class="type-row"><span class="type-label">Caption<br>0.8rem / 400</span><span class="type-sample" style="font-size:0.8rem; font-weight:400; line-height:1.4; color: var(--text-faint);">* Actual performance may vary depending on scene complexity and hardware configuration.</span></div>
+  </div>
+</div>
+
+<!-- Buttons -->
+<div class="section-alt">
+  <div class="inner">
+    <span class="section-label">Buttons</span>
+    <h2 class="section-heading">Inverted for <span class="accent">light surfaces.</span></h2>
+    <p class="section-sub">On light mode, primary CTAs flip to dark-on-white — the inverse of the dark-mode white-on-black pattern. Pill shape is preserved at `border-radius: 9999px`.</p>
+    <div style="display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
+      <button class="btn btn-primary">Get Pro</button>
+      <button class="btn btn-secondary">Learn More</button>
+      <button class="btn btn-gradient">Upgrade to Ultra</button>
+      <button class="btn-ghost">Watch Video</button>
+      <button class="btn-text">See all features →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Inputs + Radius + Spacing -->
+<div class="section">
+  <span class="section-label">System Tokens</span>
+  <h2 class="section-heading">Inputs, radius, <span class="accent">and spacing.</span></h2>
+
+  <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 48px 0 24px;">Input Fields</p>
+  <div class="input-preview">
+    <input class="input-light" type="text" placeholder="Search documentation..." />
+    <input class="input-light input-pill" type="email" placeholder="Your email address" />
+  </div>
+
+  <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 48px 0 24px;">Border Radius Scale</p>
+  <div class="radius-row">
+    <div class="radius-item"><div class="radius-box" style="border-radius:0;"></div><div class="radius-value">0px</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:8px;"></div><div class="radius-value">8px</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:12px;"></div><div class="radius-value">12px</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:18px;"></div><div class="radius-value">18px ★</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:50px;"></div><div class="radius-value">50px</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:9999px;"></div><div class="radius-value">9999px ★</div></div>
+    <div class="radius-item"><div class="radius-box" style="border-radius:50%;"></div><div class="radius-value">50%</div></div>
+  </div>
+
+  <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 48px 0 24px;">Spacing Scale</p>
+  <div style="margin-bottom:48px;">
+    <div class="spacing-row"><span class="spacing-label">--gap-sm: 14px</span><div class="spacing-bar" style="width:14px;"></div></div>
+    <div class="spacing-row"><span class="spacing-label">--gap-md: 22px</span><div class="spacing-bar" style="width:22px;"></div></div>
+    <div class="spacing-row"><span class="spacing-label">--gap-lg: 40px</span><div class="spacing-bar" style="width:40px;"></div></div>
+    <div class="spacing-row"><span class="spacing-label">--gap-xl: 56px</span><div class="spacing-bar" style="width:56px;"></div></div>
+    <div class="spacing-row"><span class="spacing-label">--section-gap-sm: 56px</span><div class="spacing-bar" style="width:56px;"></div></div>
+    <div class="spacing-row"><span class="spacing-label">--section-gap: 86px</span><div class="spacing-bar" style="width:86px;"></div></div>
+  </div>
+
+  <p style="font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 48px 0 24px;">Text Hierarchy — Light Background</p>
+  <div class="text-scale" style="margin-bottom:48px;">
+    <p style="color: var(--text-primary);">#0a0a0a — Primary headlines and key text</p>
+    <p style="color: var(--text-body);">#4a4a4a — Body text and lead descriptions</p>
+    <p style="color: var(--text-muted);">#6b6b6b — Secondary text and nav links</p>
+    <p style="color: var(--text-faint);">#999999 — Muted metadata and captions</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-logo">SyncTools</div>
+  <div class="footer-tag">转换一切，从未如此简单</div>
+  <div class="footer-social">
+    <div class="social-chip">W</div>
+    <div class="social-chip">B</div>
+    <div class="social-chip">X</div>
+    <div class="social-chip">G</div>
+    <div class="social-chip">Y</div>
+  </div>
+  <div class="footer-copy">© 2026 SyncTools · synctools.cn · All rights reserved</div>
+</div>
+
+</body>
+</html>
