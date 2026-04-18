@@ -188,9 +188,11 @@ function Hero() {
         </div>
         <h1>
           无界衔接,<br/>
-          <span className="cn">此刻</span>
-          <span className="serif"> connect </span>
-          <span className="cn">世界。</span>
+          <span style={{ whiteSpace: 'nowrap' }}>
+            <span className="cn">此刻</span>
+            <span className="serif"> connect </span>
+            <span className="cn">世界。</span>
+          </span>
         </h1>
         <p className="hero-sub cn">
           高效的全平台转换工具 SyncTools，现已全新升级到 V3.0。新增骨骼、VFX、运动图形、几何节点等多种资产，快速导入复杂动画材质，帮助 3D 艺术家和设计师提升工作流效率。
