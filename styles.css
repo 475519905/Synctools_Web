@@ -289,7 +289,7 @@ section { position: relative; }
 .feat-row.reverse .feat-vis { order: 1; }
 .feat-text .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--fg-mute); }
 .feat-text h3 { margin-top: 14px; font-size: clamp(34px, 3.6vw, 56px); font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
-.feat-text h3 .cn { font-weight: 700; }
+.feat-text h3 .cn { font-weight: 800; }
 .feat-text .lead { color: var(--fg-dim); font-size: 16px; margin-top: 20px; max-width: 480px; line-height: 1.65; }
 .feat-text .tags { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
 .feat-text .tag {
