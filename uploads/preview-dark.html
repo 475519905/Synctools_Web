@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyncTools Design System Preview — Dark</title>
+<style>
+  :root {
+    --gap-sm: 14px;
+    --gap-md: 22px;
+    --gap-lg: 40px;
+    --gap-xl: 56px;
+    --section-gap: 86px;
+    --radius: 18px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #000; color: #fff; overflow-x: hidden; position: relative; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.02; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* Navigation */
+  .nav { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .nav-logo { font-size: 17px; font-weight: 700; letter-spacing: 0.5px; color: #fff; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.9rem; color: #999; font-weight: 500; letter-spacing: 0.5px; }
+  .nav-links span { cursor: pointer; transition: color 0.3s; position: relative; }
+  .nav-links span::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #fff; transition: width 0.3s ease; }
+  .nav-links span:hover { color: #fff; }
+  .nav-links span:hover::after { width: 100%; }
+  .nav-cta { background: #fff; color: #000; padding: 8px 20px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s ease; font-family: inherit; letter-spacing: 0.3px; }
+  .nav-cta:hover { background: #f0f0f0; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,255,255,0.2); }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100vh; padding: 180px 40px 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%); overflow: hidden; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; animation: gridShift 20s linear infinite; pointer-events: none; }
+  @keyframes gridShift { 0% { background-position: 0 0, 0 0; } 100% { background-position: 60px 60px, 60px 60px; } }
+  .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(102,126,234,0.12) 0%, transparent 60%); pointer-events: none; }
+  .particle { position: absolute; width: 3px; height: 3px; background: #fff; border-radius: 50%; opacity: 0.5; animation: float 8s ease-in-out infinite; }
+  .particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+  .particle:nth-child(2) { top: 30%; right: 20%; animation-delay: 1s; }
+  .particle:nth-child(3) { bottom: 25%; left: 30%; animation-delay: 2s; }
+  .particle:nth-child(4) { top: 60%; right: 10%; animation-delay: 3s; }
+  .particle:nth-child(5) { bottom: 40%; right: 35%; animation-delay: 4s; }
+  .particle:nth-child(6) { top: 15%; left: 55%; animation-delay: 5s; }
+  @keyframes float { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-30px); opacity: 0.8; } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 1400px; }
+  .hero h1 { font-size: clamp(4rem, 13vw, 12.5rem); font-weight: 900; letter-spacing: -2px; line-height: 1.0; margin-bottom: 32px; color: #fff; }
+  .hero .tagline { font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: 400; color: #b0b0b0; margin-bottom: 48px; line-height: 1.6; }
+  .hero .tagline strong { color: #fff; font-weight: 600; }
+  .hero .btn-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .hero-vignette { position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%); pointer-events: none; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; border-radius: 9999px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; border: none; text-decoration: none; letter-spacing: 0.3px; font-family: inherit; }
+  .btn-primary { background: #ffffff; color: #000000; font-weight: 600; }
+  .btn-primary:hover { background: #f0f0f0; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+  .btn-secondary { background: transparent; color: #ffffff; border: 2px solid #ffffff; }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
+  .btn-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; font-weight: 600; }
+  .btn-gradient:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102,126,234,0.3); }
+
+  /* Section */
+  .section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; position: relative; }
+  .section-dark { background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%); max-width: 100%; padding: 100px 0; }
+  .section-dark .inner { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .section-label { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #667eea; margin-bottom: 20px; padding: 8px 18px; border: 1px solid rgba(102,126,234,0.3); border-radius: 9999px; background: rgba(102,126,234,0.08); }
+  .section-heading { font-size: 3rem; font-weight: 800; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 24px; color: #fff; }
+  .section-heading .ice { background: linear-gradient(135deg, #ffffff 0%, #64b5f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-sub { font-size: 1.125rem; color: #b0b0b0; line-height: 1.68; max-width: 640px; margin-bottom: 64px; }
+
+  /* Feature grid */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-lg); }
+  .feature-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 40px; transition: all 0.3s ease; }
+  .feature-card:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+  .feature-icon { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px; box-shadow: 0 8px 20px rgba(102,126,234,0.2); }
+  .feature-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; color: #fff; }
+  .feature-card p { font-size: 16px; color: #b0b0b0; line-height: 1.68; }
+
+  /* Screenshot showcase */
+  .showcase { display: flex; justify-content: center; margin-top: 64px; }
+  .screenshot { width: 100%; max-width: 1100px; height: 520px; border-radius: var(--radius); background: linear-gradient(135deg, #0a0a0a, #1a1a1a); border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.08); font-size: 80px; transition: transform 0.4s ease; }
+  .screenshot:hover { transform: scale(1.02); }
+
+  /* Two-column feature */
+  .feature-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+  .feature-split-img { background: linear-gradient(135deg, #0a0a0a, #1a1a1a); border-radius: var(--radius); height: 480px; display: flex; align-items: center; justify-content: center; font-size: 80px; color: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 30px 60px rgba(255,255,255,0.1); }
+  .feature-split-text h2 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; }
+  .feature-split-text h2 .ice { background: linear-gradient(135deg, #ffffff 0%, #64b5f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .feature-split-text p { font-size: 1.125rem; color: #b0b0b0; line-height: 1.68; margin-bottom: 32px; }
+
+  /* Pricing */
+  .pricing-wrap { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .pricing-card { flex: 1; min-width: 320px; max-width: 400px; background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 48px; position: relative; transition: all 0.3s ease; }
+  .pricing-card:hover { background: rgba(255,255,255,0.04); transform: translateY(-4px); }
+  .pricing-card.featured { border: 1px solid rgba(102,126,234,0.4); background: linear-gradient(180deg, rgba(102,126,234,0.04) 0%, rgba(255,255,255,0.02) 100%); transform: scale(1.02); }
+  .pricing-card.featured::before { content: 'RECOMMENDED'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 8px 20px; border-radius: 9999px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; box-shadow: 0 8px 24px rgba(102,126,234,0.4); }
+  .tier-name { font-size: 3rem; font-weight: 800; margin-bottom: 8px; background: linear-gradient(135deg, #ffffff 0%, #64b5f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+  .tier-tag { font-size: 14px; color: #999; margin-bottom: 28px; letter-spacing: 0.3px; }
+  .tier-price { font-size: 4rem; font-weight: 900; color: #fff; margin-bottom: 8px; line-height: 1; }
+  .tier-price small { font-size: 1rem; color: #999; font-weight: 400; margin-left: 6px; }
+  .tier-features { list-style: none; margin: 36px 0; }
+  .tier-features li { font-size: 15px; color: #b0b0b0; padding: 12px 0; display: flex; align-items: center; gap: 14px; }
+  .check { width: 20px; height: 20px; border-radius: 50%; background: rgba(74,222,128,0.15); color: #4ade80; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .tier-cta { display: block; width: 100%; padding: 16px 32px; border-radius: 50px; background: #fff; color: #000; border: none; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+  .tier-cta:hover { background: #f0f0f0; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+
+  /* Testimonial */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .testimonial-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 40px; transition: all 0.3s ease; }
+  .testimonial-card:hover { background: rgba(255,255,255,0.04); transform: scale(1.02); }
+  .testimonial-quote { font-size: 1.125rem; color: #b0b0b0; line-height: 1.68; margin-bottom: 24px; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 16px; }
+  .testimonial-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .testimonial-role { font-size: 13px; color: #999; }
+
+  /* Footer */
+  .footer { background: #000; padding: 80px 40px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+  .footer-logo { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; letter-spacing: 0.5px; }
+  .footer-tag { font-size: 14px; color: #666; margin-bottom: 40px; }
+  .footer-social { display: flex; justify-content: center; gap: 16px; margin-bottom: 48px; }
+  .social-chip { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #ccc; cursor: pointer; transition: all 0.3s ease; font-size: 17px; font-weight: 600; }
+  .social-chip:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); color: #fff; }
+  .footer-copy { font-size: 13px; color: #666; }
+
+  @media (max-width: 968px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-split { grid-template-columns: 1fr; gap: 48px; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    .section-heading { font-size: 2rem; }
+    .hero { padding: 140px 20px 60px; }
+    .pricing-card.featured { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-logo">SyncTools</div>
+  <div class="nav-links">
+    <span>Features</span>
+    <span>Pricing</span>
+    <span>Docs</span>
+    <span>Community</span>
+    <span>Download</span>
+  </div>
+  <button class="nav-cta">Get Pro</button>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="hero-content">
+    <h1>SyncTools</h1>
+    <p class="tagline">转换一切，从未如此简单<br/><strong>The cross-platform 3D workflow conversion tool.</strong></p>
+    <div class="btn-row">
+      <button class="btn btn-primary">Get Pro — ¥98</button>
+      <button class="btn btn-secondary">Watch Demo</button>
+    </div>
+  </div>
+  <div class="hero-vignette"></div>
+</div>
+
+<!-- Feature grid -->
+<div class="section-dark">
+  <div class="inner">
+    <span class="section-label">Core Features</span>
+    <h2 class="section-heading">One toolchain.<br/><span class="ice">Every DCC app.</span></h2>
+    <p class="section-sub">SyncTools bridges Cinema 4D, Blender, Maya, 3ds Max, and Houdini — transferring geometry, animation, materials, and lighting with full round-trip fidelity.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Real-time Sync</h3>
+        <p>Changes propagate instantly across your DCC apps. Edit in C4D, see it in Blender — no exports, no reloads.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◈</div>
+        <h3>Full Fidelity</h3>
+        <p>Preserves shaders, rig constraints, lights, cameras, and animation curves across the entire round trip.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✦</div>
+        <h3>Universal Format</h3>
+        <p>One unified scene graph that every supported DCC understands natively. No plugin hell, no conversion loss.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◎</div>
+        <h3>Material Transfer</h3>
+        <p>Translates node graphs between Redshift, Cycles, Arnold, and V-Ray while respecting each renderer's conventions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◐</div>
+        <h3>Animation Bake</h3>
+        <p>Bake rigged animation into portable formats that maintain timing, easing, and constraint relationships.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⬢</div>
+        <h3>Scene Diff</h3>
+        <p>Visual diffs between scene versions so teams can review changes before merging 3D data.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Screenshot Showcase -->
+<div class="section">
+  <span class="section-label">Interface</span>
+  <h2 class="section-heading">A workspace <span class="ice">built for pipelines.</span></h2>
+  <p class="section-sub">Clean, fast, and out of your way. The SyncTools interface sits quietly in the corner of every DCC, surfacing only when you need it.</p>
+  <div class="showcase">
+    <div class="screenshot">▦</div>
+  </div>
+</div>
+
+<!-- Feature split -->
+<div class="feature-split">
+  <div class="feature-split-img">◈</div>
+  <div class="feature-split-text">
+    <span class="section-label">Workflow</span>
+    <h2>Edit once. <span class="ice">Sync everywhere.</span></h2>
+    <p>Move assets between applications without thinking about file formats, exporters, or version drift. SyncTools maintains a single source of truth that every connected DCC reads and writes directly.</p>
+    <button class="btn btn-primary">Learn More</button>
+  </div>
+</div>
+
+<!-- Pricing -->
+<div class="section-dark">
+  <div class="inner" style="text-align: center;">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-heading">Buy once. <span class="ice">Use forever.</span></h2>
+    <p class="section-sub" style="margin-left: auto; margin-right: auto;">One-time purchase, no subscriptions. Lifetime updates included.</p>
+    <div class="pricing-wrap">
+      <div class="pricing-card">
+        <div class="tier-name">Pro</div>
+        <div class="tier-tag">Professional License</div>
+        <div class="tier-price">¥98<small>permanently</small></div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span>2 device activation</li>
+          <li><span class="check">✓</span>Cloud updates forever</li>
+          <li><span class="check">✓</span>Community access</li>
+          <li><span class="check">✓</span>C4D + Blender sync</li>
+          <li><span class="check">✓</span>Core material transfer</li>
+        </ul>
+        <button class="tier-cta">Get Pro</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="tier-name">Ultra</div>
+        <div class="tier-tag">Full DCC Explorer</div>
+        <div class="tier-price">¥298<small>permanently</small></div>
+        <ul class="tier-features">
+          <li><span class="check">✓</span>6 device activation</li>
+          <li><span class="check">✓</span>Cloud updates forever</li>
+          <li><span class="check">✓</span>Priority community access</li>
+          <li><span class="check">✓</span>All DCC apps supported</li>
+          <li><span class="check">✓</span>Advanced material graph</li>
+          <li><span class="check">✓</span>Early access to new features</li>
+        </ul>
+        <button class="tier-cta">Get Ultra</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div class="section">
+  <span class="section-label">Testimonials</span>
+  <h2 class="section-heading">Trusted by <span class="ice">studios and freelancers.</span></h2>
+  <p class="section-sub">From solo creators to production teams, SyncTools has become the backbone of multi-app 3D workflows.</p>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"I used to lose hours exporting FBX back and forth. SyncTools cut that down to literally zero. It's the tool I didn't know I needed."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">LZ</div>
+        <div>
+          <div class="testimonial-name">Liu Zhang</div>
+          <div class="testimonial-role">3D Artist, Independent</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-quote">"Our C4D and Houdini pipeline used to be a mess of exchange formats. Now it just works — materials, animation, lights, all of it."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MK</div>
+        <div>
+          <div class="testimonial-name">Mika Kato</div>
+          <div class="testimonial-role">Technical Director, Studio Neo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-logo">SyncTools</div>
+  <div class="footer-tag">转换一切，从未如此简单</div>
+  <div class="footer-social">
+    <div class="social-chip">W</div>
+    <div class="social-chip">B</div>
+    <div class="social-chip">X</div>
+    <div class="social-chip">G</div>
+    <div class="social-chip">Y</div>
+  </div>
+  <div class="footer-copy">© 2026 SyncTools · synctools.cn · All rights reserved</div>
+</div>
+
+</body>
+</html>

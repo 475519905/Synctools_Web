@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>用户中心 - SyncTools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body data-theme="light">
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="parts/SubShared.jsx"></script>
+  <script type="text/babel">
+const { useState: us2, useEffect: ue2 } = React;
+
+function randomKey(len) {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  return Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+}
+
+function AccountPage() {
+  const [toast, setToast] = us2('');
+  const showToast = (m) => { setToast(m); setTimeout(() => setToast(''), 2000); };
+
+  // Profile
+  const [nick, setNick] = us2('Sync 用户');
+  const [email] = us2('user@example.com');
+  const [company, setCompany] = us2('');
+
+  // Licenses
+  const [licenses] = us2([
+    { type: '专业版', key: 'ST-' + randomKey(16), devices: 2, status: '已激活' },
+    { type: '全DCC探索版', key: 'ST-' + randomKey(16), devices: 6, status: '可用' },
+  ]);
+
+  // Orders
+  const [orders] = us2([
+    { id: 'ST' + Date.now(), plan: '专业版', amount: 98, time: new Date().toLocaleString(), method: '支付宝', status: '已完成' },
+  ]);
+
+  // Security
+  const [newPwd, setNewPwd] = us2('');
+  const [mfa, setMfa] = us2('off');
+
+  const quickCards = [
+    { icon: '👤', title: '资料', desc: '昵称与公司信息', href: '#profile' },
+    { icon: '🔒', title: '安全', desc: '密码与两步验证', href: '#security' },
+    { icon: '🔑', title: '授权', desc: '授权码与设备管理', href: '#license' },
+    { icon: '📋', title: '订单', desc: '支付记录与状态', href: '#orders' },
+  ];
+
+  return (
+    <>
+      <SubNav current="" />
+      <section className="page-hero" style={{ paddingBottom: 0, textAlign: 'left' }}>
+        <div className="wrap">
+          <h1 className="cn" style={{ textAlign: 'left' }}>用户中心</h1>
+          <p className="sub cn" style={{ textAlign: 'left', marginInline: 0 }}>管理您的账户信息、授权与订单</p>
+          <div className="quick-grid">
+            {quickCards.map((c, i) => (
+              <a className="quick-card" href={c.href} key={i}>
+                <div className="qi" style={{ fontSize: 18 }}>{c.icon}</div>
+                <div>
+                  <h3 className="cn">{c.title}</h3>
+                  <p className="cn">{c.desc}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 100, paddingTop: 32 }}>
+        <div className="wrap">
+          <div className="acct-panels">
+            {/* Profile */}
+            <div className="acct-panel" id="profile">
+              <h2 className="cn">账户资料</h2>
+              <div className="acct-grid">
+                <div className="form-field">
+                  <label className="form-label">昵称</label>
+                  <input className="form-input" value={nick} onChange={e => setNick(e.target.value)} />
+                </div>
+                <div className="form-field">
+                  <label className="form-label">邮箱（不可更改）</label>
+                  <input className="form-input" value={email} disabled style={{ opacity: 0.5 }} />
+                </div>
+                <div className="form-field">
+                  <label className="form-label">公司/团队（可选）</label>
+                  <input className="form-input" placeholder="输入公司/团队" value={company} onChange={e => setCompany(e.target.value)} />
+                </div>
+              </div>
+              <div className="actions">
+                <button className="btn btn-primary" onClick={() => showToast('资料已保存')}>保存资料</button>
+                <button className="btn btn-ghost" onClick={() => { setNick('Sync 用户'); setCompany(''); }}>撤销更改</button>
+              </div>
+            </div>
+
+            {/* Licenses */}
+            <div className="acct-panel" id="license">
+              <h2 className="cn">我的授权</h2>
+              <div style={{ overflowX: 'auto' }}>
+                <table className="acct-table">
+                  <thead>
+                    <tr>
+                      <th>授权类型</th>
+                      <th>授权码</th>
+                      <th>设备</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {licenses.map((l, i) => (
+                      <tr key={i}>
+                        <td className="cn">{l.type}</td>
+                        <td><code>{l.key}</code></td>
+                        <td>{l.devices} 台</td>
+                        <td><span className="status-tag">{l.status}</span></td>
+                        <td><button className="btn btn-ghost" style={{ padding: '6px 12px', fontSize: 12 }} onClick={() => showToast('已解除绑定')}>解除绑定</button></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Orders */}
+            <div className="acct-panel" id="orders">
+              <h2 className="cn">订单记录</h2>
+              <div style={{ overflowX: 'auto' }}>
+                <table className="acct-table">
+                  <thead>
+                    <tr>
+                      <th>订单号</th>
+                      <th>套餐</th>
+                      <th>金额</th>
+                      <th>时间</th>
+                      <th>支付方式</th>
+                      <th>状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orders.map((o, i) => (
+                      <tr key={i}>
+                        <td style={{ fontFamily: 'var(--font-mono)', fontSize: 11 }}>{o.id}</td>
+                        <td className="cn">{o.plan}</td>
+                        <td>¥{o.amount}</td>
+                        <td>{o.time}</td>
+                        <td className="cn">{o.method}</td>
+                        <td><span className="status-tag">{o.status}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Security */}
+            <div className="acct-panel" id="security">
+              <h2 className="cn">安全设置</h2>
+              <div className="acct-grid">
+                <div className="form-field">
+                  <label className="form-label">修改密码</label>
+                  <input className="form-input" type="password" placeholder="输入新密码" value={newPwd} onChange={e => setNewPwd(e.target.value)} />
+                </div>
+                <div className="form-field">
+                  <label className="form-label">两步验证</label>
+                  <select className="form-select" value={mfa} onChange={e => setMfa(e.target.value)}>
+                    <option value="off">关闭</option>
+                    <option value="on">开启</option>
+                  </select>
+                </div>
+              </div>
+              <div className="actions">
+                <button className="btn btn-primary" onClick={() => showToast('设置已保存')}>保存设置</button>
+                <button className="btn btn-ghost" style={{ borderColor: '#ef4444', color: '#ef4444' }} onClick={() => showToast('登录令牌已重置')}>重置登录令牌</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SubFooter />
+      {toast && <div className="st-toast show">{toast}</div>}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<AccountPage />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>文档 - SyncTools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body data-theme="light">
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="parts/SubShared.jsx"></script>
+  <script type="text/babel">
+const { useState: useState2, useEffect: useEffect2 } = React;
+
+const sections = [
+  { id: 'guide', label: '入门指南' },
+  { id: 'features', label: '功能文档' },
+  { id: 'tips', label: '使用技巧' },
+  { id: 'faq', label: '常见问题' },
+  { id: 'troubleshooting', label: '故障排查' },
+  { id: 'resources', label: '资源与支持' },
+  { id: 'changelog', label: '更新日志' },
+];
+
+function DocsPage() {
+  const [active, setActive] = useState2('guide');
+
+  useEffect2(() => {
+    const els = sections.map(s => document.getElementById(s.id)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    els.forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <SubNav current="文档" />
+      <section className="page-hero" style={{ paddingBottom: 24 }}>
+        <div className="wrap">
+          <h1 className="cn">文档中心</h1>
+          <p className="sub cn">欢迎来到 SyncTools 文档中心，帮助你快速上手、深入理解并高效使用 SyncTools。</p>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 100 }}>
+        <div className="wrap">
+          <div className="docs-layout">
+            <aside className="docs-sidebar">
+              <nav className="docs-toc">
+                {sections.map(s => (
+                  <a key={s.id} className={active === s.id ? 'active cn' : 'cn'} href={`#${s.id}`} onClick={(e) => { e.preventDefault(); scrollTo(s.id); }}>
+                    {s.label}
+                  </a>
+                ))}
+              </nav>
+            </aside>
+
+            <div className="docs-content">
+              <div className="doc-panel" id="guide">
+                <h2 className="cn">入门指南</h2>
+                <h3 className="cn">概述</h3>
+                <p className="cn">SyncTools 采用统一数据交换协议，支持多 DCC 间的双向互导与跨平台协作。</p>
+                <h3 className="cn">安装</h3>
+                <ul>
+                  <li className="cn">Cinema 4D：R21+；插件目录示例 <span className="code">C:\Program Files\Maxon Cinema 4D 2024\plugins</span>（无目录则新建，建议系统盘）</li>
+                  <li className="cn">Blender：3.3+；偏好设置 → 从磁盘安装，直接选择压缩包（无需解压）</li>
+                </ul>
+                <h3 className="cn">激活</h3>
+                <ul>
+                  <li className="cn">人工激活：提供订单号，人工下发许可证</li>
+                  <li className="cn">邮箱激活（推荐）：发送激活码到 <span className="code">qq475519905@gmail.com</span>（标题为订单号），收到许可证后重启软件</li>
+                </ul>
+                <h3 className="cn">首次上手</h3>
+                <ul>
+                  <li className="cn">C4D：首次前在 FBX 导出设置勾选"仅选集"</li>
+                  <li className="cn">在 C4D 与 Blender 中使用 Copy/Paste 在两端互导对象</li>
+                </ul>
+              </div>
+
+              <div className="doc-panel" id="features">
+                <h2 className="cn">功能文档</h2>
+                <h3 className="cn">支持范围</h3>
+                <p className="cn">角色、动画、样条、材质、模型、摄像机、灯光、工程设置等资产的双向互导。</p>
+                <h3 className="cn">核心能力</h3>
+                <ul>
+                  <li className="cn">快速复制与粘贴：自动处理比例、轴向与层级</li>
+                  <li className="cn">项目参数同步：焦距、分辨率、宽高比、帧率等</li>
+                  <li className="cn">材质互导：支持 Octane、Redshift、V-Ray、Cycles、Arnold 等</li>
+                  <li className="cn">灯光互导：强度、颜色、贴图与节点/标签</li>
+                  <li className="cn">动画互导：关键帧与曲线手柄保持精度</li>
+                  <li className="cn">离线继续导入：跨软件延续导入/导出流程</li>
+                </ul>
+                <h3 className="cn">工程设置同步</h3>
+                <p className="cn">Blender：Edit → Preferences → Add-ons → SyncTools → Project Info Sync Settings 选择要导入/导出的分辨率、帧率、帧范围、输出路径、文件格式等字段。</p>
+                <h3 className="cn">轴向与比例预设</h3>
+                <p className="cn">按目标 DCC 自动适配或自定义坐标映射；提供 All / Fast / Medium 等预设以适配不同场景。</p>
+              </div>
+
+              <div className="doc-panel" id="tips">
+                <h2 className="cn">使用技巧</h2>
+                <ul>
+                  <li className="cn">Blender 行为设置：替换选中、多次导入可提升迭代效率</li>
+                  <li className="cn">模式选择：标准（均衡）/ Beta（精度优先）/ 快速（性能优先）</li>
+                  <li className="cn">新版模式（实验性）：为 UE、MAX、MAYA、ZB、BL、4D 建立共同剪贴板</li>
+                  <li className="cn">识别渲染器：自动创建对应着色器缓存；或切换 RS/标准/物理</li>
+                  <li className="cn">快捷键可自定义：粘贴(Shift+Ctrl+C)、复制(Shift+Ctrl+V)、导入材质(Shift+Ctrl+M) 等</li>
+                </ul>
+              </div>
+
+              <div className="doc-panel" id="faq">
+                <h2 className="cn">常见问题（FAQ）</h2>
+                <ul>
+                  <li className="cn">Q：材质不匹配怎么办？ A：确认渲染器一致并开启材质识别；必要时使用标准节点过渡。</li>
+                  <li className="cn">Q：动画不对齐？ A：检查两端帧率与帧范围设置是否一致。</li>
+                  <li className="cn">Q：粘贴后比例异常？ A：调整轴向与比例预设，或在导出设置中统一全局缩放。</li>
+                </ul>
+              </div>
+
+              <div className="doc-panel" id="troubleshooting">
+                <h2 className="cn">故障排查</h2>
+                <ul>
+                  <li className="cn">权限问题：尽量安装在系统盘，避免因权限导致自动更新失败。</li>
+                  <li className="cn">导出异常：C4D 勾选"仅选集"；检查是否存在只读路径或非法字符。</li>
+                  <li className="cn">卡顿/崩溃：逐步排查第三方脚本与大型贴图；缩小导入范围测试。</li>
+                </ul>
+              </div>
+
+              <div className="doc-panel" id="resources">
+                <h2 className="cn">资源与支持</h2>
+                <ul>
+                  <li className="cn">下载页：<a href="Download.html">Download.html</a></li>
+                  <li className="cn">联系支持：网站底部联系方式或用户中心"客服支持"入口</li>
+                  <li className="cn">社区与示例：即将上线，敬请期待</li>
+                </ul>
+              </div>
+
+              <div className="doc-panel" id="changelog">
+                <h2 className="cn">更新日志</h2>
+                <p className="cn"><a href="https://www.yuque.com/shouwangxingkong-0p4w3/ldvruc/gmd4pud4fu2vz30z" target="_blank" rel="noopener">查看最新更新日志 →</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SubFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<DocsPage />);
+  </script>
+</body>
+</html>

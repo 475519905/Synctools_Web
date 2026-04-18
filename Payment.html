@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>支付 - SyncTools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body data-theme="light">
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="parts/SubShared.jsx"></script>
+  <script type="text/babel">
+const { useState: us, useEffect: ue, useMemo: um } = React;
+
+const PLANS = {
+  pro:  { name: '专业版', price: 98 },
+  dcc:  { name: '全DCC探索版', price: 298 },
+};
+const COUPONS = { 'SYNC10': { type: 'pct', v: 10 }, 'SYNC50': { type: 'flat', v: 50 } };
+
+function PaymentPage() {
+  const params = new URLSearchParams(window.location.search);
+  const initPlan = params.get('plan') || 'pro';
+
+  const [plan, setPlan] = us(initPlan);
+  const [qty, setQty] = us(1);
+  const [email, setEmail] = us('');
+  const [coupon, setCoupon] = us('');
+  const [method, setMethod] = us('card');
+  const [cardNum, setCardNum] = us('');
+  const [cardName, setCardName] = us('');
+  const [cardExp, setCardExp] = us('');
+  const [cardCvv, setCardCvv] = us('');
+  const [paypalEmail, setPaypalEmail] = us('');
+  const [loading, setLoading] = us(false);
+  const [toast, setToast] = us('');
+
+  const p = PLANS[plan] || PLANS.pro;
+  const subtotal = p.price * Math.max(1, qty);
+  const code = coupon.trim().toUpperCase();
+  const rule = COUPONS[code];
+  const discount = rule ? (rule.type === 'pct' ? Math.round(subtotal * rule.v / 100) : rule.v) : 0;
+  const total = Math.max(0, subtotal - discount);
+
+  const showToast = (m) => { setToast(m); setTimeout(() => setToast(''), 2000); };
+
+  const submit = () => {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { showToast('请输入有效邮箱'); return; }
+    if (method === 'card') {
+      if (cardNum.replace(/\s/g, '').length < 13) { showToast('请输入有效卡号'); return; }
+      if (!cardName.trim()) { showToast('请输入持卡人姓名'); return; }
+    }
+    setLoading(true);
+    setTimeout(() => {
+      const orderId = 'ST' + Date.now();
+      const methodName = method === 'card' ? '信用卡' : method === 'paypal' ? 'PayPal' : method === 'alipay' ? '支付宝' : '微信支付';
+      window.location.href = `Result.html?status=success&order=${orderId}&amount=${total}&plan=${encodeURIComponent(p.name)}&method=${encodeURIComponent(methodName)}`;
+    }, 1400);
+  };
+
+  const methods = [
+    { id: 'card', label: '信用卡' },
+    { id: 'paypal', label: 'PayPal' },
+    { id: 'alipay', label: '支付宝' },
+    { id: 'wechat', label: '微信支付' },
+  ];
+
+  return (
+    <>
+      <SubNav current="" />
+      <section className="page-hero" style={{ paddingBottom: 16 }}>
+        <div className="wrap">
+          <h1 className="cn">安全支付</h1>
+          <p className="sub cn">使用加密通道完成支付，您的信息将被严格保护</p>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 100 }}>
+        <div className="wrap">
+          <div className="pay-layout">
+            {/* Left: form */}
+            <div className="pay-panel">
+              <h3 className="cn">支付信息</h3>
+
+              <div className="form-field">
+                <label className="form-label">选择套餐</label>
+                <select className="form-select" value={plan} onChange={e => setPlan(e.target.value)}>
+                  <option value="pro">专业版 — ¥98/永久</option>
+                  <option value="dcc">全DCC探索版 — ¥298/永久</option>
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label className="form-label">购买数量</label>
+                <input className="form-input" type="number" min="1" max="100" value={qty} onChange={e => setQty(Math.max(1, parseInt(e.target.value) || 1))} />
+              </div>
+
+              <div className="form-field">
+                <label className="form-label">收件邮箱</label>
+                <input className="form-input" type="email" placeholder="name@example.com" value={email} onChange={e => setEmail(e.target.value)} />
+              </div>
+
+              <div className="form-field">
+                <label className="form-label">支付方式</label>
+                <div className="pay-methods">
+                  {methods.map(m => (
+                    <div key={m.id} className={`pay-method ${method === m.id ? 'active' : ''}`} onClick={() => setMethod(m.id)}>
+                      {m.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {method === 'card' && (
+                <>
+                  <div className="form-field">
+                    <label className="form-label">卡号</label>
+                    <input className="form-input" placeholder="4242 4242 4242 4242" value={cardNum} onChange={e => setCardNum(e.target.value)} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+                    <div className="form-field">
+                      <label className="form-label">持卡人</label>
+                      <input className="form-input" placeholder="姓名" value={cardName} onChange={e => setCardName(e.target.value)} />
+                    </div>
+                    <div className="form-field">
+                      <label className="form-label">有效期</label>
+                      <input className="form-input" placeholder="MM/YY" value={cardExp} onChange={e => setCardExp(e.target.value)} />
+                    </div>
+                    <div className="form-field">
+                      <label className="form-label">CVV</label>
+                      <input className="form-input" type="password" placeholder="···" value={cardCvv} onChange={e => setCardCvv(e.target.value)} />
+                    </div>
+                  </div>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-mute)', marginBottom: 16 }}>我们不会存储您的卡片信息，此为示例。</p>
+                </>
+              )}
+
+              {method === 'paypal' && (
+                <div className="form-field">
+                  <label className="form-label">PayPal 邮箱</label>
+                  <input className="form-input" type="email" placeholder="your-email@paypal.com" value={paypalEmail} onChange={e => setPaypalEmail(e.target.value)} />
+                </div>
+              )}
+
+              <div className="form-field">
+                <label className="form-label">优惠码（可选）</label>
+                <input className="form-input" placeholder="输入优惠码" value={coupon} onChange={e => setCoupon(e.target.value)} />
+              </div>
+
+              <button className="btn btn-accent" onClick={submit} disabled={loading} style={{ marginTop: 8 }}>
+                {loading ? '正在创建订单...' : '立即支付'}
+              </button>
+            </div>
+
+            {/* Right: summary */}
+            <div className="pay-panel" style={{ alignSelf: 'start', position: 'sticky', top: 96 }}>
+              <h3 className="cn">订单摘要</h3>
+              <div className="summary-row"><span className="label cn">套餐</span><span className="value cn">{p.name}</span></div>
+              <div className="summary-row"><span className="label">数量</span><span className="value">{qty} 个授权</span></div>
+              <div className="summary-row"><span className="label">小计</span><span className="value">¥{subtotal}</span></div>
+              <div className="summary-row"><span className="label">优惠码</span><span className="value">{rule ? `-¥${discount}` : '未使用'}</span></div>
+              <div className="summary-row total" style={{ borderBottom: 'none', paddingTop: 16 }}>
+                <span className="label">应付金额</span>
+                <span className="value" style={{ color: 'var(--accent)' }}>¥{total}</span>
+              </div>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-mute)', marginTop: 16, lineHeight: 1.6 }}>
+                下单即表示同意服务条款与隐私政策。授权通过邮箱发放。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SubFooter />
+      {toast && <div className="st-toast show">{toast}</div>}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PaymentPage />);
+  </script>
+</body>
+</html>

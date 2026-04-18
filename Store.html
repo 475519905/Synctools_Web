@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>商店 - SyncTools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body data-theme="light">
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="parts/SubShared.jsx"></script>
+  <script type="text/babel">
+const { useState } = React;
+
+function StorePage() {
+  const plans = [
+    {
+      tier: '专业版',
+      price: '¥98',
+      unit: '/ 永久',
+      features: [
+        '完美双向互导，覆盖主流 DCC 设计软件',
+        '支持 2 台设备激活',
+        '永久免费更新，一次购买终身使用',
+        '专业客服随时技术支持',
+        '千人专业社群交流',
+        '免服务器环境安装支持',
+      ],
+      btnClass: 'btn btn-primary',
+      btnText: '立即购买',
+      href: 'Payment.html?plan=pro',
+    },
+    {
+      tier: '全DCC探索版',
+      price: '¥298',
+      unit: '/ 永久',
+      badge: '推荐',
+      featured: true,
+      features: [
+        '支持全主流 3D 软件：Maya、3ds Max、ZBrush、UE 等',
+        '支持 6 台设备激活',
+        '永久免费更新与功能优先体验',
+        '24 小时技术专家服务与远程协助',
+        '内测功能优先使用与路线共创',
+        'SyncTools Group 资质与课程学习资源',
+      ],
+      btnClass: 'btn btn-accent',
+      btnText: '立即购买',
+      href: 'Payment.html?plan=dcc',
+    },
+    {
+      tier: '团队版',
+      price: '¥1999',
+      unit: '/ 永久',
+      badge: '团队',
+      features: [
+        '站点许可，不限设备并发',
+        '离线授权与局域网激活',
+        '自定义导出模板与脚本扩展',
+        '集中部署方案与版本管控',
+        '专属客户成功经理与 SLA 服务',
+      ],
+      btnClass: 'btn btn-ghost',
+      btnText: '联系销售',
+      href: '#',
+    },
+  ];
+
+  const faqs = [
+    { q: '如何收取与交付授权？', a: '购买后会通过邮箱发送授权与下载链接；登录后可在账户中心随时找回。' },
+    { q: '是否支持发票与对公采购？', a: '支持增值税专用/普通发票；企业版支持合同、对公、采购流程。' },
+    { q: '支持退款吗？', a: '提供 7 天无理由退款（激活前）。如已激活，请联系技术支持评估处理。' },
+  ];
+
+  return (
+    <>
+      <SubNav current="商店" />
+      <section className="page-hero">
+        <div className="wrap">
+          <h1 className="cn">选择适合您的版本</h1>
+          <p className="sub cn">从此刻，开启您的全新创意之旅。一次购买，永久使用。</p>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 120 }}>
+        <div className="wrap">
+          <div className="price-grid">
+            {plans.map((p, i) => (
+              <div className={`price-card ${p.featured ? 'featured' : ''}`} key={i}>
+                {p.badge && <div className="card-badge">{p.badge}</div>}
+                <div className="tier cn">{p.tier}</div>
+                <div className="amount">{p.price}<span className="unit">{p.unit}</span></div>
+                <div className="feat-list">
+                  {p.features.map((f, j) => <div className="fi cn" key={j}>{f}</div>)}
+                </div>
+                <a className={`${p.btnClass} card-btn`} href={p.href} style={{ textAlign: 'center' }}>{p.btnText}</a>
+              </div>
+            ))}
+          </div>
+
+          <div className="faq-section">
+            <h3 className="cn">常见问题</h3>
+            {faqs.map((f, i) => (
+              <div className="faq-item" key={i}>
+                <h4 className="cn">{f.q}</h4>
+                <p className="cn">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SubFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<StorePage />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>支付结果 - SyncTools Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subpage.css" />
+</head>
+<body data-theme="light">
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="parts/SubShared.jsx"></script>
+  <script type="text/babel">
+function ResultPage() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('status') || 'success';
+  const ok = status === 'success';
+  const order = params.get('order') || 'ST' + Date.now();
+  const amount = params.get('amount') || '0';
+  const plan = params.get('plan') || '专业版';
+  const method = params.get('method') || '支付宝';
+
+  return (
+    <>
+      <SubNav current="" />
+      <div className="result-center">
+        <div className="result-card">
+          <div className={`result-icon ${ok ? 'ok' : 'fail'}`}>
+            {ok ? (
+              <svg viewBox="0 0 24 24" fill="none" width="32" height="32"><path d="M6 12l4 4 8-8" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" width="32" height="32"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/></svg>
+            )}
+          </div>
+          <h2 className="cn">{ok ? '支付成功' : '支付未完成'}</h2>
+          <p className="sub cn">{ok ? '感谢您的购买，授权信息将通过邮箱发送。' : '订单未完成或已取消，如需帮助请联系支持。'}</p>
+
+          <div className="result-details">
+            <div className="summary-row"><span className="label">订单号</span><span className="value" style={{fontFamily:'var(--font-mono)',fontSize:13}}>{order}</span></div>
+            <div className="summary-row"><span className="label cn">套餐</span><span className="value cn">{plan}</span></div>
+            <div className="summary-row"><span className="label">金额</span><span className="value">¥{amount}</span></div>
+            <div className="summary-row"><span className="label cn">支付方式</span><span className="value cn">{method}</span></div>
+          </div>
+
+          <div className="result-actions">
+            <a className="btn btn-accent" href="Download.html">前往下载</a>
+            <a className="btn btn-ghost" href="Account.html">查看用户中心</a>
+          </div>
+        </div>
+      </div>
+      <SubFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<ResultPage />);
+  </script>
+</body>
+</html>
