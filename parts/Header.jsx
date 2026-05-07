@@ -26,7 +26,7 @@ function PromoBar() {
       <div className="promo-track">
         {items.map((_, i) => (
           <React.Fragment key={i}>
-            <span>使用优惠码 <b>#SYNCTOOLS</b> 立享 80% OFF</span>
+            <span>使用优惠码 <b>#SYNCTOOLS</b> 立享 85% OFF</span>
             <span>· 全球 162 国 20,000+ 设计师正在使用 ·</span>
             <span>限时折扣 · 仅剩 <b>03:12:48</b></span>
             <span>· 专业客服 1 对 1 支持 ·</span>
@@ -40,6 +40,7 @@ function PromoBar() {
 // === Nav ===
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const buyUrl = 'https://sync-tools.taobao.com/';
   return (
     <nav className="nav">
       <div className="wrap nav-inner">
@@ -57,7 +58,7 @@ function Nav() {
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <a className="btn btn-ghost hide-mobile" href="Store.html">Learn More</a>
-          <a className="btn btn-primary hide-mobile" href="#pricing">Buy Now →</a>
+          <a className="btn btn-primary hide-mobile" href={buyUrl}>Buy Now →</a>
           <button className={`nav-burger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="菜单">
             <span/><span/><span/>
           </button>
@@ -69,7 +70,7 @@ function Nav() {
           <a href="#pricing" onClick={() => setMenuOpen(false)}>定价</a>
           <a href="Docs.html">文档</a>
           <a href="Store.html">商店</a>
-          <a href="#pricing" style={{ color: 'var(--accent)', fontWeight: 600 }}>Buy Now →</a>
+          <a href={buyUrl} style={{ color: 'var(--accent)', fontWeight: 600 }}>Buy Now →</a>
         </div>
       </div>
     </nav>
@@ -176,6 +177,7 @@ function SyncDemo() {
 
 // === Hero ===
 function Hero() {
+  const buyUrl = 'https://sync-tools.taobao.com/';
   return (
     <section className="hero" id="hero">
       <div className="hero-halo" />
@@ -198,7 +200,7 @@ function Hero() {
           高效的全平台转换工具 SyncTools，现已全新升级到 V3.0。新增骨骼、VFX、运动图形、几何节点等多种资产，快速导入复杂动画材质，帮助 3D 艺术家和设计师提升工作流效率。
         </p>
         <div className="hero-cta">
-          <a className="btn btn-primary" href="#pricing">Buy Now · -80% →</a>
+          <a className="btn btn-primary" href={buyUrl}>Buy Now · -85% →</a>
           <a className="btn btn-ghost" href="#features">Learn More</a>
         </div>
         <div className="hero-meta">

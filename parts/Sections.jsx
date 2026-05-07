@@ -112,6 +112,7 @@ function Testimonials() {
 
 function Pricing() {
   const [copied, setCopied] = useState3(false);
+  const buyUrl = 'https://sync-tools.taobao.com/';
   const copy = () => {
     navigator.clipboard?.writeText('SYNCTOOLS');
     setCopied(true);
@@ -124,7 +125,7 @@ function Pricing() {
         <div className="pricing-card">
           <div>
             <div className="eyebrow">// 05 · LIMITED OFFER</div>
-            <h2><span className="cn">未来已来，</span><br/><span className="serif">at 80% off.</span></h2>
+            <h2><span className="cn">未来已来，</span><br/><span className="serif">at 85% off.</span></h2>
             <p className="cn">
               前往官方商城购买，将享受专业客服 1 对 1 支持，由技术专家帮您选购，同时提供技术指导和安装帮助。购买即获得订单金额 5% 积分返还等多项专属权益。
             </p>
@@ -137,10 +138,10 @@ function Pricing() {
           </div>
           <div className="pricing-right">
             <div className="price-tile">
-              <div className="tag">-80%</div>
+              <div className="tag">-85%</div>
               <div className="mono" style={{ color: 'var(--fg-mute)', marginBottom: 12 }}>SYNCTOOLS PRO · V3.0</div>
               <div className="row">
-                <span className="now">¥398</span>
+                <span className="now">¥298</span>
                 <span className="old">¥1988</span>
                 <span className="unit">/ 终身</span>
               </div>
@@ -154,7 +155,7 @@ function Pricing() {
                 <div className="b cn">每月自动功能更新</div>
                 <div className="b cn">专业客服 1 对 1 咨询</div>
               </div>
-              <a className="btn btn-accent buy" href="#">
+              <a className="btn btn-accent buy" href={buyUrl}>
                 Buy Now →
               </a>
             </div>
