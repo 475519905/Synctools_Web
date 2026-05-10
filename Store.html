@@ -20,6 +20,7 @@
 const { useState } = React;
 
 function StorePage() {
+  const buyUrl = 'https://sync-tools.taobao.com/';
   const plans = [
     {
       tier: '专业版',
@@ -35,7 +36,7 @@ function StorePage() {
       ],
       btnClass: 'btn btn-primary',
       btnText: '立即购买',
-      href: 'Payment.html?plan=pro',
+      href: buyUrl,
     },
     {
       tier: '全DCC探索版',
@@ -53,7 +54,7 @@ function StorePage() {
       ],
       btnClass: 'btn btn-accent',
       btnText: '立即购买',
-      href: 'Payment.html?plan=dcc',
+      href: buyUrl,
     },
     {
       tier: '团队版',
@@ -69,7 +70,7 @@ function StorePage() {
       ],
       btnClass: 'btn btn-ghost',
       btnText: '联系销售',
-      href: '#',
+      href: buyUrl,
     },
   ];
 

@@ -3,6 +3,7 @@
 
 function SubNav({ current }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const buyUrl = 'https://sync-tools.taobao.com/';
   const links = [
     { href: 'Store.html', label: '商店' },
     { href: 'Docs.html', label: '文档' },
@@ -23,7 +24,7 @@ function SubNav({ current }) {
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <a className="btn btn-ghost hide-mobile" href="Account.html">用户中心</a>
-          <a className="btn btn-primary hide-mobile" href="Store.html">Buy Now →</a>
+          <a className="btn btn-primary hide-mobile" href={buyUrl}>Buy Now →</a>
           <button className={`nav-burger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="菜单">
             <span/><span/><span/>
           </button>
@@ -34,7 +35,7 @@ function SubNav({ current }) {
             <a key={i} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
           ))}
           <a href="Account.html">用户中心</a>
-          <a href="Store.html" style={{ color: 'var(--accent)', fontWeight: 600 }}>Buy Now →</a>
+          <a href={buyUrl} style={{ color: 'var(--accent)', fontWeight: 600 }}>Buy Now →</a>
         </div>
       </div>
     </nav>
