@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /Account.html
+Disallow: /Payment.html
+Disallow: /Result.html
+
+Sitemap: https://synctools.cn/sitemap.xml
