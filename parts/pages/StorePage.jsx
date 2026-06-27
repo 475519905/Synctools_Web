@@ -1,0 +1,107 @@
+const { useState } = React;
+
+function StorePage() {
+  const buyUrl = 'https://sync-tools.taobao.com/';
+  const plans = [
+    {
+      tier: '专业版',
+      price: '¥98',
+      unit: '/ 永久',
+      features: [
+        '完美双向互导，覆盖主流 DCC 设计软件',
+        '支持 2 台设备激活',
+        '永久免费更新，一次购买终身使用',
+        '专业客服随时技术支持',
+        '千人专业社群交流',
+        '免服务器环境安装支持',
+      ],
+      btnClass: 'btn btn-primary',
+      btnText: '立即购买',
+      href: buyUrl,
+    },
+    {
+      tier: '全DCC探索版',
+      price: '¥298',
+      unit: '/ 永久',
+      badge: '推荐',
+      featured: true,
+      features: [
+        '支持全主流 3D 软件：Maya、3ds Max、ZBrush、UE 等',
+        '支持 6 台设备激活',
+        '永久免费更新与功能优先体验',
+        '24 小时技术专家服务与远程协助',
+        '内测功能优先使用与路线共创',
+        'SyncTools Group 资质与课程学习资源',
+      ],
+      btnClass: 'btn btn-accent',
+      btnText: '立即购买',
+      href: buyUrl,
+    },
+    {
+      tier: '团队版',
+      price: '¥1999',
+      unit: '/ 永久',
+      badge: '团队',
+      features: [
+        '站点许可，不限设备并发',
+        '离线授权与局域网激活',
+        '自定义导出模板与脚本扩展',
+        '集中部署方案与版本管控',
+        '专属客户成功经理与 SLA 服务',
+      ],
+      btnClass: 'btn btn-ghost',
+      btnText: '联系销售',
+      href: buyUrl,
+    },
+  ];
+
+  const faqs = [
+    { q: '如何收取与交付授权？', a: '购买后会通过邮箱发送授权与下载链接；登录后可在账户中心随时找回。' },
+    { q: '是否支持发票与对公采购？', a: '支持增值税专用/普通发票；企业版支持合同、对公、采购流程。' },
+    { q: '支持退款吗？', a: '提供 7 天无理由退款（激活前）。如已激活，请联系技术支持评估处理。' },
+  ];
+
+  return (
+    <>
+      <SubNav current="商店" />
+      <section className="page-hero">
+        <div className="wrap">
+          <h1 className="cn">选择适合您的版本</h1>
+          <p className="sub cn">从此刻，开启您的全新创意之旅。一次购买，永久使用。</p>
+        </div>
+      </section>
+
+      <section style={{ paddingBottom: 120 }}>
+        <div className="wrap">
+          <div className="price-grid">
+            {plans.map((p, i) => (
+              <div className={`price-card ${p.featured ? 'featured' : ''}`} key={i}>
+                {p.badge && <div className="card-badge">{p.badge}</div>}
+                <div className="tier cn">{p.tier}</div>
+                <div className="amount">{p.price}<span className="unit">{p.unit}</span></div>
+                <div className="feat-list">
+                  {p.features.map((f, j) => <div className="fi cn" key={j}>{f}</div>)}
+                </div>
+                <a className={`${p.btnClass} card-btn`} href={p.href} style={{ textAlign: 'center' }}>{p.btnText}</a>
+              </div>
+            ))}
+          </div>
+
+          <div className="faq-section">
+            <h3 className="cn">常见问题</h3>
+            {faqs.map((f, i) => (
+              <div className="faq-item" key={i}>
+                <h4 className="cn">{f.q}</h4>
+                <p className="cn">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SubFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<StorePage />);
