@@ -1,3 +1,10 @@
+
+function QQLoginButton() {
+  const [user, setUser] = React.useState(null);
+  React.useEffect(() => { fetch('/api/auth/me', {credentials:'same-origin'}).then(r=>r.json()).then(d=>{if(d.authenticated)setUser(d.user);}).catch(()=>{}); }, []);
+  return user ? <a href="Account.html" aria-label="个人中心" style={{display:'inline-flex',alignItems:'center',gap:6}}>{user.avatar && <img src={user.avatar} width="28" height="28" alt="QQ头像" referrerPolicy="no-referrer" style={{borderRadius:'50%'}}/>}<span>{user.nickname}</span></a> : <a href="/api/auth/qq/start" aria-label="QQ登录" style={{display:'inline-flex',alignItems:'center',flexShrink:0}}><picture><source media="(max-width:600px)" srcSet="assets/images/qq-login-small.png"/><img className="qq-official-login" src="assets/images/qq-login.png" width="170" height="32" alt="QQ登录" style={{display:'block'}}/></picture></a>;
+}
+
 /* global React */
 /* Shared subpage components: Nav + Footer (non-landing versions) */
 
@@ -23,7 +30,7 @@ function SubNav({ current }) {
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <a className="btn btn-ghost hide-mobile" href="Account.html">用户中心</a>
+          <QQLoginButton />
           <a className="btn btn-primary hide-mobile" href={buyUrl}>Buy Now →</a>
           <button className={`nav-burger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="菜单">
             <span/><span/><span/>
