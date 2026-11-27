@@ -1,0 +1,16 @@
+{
+  "production_url": "https://synctools.cn/",
+  "app_id": "1906548516",
+  "registered_callback": "https://activate.synctools.cn/api/auth/qq/callback",
+  "website_origin": "Tokyo green-jp-fast-1",
+  "https_entry": "Hangzhou reverse proxy",
+  "transport": "Restricted reverse SSH to loopback origin only",
+  "auth_runtime": "synctools-web-qq.service",
+  "edge_tunnel": "synctools-web-edge-tunnel.service",
+  "secrets": "Root-only environment file; never stored in repository",
+  "certificates": "Automatic HTTP-01 renewal, isolated certbot environment and daily systemd timer",
+  "qq_live_status": "Tencent error 100008: QQ login not enabled; app review still pending",
+  "ac_order_logic_changed": false,
+  "email_dns_changed": false,
+  "desktop_mobile_ui_verified": true
+}
